@@ -3,7 +3,9 @@ import { Mulish, Poppins, Geist } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+import QueryProvider from "@/components/QueryProvider";
+
+const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
 const mulish = Mulish({
   subsets: ["latin"],
@@ -85,9 +87,18 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn("h-full", "antialiased", mulish.variable, poppins.variable, "font-sans", geist.variable)}
+      className={cn(
+        "h-full",
+        "antialiased",
+        mulish.variable,
+        poppins.variable,
+        "font-sans",
+        geist.variable,
+      )}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <QueryProvider>{children}</QueryProvider>
+      </body>
     </html>
   );
 }
