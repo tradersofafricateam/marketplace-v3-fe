@@ -4,7 +4,22 @@
     "description": "Este es un sitio multilingüe."
   },
   "Nav": {
-    "home": "Inicio",
-    "about": "Acerca de"
+    "whatsapp": "Chatea con nosotros en WhatsApp",
+    "join": "Únete Gratis",
+    "login": "Iniciar Sesión",
+    "account": "Mi Cuenta",
+    "cart": "Carrito",
+    "orders": "Mis Pedidos",
+    "wishlist": "Lista de Deseos",
+    "settings": "Configuración",
+    "search": {
+      "placeholder": "Buscar productos, marcas y categorías..."
+    },
+    "about": {
+      "label": "Acerca de",
+      "ourStory": "Nuestra historia",
+      "whatWeDo": "Qué hacemos",
+      "ourImpact": "Nuestro impacto"
+    }
   }
 }

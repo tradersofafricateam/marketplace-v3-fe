@@ -89,6 +89,9 @@ body {
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --orange: oklch(61.023% 0.19027 39.914);
+  --orange-light: oklch(96.624% 0.01338 60.339);
+  --orange-dark: oklch(56.338% 0.1761 39.687);
 }
 
 .dark {
@@ -123,6 +126,7 @@ body {
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+  --orange: #dc4d04;
 }
 
 @layer base {
@@ -135,4 +139,28 @@ body {
   html {
     @apply font-sans;
   }
+}
+
+@keyframes dropIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 600px;
+  }
+}
+.mobile-menu {
+  animation: slideDown 0.25s ease;
 }
