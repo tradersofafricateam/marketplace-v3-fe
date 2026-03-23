@@ -4,7 +4,25 @@
     "description": "This is a multilingual site."
   },
   "Nav": {
-    "home": "Home",
-    "about": "About"
+    "whatsapp": "Chat with us on WhatsApp",
+    "join": "Join for free",
+    "login": "Login",
+    "logout": "Logout",
+    "signUp": "Sign Up",
+    "sellOnTofa": "Sell on TOFA",
+    "requestQuote": "Request for quote",
+    "account": "My Account",
+    "cart": "Cart",
+    "orders": "My Orders",
+    "settings": "Settings",
+    "search": {
+      "placeholder": "Search products, brands & categories..."
+    },
+    "about": {
+      "label": "About",
+      "ourStory": "Our Story",
+      "whatWeDo": "What We Do",
+      "ourImpact": "Our Impact"
+    }
   }
 }

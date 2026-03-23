@@ -4,7 +4,22 @@
     "description": "Hii ni tovuti ya lugha nyingi."
   },
   "Nav": {
-    "home": "Nyumbani",
-    "about": "Kuhusu"
+    "whatsapp": "Zungumza nasi kwenye WhatsApp",
+    "join": "Jiunge Bure",
+    "login": "Ingia",
+    "account": "Akaunti Yangu",
+    "cart": "Kikapu",
+    "orders": "Maagizo Yangu",
+    "wishlist": "Orodha ya Matarajio",
+    "settings": "Mipangilio",
+    "search": {
+      "placeholder": "Tafuta bidhaa, chapa na kategoria..."
+    },
+    "about": {
+      "label": "Kuhusu",
+      "ourStory": "Hadithi Yetu",
+      "whatWeDo": "Tunachofanya",
+      "ourImpact": "Athari Zetu"
+    }
   }
 }
