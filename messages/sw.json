@@ -1,0 +1,10 @@
+{
+  "HomePage": {
+    "title": "Karibu!",
+    "description": "Hii ni tovuti ya lugha nyingi."
+  },
+  "Nav": {
+    "home": "Nyumbani",
+    "about": "Kuhusu"
+  }
+}

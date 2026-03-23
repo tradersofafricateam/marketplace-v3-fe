@@ -1,0 +1,10 @@
+{
+  "HomePage": {
+    "title": "Welcome!",
+    "description": "This is a multilingual site."
+  },
+  "Nav": {
+    "home": "Home",
+    "about": "About"
+  }
+}
