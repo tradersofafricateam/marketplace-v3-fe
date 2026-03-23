@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
 import { Mulish, Poppins, Geist } from "next/font/google";
-import "./globals.css";
+
+import { routing } from "@/i18n/routing";
+import { notFound } from "next/navigation";
+import { setRequestLocale } from "next-intl/server";
+
+import "./../globals.css";
 import { cn } from "@/lib/utils";
 
 import QueryProvider from "@/components/QueryProvider";
@@ -79,11 +86,28 @@ export const metadata: Metadata = {
   category: "business",
 };
 
-export default function RootLayout({
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
+export default async function RootLayout({
   children,
+  params,
 }: Readonly<{
   children: React.ReactNode;
+  params: { locale: string };
 }>) {
+  const { locale } = await params;
+
+  if (
+    !routing.locales.includes(locale as "en" | "fr" | "es" | "ar" | "pt" | "sw")
+  ) {
+    notFound();
+  }
+
+  setRequestLocale(locale);
+  const messages = await getMessages();
+
   return (
     <html
       lang="en"
@@ -97,7 +121,11 @@ export default function RootLayout({
       )}
     >
       <body className="min-h-full flex flex-col">
-        <QueryProvider>{children}</QueryProvider>
+        <QueryProvider>
+          <NextIntlClientProvider messages={messages}>
+            {children}
+          </NextIntlClientProvider>
+        </QueryProvider>
       </body>
     </html>
   );
