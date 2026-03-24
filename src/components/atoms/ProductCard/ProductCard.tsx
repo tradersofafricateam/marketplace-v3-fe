@@ -23,9 +23,10 @@ const ProductCard = ({
   const { routes } = useGetAllRoutes();
 
   return (
-    <div className="overflow-hidden w-full rounded space-y-3">
+    <div className="overflow-hidden w-full rounded space-y-3 relative">
+      <WishListBtn productId={id} isInWishList={isInWishList} />
       <Link href={routes?.productInfo(id)} className="group">
-        <div className="w-full md:h-55 h-44 bg-muted/40 relative rounded overflow-hidden">
+        <div className="w-full md:h-55 sm:h-44 h-28 bg-muted/40 rounded overflow-hidden">
           <Image
             src={imgUrl}
             alt={productName}
@@ -33,26 +34,31 @@ const ProductCard = ({
             height={220}
             className="w-full h-full object-cover rounded group-hover:scale-110 transition-all duration-300"
           />
-          <WishListBtn productId={id} isInWishList={isInWishList} />
         </div>
         <div className="space-y-2">
           <p className="capitalize text-[11px] truncate whitespace-nowrap">
             {storeName}
           </p>
           <div className="space-y-1">
-            <p className="font-medium group-hover:text-(--orange) transition-all duration-300 whitespace-nowrap truncate">
+            <p className="font-medium group-hover:text-(--orange) transition-all duration-300 whitespace-nowrap truncate max-sm:text-sm">
               {productName}
             </p>
-            <p className="text-sm font-medium">
+            <p className="sm:text-sm text-xs font-medium">
               {currency} {amount}{" "}
-              <span className="text-[11px] font-light"> / {unit}</span>
+              <span className="sm:text-[11px] text-[9px] font-light">
+                {" "}
+                / {unit}
+              </span>
             </p>
           </div>
         </div>
       </Link>
       <div className="flex items-center gap-4 justify-between py-3">
         <AddToCartBtn productId={id} />
-        <div className="flex items-center gap-1" aria-label="Total reviews">
+        <div
+          className="sm:flex items-center gap-1 hidden"
+          aria-label="Total reviews"
+        >
           <svg
             width="18"
             viewBox="0 0 24 24"

@@ -13,11 +13,10 @@ const WishListBtn = ({
       <button
         onClick={addToWishList}
         aria-label="Add product to wishlist"
-        className={`absolute top-4 right-4 h-11 w-11 rounded-full flex justify-center items-center bg-background ${isInWishList ? "text-pink-700" : "text-black"}`}
+        className={`absolute sm:top-3 sm:right-3 top-2 right-1.5 sm:h-11 sm:w-11 h-8 w-8 rounded-full flex justify-center items-center cursor-pointer bg-background ${isInWishList ? "text-pink-700" : "text-black"} z-10`}
       >
         <svg
-          width="20"
-          height="20"
+          width="18"
           viewBox="0 0 20 20"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
