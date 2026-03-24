@@ -19,13 +19,13 @@ const MainSlider = ({ autoPlayInterval }: { autoPlayInterval?: number }) => {
 
   return (
     <div className="relative rounded-xl overflow-hidden h-full min-h-75 cursor-pointer select-none">
-      <AnimatePresence mode="wait">
+      <AnimatePresence mode="sync">
         <motion.div
           key={current}
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -40 }}
-          transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.4 }}
           className="absolute inset-0 flex items-end p-6"
           style={{ background: slides[current].bgColor }}
         >

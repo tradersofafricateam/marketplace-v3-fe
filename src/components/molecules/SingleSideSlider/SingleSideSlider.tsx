@@ -22,7 +22,7 @@ const SingleSideSlider = ({
 
   return (
     <div className="relative rounded-xl overflow-hidden h-full min-h-32.5 cursor-pointer select-none group">
-      <AnimatePresence mode="wait">
+      <AnimatePresence mode="sync">
         <motion.div
           key={current}
           initial={{ opacity: 0, y: 10 }}
