@@ -6,7 +6,6 @@ import { useLocale } from "next-intl";
 import { AnimatePresence } from "framer-motion";
 
 import MainBar from "@/components/molecules/MainBar/MainBar";
-import TopNavbar from "@/components/molecules/TopNavbar/TopNavbar";
 import Sidebar from "@/components/molecules/Sidebar/Sidebar";
 
 const Navbar = () => {
@@ -24,7 +23,6 @@ const Navbar = () => {
       className="w-full sticky top-0 z-40 bg-background"
       dir={isRTL ? "rtl" : "ltr"}
     >
-      <TopNavbar />
       <MainBar mobileOpen={mobileOpen} toggle={toggle} />
       <AnimatePresence mode="wait">
         {mobileOpen && <Sidebar toggle={toggle} />}

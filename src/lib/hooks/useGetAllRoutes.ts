@@ -11,6 +11,8 @@ export const useGetAllRoutes = () => {
     whatWeDo: `/${locale}/what-we-do`,
     ourStory: `/${locale}/our-story`,
     cart: `/${locale}/cart`,
+    categories: `/${locale}/categories`,
+    categoryInfo: (id: string) => `/${locale}/categories/${id}`,
     login: `/${locale}/login`,
     register: `/${locale}/register`,
     forgotPassword: `/${locale}/forgot-password`,

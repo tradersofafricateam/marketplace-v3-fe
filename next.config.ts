@@ -3,6 +3,9 @@ import createNextIntlPlugin from "next-intl/plugin";
 
 const nextConfig: NextConfig = {
   /* config options here */
+  images: {
+    domains: ["res.cloudinary.com", "storage.googleapis.com"],
+  },
 };
 const withNextIntl = createNextIntlPlugin();
 

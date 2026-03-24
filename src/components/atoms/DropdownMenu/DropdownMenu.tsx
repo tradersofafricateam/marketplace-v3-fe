@@ -53,7 +53,7 @@ const DropdownMenu = ({
               key={item.href}
               href={item.href}
               onClick={() => setOpen(false)}
-              className="block px-4 py-3 text-sm hover:bg-(--orange-light) hover:text-(--orange) transition-colors font-medium border-b border-slate-50 last:border-0"
+              className="block px-4 py-3 text-sm hover:bg-(--orange-light) hover:text-(--orange) transition-colors font-medium border-b border-muted last:border-0"
             >
               {item.label}
             </Link>
