@@ -19,7 +19,7 @@ export const useGetAllRoutes = () => {
     resetPassword: `/${locale}/reset-password`,
     overview: `/${locale}/dashboard/overview`,
     product: `/${locale}/product`,
-    productInfo: (id: string) => `/${locale}/products /info/${id}`,
+    productInfo: (id: string) => `/${locale}/products/info/${id}`,
     orders: `/${locale}/dashboard/orders`,
     orderInfo: (id: string) => `/${locale}/dashboard/orders/info/${id}`,
     sellerProduct: `/${locale}/dashboard/products`,

@@ -299,5 +299,8 @@
       "prevAriaLabel": "Scroll to previous categories",
       "nextAriaLabel": "Scroll to next categories"
     }
+  },
+  "Product": {
+    "addToCart": "Add to Cart"
   }
 }
