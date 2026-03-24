@@ -39,7 +39,7 @@ const CartIcon = () => {
         />
       </svg>
       {cartCount > 0 && (
-        <span className="absolute -top-1.5 -right-1.5 w-4.5 h-4.5 min-w-4.5 px-1 rounded-full bg-(--orange) text-white text-[10px] font-bold flex items-center justify-center leading-none">
+        <span className="absolute -top-1.5 -right-1.5 h-4.5 min-w-4.5 px-1 rounded-full bg-(--orange) text-white text-[10px] font-bold flex items-center justify-center leading-none">
           {cartCount}
         </span>
       )}

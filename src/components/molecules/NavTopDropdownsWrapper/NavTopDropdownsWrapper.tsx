@@ -48,7 +48,7 @@ const NavTopDropdownsWrapper = () => {
               y="0px"
               width="16"
               viewBox="0 0 122.88 122.88"
-              enable-background="new 0 0 122.88 122.88"
+              enableBackground="new 0 0 122.88 122.88"
               xmlSpace="preserve"
             >
               <g>

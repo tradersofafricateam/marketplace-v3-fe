@@ -11,7 +11,7 @@ const MainBar = ({
   toggle: () => void;
 }) => {
   return (
-    <div className="w-full">
+    <div className="w-full bg-background">
       <Container>
         <div className="flex items-center justify-between gap-3 md:gap-5 h-16 w-full">
           <Logo />

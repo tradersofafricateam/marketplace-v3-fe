@@ -6,7 +6,7 @@ import NavTopDropdownsWrapper from "../NavTopDropdownsWrapper/NavTopDropdownsWra
 
 const TopNavbar = () => {
   return (
-    <div className="w-full bg-primary-foreground">
+    <div className="w-full">
       <Container>
         <div className="flex items-center justify-between h-10 gap-2">
           <WhatsappBtn />

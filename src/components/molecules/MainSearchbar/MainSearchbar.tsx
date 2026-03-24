@@ -27,7 +27,7 @@ const MainSearchbar = () => {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder={t("search.placeholder")}
-          className="w-full text-sm rounded-xl px-2 bg-primary-foreground focus:bg-background outline-none transition-all duration-300 placeholder:text-muted-foreground flex-1"
+          className="w-full text-sm px-2 h-full bg-background outline-none transition-all duration-300 placeholder:text-muted-foreground flex-1 rounded-l-full"
         />
         <button
           type="submit"
