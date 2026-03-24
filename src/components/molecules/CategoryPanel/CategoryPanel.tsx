@@ -47,7 +47,7 @@ const CategoryPanel = () => {
         );
       })}
 
-      {active && (
+      {active && active?.children?.length > 0 && (
         <CategoryFlyoutOverlay
           onMouseEnter={() => setActiveIdx(activeIdx)}
           onMouseLeave={handleLeave}

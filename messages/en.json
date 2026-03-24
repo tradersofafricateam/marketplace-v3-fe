@@ -295,7 +295,9 @@
       "Household Sundries": "Household Sundries",
       "Garden Supplies": "Garden Supplies",
       "Laundry Products": "Laundry Products",
-      "Home Storage": "Home Storage"
+      "Home Storage": "Home Storage",
+      "prevAriaLabel": "Scroll to previous categories",
+      "nextAriaLabel": "Scroll to next categories"
     }
   }
 }
