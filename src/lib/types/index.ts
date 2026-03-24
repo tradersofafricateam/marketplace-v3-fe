@@ -5,3 +5,14 @@ export interface SelectDropdownProps {
   selected: string;
   align?: "left" | "right";
 }
+
+export interface SliderType {
+  id: string;
+  href: string;
+  bgColor: string;
+  emoji: string;
+  badge?: string;
+  badgeColor?: string;
+  title: string;
+  subtitle: string;
+}
