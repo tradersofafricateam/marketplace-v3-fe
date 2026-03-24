@@ -35,12 +35,10 @@ const MainSlider = ({ autoPlayInterval }: { autoPlayInterval?: number }) => {
             aria-label={slides[current]?.title}
           />
 
-          {/* Background emoji decoration */}
           <div className="absolute inset-0 flex items-center justify-center text-8xl opacity-20 pointer-events-none select-none">
             {slides[current]?.emoji}
           </div>
 
-          {/* Content */}
           <div className="">
             <span
               className="inline-block text-xs font-medium px-3 py-1 rounded-full mb-2"
