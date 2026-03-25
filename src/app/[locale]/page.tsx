@@ -1,6 +1,7 @@
 "use client";
 
 import HeroSection from "@/components/organisms/HeroSection/HeroSection";
+import HowItWorksSection from "@/components/organisms/HowItWorksSection/HowItWorksSection";
 import MainCategorySection from "@/components/organisms/MainCategorySection/MainCategorySection";
 import PopularProducts from "@/components/organisms/PopularProducts/PopularProducts";
 import MainLayout from "@/components/templates/MainLayout/MainLayout";
@@ -14,6 +15,7 @@ export default function Home() {
       <HeroSection />
       <MainCategorySection />
       <PopularProducts />
+      <HowItWorksSection />
       <h1>{t("title")}</h1>
       <div className="h-screen bg-gray-300"></div>
       <div className="h-screen bg-gray-600"></div>

@@ -302,5 +302,28 @@
   },
   "Product": {
     "addToCart": "Add to Cart"
+  },
+  "HowItWorks": {
+    "weProvide": "We provide the",
+    "bestCustomer": "best customer experiences",
+    "howItWorks": "How it works"
+  },
+  "steps": {
+    "tradeConfidence": {
+      "title": "Trade with confidence",
+      "desc": "Experience a secure platform where orders are processed upon payment confirmation"
+    },
+    "negotiations": {
+      "title": "Negotiations",
+      "desc": "Negotiate product prices directly with sellers before making a purchase."
+    },
+    "rfq": {
+      "title": "RFQ's",
+      "desc": "Request for quotes and await responses from various sellers for your request."
+    },
+    "network": {
+      "title": "Diverse African Network",
+      "desc": "Explore a network of African traders to easily purchase products across the continent."
+    }
   }
 }

@@ -92,6 +92,7 @@ body {
   --orange: oklch(61.023% 0.19027 39.914);
   --orange-light: oklch(96.624% 0.01338 60.339);
   --orange-dark: oklch(56.338% 0.1761 39.687);
+  --brown: oklch(27.685% 0.00003 271.152);
 }
 
 .dark {
@@ -127,6 +128,7 @@ body {
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
   --orange: #dc4d04;
+  --brown: oklch(27.685% 0.00003 271.152);
 }
 
 @layer base {
