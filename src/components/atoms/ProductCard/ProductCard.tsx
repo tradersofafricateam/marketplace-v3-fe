@@ -23,7 +23,7 @@ const ProductCard = ({
   const { routes } = useGetAllRoutes();
 
   return (
-    <div className="overflow-hidden w-full rounded space-y-3 relative">
+    <div className="overflow-hidden w-full rounded space-y-3 relative hover:shadow transition-all duration-300">
       <WishListBtn productId={id} isInWishList={isInWishList} />
       <Link href={routes?.productInfo(id)} className="group">
         <div className="w-full md:h-55 sm:h-44 h-28 bg-muted/40 rounded overflow-hidden">
@@ -35,7 +35,7 @@ const ProductCard = ({
             className="w-full h-full object-cover rounded group-hover:scale-110 transition-all duration-300"
           />
         </div>
-        <div className="space-y-2">
+        <div className="space-y-2 sm:px-2">
           <p className="capitalize text-[11px] truncate whitespace-nowrap">
             {storeName}
           </p>
@@ -53,7 +53,7 @@ const ProductCard = ({
           </div>
         </div>
       </Link>
-      <div className="flex items-center gap-4 justify-between py-3">
+      <div className="flex items-center gap-4 justify-between py-3 sm:px-2">
         <AddToCartBtn productId={id} />
         <div
           className="sm:flex items-center gap-1 hidden"
