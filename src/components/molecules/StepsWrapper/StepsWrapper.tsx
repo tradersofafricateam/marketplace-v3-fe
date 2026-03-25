@@ -9,7 +9,7 @@ const StepsWrapper = () => {
   const t = useTranslations();
 
   return (
-    <div className="flex gap-10 sm:justify-between justify-center flex-wrap w-full">
+    <div className="flex gap-10 justify-between flex-wrap w-full">
       {steps?.map((step, i) => (
         <StepCard
           key={i}

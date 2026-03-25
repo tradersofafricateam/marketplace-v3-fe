@@ -10,7 +10,7 @@ const StepCard = ({
   desc: string;
 }) => {
   return (
-    <div className="max-w-62 w-full min-w-62 space-y-3 text-background">
+    <div className="sm:max-w-62 w-full min-w-62 space-y-3 text-background">
       <div className="w-12 h-11 flex justify-center items-center rounded-full bg-(--orange-light)">
         <Image
           src={iconUrl}
