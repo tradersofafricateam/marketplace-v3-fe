@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import SectionWrapper from "@/components/atoms/SectionWrapper/SectionWrapper";
 import StepsWrapper from "@/components/molecules/StepsWrapper/StepsWrapper";
 import HowItWorksHeader from "@/components/molecules/HowItWorksHeader/HowItWorksHeader";
+import VideoGuideWrapper from "@/components/molecules/VideoGuideWrapper/VideoGuideWrapper";
 
 const HowItWorksSection = () => {
   const t = useTranslations("HowItWorks");
@@ -18,6 +19,7 @@ const HowItWorksSection = () => {
         </HowItWorksHeader>
         <StepsWrapper />
         <HowItWorksHeader>{t("howItWorks")}</HowItWorksHeader>
+        <VideoGuideWrapper />
       </div>
     </SectionWrapper>
   );

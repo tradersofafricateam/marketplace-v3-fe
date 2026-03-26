@@ -20,3 +20,21 @@ export const steps = [
     desc: "steps.network.desc",
   },
 ];
+
+export const videoGuide = [
+  {
+    id: 1,
+    title: "videoGuide.howToPlaceOrder.title",
+    videoUrl: "https://www.youtube.com",
+  },
+  {
+    id: 2,
+    title: "videoGuide.howToRequestQuote.title",
+    videoUrl: "https://www.youtube.com",
+  },
+  {
+    id: 3,
+    title: "videoGuide.howToBecomeSeller.title",
+    videoUrl: "https://www.youtube.com",
+  },
+];

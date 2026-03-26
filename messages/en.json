@@ -325,5 +325,16 @@
       "title": "Diverse African Network",
       "desc": "Explore a network of African traders to easily purchase products across the continent."
     }
+  },
+  "videoGuide": {
+    "howToPlaceOrder": {
+      "title": "How to place an order successfully."
+    },
+    "howToRequestQuote": {
+      "title": "How to request for quote."
+    },
+    "howToBecomeSeller": {
+      "title": "How to become a seller."
+    }
   }
 }
