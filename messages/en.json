@@ -2,7 +2,11 @@
   "HomePage": {
     "moreCollection": "More Collections",
     "popularProducts": "Popular Products",
-    "newlyAddedProducts": "Newly Added Products"
+    "newlyAddedProducts": "Newly Added Products",
+    "ourApp": "Our App",
+    "subscribeNews": "Subscribe to our newsletter",
+    "subscribeDesc": " A monthly digest of the latest news, articles, and resources.",
+    "emailPlaceholder": "Email address"
   },
   "Nav": {
     "whatsapp": "Chat with us on WhatsApp",
@@ -20,10 +24,28 @@
       "placeholder": "Search products, brands & categories..."
     },
     "about": {
-      "label": "About",
+      "label": "Company",
       "ourStory": "Our Story",
       "whatWeDo": "What We Do",
       "ourImpact": "Our Impact"
+    },
+    "needHelp": {
+      "label": "Need Help",
+      "contactUs": "Contact us",
+      "faq": "FAQ",
+      "support": "Support"
+    },
+    "buyer": {
+      "label": "Buyers",
+      "buyComm": " Buy commodities",
+      "productInquiry": "Product Inquiry",
+      "goodInStock": "Goods in Stock"
+    },
+    "seller": {
+      "label": "Sellers",
+      "marketplace": "Marketplace",
+      "howToTrade": "How to trade",
+      "searchRFQ": "Search RFQ's"
     }
   },
   "Hero": {
