@@ -1,7 +1,8 @@
 {
   "HomePage": {
     "moreCollection": "More Collections",
-    "popularProducts": "Popular Products"
+    "popularProducts": "Popular Products",
+    "newlyAddedProducts": "Newly Added Products"
   },
   "Nav": {
     "whatsapp": "Chat with us on WhatsApp",

@@ -6,14 +6,14 @@ import ProductCardWrapper from "@/components/molecules/ProductCardWrapper/Produc
 import { products } from "@/features/products/constants/dummy";
 import { useTranslations } from "next-intl";
 
-const PopularProducts = () => {
+const NewlyAddedProducts = () => {
   const t = useTranslations("HomePage");
 
   return (
     <SectionWrapper className="sm:pb-14 pb-10">
-      <ProductCardWrapper title={t("popularProducts")} products={products} />
+      <ProductCardWrapper title={t("newlyAddedProducts")} products={products} />
     </SectionWrapper>
   );
 };
 
-export default PopularProducts;
+export default NewlyAddedProducts;
