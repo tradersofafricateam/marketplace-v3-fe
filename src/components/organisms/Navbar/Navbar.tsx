@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { useLocale } from "next-intl";
 
 import { AnimatePresence } from "framer-motion";
 
@@ -9,9 +8,6 @@ import MainBar from "@/components/molecules/MainBar/MainBar";
 import Sidebar from "@/components/molecules/Sidebar/Sidebar";
 
 const Navbar = () => {
-  const locale = useLocale();
-  const isRTL = locale === "ar";
-
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const toggle = () => {
@@ -19,10 +15,7 @@ const Navbar = () => {
   };
 
   return (
-    <header
-      className="w-full sticky top-0 z-40 bg-background"
-      dir={isRTL ? "rtl" : "ltr"}
-    >
+    <header className="w-full sticky top-0 z-40 bg-background">
       <MainBar mobileOpen={mobileOpen} toggle={toggle} />
       <AnimatePresence mode="wait">
         {mobileOpen && <Sidebar toggle={toggle} />}
