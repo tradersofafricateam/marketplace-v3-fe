@@ -14,16 +14,16 @@ const NewsLetter = () => {
 
       <form
         action=""
-        className="flex flex-wrap justify-end flex-1 w-full gap-1 h-12"
+        className="flex flex-wrap justify-end flex-1 w-full gap-1"
       >
         <input
           type="email"
-          className="h-full max-w-115 w-full min-w-62.5 bg-background rounded-md placeholder:text-gray-500 sm:px-4 px-2 border border-background focus:border-(--orange) outline-none"
+          className="sm:h-12 h-10 max-w-115 w-full min-w-62.5 bg-background rounded-md placeholder:text-gray-500 sm:px-4 px-2 border border-background focus:border-(--orange) outline-none"
           placeholder={t("emailPlaceholder")}
         />
         <button
           type="submit"
-          className="rounded-md bg-(--orange) hover:bg-(--orange-dark) cursor-pointer transition-all duration-300 px-8 h-full text-center flex justify-center items-center text-white "
+          className="rounded-md bg-(--orange) hover:bg-(--orange-dark) cursor-pointer transition-all duration-300 px-8 sm:h-12 h-10 text-center flex justify-center items-center text-white "
         >
           Subscribe
         </button>
