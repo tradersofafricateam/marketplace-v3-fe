@@ -38,3 +38,31 @@ export const videoGuide = [
     videoUrl: "https://www.youtube.com",
   },
 ];
+
+export const moreCollectionOptions = [
+  {
+    id: "1",
+    title: "moreCollection.computingDeals.title",
+    imgUrl: "/assets/dummy/Frame 31.png",
+  },
+  {
+    id: "2",
+    title: "moreCollection.fitnessDeals.title",
+    imgUrl: "/assets/dummy/Frame 32.png",
+  },
+  {
+    id: "3",
+    title: "moreCollection.mobileAccessories.title",
+    imgUrl: "/assets/dummy/Frame 33.png",
+  },
+  {
+    id: "4",
+    title: "moreCollection.gamingDeals.title",
+    imgUrl: "/assets/dummy/Frame 34.png",
+  },
+  {
+    id: "5",
+    title: "moreCollection.homeAppliances.title",
+    imgUrl: "/assets/dummy/Frame 35.png",
+  },
+];

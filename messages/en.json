@@ -1,7 +1,7 @@
 {
   "HomePage": {
-    "title": "Welcome!",
-    "description": "This is a multilingual site."
+    "moreCollection": "More Collections",
+    "popularProducts": "Popular Products"
   },
   "Nav": {
     "whatsapp": "Chat with us on WhatsApp",
@@ -335,6 +335,23 @@
     },
     "howToBecomeSeller": {
       "title": "How to become a seller."
+    }
+  },
+  "moreCollection": {
+    "computingDeals": {
+      "title": "Computing Deals"
+    },
+    "fitnessDeals": {
+      "title": "Fitness Deals"
+    },
+    "mobileAccessories": {
+      "title": "Mobile Accessories"
+    },
+    "gamingDeals": {
+      "title": "Gaming Deals"
+    },
+    "homeAppliances": {
+      "title": "Home Appliances"
     }
   }
 }
