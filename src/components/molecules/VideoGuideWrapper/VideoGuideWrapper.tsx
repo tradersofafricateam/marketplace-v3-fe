@@ -1,13 +1,16 @@
 "use client";
 
+import { useState } from "react";
+
 import { videoGuide } from "@/lib/constants";
 import { useTranslations } from "next-intl";
-import { useState } from "react";
+
+import { motion } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+
+import VideoPlayer from "@/components/atoms/VideoPlayer/VideoPlayer";
 import HowItWorksHeader from "../HowItWorksHeader/HowItWorksHeader";
 import DotIndicator from "@/components/atoms/DotIndicator/DotIndicator";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { motion } from "framer-motion";
-import VideoPlayer from "@/components/atoms/VideoPlayer/VideoPlayer";
 
 const VideoGuideWrapper = () => {
   const t = useTranslations();
@@ -76,7 +79,7 @@ const VideoGuideWrapper = () => {
             </div>
           </div>
         </div>
-        <VideoPlayer />
+        <VideoPlayer url="https://youtu.be/JlNN4nfaMQs?si=gW-ma6BdKEEJR37R" />
       </div>
     </div>
   );
