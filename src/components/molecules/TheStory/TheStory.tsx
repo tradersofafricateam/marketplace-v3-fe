@@ -35,7 +35,7 @@ const TheStory = () => {
                   href="https://www.youtube.com/watch?v=zsj0Tw38qj0"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-2 group w-fit"
                 >
                   <Image
                     src="/assets/images/dark-play-btn.svg"
@@ -44,7 +44,10 @@ const TheStory = () => {
                     alt="play-btn"
                     className="object-contain"
                   />
-                  <p> Watch the Groundnut Story</p>
+                  <p className="group-hover:text-(--orange) transition-all duration-300 ease-out group-hover:underline">
+                    {" "}
+                    Watch the Groundnut Story
+                  </p>
                 </a>
               </div>
             </div>
