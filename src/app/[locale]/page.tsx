@@ -1,6 +1,3 @@
-"use client";
-
-import FooterSection from "@/components/organisms/FooterSection/FooterSection";
 import HeroSection from "@/components/organisms/HeroSection/HeroSection";
 import HowItWorksSection from "@/components/organisms/HowItWorksSection/HowItWorksSection";
 import MainCategorySection from "@/components/organisms/MainCategorySection/MainCategorySection";
@@ -18,7 +15,6 @@ export default function Home() {
       <HowItWorksSection />
       <MoreCollectionSection />
       <NewlyAddedProducts />
-      <FooterSection />
     </MainLayout>
   );
 }
