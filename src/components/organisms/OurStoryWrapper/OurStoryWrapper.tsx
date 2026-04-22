@@ -1,4 +1,5 @@
 import MissionVisionWrapper from "@/components/molecules/MissionVisionWrapper/MissionVisionWrapper";
+import OurTeam from "@/components/molecules/OurTeam/OurTeam";
 import TheStory from "@/components/molecules/TheStory/TheStory";
 
 const OurStoryWrapper = () => {
@@ -6,6 +7,7 @@ const OurStoryWrapper = () => {
     <div>
       <TheStory />
       <MissionVisionWrapper />
+      <OurTeam />
     </div>
   );
 };

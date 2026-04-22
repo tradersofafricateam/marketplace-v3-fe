@@ -4,6 +4,7 @@ import SectionTitle from "@/components/atoms/SectionTitle/SectionTitle";
 import SectionWrapper from "@/components/atoms/SectionWrapper/SectionWrapper";
 
 import { useTranslations } from "next-intl";
+import StyledParagraph from "@/components/atoms/StyledParagraph/StyledParagraph";
 
 const TheStory = () => {
   const t = useTranslations("aboutUs");
@@ -22,14 +23,7 @@ const TheStory = () => {
             />
             <div className="space-y-8">
               <p className=" leading-loose">{t("theStory")}</p>
-              <div className="border-l-4 border-(--orange) py-2">
-                <p className="sm:pl-6 pl-4 font-semibold sm:text-xl text-lg leading-loose">
-                  There is an urgent need to expose to Africans what is
-                  obtainable in our locality and from our surroundings, as well
-                  as showcase African products to the rest of the world. - Uju
-                  Uzo-Ojinnaka
-                </p>
-              </div>
+              <StyledParagraph desc={t("ujuQuote")} />
               <div className="">
                 <a
                   href="https://www.youtube.com/watch?v=zsj0Tw38qj0"
