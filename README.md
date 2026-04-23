@@ -82,6 +82,10 @@ Cart System: Add, remove, and manage product quantities
 
 Services Module: Businesses can list services alongside products
 
+Language: Supports multiple languages (English, French, Portugues, Spanish, Arabic and Swahilii)
+
+Currency: Supports multiple currencies (NNG, USD, GBP, EUR, GHS, KES KSH, XOF )
+
 Notifications System: Email and in-app notifications
 
 Admin & Moderation Ready:

@@ -1,7 +1,7 @@
 import OurStoryWrapper from "@/components/organisms/OurStoryWrapper/OurStoryWrapper";
 import MainLayout from "@/components/templates/MainLayout/MainLayout";
 
-const page = () => {
+const OurStoryPage = () => {
   return (
     <MainLayout>
       <OurStoryWrapper />
@@ -9,4 +9,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default OurStoryPage;

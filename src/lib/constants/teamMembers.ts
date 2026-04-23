@@ -25,7 +25,7 @@ export const team = [
   },
   {
     name: "Nzekwe John C.",
-    role: "Graphics &amp; Content Manager",
+    role: "Graphics & Content Manager",
     url: "https://www.linkedin.com/in/john-chinedu-nzekwe-2ba5a11a2/",
     imgUrl: "/assets/images/team/nedz.jpg",
   },
