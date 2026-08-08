@@ -15,7 +15,9 @@ const Navbar = () => {
   };
 
   return (
-    <header className="w-full sticky top-0 z-40 bg-background">
+    <header
+      className={`w-full sticky top-0 bg-background ${mobileOpen ? "z-60" : "z-40"}`}
+    >
       <MainBar mobileOpen={mobileOpen} toggle={toggle} />
       <AnimatePresence mode="wait">
         {mobileOpen && <Sidebar toggle={toggle} />}

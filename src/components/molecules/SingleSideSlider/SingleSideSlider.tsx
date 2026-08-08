@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useLocale, useTranslations } from "next-intl";
 
 import { useSlider } from "@/lib/hooks/useSlider";
 import { SliderType } from "@/lib/types";
@@ -15,10 +16,18 @@ const SingleSideSlider = ({
   autoPlayInterval?: number;
   slides: SliderType[];
 }) => {
+  const locale = useLocale();
+  const t = useTranslations("HomePage");
   const { current, prev, next } = useSlider({
     slides,
     autoPlayInterval,
   });
+  const slide = slides[current];
+  const href = `/${locale}${slide.href.replace(/^\/en/, "")}`;
+  const slideText = (key: "title" | "subtitle") => {
+    const messageKey = `slides.${slide.id}.${key}`;
+    return t.has(messageKey) ? t(messageKey) : slide[key];
+  };
 
   return (
     <div className="relative rounded-xl overflow-hidden h-full min-h-32.5 cursor-pointer select-none group">
@@ -33,23 +42,23 @@ const SingleSideSlider = ({
           style={{ background: slides[current]?.bgColor }}
         >
           <Link
-            href={slides[current]?.href}
+            href={href}
             className="absolute inset-0"
-            aria-label={slides[current]?.title}
+            aria-label={slideText("title")}
           />
 
           {/* Background emoji */}
           <div className="absolute inset-0 flex items-center justify-center text-5xl opacity-20 pointer-events-none select-none">
-            {slides[current]?.emoji}
+            {slide.emoji}
           </div>
 
           {/* Content */}
           <div className="relative z-10">
             <p className="text-[13px] font-medium text-white drop-shadow leading-snug">
-              {slides[current]?.title}
+              {slideText("title")}
             </p>
             <p className="text-[11px] text-white/75">
-              {slides[current]?.subtitle}
+              {slideText("subtitle")}
             </p>
           </div>
         </motion.div>
@@ -63,7 +72,7 @@ const SingleSideSlider = ({
             prev();
           }}
           className="w-5 h-5 rounded-full bg-white/25 hover:bg-white/50 flex items-center justify-center transition-colors"
-          aria-label="Previous"
+          aria-label={t.has("slides.previous") ? t("slides.previous") : "Previous"}
         >
           <ChevronLeft size={11} className="text-white" />
         </button>
@@ -73,7 +82,7 @@ const SingleSideSlider = ({
             next();
           }}
           className="w-5 h-5 rounded-full bg-white/25 hover:bg-white/50 flex items-center justify-center transition-colors"
-          aria-label="Next"
+          aria-label={t.has("slides.next") ? t("slides.next") : "Next"}
         >
           <ChevronRight size={11} className="text-white" />
         </button>

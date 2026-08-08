@@ -25,7 +25,7 @@ const NewsLetter = () => {
           type="submit"
           className="rounded-md bg-(--orange) hover:bg-(--orange-dark) cursor-pointer transition-all duration-300 px-8 sm:h-12 h-10 text-center flex justify-center items-center text-white "
         >
-          Subscribe
+          {t("subscribe")}
         </button>
       </form>
     </div>

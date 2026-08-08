@@ -1,7 +1,7 @@
 import Image from "next/image";
 
-import SectionTitle from "@/components/atoms/SectionTitle/SectionTitle";
 import SectionWrapper from "@/components/atoms/SectionWrapper/SectionWrapper";
+import AnimatedHeading from "@/components/atoms/AnimatedHeading/AnimatedHeading";
 
 import { useTranslations } from "next-intl";
 import StyledParagraph from "@/components/atoms/StyledParagraph/StyledParagraph";
@@ -17,10 +17,9 @@ const TheStory = () => {
       <SectionWrapper className="">
         <div className="grid grid-cols-12">
           <div className="lg:col-span-6 md:col-span-10 col-span-12 space-y-4">
-            <SectionTitle
-              title={t("ourStory")}
-              className="font-bold text-2xl"
-            />
+            <AnimatedHeading className="text-2xl font-bold">
+              {t("ourStory")}
+            </AnimatedHeading>
             <div className="space-y-8">
               <p className=" leading-loose">{t("theStory")}</p>
               <StyledParagraph desc={t("ujuQuote")} />
@@ -35,12 +34,11 @@ const TheStory = () => {
                     src="/assets/images/dark-play-btn.svg"
                     width={50}
                     height={50}
-                    alt="play-btn"
+                    alt=""
                     className="object-contain"
                   />
                   <p className="group-hover:text-(--orange) transition-all duration-300 ease-out group-hover:underline">
-                    {" "}
-                    Watch the Groundnut Story
+                    {t("watchGroundnutStory")}
                   </p>
                 </a>
               </div>

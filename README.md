@@ -1,245 +1,137 @@
-# [Traders of Africa (TOFA) Marketplace](https://tradersofafrica.com)
+# Traders of Africa Marketplace
 
-[TOFA Marketplace](https://tradersofafrica.com) is a cross-border digital trade platform designed to connect African sellers with global buyers. Built with Next.js (App Router) and TypeScript, the platform enables businesses to showcase products, receive requests for quotations (RFQs), manage orders, communicate with buyers, and scale across borders.
+[Traders of Africa (TOFA)](https://tradersofafrica.com) is a multilingual digital marketplace connecting African suppliers with local and global buyers. The frontend is built with Next.js App Router, TypeScript, Tailwind CSS, `next-intl`, and an Atomic Design component architecture.
 
-The system is optimized for performance, SEO, and scalability, using a modular architecture and modern frontend tooling.
+## Current Features
 
-## Table of Contents
+- Responsive marketplace homepage with product grids, category navigation, promotional sliders, and Framer Motion reveals.
+- Locale-aware routing and content in English, French, Spanish, Swahili, and Portuguese.
+- Localized Our Story, What We Do, Our Impact, Become Seller, and 404 pages.
+- Responsive mobile navigation drawer with backdrop, scroll locking, and keyboard dismissal.
+- Become Seller landing page with supplier benefits, onboarding steps, pricing plans, policy downloads, and an inline YouTube tutorial player.
+- Downloadable starter Supplier Compliance and Product Exclusions PDF documents.
+- Custom localized 404 handling for unmatched and nested routes.
+- Reusable UI organized with atoms, molecules, organisms, and templates.
+- Responsive images through the Next.js Image component.
+- Reduced-motion accessibility support for animated content.
 
-Features
+## Supported Languages
 
-Tech Stack
+| Locale | Language |
+| --- | --- |
+| `en` | English |
+| `fr` | French |
+| `es` | Spanish |
+| `sw` | Swahili |
+| `pt` | Portuguese |
 
-Project Structure
+Localized URLs use a locale prefix, for example `/en/our-story` and `/fr/become-seller`.
 
-Getting Started
+## Public Routes
 
-Prerequisites
+- `/[locale]` — Marketplace homepage
+- `/[locale]/our-story` — Company story, mission, vision, and team
+- `/[locale]/what-we-do` — Marketplace services and technology
+- `/[locale]/our-impact` — Customer impact stories
+- `/[locale]/become-seller` — Supplier onboarding and subscription plans
+- Any unmatched localized URL — Custom 404 page
 
-Installation
+## Tech Stack
 
-Environment Variables
+- Next.js 16 App Router
+- React 19
+- TypeScript
+- Tailwind CSS 4
+- next-intl
+- Framer Motion
+- TanStack Query
+- Axios
+- Lucide React
+- shadcn/ui
 
-Running the App
+## Project Structure
 
-SEO Optimizations
-
-License
-
-### Features
-
-[TOFA Marketplace](https://tradersofafrica.com) provides a comprehensive B2B and B2C commerce experience:
-
-Marketplace Core
-
-Product Listings: Sellers can upload, edit, and manage products.
-
-Global Discovery: Buyers from anywhere in the world can browse African products.
-
-RFQ System (Request for Quotation):
-
-Buyers request quotes for products
-
-Sellers respond with pricing and terms
-
-Buyers can accept quotes and proceed to order
-
-Orders & Transactions
-
-Order Management: Buyers can place orders directly or via accepted quotes
-
-Seller-controlled Fulfillment: Sellers handle logistics and delivery
-
-Wallet System: Supports payments and transaction tracking
-
-Communication
-
-Message Center:
-
-Real-time communication between buyers and sellers
-
-Supports negotiation and deal clarification
-
-User & Business Management
-
-Authentication:
-
-Email/password
-
-Google OAuth
-
-Company Profiles:
-
-Showcase business details, products, and services
-
-User Dashboard:
-
-Central hub for managing activity across the platform
-
-### Additional Features
-
-Cart System: Add, remove, and manage product quantities
-
-Services Module: Businesses can list services alongside products
-
-Language: Supports multiple languages (English, French, Portugues, Spanish, Arabic and Swahilii)
-
-Currency: Supports multiple currencies (NNG, USD, GBP, EUR, GHS, KES KSH, XOF )
-
-Notifications System: Email and in-app notifications
-
-Admin & Moderation Ready:
-
-Product moderation queue
-
-User and transaction oversight
-
-### Tech Stack
-
-Framework: Next.js (App Router)
-
-Language: TypeScript
-
-Styling: Tailwind CSS, Shadcn/UI
-
-State Management: React Context and Zustand
-
-API Requests: Axios
-
-Architecture: Feature-based + Atomic Design
-
-SEO:
-
-Next.js Metadata API
-
-Structured Data (JSON-LD)
-
-Sitemap generation
-
-Fonts: Google Fonts (Mulish, Poppins)
-
-Formatting: Prettier
-
-### Project Structure
-
-The project is structured for scalability and modular development:
-
-```bash
-tofa-marketplace/
+```text
+src/
 ├── app/
-│ ├── layout.tsx
-│ ├── page.tsx
-│ └── [feature]/
-│ └── page.tsx
+│   ├── [locale]/               # Localized routes and layout
+│   ├── globals.css
+│   └── page.tsx                # Redirects to the default locale
 ├── components/
-│ ├── atoms/
-│ ├── molecules/
-│ ├── organisms/
-│ └── templates/
-├── features/
-│ ├── auth/
-│ ├── products/
-│ ├── quotes/
-│ ├── orders/
-│ ├── subscription/
-│ ├── cart/
-│ ├── messages/
-│ ├── payments/
-│ └── reviews/
-├── lib/
-│ ├── context/
-│ ├── hooks/
-│ ├── helpers/
-│ └── utils.ts
-├── public/
-│ ├── images/
-│ ├── icons/
-├── styles/
-│ └── global.css
-├── types/
-├── middleware.ts
-├── next.config.js
-├── package.json
-├── tailwind.config.ts
-└── tsconfig.json
+│   ├── atoms/                  # Small reusable UI primitives
+│   ├── molecules/              # Composed UI elements
+│   ├── organisms/              # Page sections
+│   └── templates/              # Shared page layouts
+├── features/                   # Feature-specific types and constants
+├── i18n/                       # Locale request and routing configuration
+├── lib/                        # Hooks, helpers, constants, and utilities
+└── proxy.ts                    # Locale detection and routing proxy
+
+messages/                       # Translation files by locale
+public/
+├── assets/                     # Images, icons, and static media
+└── documents/                  # Downloadable policy PDFs and source drafts
 ```
 
-### Getting Started
+## Getting Started
 
-TOFA Marketplace is built with a modular, feature-driven architecture that allows independent scaling of features like RFQs, orders, messaging, and wallets.
+### Prerequisites
 
-Prerequisites
+- Node.js 20 or later
+- npm
 
-Ensure you have:
-
-Node.js (v18 or later)
-
-```bash
-npm / yarn / pnpm
-```
-
-Git
-
-A code editor (VS Code recommended)
-
-Installation
-
-Clone the repository:
+### Installation
 
 ```bash
-git clone https://github.com/your-repo/tofa-marketplace.git
-cd tofa-marketplace
-```
-
-Install dependencies:
-
-```bash
+git clone <repository-url>
+cd marketplace-v3-fe
 npm install
 ```
 
-Environment Variables
-
-Create a .env.local file in the root directory:
-
-NEXT_PUBLIC_API_BASE_URL=
-NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=
-NEXT_PUBLIC_AUTH_GOOGLE_ID=
-NEXT_PUBLIC_AUTH_GOOGLE_SECRET=
-
-Running the App
-
-Start the development server:
+### Development
 
 ```bash
 npm run dev
 ```
 
-Visit: http://localhost:3000
+The default development server is available at [http://localhost:3000](http://localhost:3000). A custom port can be supplied with:
 
-### SEO Optimizations
+```bash
+npm run dev -- -p 3004
+```
 
-TOFA Marketplace is built with strong SEO foundations:
+### Validation
 
-Dynamic metadata per page
+```bash
+npm run lint
+npm run build
+```
 
-Structured data for products and businesses
+## Localization
 
-Optimized routing for discoverability
+Locale definitions live in `src/i18n/routing.ts`, while translations live in `messages/<locale>.json`. When adding visible interface copy:
 
-Sitemap and indexing support
+1. Add the same key to every supported locale file.
+2. Use `useTranslations` rather than hard-coded interface text.
+3. Preserve the active locale in internal navigation.
+4. Run the lint and production build checks before committing.
 
-Fast performance via Next.js App Router
+## Seller Policy Documents
 
-### Additional Notes
+Editable starter drafts and generated PDFs are stored in `public/documents`:
 
-Uses feature-based architecture for scalability
+- `supplier-compliance.txt` and `supplier-compliance.pdf`
+- `product-exclusions.txt` and `product-exclusions.pdf`
 
-Atomic Design ensures reusable UI components
+The drafts are starting points and should receive legal review before production use.
 
-Tailwind CSS powers consistent styling
+## Architecture Notes
 
-Built with cross-border trade in mind
+- Page sections should be composed from reusable Atomic Design components.
+- Server Components are preferred unless browser state, event handlers, or animation hooks require a Client Component.
+- Motion components respect the user's reduced-motion preference.
+- The project uses the Next.js 16 `proxy.ts` convention for locale routing.
 
-### License
+## License
 
 This project is proprietary and owned by Traders of Africa.

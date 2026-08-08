@@ -23,7 +23,7 @@ const CategoryFlyoutOverlay = ({
 
   return (
     <div
-      className="absolute left-[calc(100%+6px)] top-0 w-[calc(280%+12px)] overflow-y-scroll bg-background border border-muted rounded-xl shadow-lg p-4 grid lg:grid-cols-3 md:grid-cols-2 gap-6 z-20 h-full max-h-full"
+      className="absolute left-[calc(100%+6px)] top-0 z-20 grid h-full max-h-full w-[calc(280%+12px)] grid-cols-2 gap-6 overflow-y-auto overscroll-contain rounded-xl border border-muted bg-background p-4 shadow-lg lg:grid-cols-3"
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >

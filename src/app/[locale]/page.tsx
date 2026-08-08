@@ -5,16 +5,29 @@ import MoreCollectionSection from "@/components/organisms/MoreCollectionSection/
 import NewlyAddedProducts from "@/components/organisms/NewlyAddedProducts/NewlyAddedProducts";
 import PopularProducts from "@/components/organisms/PopularProducts/PopularProducts";
 import MainLayout from "@/components/templates/MainLayout/MainLayout";
+import ScrollReveal from "@/components/atoms/ScrollReveal/ScrollReveal";
 
 export default function Home() {
   return (
     <MainLayout>
-      <HeroSection />
-      <MainCategorySection />
-      <PopularProducts />
-      <HowItWorksSection />
-      <MoreCollectionSection />
-      <NewlyAddedProducts />
+      <ScrollReveal>
+        <HeroSection />
+      </ScrollReveal>
+      <ScrollReveal>
+        <MainCategorySection />
+      </ScrollReveal>
+      <ScrollReveal>
+        <PopularProducts />
+      </ScrollReveal>
+      <ScrollReveal>
+        <HowItWorksSection />
+      </ScrollReveal>
+      <ScrollReveal>
+        <MoreCollectionSection />
+      </ScrollReveal>
+      <ScrollReveal>
+        <NewlyAddedProducts />
+      </ScrollReveal>
     </MainLayout>
   );
 }

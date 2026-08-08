@@ -10,7 +10,7 @@ const PopularProducts = () => {
   const t = useTranslations("HomePage");
 
   return (
-    <SectionWrapper className="sm:pb-14 pb-10">
+    <SectionWrapper paddingX="xl:px-14" className="sm:pb-14 pb-10">
       <ProductCardWrapper title={t("popularProducts")} products={products} />
     </SectionWrapper>
   );

@@ -28,7 +28,7 @@ const MainCategorySection = () => {
   } = useScrollable();
 
   return (
-    <SectionWrapper className="sm:pb-14 pb-10">
+    <SectionWrapper paddingX="xl:px-14" className="sm:pb-14 pb-10">
       <div className="p-6 max-sm:py-4 bg-background rounded-xl">
         <div className="relative">
           <AnimatePresence>
