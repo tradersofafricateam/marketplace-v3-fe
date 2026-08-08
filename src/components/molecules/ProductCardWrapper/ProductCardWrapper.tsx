@@ -13,7 +13,7 @@ const ProductCardWrapper = ({
   return (
     <div className="space-y-4">
       <SectionTitle title={title} />
-      <div className="grid xl:grid-cols-5 lg:grid-cols-4 sm:grid-cols-3 grid-cols-2 sm:gap-4 gap-2  p-4 bg-background">
+      <div className="grid [--product-card-min:150px] [grid-template-columns:repeat(auto-fill,minmax(min(100%,var(--product-card-min)),1fr))] gap-2 bg-background p-3 sm:[--product-card-min:180px] sm:gap-3 sm:p-4 lg:[--product-card-min:210px] lg:gap-4">
         {products?.map((prod: ProductData) => (
           <ProductCard
             key={prod?.id}

@@ -18,12 +18,12 @@ const OurTeam = () => {
           <p>{t("teamDesc")}</p>
           <StyledParagraph desc={t("teamQuote")} className="max-w-lg w-full" />
         </div>
-        <div className="flex gap-10 flex-wrap">
+        <div className="flex gap-10 flex-wrap justify-between">
           {team?.map((tm) => (
             <TeamCard
               key={tm?.name}
               name={tm?.name}
-              role={tm?.role}
+              role={t(`roles.${tm.role}`)}
               url={tm?.url}
               imgUrl={tm?.imgUrl}
             />

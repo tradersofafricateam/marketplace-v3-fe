@@ -6,7 +6,23 @@
     "ourApp": "Our App",
     "subscribeNews": "Subscribe to our newsletter",
     "subscribeDesc": " A monthly digest of the latest news, articles, and resources.",
-    "emailPlaceholder": "Email address"
+    "emailPlaceholder": "Email address",
+    "subscribe": "Subscribe",
+    "allRightsReserved": "All Rights Reserved",
+    "slides": {
+      "previous": "Previous promotion",
+      "next": "Next promotion",
+      "1": {"badge":"Hot Deals","title":"Summer Sale — Up to 60% Off","subtitle":"Shop the biggest deals this season"},
+      "2": {"badge":"Just In","title":"New Arrivals in Electronics","subtitle":"Flagship phones & laptops now in stock"},
+      "3": {"badge":"Trending","title":"Fashion Week Collection","subtitle":"Curated looks from top designers"},
+      "4": {"badge":"Home","title":"Transform Your Home","subtitle":"Furniture & decor at unbeatable prices"},
+      "a1": {"title":"Flash Sale — 2hrs Left","subtitle":"Up to 40% off tech"},
+      "a2": {"title":"Gift Sets Available","subtitle":"Perfect for any occasion"},
+      "a3": {"title":"Free Delivery Today","subtitle":"On orders over $50"},
+      "b1": {"title":"Buy Now, Pay Later","subtitle":"0% interest for 6 months"},
+      "b2": {"title":"Top Rated Sellers","subtitle":"Quality you can trust"},
+      "b3": {"title":"Ships Worldwide","subtitle":"Fast & reliable delivery"}
+    }
   },
   "aboutUs": {
     "ourStory": "Our Story",
@@ -18,8 +34,28 @@
     "ujuQuote": " There is an urgent need to expose to Africans what is obtainable in our  locality and from our surroundings, as well as showcase African products to the rest of the world. - Uju Uzo-Ojinnaka",
     "ourTeam": "Our Team Awesome",
     "teamDesc": "Traders of Africa promotes a relaxed, culturally diverse workplace for the optimal performance of its employees, as well as an all-round friendly experience for anyone who walks through our doors. We are called Team Awesome!",
-    "teamQuote": "A team of young, dynamic innovators sowing the seeds of qualitative trade out of Africa."
+    "teamQuote": "A team of young, dynamic innovators sowing the seeds of qualitative trade out of Africa.",
+    "watchGroundnutStory": "Watch the Groundnut Story",
+    "roles": {
+      "ceoFounder": "CEO & Founder",
+      "techLead": "Tech Lead",
+      "legalOfficer": "Legal Officer",
+      "backendDeveloper": "Backend Developer",
+      "graphicsContentManager": "Graphics & Content Manager",
+      "hrAdmin": "HR/Admin",
+      "strategicPartnerships": "Strategic Partnerships"
+    }
   },
+  "becomeSeller": {
+    "register":"Register Now",
+    "hero":{"accent":"Connect And Trade","title":"With Suppliers Of Food And Agriculture","description":"Take your business to the next level by becoming a seller on the supplier's marketplace."},
+    "benefits":{"title":"Why Sell On The Marketplace?","subtitle":"Learn the benefits. Here's why you need to know to start selling.","items":{"listStore":{"title":"List Your Store","description":"The store is your product and profile listing hub. Learn more about our strong seller tools."},"fastSales":{"title":"Get Faster Resolutions","description":"Increase your sales with effective management. You create and upload your store and orders."},"connectBuyers":{"title":"Connect With More Buyers","description":"Reach buyers across Africa through our marketplace and build lasting trade relationships."},"payments":{"title":"Seamless And Lasting","description":"Buyers pay securely on the platform while you manage fulfillment and receive dependable support."}}},
+    "onboarding":{"title":"Want To Become A Supplier?","steps":{"one":"Step 1: Register in under 5 minutes. Fill in the registration form and submit the required documents.","two":"Step 2: Become an Agro-entrepreneur expert. Complete the dedicated core seller onboarding video.","three":"Step 3: List your products and upload product images to start selling by exposing your product to a wide African client base on the marketplace.","four":"Step 4: Receive and fulfill orders from buyers."}},
+    "pricing":{"title":"Plans & Pricing","subtitle":"Simple pricing. No hidden fees. Advance your business.","choose":"Try This Plan","note":"All listings are subject to our fair marketplace validation process. Select the plan that best fits your business and growth goals.","basic":{"name":"Basic Plan","description":"For starters","price":"FREE","unavailable":"No Quota Posting","features":{"quotas":"Commission: 5%","commission":"Number of Products: 5","products":"Number of Pictures: 10","pictures":"Access Buyer/Seller Contact Details: 25 Per Contract","buyerAccess":"Standard marketplace support"}},"premium":{"name":"Premium Plan","description":"For established sellers","price":"$40 – $150","period":" / quarter","features":{"quotas":"Quota Posting","commission":"Commission: 3%","products":"Number of Products: Unlimited","pictures":"Number of Pictures: Unlimited","buyerAccess":"Access Buyer/Seller Contact Details: FREE"}}},
+    "policies":{"compliance":{"title":"Our Supplier Compliances","description":"All compliances on the suppliers marketplace must be adhered to. Failure to do so will be considered a breach in our agreements and sanctions will be imposed. Kindly view the document below.","download":"Download the Supplier Compliances.pdf"},"exclusions":{"title":"Our Product Exclusions","description":"Certain products are prohibited from being listed on the suppliers marketplace. Kindly view the document of excluded products in order to be made aware and abstain from such acts.","download":"Download the Product Exclusions.pdf"}},
+    "tutorial":{"title":"Use The Supplier's Marketplace The Right Way","subtitle":"Learn the essential ways to successfully maximize the marketplace for a successful trade.","play":"Play Tutorial Video"}
+  },
+  "notFound":{"eyebrow":"404 Not Found","title":"Oh No! There’s Nothing Here","description":"It looks like this page has been lost or is temporarily unavailable. Let’s help you find your way back.","backHome":"Back To Homepage","imageAlt":"404 page not found illustration"},
   "whatWeDo": {
     "backedTech": "Backed by Technology",
     "backedTechDesc": "Our data are reliably informed by the large network of people and partners we have across the various countries in Africa. This data is updated regularly to provide key information about products made in Africa.",
@@ -44,6 +80,11 @@
     "BuildSupplyCapacityDesc": "Through dedicated partnerships in every African country, TOFA Academy provides training and funding to farmers and aggregators for commercial agro commodities trade.",
     "BuildSupplyCapacityDesc2": "We work closely together with SourcePro to train our cohorts on all they need to know about commercial agribusiness. We're also dedicated to providing the needed financing and direct offtake of all products. Become a member of our TOFA Tribe, where we'll mentor you for impact and monitor you for success!"
   },
+  "ourImpact": {
+    "customerStory": "Customer Stories",
+    "customerDesc": "I'm delighted TOFA has brought technology into agriculture, which is desperately needed in the field; also, their creation of market access addresses a key difficulty for individuals in agribusiness, particularly women.",
+    "speaker": "Dr Ajibike Saratu Oluwatimilehin, 50 Million Women Speak"
+  },
   "Nav": {
     "whatsapp": "Chat with us on WhatsApp",
     "join": "Join for free",
@@ -52,6 +93,8 @@
     "signUp": "Sign Up",
     "sellOnTofa": "Sell on TOFA",
     "requestQuote": "Request for quote",
+    "menu": "Menu",
+    "closeMenu": "Close menu",
     "account": "My Account",
     "cart": "Cart",
     "orders": "My Orders",

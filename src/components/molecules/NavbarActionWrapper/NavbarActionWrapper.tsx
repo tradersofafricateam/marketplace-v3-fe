@@ -67,7 +67,7 @@ const NavbarActionWrapper = ({
       <button
         className="md:hidden flex items-center justify-center w-9 h-9 rounded-xl border border-border  hover:bg-primary-foreground transition-colors"
         onClick={toggle}
-        aria-label="Toggle menu"
+        aria-label={t("menu")}
       >
         {mobileOpen ? <X size={18} /> : <Menu size={18} />}
       </button>

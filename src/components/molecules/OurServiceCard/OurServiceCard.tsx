@@ -20,7 +20,7 @@ const OurServiceCard = ({
 }) => {
   return (
     <div
-      className={`flex items-center justify-center flex-wrap sm:gap-10 gap-6 ${isImgFirst && "flex-row-reverse"}`}
+      className={`flex items-center justify-between flex-wrap sm:gap-10 gap-6 ${isImgFirst && "flex-row-reverse"}`}
     >
       <div className="max-w-xl w-full min-w-75 space-y-6">
         <SectionTitle

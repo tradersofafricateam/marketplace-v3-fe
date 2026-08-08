@@ -13,7 +13,7 @@ const MoreCollectionSection = () => {
   const { routes } = useGetAllRoutes();
 
   return (
-    <SectionWrapper className="sm:py-14 py-10">
+    <SectionWrapper paddingX="xl:px-14" className="sm:py-14 py-10">
       <div className="bg-background rounded-xl overflow-hidden">
         <div className="bg-[#FFF4F0] w-full sm:h-17.5 h-15 flex justify-center items-center">
           <h6 className="text-center w-full font-semibold sm:text-xl text-lg">

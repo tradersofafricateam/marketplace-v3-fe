@@ -11,11 +11,11 @@ const MainSearchbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
   return (
-    <div className="flex-1 max-w-2xl">
-      <form className="relative group w-full lg:h-12 h-10 flex items-center justify-between rounded-full focus-within:border-(--orange) border border-border transition-all duration-300">
+    <div className="w-full min-w-0 flex-1 max-w-2xl">
+      <form className="relative group w-full lg:h-12 h-10 flex items-center justify-between overflow-hidden rounded-full focus-within:border-(--orange) border border-border transition-all duration-300">
         <button
           type="submit"
-          className=" block lg:hidden pl-2 text-muted-foreground"
+          className="block shrink-0 pl-2 text-muted-foreground lg:hidden"
         >
           <Search
             size={16}
@@ -27,7 +27,7 @@ const MainSearchbar = () => {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder={t("search.placeholder")}
-          className="w-full text-sm px-2 h-full bg-background outline-none transition-all duration-300 placeholder:text-muted-foreground flex-1 rounded-l-full"
+          className="h-full min-w-0 flex-1 bg-background px-2 text-sm outline-none transition-all duration-300 placeholder:text-muted-foreground"
         />
         <button
           type="submit"

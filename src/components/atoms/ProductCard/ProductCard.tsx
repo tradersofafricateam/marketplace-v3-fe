@@ -23,37 +23,40 @@ const ProductCard = ({
   const { routes } = useGetAllRoutes();
 
   return (
-    <div className="overflow-hidden w-full rounded space-y-3 relative hover:shadow transition-all duration-300">
+    <article className="relative flex h-full min-w-0 flex-col overflow-hidden rounded-lg bg-background transition-shadow duration-300 hover:shadow">
       <WishListBtn productId={id} isInWishList={isInWishList} />
-      <Link href={routes?.productInfo(id)} className="group">
-        <div className="w-full md:h-55 sm:h-44 h-28 bg-muted/40 rounded overflow-hidden">
+      <Link
+        href={routes?.productInfo(id)}
+        className="group flex min-w-0 flex-1 flex-col"
+      >
+        <div className="aspect-4/3 w-full overflow-hidden rounded-lg bg-muted/40">
           <Image
             src={imgUrl}
             alt={productName}
-            width={250}
-            height={220}
-            className="w-full h-full object-cover rounded group-hover:scale-110 transition-all duration-300"
+            width={500}
+            height={500}
+            sizes="(max-width: 639px) 50vw, (max-width: 1023px) 33vw, 20vw"
+            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
           />
         </div>
-        <div className="space-y-2 sm:px-2">
-          <p className="capitalize text-[11px] truncate whitespace-nowrap">
+        <div className="flex flex-1 flex-col gap-1 px-1 pt-2 sm:px-2">
+          <p className="truncate text-[11px] capitalize text-muted-foreground">
             {storeName}
           </p>
-          <div className="space-y-1">
-            <p className="font-medium group-hover:text-(--orange) transition-all duration-300 whitespace-nowrap truncate max-sm:text-sm">
+          <div className="flex flex-1 flex-col gap-0.5">
+            <p className="line-clamp-2 min-h-9 text-sm leading-tight font-medium transition-colors duration-300 group-hover:text-(--orange) sm:text-base">
               {productName}
             </p>
-            <p className="sm:text-sm text-xs font-medium">
+            <p className="mt-auto text-xs font-medium sm:text-sm">
               {currency} {amount}{" "}
-              <span className="sm:text-[11px] text-[9px] font-light">
-                {" "}
+              <span className="text-[9px] font-light sm:text-[11px]">
                 / {unit}
               </span>
             </p>
           </div>
         </div>
       </Link>
-      <div className="flex items-center gap-4 justify-between py-3 sm:px-2">
+      <div className="mt-auto flex items-center justify-between gap-2 px-1 py-2 sm:px-2">
         <AddToCartBtn productId={id} />
         <div
           className="sm:flex items-center gap-1 hidden"
@@ -73,7 +76,7 @@ const ProductCard = ({
           <p className="text-sm">({totalReviews})</p>
         </div>
       </div>
-    </div>
+    </article>
   );
 };
 

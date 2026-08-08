@@ -7,7 +7,7 @@ import { bottomSlides, topSlides } from "@/lib/constants/dummyData";
 
 const HeroSection = () => {
   return (
-    <SectionWrapper className="sm:py-14 py-8">
+    <SectionWrapper paddingX="xl:px-14" className="sm:py-14 py-8">
       <div
         className="
         grid gap-3

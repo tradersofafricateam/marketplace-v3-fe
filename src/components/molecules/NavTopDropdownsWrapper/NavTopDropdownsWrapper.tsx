@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { useLocale, useTranslations } from "next-intl";
-import { usePathname, useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { usePathname } from "next/navigation";
 import { useGetAllRoutes } from "@/lib/hooks/useGetAllRoutes";
 
 import { locales } from "@/lib/constants/language";
@@ -12,19 +12,25 @@ import { currencies } from "@/lib/constants/currencies";
 import SelectDropdown from "@/components/atoms/SelectDropdown/SelectDropdown";
 
 const NavTopDropdownsWrapper = () => {
-  const locale = useLocale();
-  const router = useRouter();
   const pathname = usePathname();
   const { routes } = useGetAllRoutes();
 
   const t = useTranslations("Nav");
 
   const [currency, setCurrency] = useState("NGN");
+  const pathnameLocale = pathname.split("/")[1];
+  const locale = locales.some(({ value }) => value === pathnameLocale)
+    ? pathnameLocale
+    : "en";
 
   const switchLocale = (newLocale: string) => {
-    const segments = pathname.split("/");
-    segments[1] = newLocale;
-    router.push(segments.join("/"));
+    const localePattern = locales.map(({ value }) => value).join("|");
+    const pathWithoutLocales = pathname.replace(
+      new RegExp(`^/(?:${localePattern})(?=/|$)(?:/(?:${localePattern})(?=/|$))*`),
+      "",
+    );
+
+    window.location.assign(`/${newLocale}${pathWithoutLocales || ""}`);
   };
 
   const currentLocale = locales.find((l) => l.value === locale);
