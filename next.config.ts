@@ -4,7 +4,17 @@ import createNextIntlPlugin from "next-intl/plugin";
 const nextConfig: NextConfig = {
   /* config options here */
   images: {
-    domains: ["res.cloudinary.com", "storage.googleapis.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "storage.googleapis.com",
+      },
+      {
+        protocol: "https",
+
+        hostname: "res.cloudinary.com",
+      },
+    ],
   },
 };
 const withNextIntl = createNextIntlPlugin();

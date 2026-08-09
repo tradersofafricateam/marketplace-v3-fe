@@ -20,7 +20,7 @@ const SellerPricing = () => {
             {t("pricing.subtitle")}
           </p>
         </div>
-        <div className="mx-auto mt-10 grid max-w-3xl gap-6 md:grid-cols-2">
+        <div className="mx-auto mt-10 flex w-full max-w-3xl flex-col items-center justify-center gap-6 lg:flex-row lg:items-stretch">
           {sellerPlans.map(({ key, features }) => (
             <SellerPlanCard
               key={key}
