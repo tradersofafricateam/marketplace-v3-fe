@@ -21,7 +21,7 @@ const SellerPlanCard = ({
   features: string[];
   unavailableFeature?: string;
 }) => (
-  <article className="flex h-full flex-col rounded-lg border border-border bg-background p-6 shadow-sm max-w-90">
+  <article className="mx-auto flex w-full max-w-90 flex-col rounded-lg border border-border bg-background p-6 shadow-sm lg:mx-0">
     <span
       aria-hidden="true"
       className="mb-4 block size-4 shrink-0 rounded-full border-2 border-blue-500"

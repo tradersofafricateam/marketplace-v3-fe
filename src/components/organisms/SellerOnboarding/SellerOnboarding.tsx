@@ -22,7 +22,7 @@ const SellerOnboarding = () => {
               alt=""
               width={473}
               height={238}
-              className="h-auto w-full max-w-[473px]"
+              className="h-auto w-full max-w-118.25"
             />
           </div>
           <div>
