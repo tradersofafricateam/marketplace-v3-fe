@@ -106,5 +106,13 @@
     "needHelp": {"label":"Besoin d'aide","contactUs":"Nous contacter","faq":"FAQ","support":"Assistance"},
     "buyer": {"label":"Acheteurs","buyComm":"Acheter des produits","productInquiry":"Demande de produit","goodInStock":"Produits en stock"},
     "seller": {"label":"Vendeurs","marketplace":"Marché","howToTrade":"Comment commercer","searchRFQ":"Rechercher des appels d'offres"}
+  },
+  "ProductCatalogue": {
+    "home": "Accueil", "searchResult": "Résultats de recherche", "breadcrumbLabel": "Fil d’Ariane", "foundResults": "{count} résultats trouvés pour", "selectedFilters": "{count, plural, one {# filtre sélectionné} other {# filtres sélectionnés}}", "clearAll": "Tout effacer", "sortBy": "Trier par", "gallery": "Galerie", "list": "Liste", "galleryView": "Vue galerie", "listView": "Vue liste",
+    "collections": {"popular": "Produits populaires", "new": "Nouveaux produits", "all": "Tous les produits"},
+    "sort": {"relevance": "Meilleure correspondance", "newest": "Plus récents", "oldest": "Plus anciens", "price-low": "Prix croissant", "price-high": "Prix décroissant", "rating": "Mieux notés", "reviews": "Plus commentés", "name-asc": "Nom du produit : A–Z"},
+    "filters": {"title": "Filtres", "reset": "Tout réinitialiser", "close": "Fermer les filtres", "categories": "Catégories", "allCategories": "Toutes les catégories", "price": "Prix", "min": "Prix minimum", "max": "Prix maximum", "rating": "Avis clients", "ratingUp": "{rating}+ et plus", "availability": "Disponibilité et fournisseur", "verified": "Fournisseurs vérifiés", "readyToShip": "Prêt à expédier", "maximumMinimumOrder": "Commande minimale maximale", "anyQuantity": "Toute quantité", "units": "unités", "apply": "Appliquer", "clear": "Effacer"},
+    "empty": {"title": "Aucun produit trouvé", "description": "Supprimez un filtre ou recherchez un autre produit."},
+    "pagination": {"label": "Pagination", "pageOf": "Page {page} sur {total}", "previous": "Précédent", "next": "Suivant"}
   }
 }

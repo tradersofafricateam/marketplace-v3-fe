@@ -455,5 +455,13 @@
     "homeAppliances": {
       "title": "Home Appliances"
     }
+  },
+  "ProductCatalogue": {
+    "home": "Home", "searchResult": "Search result", "breadcrumbLabel": "Breadcrumb", "foundResults": "Found {count} results for", "selectedFilters": "{count, plural, one {# filter selected} other {# filters selected}}", "clearAll": "Clear all", "sortBy": "Sort by", "gallery": "Gallery", "list": "List", "galleryView": "Gallery view", "listView": "List view",
+    "collections": {"popular": "Popular Products", "new": "Newly Added Products", "all": "All Products"},
+    "sort": {"relevance": "Best match", "newest": "Newest arrivals", "oldest": "Oldest listed", "price-low": "Price: low to high", "price-high": "Price: high to low", "rating": "Highest rated", "reviews": "Most reviewed", "name-asc": "Product name: A–Z"},
+    "filters": {"title": "Filters", "reset": "Reset all", "close": "Close filters", "categories": "Categories", "allCategories": "All categories", "price": "Price", "min": "Minimum price", "max": "Maximum price", "rating": "Customer rating", "ratingUp": "{rating}+ & up", "availability": "Availability & supplier", "verified": "Verified suppliers", "readyToShip": "Ready to ship", "maximumMinimumOrder": "Maximum minimum order", "anyQuantity": "Any quantity", "units": "units", "apply": "Apply", "clear": "Clear"},
+    "empty": {"title": "No products found", "description": "Try removing a filter or searching for another product."},
+    "pagination": {"label": "Pagination", "pageOf": "Page {page} of {total}", "previous": "Previous", "next": "Next"}
   }
 }

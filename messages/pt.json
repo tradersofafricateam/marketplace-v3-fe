@@ -106,5 +106,13 @@
     "needHelp": {"label":"Precisa de ajuda","contactUs":"Fale conosco","faq":"Perguntas frequentes","support":"Suporte"},
     "buyer": {"label":"Compradores","buyComm":"Comprar produtos","productInquiry":"Consulta de produto","goodInStock":"Produtos em estoque"},
     "seller": {"label":"Vendedores","marketplace":"Marketplace","howToTrade":"Como negociar","searchRFQ":"Buscar pedidos de cotação"}
+  },
+  "ProductCatalogue": {
+    "home": "Início", "searchResult": "Resultado da pesquisa", "breadcrumbLabel": "Navegação estrutural", "foundResults": "Encontrados {count} resultados para", "selectedFilters": "{count, plural, one {# filtro selecionado} other {# filtros selecionados}}", "clearAll": "Limpar tudo", "sortBy": "Ordenar por", "gallery": "Galeria", "list": "Lista", "galleryView": "Vista de galeria", "listView": "Vista de lista",
+    "collections": {"popular": "Produtos populares", "new": "Produtos adicionados recentemente", "all": "Todos os produtos"},
+    "sort": {"relevance": "Melhor correspondência", "newest": "Mais recentes", "oldest": "Mais antigos", "price-low": "Preço: menor para maior", "price-high": "Preço: maior para menor", "rating": "Melhor avaliados", "reviews": "Mais avaliados", "name-asc": "Nome do produto: A–Z"},
+    "filters": {"title": "Filtros", "reset": "Redefinir tudo", "close": "Fechar filtros", "categories": "Categorias", "allCategories": "Todas as categorias", "price": "Preço", "min": "Preço mínimo", "max": "Preço máximo", "rating": "Avaliação do cliente", "ratingUp": "{rating}+ ou mais", "availability": "Disponibilidade e fornecedor", "verified": "Fornecedores verificados", "readyToShip": "Pronto para envio", "maximumMinimumOrder": "Pedido mínimo máximo", "anyQuantity": "Qualquer quantidade", "units": "unidades", "apply": "Aplicar", "clear": "Limpar"},
+    "empty": {"title": "Nenhum produto encontrado", "description": "Remova um filtro ou pesquise outro produto."},
+    "pagination": {"label": "Paginação", "pageOf": "Página {page} de {total}", "previous": "Anterior", "next": "Seguinte"}
   }
 }

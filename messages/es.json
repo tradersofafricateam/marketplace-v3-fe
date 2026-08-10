@@ -106,5 +106,13 @@
     "needHelp": {"label":"¿Necesitas ayuda?","contactUs":"Contáctanos","faq":"Preguntas frecuentes","support":"Soporte"},
     "buyer": {"label":"Compradores","buyComm":"Comprar productos","productInquiry":"Consulta de producto","goodInStock":"Productos en stock"},
     "seller": {"label":"Vendedores","marketplace":"Mercado","howToTrade":"Cómo comerciar","searchRFQ":"Buscar solicitudes de cotización"}
+  },
+  "ProductCatalogue": {
+    "home": "Inicio", "searchResult": "Resultado de búsqueda", "breadcrumbLabel": "Ruta de navegación", "foundResults": "Se encontraron {count} resultados para", "selectedFilters": "{count, plural, one {# filtro seleccionado} other {# filtros seleccionados}}", "clearAll": "Borrar todo", "sortBy": "Ordenar por", "gallery": "Galería", "list": "Lista", "galleryView": "Vista de galería", "listView": "Vista de lista",
+    "collections": {"popular": "Productos populares", "new": "Productos nuevos", "all": "Todos los productos"},
+    "sort": {"relevance": "Mejor coincidencia", "newest": "Más recientes", "oldest": "Más antiguos", "price-low": "Precio: menor a mayor", "price-high": "Precio: mayor a menor", "rating": "Mejor valorados", "reviews": "Más reseñados", "name-asc": "Nombre del producto: A–Z"},
+    "filters": {"title": "Filtros", "reset": "Restablecer", "close": "Cerrar filtros", "categories": "Categorías", "allCategories": "Todas las categorías", "price": "Precio", "min": "Precio mínimo", "max": "Precio máximo", "rating": "Valoración del cliente", "ratingUp": "{rating}+ o más", "availability": "Disponibilidad y proveedor", "verified": "Proveedores verificados", "readyToShip": "Listo para enviar", "maximumMinimumOrder": "Pedido mínimo máximo", "anyQuantity": "Cualquier cantidad", "units": "unidades", "apply": "Aplicar", "clear": "Borrar"},
+    "empty": {"title": "No se encontraron productos", "description": "Elimina un filtro o busca otro producto."},
+    "pagination": {"label": "Paginación", "pageOf": "Página {page} de {total}", "previous": "Anterior", "next": "Siguiente"}
   }
 }

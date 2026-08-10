@@ -2,17 +2,29 @@
 
 import { useState } from "react";
 
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Search } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const MainSearchbar = () => {
   const t = useTranslations("Nav");
+  const locale = useLocale();
+  const router = useRouter();
 
   const [searchQuery, setSearchQuery] = useState("");
 
   return (
     <div className="w-full min-w-0 flex-1 max-w-2xl">
-      <form className="relative group w-full lg:h-12 h-10 flex items-center justify-between overflow-hidden rounded-full focus-within:border-(--orange) border border-border transition-all duration-300">
+      <form
+        className="relative group w-full lg:h-12 h-10 flex items-center justify-between overflow-hidden rounded-full focus-within:border-(--orange) border border-border transition-all duration-300"
+        onSubmit={(event) => {
+          event.preventDefault();
+          const query = searchQuery.trim();
+          router.push(
+            `/${locale}/products${query ? `?q=${encodeURIComponent(query)}` : ""}`,
+          );
+        }}
+      >
         <button
           type="submit"
           className="block shrink-0 pl-2 text-muted-foreground lg:hidden"

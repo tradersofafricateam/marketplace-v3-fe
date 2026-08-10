@@ -11,6 +11,7 @@ import "./../globals.css";
 import { cn } from "@/lib/utils";
 
 import QueryProvider from "@/components/QueryProvider";
+import CurrencyProvider from "@/components/providers/CurrencyProvider/CurrencyProvider";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -124,7 +125,7 @@ export default async function RootLayout({
       <body className="min-h-full flex flex-col">
         <QueryProvider>
           <NextIntlClientProvider messages={messages}>
-            {children}
+            <CurrencyProvider>{children}</CurrencyProvider>
           </NextIntlClientProvider>
         </QueryProvider>
       </body>
