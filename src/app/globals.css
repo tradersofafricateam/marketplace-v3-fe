@@ -166,3 +166,39 @@ body {
 .mobile-menu {
   animation: slideDown 0.25s ease;
 }
+
+.catalogue-range {
+  height: 0.375rem;
+  appearance: none;
+  background: transparent;
+  pointer-events: none;
+}
+
+.catalogue-range::-webkit-slider-thumb {
+  width: 1rem;
+  height: 1rem;
+  appearance: none;
+  border: 2px solid white;
+  border-radius: 9999px;
+  background: var(--orange);
+  box-shadow: 0 0 0 1px var(--orange);
+  cursor: grab;
+  pointer-events: auto;
+  transition: transform 150ms ease, box-shadow 150ms ease;
+}
+
+.catalogue-range::-webkit-slider-thumb:hover {
+  transform: scale(1.12);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--orange) 18%, transparent);
+}
+
+.catalogue-range::-moz-range-thumb {
+  width: 0.875rem;
+  height: 0.875rem;
+  border: 2px solid white;
+  border-radius: 9999px;
+  background: var(--orange);
+  box-shadow: 0 0 0 1px var(--orange);
+  cursor: grab;
+  pointer-events: auto;
+}

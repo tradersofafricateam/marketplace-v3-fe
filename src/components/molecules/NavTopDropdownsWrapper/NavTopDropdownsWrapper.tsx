@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
 import { useGetAllRoutes } from "@/lib/hooks/useGetAllRoutes";
@@ -10,6 +9,8 @@ import { locales } from "@/lib/constants/language";
 import { currencies } from "@/lib/constants/currencies";
 
 import SelectDropdown from "@/components/atoms/SelectDropdown/SelectDropdown";
+import { useCurrency } from "@/lib/hooks/useCurrency/useCurrency";
+import { isCurrencyCode } from "@/lib/helpers/currency/currency";
 
 const NavTopDropdownsWrapper = () => {
   const pathname = usePathname();
@@ -17,7 +18,7 @@ const NavTopDropdownsWrapper = () => {
 
   const t = useTranslations("Nav");
 
-  const [currency, setCurrency] = useState("NGN");
+  const { currency, setCurrency } = useCurrency();
   const pathnameLocale = pathname.split("/")[1];
   const locale = locales.some(({ value }) => value === pathnameLocale)
     ? pathnameLocale
@@ -72,7 +73,7 @@ const NavTopDropdownsWrapper = () => {
       />
       <SelectDropdown
         selected={currency}
-        onSelect={setCurrency}
+        onSelect={(value) => isCurrencyCode(value) && setCurrency(value)}
         options={currencies}
         align="right"
         trigger={

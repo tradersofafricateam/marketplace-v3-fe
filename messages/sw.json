@@ -106,5 +106,13 @@
     "needHelp": {"label":"Unahitaji Msaada","contactUs":"Wasiliana nasi","faq":"Maswali Yanayoulizwa Mara kwa Mara","support":"Usaidizi"},
     "buyer": {"label":"Wanunuzi","buyComm":"Nunua bidhaa","productInquiry":"Ulizo la bidhaa","goodInStock":"Bidhaa zilizopo"},
     "seller": {"label":"Wauzaji","marketplace":"Soko","howToTrade":"Jinsi ya kufanya biashara","searchRFQ":"Tafuta maombi ya bei"}
+  },
+  "ProductCatalogue": {
+    "home": "Nyumbani", "searchResult": "Matokeo ya utafutaji", "breadcrumbLabel": "Njia ya ukurasa", "foundResults": "Matokeo {count} yamepatikana kwa", "selectedFilters": "{count, plural, one {Kichujio # kimechaguliwa} other {Vichujio # vimechaguliwa}}", "clearAll": "Futa zote", "sortBy": "Panga kwa", "gallery": "Matunzio", "list": "Orodha", "galleryView": "Mwonekano wa matunzio", "listView": "Mwonekano wa orodha",
+    "collections": {"popular": "Bidhaa maarufu", "new": "Bidhaa mpya", "all": "Bidhaa zote"},
+    "sort": {"relevance": "Zinazolingana zaidi", "newest": "Mpya zaidi", "oldest": "Za zamani zaidi", "price-low": "Bei: chini hadi juu", "price-high": "Bei: juu hadi chini", "rating": "Ukadiriaji wa juu", "reviews": "Maoni mengi", "name-asc": "Jina la bidhaa: A–Z"},
+    "filters": {"title": "Vichujio", "reset": "Weka upya", "close": "Funga vichujio", "categories": "Kategoria", "allCategories": "Kategoria zote", "price": "Bei", "min": "Bei ya chini", "max": "Bei ya juu", "rating": "Ukadiriaji wa wateja", "ratingUp": "{rating}+ na zaidi", "availability": "Upatikanaji na muuzaji", "verified": "Wauzaji waliothibitishwa", "readyToShip": "Tayari kusafirishwa", "maximumMinimumOrder": "Kiwango cha juu cha oda ya chini", "anyQuantity": "Kiasi chochote", "units": "vipimo", "apply": "Tumia", "clear": "Futa"},
+    "empty": {"title": "Hakuna bidhaa zilizopatikana", "description": "Ondoa kichujio au tafuta bidhaa nyingine."},
+    "pagination": {"label": "Kurasa", "pageOf": "Ukurasa {page} kati ya {total}", "previous": "Iliyotangulia", "next": "Inayofuata"}
   }
 }
