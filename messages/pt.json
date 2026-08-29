@@ -114,5 +114,51 @@
     "filters": {"title": "Filtros", "reset": "Redefinir tudo", "close": "Fechar filtros", "categories": "Categorias", "allCategories": "Todas as categorias", "price": "Preço", "min": "Preço mínimo", "max": "Preço máximo", "rating": "Avaliação do cliente", "ratingUp": "{rating}+ ou mais", "availability": "Disponibilidade e fornecedor", "verified": "Fornecedores verificados", "readyToShip": "Pronto para envio", "maximumMinimumOrder": "Pedido mínimo máximo", "anyQuantity": "Qualquer quantidade", "units": "unidades", "apply": "Aplicar", "clear": "Limpar"},
     "empty": {"title": "Nenhum produto encontrado", "description": "Remova um filtro ou pesquise outro produto."},
     "pagination": {"label": "Paginação", "pageOf": "Página {page} de {total}", "previous": "Anterior", "next": "Seguinte"}
+  },
+  "Auth": {
+    "signUp": {
+      "badge": "Junte-se ao marketplace",
+      "title": "Crie sua conta TOFA",
+      "subtitle": "Negocie no maior marketplace verificado de África, para empresas e compradores em geral.",
+      "emailLabel": "Endereço de e-mail",
+      "emailPlaceholder": "voce@empresa.com",
+      "passwordLabel": "Senha",
+      "passwordPlaceholder": "Crie uma senha forte",
+      "confirmPasswordLabel": "Confirmar senha",
+      "confirmPasswordPlaceholder": "Digite a senha novamente",
+      "referralTrigger": "Tem um código de indicação?",
+      "referralPlaceholder": "Insira o código de indicação",
+      "submit": "Criar sua conta",
+      "submitting": "Criando sua conta…",
+      "orDivider": "ou cadastre-se com e-mail",
+      "google": "Continuar com o Google",
+      "haveAccount": "Já tem uma conta TOFA?",
+      "login": "Entrar",
+      "backHome": "Voltar ao início",
+      "termsPrefix": "Concordo com os",
+      "terms": "Termos de Uso",
+      "and": "e a",
+      "privacy": "Política de Privacidade",
+      "requirements": {
+        "length": "Pelo menos 8 caracteres",
+        "upper": "Uma letra maiúscula",
+        "lower": "Uma letra minúscula",
+        "number": "Um número"
+      },
+      "success": {
+        "title": "Verifique seu e-mail",
+        "description": "Enviamos um código de verificação de 6 dígitos para",
+        "resend": "Reenviar código",
+        "resending": "Reenviando…",
+        "changeEmail": "Usar outro e-mail"
+      },
+      "showcase": {
+        "title": "Negocie com fornecedores africanos verificados, em grande escala",
+        "subtitle": "De Lagos a Nairóbi e Accra — compre, venda e envie através de fronteiras em um marketplace confiável.",
+        "suppliers": "Fornecedores verificados",
+        "countries": "Países alcançados",
+        "volume": "Volume de negócios"
+      }
+    }
   }
 }

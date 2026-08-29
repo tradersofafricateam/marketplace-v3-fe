@@ -114,5 +114,51 @@
     "filters": {"title": "Filtres", "reset": "Tout réinitialiser", "close": "Fermer les filtres", "categories": "Catégories", "allCategories": "Toutes les catégories", "price": "Prix", "min": "Prix minimum", "max": "Prix maximum", "rating": "Avis clients", "ratingUp": "{rating}+ et plus", "availability": "Disponibilité et fournisseur", "verified": "Fournisseurs vérifiés", "readyToShip": "Prêt à expédier", "maximumMinimumOrder": "Commande minimale maximale", "anyQuantity": "Toute quantité", "units": "unités", "apply": "Appliquer", "clear": "Effacer"},
     "empty": {"title": "Aucun produit trouvé", "description": "Supprimez un filtre ou recherchez un autre produit."},
     "pagination": {"label": "Pagination", "pageOf": "Page {page} sur {total}", "previous": "Précédent", "next": "Suivant"}
+  },
+  "Auth": {
+    "signUp": {
+      "badge": "Rejoignez la marketplace",
+      "title": "Créez votre compte TOFA",
+      "subtitle": "Échangez sur la plus grande marketplace vérifiée d'Afrique, pour les entreprises comme pour les particuliers.",
+      "emailLabel": "Adresse e-mail",
+      "emailPlaceholder": "vous@entreprise.com",
+      "passwordLabel": "Mot de passe",
+      "passwordPlaceholder": "Créez un mot de passe fort",
+      "confirmPasswordLabel": "Confirmer le mot de passe",
+      "confirmPasswordPlaceholder": "Ressaisissez votre mot de passe",
+      "referralTrigger": "Vous avez un code de parrainage ?",
+      "referralPlaceholder": "Entrez le code de parrainage",
+      "submit": "Créer votre compte",
+      "submitting": "Création de votre compte…",
+      "orDivider": "ou inscrivez-vous par e-mail",
+      "google": "Continuer avec Google",
+      "haveAccount": "Vous avez déjà un compte TOFA ?",
+      "login": "Se connecter",
+      "backHome": "Retour à l'accueil",
+      "termsPrefix": "J'accepte les",
+      "terms": "Conditions d'utilisation",
+      "and": "et la",
+      "privacy": "Politique de confidentialité",
+      "requirements": {
+        "length": "Au moins 8 caractères",
+        "upper": "Une lettre majuscule",
+        "lower": "Une lettre minuscule",
+        "number": "Un chiffre"
+      },
+      "success": {
+        "title": "Consultez votre boîte de réception",
+        "description": "Nous avons envoyé un code de vérification à 6 chiffres à",
+        "resend": "Renvoyer le code",
+        "resending": "Envoi en cours…",
+        "changeEmail": "Utiliser une autre adresse e-mail"
+      },
+      "showcase": {
+        "title": "Échangez avec des fournisseurs africains vérifiés, à grande échelle",
+        "subtitle": "De Lagos à Nairobi en passant par Accra — achetez, vendez et expédiez à travers les frontières sur une marketplace de confiance.",
+        "suppliers": "Fournisseurs vérifiés",
+        "countries": "Pays couverts",
+        "volume": "Volume d'échanges"
+      }
+    }
   }
 }

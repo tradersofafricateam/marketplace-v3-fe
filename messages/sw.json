@@ -114,5 +114,51 @@
     "filters": {"title": "Vichujio", "reset": "Weka upya", "close": "Funga vichujio", "categories": "Kategoria", "allCategories": "Kategoria zote", "price": "Bei", "min": "Bei ya chini", "max": "Bei ya juu", "rating": "Ukadiriaji wa wateja", "ratingUp": "{rating}+ na zaidi", "availability": "Upatikanaji na muuzaji", "verified": "Wauzaji waliothibitishwa", "readyToShip": "Tayari kusafirishwa", "maximumMinimumOrder": "Kiwango cha juu cha oda ya chini", "anyQuantity": "Kiasi chochote", "units": "vipimo", "apply": "Tumia", "clear": "Futa"},
     "empty": {"title": "Hakuna bidhaa zilizopatikana", "description": "Ondoa kichujio au tafuta bidhaa nyingine."},
     "pagination": {"label": "Kurasa", "pageOf": "Ukurasa {page} kati ya {total}", "previous": "Iliyotangulia", "next": "Inayofuata"}
+  },
+  "Auth": {
+    "signUp": {
+      "badge": "Jiunge na soko",
+      "title": "Fungua akaunti yako ya TOFA",
+      "subtitle": "Fanya biashara katika soko kubwa zaidi lililothibitishwa Afrika, kwa ajili ya biashara na wanunuzi wote.",
+      "emailLabel": "Anwani ya barua pepe",
+      "emailPlaceholder": "wewe@kampuni.com",
+      "passwordLabel": "Nenosiri",
+      "passwordPlaceholder": "Unda nenosiri imara",
+      "confirmPasswordLabel": "Thibitisha nenosiri",
+      "confirmPasswordPlaceholder": "Ingiza tena nenosiri lako",
+      "referralTrigger": "Una msimbo wa rufaa?",
+      "referralPlaceholder": "Ingiza msimbo wa rufaa",
+      "submit": "Fungua akaunti yako",
+      "submitting": "Inafungua akaunti yako…",
+      "orDivider": "au jisajili kwa barua pepe",
+      "google": "Endelea na Google",
+      "haveAccount": "Tayari una akaunti ya TOFA?",
+      "login": "Ingia",
+      "backHome": "Rudi nyumbani",
+      "termsPrefix": "Ninakubali",
+      "terms": "Masharti ya Matumizi",
+      "and": "na",
+      "privacy": "Sera ya Faragha",
+      "requirements": {
+        "length": "Angalau herufi 8",
+        "upper": "Herufi kubwa moja",
+        "lower": "Herufi ndogo moja",
+        "number": "Nambari moja"
+      },
+      "success": {
+        "title": "Angalia barua pepe yako",
+        "description": "Tumetuma msimbo wa uthibitisho wa tarakimu 6 kwa",
+        "resend": "Tuma tena msimbo",
+        "resending": "Inatuma tena…",
+        "changeEmail": "Tumia barua pepe nyingine"
+      },
+      "showcase": {
+        "title": "Fanya biashara na wauzaji wa Kiafrika waliothibitishwa, kwa kiwango kikubwa",
+        "subtitle": "Kutoka Lagos hadi Nairobi hadi Accra — nunua, uza na usafirishe kuvuka mipaka kwenye soko moja la kuaminika.",
+        "suppliers": "Wauzaji waliothibitishwa",
+        "countries": "Nchi zilizofikiwa",
+        "volume": "Kiwango cha biashara"
+      }
+    }
   }
 }

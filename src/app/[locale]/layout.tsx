@@ -34,11 +34,12 @@ export const metadata: Metadata = {
     template: "%s | Traders of Africa",
   },
   description:
-    "Traders of Africa (TOFA) is a digital B2B marketplace connecting African businesses to buy, sell, and trade products seamlessly across borders. Discover verified suppliers, request quotes, and grow your business globally.",
+    "Traders of Africa (TOFA) is a digital B2B and B2C marketplace connecting African businesses and buyers to trade products seamlessly across borders. Discover verified suppliers, shop products, request quotes, and grow your business globally.",
 
   keywords: [
     "Africa marketplace",
     "B2B marketplace Africa",
+    "B2C marketplace Africa",
     "import export Africa",
     "trade platform Africa",
     "African suppliers",
@@ -74,7 +75,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Traders of Africa Marketplace",
     description:
-      "Africa’s leading B2B marketplace for seamless trade and business growth.",
+      "Africa’s leading B2B and B2C marketplace for seamless trade and business growth.",
     images: ["/og-image.png"],
   },
 

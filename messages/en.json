@@ -463,5 +463,51 @@
     "filters": {"title": "Filters", "reset": "Reset all", "close": "Close filters", "categories": "Categories", "allCategories": "All categories", "price": "Price", "min": "Minimum price", "max": "Maximum price", "rating": "Customer rating", "ratingUp": "{rating}+ & up", "availability": "Availability & supplier", "verified": "Verified suppliers", "readyToShip": "Ready to ship", "maximumMinimumOrder": "Maximum minimum order", "anyQuantity": "Any quantity", "units": "units", "apply": "Apply", "clear": "Clear"},
     "empty": {"title": "No products found", "description": "Try removing a filter or searching for another product."},
     "pagination": {"label": "Pagination", "pageOf": "Page {page} of {total}", "previous": "Previous", "next": "Next"}
+  },
+  "Auth": {
+    "signUp": {
+      "badge": "Join the marketplace",
+      "title": "Create your TOFA account",
+      "subtitle": "Trade across Africa's largest verified marketplace for businesses and buyers alike.",
+      "emailLabel": "Email address",
+      "emailPlaceholder": "you@company.com",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "Create a strong password",
+      "confirmPasswordLabel": "Confirm password",
+      "confirmPasswordPlaceholder": "Re-enter your password",
+      "referralTrigger": "Have a referral code?",
+      "referralPlaceholder": "Enter referral code",
+      "submit": "Create your account",
+      "submitting": "Creating your account…",
+      "orDivider": "or sign up with email",
+      "google": "Continue with Google",
+      "haveAccount": "Already have a TOFA account?",
+      "login": "Log in",
+      "backHome": "Back to home",
+      "termsPrefix": "I agree to TOFA's",
+      "terms": "Terms of Use",
+      "and": "and",
+      "privacy": "Privacy Policy",
+      "requirements": {
+        "length": "At least 8 characters",
+        "upper": "One uppercase letter",
+        "lower": "One lowercase letter",
+        "number": "One number"
+      },
+      "success": {
+        "title": "Check your inbox",
+        "description": "We've sent a 6-digit verification code to",
+        "resend": "Resend code",
+        "resending": "Resending…",
+        "changeEmail": "Use a different email"
+      },
+      "showcase": {
+        "title": "Trade with verified African suppliers, at scale",
+        "subtitle": "From Lagos to Nairobi to Accra — source, sell and ship across borders on one trusted marketplace.",
+        "suppliers": "Verified suppliers",
+        "countries": "Countries reached",
+        "volume": "Trade volume"
+      }
+    }
   }
 }
