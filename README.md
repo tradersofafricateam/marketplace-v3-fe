@@ -1,8 +1,8 @@
 # Traders of Africa Marketplace
 
-[Traders of Africa (TOFA)](https://tradersofafrica.com) is a multilingual B2B marketplace frontend for connecting African suppliers with local and global buyers. It is built with the Next.js App Router, TypeScript, Tailwind CSS, `next-intl`, and an Atomic Design component architecture.
+[Traders of Africa (TOFA)](https://tradersofafrica.com) is a multilingual B2B and B2C marketplace frontend for connecting African suppliers with local and global businesses and buyers. It is built with the Next.js App Router, TypeScript, Tailwind CSS, `next-intl`, and an Atomic Design component architecture.
 
-> **Project status:** The current application is a frontend prototype. Product and category data, catalogue ratings, availability, and currency conversion rates are local demo data; backend commerce and account flows are not connected yet.
+> **Project status:** The current application is a frontend prototype. Product and category data, catalogue ratings, availability, and currency conversion rates are local demo data. Authentication (sign up, email OTP verification, login, Google sign-in, password reset) is wired to the backend API contract; commerce flows such as cart, checkout, and the buyer/seller dashboard are not connected yet.
 
 ## Features
 
@@ -17,6 +17,7 @@
 - Reusable UI organized into atoms, molecules, organisms, and templates.
 - Optimized responsive images through the Next.js Image component.
 - Reduced-motion support in shared heading and scroll-reveal animations.
+- Full authentication flow: email/password and Google sign-up, email OTP verification with resend, login with "remember me" and `returnUrl` redirects, forgot/reset password, and a Terms-of-Use acceptance gate for new Google accounts.
 
 ## Supported Languages
 
@@ -41,6 +42,11 @@ Localized URLs use a locale prefix, such as `/en/our-story` or `/fr/products`. E
 | `/[locale]/what-we-do` | Marketplace services and technology |
 | `/[locale]/our-impact` | Customer impact stories |
 | `/[locale]/become-seller` | Supplier onboarding and subscription plans |
+| `/[locale]/register` | Create a TOFA account with email/password or Google |
+| `/[locale]/verify-email` | Enter the emailed OTP to activate a new account |
+| `/[locale]/login` | Log in with email/password or Google, with "remember me" |
+| `/[locale]/forgot-password` | Request a password-reset code by email |
+| `/[locale]/reset-password` | Enter the reset code and choose a new password |
 | Any unmatched localized URL | Localized custom 404 page |
 
 ## Tech Stack
@@ -54,6 +60,9 @@ Localized URLs use a locale prefix, such as `/en/our-story` or `/fr/products`. E
 - TanStack Query 5
 - Base UI and shadcn/ui
 - Lucide React
+- Axios
+- Sonner (toast notifications)
+- Google Identity Services (Sign in with Google)
 
 ## Project Structure
 
@@ -70,8 +79,10 @@ src/
 │   ├── providers/              # Client-side context providers
 │   └── templates/              # Shared page layouts
 ├── features/                   # Feature-specific data, types, and constants
+│   └── auth/                   # Auth feature: api/, hooks/, types/, helpers/, and its own
+│                                # atoms/molecules/organisms/templates component tree
 ├── i18n/                       # Locale request and routing configuration
-├── lib/                        # Hooks, helpers, constants, and utilities
+├── lib/                        # Shared hooks, helpers, constants, axios instance, and utilities
 └── proxy.ts                    # Locale detection and routing proxy
 
 messages/                       # Translation files by locale
@@ -123,7 +134,12 @@ There is currently no automated test command or configured test suite.
 
 ### Environment Variables
 
-No environment variables are required by the current frontend. If future integrations need local configuration, place it in `.env.local` and do not commit secrets.
+| Variable | Purpose |
+| --- | --- |
+| `NEXT_PUBLIC_API_BASE_URL` | Base URL of the backend API, e.g. `https://dev.tradersofafrica.com/api`. Used by the shared Axios instance (`src/lib/axiosInstance.ts`) for all authenticated requests. |
+| `NEXT_PUBLIC_GOOGLE_CLIENT_ID` | OAuth 2.0 client ID for "Continue with Google" (Google Identity Services). Without it, the Google button renders a disabled fallback instead of failing. |
+
+Place these in `.env.local` and do not commit secrets.
 
 ## Product Catalogue
 
@@ -142,6 +158,17 @@ The catalogue stores search, filter, and sort state in the URL so views can be l
 | `sort` | Sort order, such as `newest`, `price-low`, or `rating` |
 
 Product records currently come from `src/features/products/constants/dummy.ts`. Currency selection is saved under `tofa-currency` in `localStorage`, and conversions use approximate hard-coded rates in `src/lib/helpers/currency/currency.ts`. These rates must be replaced with live exchange-rate data before production use. Catalogue pagination is currently presentational.
+
+## Authentication
+
+The auth feature lives entirely under `src/features/auth/` (API calls, hooks, types, helpers, and its own atoms/molecules/organisms/templates), with pages under `src/app/[locale]/{register,verify-email,login,forgot-password,reset-password}/`. Hooks own all state, validation, and mutations; components are presentational only.
+
+- **Sign up** (`/register`) — email/password or Google. Email/password sign-up requires accepting the Terms of Use inline and always redirects to `/verify-email` on success. Google sign-up can create an account before Terms are accepted; in that case a modal gates continuing until `PATCH /auth/update-terms/:userId` succeeds.
+- **Verify email** (`/verify-email`) — 6-digit OTP tied to the `token` returned by sign-up/login, with a resend cooldown.
+- **Log in** (`/login`) — email/password or Google, with "remember me". If the account's email isn't verified yet, the API returns `requiresEmailVerification` and the app redirects to `/verify-email` instead of logging in. On success it redirects to a `returnUrl` query param if present, otherwise `/dashboard`.
+- **Forgot / reset password** (`/forgot-password` → `/reset-password`) — request an OTP by email, then submit the OTP with a new password.
+- **Session** — the JWT is stored in a `tofaToken` cookie (`src/features/auth/helpers/session.ts`), persisted 30 days when "remember me" is checked, session-only otherwise.
+- **Google sign-in** requires `NEXT_PUBLIC_GOOGLE_CLIENT_ID` (see Environment Variables). Without it, the Google button is shown disabled rather than throwing.
 
 ## Localization
 
@@ -186,7 +213,9 @@ Remote product and category images are permitted from Google Cloud Storage and C
 ## Current Limitations
 
 - Products, categories, exchange rates, ratings, stock states, and verification states use local demo data.
-- Add-to-cart, wishlist, newsletter, authentication, checkout, product-detail, and dashboard flows are not connected to a backend.
+- Add-to-cart, wishlist, newsletter, checkout, and product-detail flows are not connected to a backend.
+- `/dashboard` does not have a page yet; successful login redirects there per the API spec, but the route currently resolves to the localized 404 page.
+- Login lockout/attempt-limit and OTP-expiry messaging is surfaced generically via whatever error text the API returns — there is no bespoke UI for those states.
 - Pagination controls are visual placeholders and do not change the displayed result page.
 - Some planned navigation destinations currently resolve to the localized 404 page.
 - Automated tests have not been configured yet.

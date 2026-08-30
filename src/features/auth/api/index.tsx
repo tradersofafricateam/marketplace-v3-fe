@@ -1,8 +1,15 @@
 import { axiosInstance } from "@/lib/axiosInstance";
 import {
+  ForgotPasswordPayload,
+  GoogleAuthPayload,
+  GoogleAuthResponse,
+  LoginPayload,
+  LoginResponse,
   ResendOtpPayload,
+  ResetPasswordPayload,
   SignUpPayload,
   SignUpResponse,
+  UpdateTermsPayload,
   VerifyEmailPayload,
 } from "../types";
 
@@ -29,20 +36,66 @@ export const resendOtp = async ({ email }: ResendOtpPayload) => {
   }
 };
 
-export const verifyEmail = async ({ email, otp }: VerifyEmailPayload) => {
+export const verifyEmail = async ({ token, otp }: VerifyEmailPayload) => {
   try {
     const url = "/auth/verify-email";
-    const { data } = await axiosInstance.post(url, { email, otp });
+    const { data } = await axiosInstance.post(url, { token, otp });
     return data?.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const getGoogleAuthUrl = async () => {
+export const googleAuth = async ({ googleToken }: GoogleAuthPayload) => {
   try {
     const url = "/auth/google";
-    const { data } = await axiosInstance.post<{ url: string }>(url);
+    const { data } = await axiosInstance.post<{ data: GoogleAuthResponse }>(
+      url,
+      { googleToken },
+    );
+    return data?.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const updateTerms = async ({ userId, termsOfUse }: UpdateTermsPayload) => {
+  try {
+    const url = `/auth/update-terms/${userId}`;
+    const { data } = await axiosInstance.patch(url, { termsOfUse });
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const login = async (payload: LoginPayload) => {
+  try {
+    const url = "/auth/login";
+    const { data } = await axiosInstance.post<{ data: LoginResponse }>(
+      url,
+      payload,
+    );
+    return data?.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const forgotPassword = async ({ email }: ForgotPasswordPayload) => {
+  try {
+    const url = "/auth/forgot-password";
+    const { data } = await axiosInstance.post(url, { email });
+    return data?.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const resetPassword = async ({ otp, password }: ResetPasswordPayload) => {
+  try {
+    const url = "/auth/reset-password";
+    const { data } = await axiosInstance.post(url, { otp, password });
     return data;
   } catch (error) {
     throw error;

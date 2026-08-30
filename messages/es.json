@@ -12,25 +12,127 @@
     "popularProducts": "Productos populares",
     "newlyAddedProducts": "Productos recién añadidos",
     "slides": {
-      "previous":"Promoción anterior","next":"Siguiente promoción",
-      "1":{"badge":"Grandes ofertas","title":"Rebajas de verano — Hasta un 60 %","subtitle":"Compra las mejores ofertas de la temporada"},
-      "2":{"badge":"Recién llegado","title":"Novedades en electrónica","subtitle":"Móviles y portátiles de alta gama disponibles"},
-      "3":{"badge":"Tendencias","title":"Colección de la Semana de la Moda","subtitle":"Looks seleccionados de grandes diseñadores"},
-      "4":{"badge":"Hogar","title":"Transforma tu hogar","subtitle":"Muebles y decoración a precios imbatibles"},
-      "a1":{"title":"Oferta flash — Quedan 2 horas","subtitle":"Hasta un 40 % en tecnología"},
-      "a2":{"title":"Sets de regalo disponibles","subtitle":"Perfectos para cualquier ocasión"},
-      "a3":{"title":"Envío gratis hoy","subtitle":"En pedidos superiores a 50 $"},
-      "b1":{"title":"Compra ahora y paga después","subtitle":"0 % de interés durante 6 meses"},
-      "b2":{"title":"Vendedores mejor valorados","subtitle":"Calidad en la que puedes confiar"},
-      "b3":{"title":"Envíos a todo el mundo","subtitle":"Entrega rápida y fiable"}
+      "previous": "Promoción anterior",
+      "next": "Siguiente promoción",
+      "1": {
+        "badge": "Grandes ofertas",
+        "title": "Rebajas de verano — Hasta un 60 %",
+        "subtitle": "Compra las mejores ofertas de la temporada"
+      },
+      "2": {
+        "badge": "Recién llegado",
+        "title": "Novedades en electrónica",
+        "subtitle": "Móviles y portátiles de alta gama disponibles"
+      },
+      "3": {
+        "badge": "Tendencias",
+        "title": "Colección de la Semana de la Moda",
+        "subtitle": "Looks seleccionados de grandes diseñadores"
+      },
+      "4": {
+        "badge": "Hogar",
+        "title": "Transforma tu hogar",
+        "subtitle": "Muebles y decoración a precios imbatibles"
+      },
+      "a1": {
+        "title": "Oferta flash — Quedan 2 horas",
+        "subtitle": "Hasta un 40 % en tecnología"
+      },
+      "a2": {
+        "title": "Sets de regalo disponibles",
+        "subtitle": "Perfectos para cualquier ocasión"
+      },
+      "a3": {
+        "title": "Envío gratis hoy",
+        "subtitle": "En pedidos superiores a 50 $"
+      },
+      "b1": {
+        "title": "Compra ahora y paga después",
+        "subtitle": "0 % de interés durante 6 meses"
+      },
+      "b2": {
+        "title": "Vendedores mejor valorados",
+        "subtitle": "Calidad en la que puedes confiar"
+      },
+      "b3": {
+        "title": "Envíos a todo el mundo",
+        "subtitle": "Entrega rápida y fiable"
+      }
     }
   },
-  "HowItWorks":{"weProvide":"Ofrecemos","bestCustomer":"las mejores experiencias para el cliente","howItWorks":"Cómo funciona"},
-  "steps":{"tradeConfidence":{"title":"Comercia con confianza","desc":"Disfruta de una plataforma segura donde los pedidos se procesan al confirmar el pago"},"negotiations":{"title":"Negociaciones","desc":"Negocia directamente los precios con los vendedores antes de comprar."},"rfq":{"title":"Solicitudes de cotización","desc":"Solicita cotizaciones y recibe respuestas de distintos vendedores."},"network":{"title":"Red africana diversa","desc":"Explora una red de comerciantes africanos y compra fácilmente en todo el continente."}},
-  "videoGuide":{"howToPlaceOrder":{"title":"Cómo realizar un pedido correctamente."},"howToRequestQuote":{"title":"Cómo solicitar una cotización."},"howToBecomeSeller":{"title":"Cómo convertirse en vendedor."}},
-  "moreCollection":{"computingDeals":{"title":"Ofertas de informática"},"fitnessDeals":{"title":"Ofertas de fitness"},"mobileAccessories":{"title":"Accesorios móviles"},"gamingDeals":{"title":"Ofertas de videojuegos"},"homeAppliances":{"title":"Electrodomésticos"}},
-  "Product":{"addToCart":"Añadir al carrito"},
-  "Hero":{"categories":{"categories":"Categorías","allCategories":"Todas las categorías","subcategories":"Subcategorías","popular":"Popular","Pets":"Mascotas","Agriculture":"Agricultura","Food & Beverage":"Alimentos y bebidas","Apparel":"Ropa","Home & Furniture":"Hogar y muebles","Beauty & Personal Care":"Belleza y cuidado personal","Packaging & Supplies":"Embalajes y suministros","Minerals & Mettalurgy":"Minerales y metalurgia","Construction Materials":"Materiales de construcción","prevAriaLabel":"Ver categorías anteriores","nextAriaLabel":"Ver categorías siguientes"}},
+  "HowItWorks": {
+    "weProvide": "Ofrecemos",
+    "bestCustomer": "las mejores experiencias para el cliente",
+    "howItWorks": "Cómo funciona"
+  },
+  "steps": {
+    "tradeConfidence": {
+      "title": "Comercia con confianza",
+      "desc": "Disfruta de una plataforma segura donde los pedidos se procesan al confirmar el pago"
+    },
+    "negotiations": {
+      "title": "Negociaciones",
+      "desc": "Negocia directamente los precios con los vendedores antes de comprar."
+    },
+    "rfq": {
+      "title": "Solicitudes de cotización",
+      "desc": "Solicita cotizaciones y recibe respuestas de distintos vendedores."
+    },
+    "network": {
+      "title": "Red africana diversa",
+      "desc": "Explora una red de comerciantes africanos y compra fácilmente en todo el continente."
+    }
+  },
+  "videoGuide": {
+    "howToPlaceOrder": {
+      "title": "Cómo realizar un pedido correctamente."
+    },
+    "howToRequestQuote": {
+      "title": "Cómo solicitar una cotización."
+    },
+    "howToBecomeSeller": {
+      "title": "Cómo convertirse en vendedor."
+    }
+  },
+  "moreCollection": {
+    "computingDeals": {
+      "title": "Ofertas de informática"
+    },
+    "fitnessDeals": {
+      "title": "Ofertas de fitness"
+    },
+    "mobileAccessories": {
+      "title": "Accesorios móviles"
+    },
+    "gamingDeals": {
+      "title": "Ofertas de videojuegos"
+    },
+    "homeAppliances": {
+      "title": "Electrodomésticos"
+    }
+  },
+  "Product": {
+    "addToCart": "Añadir al carrito"
+  },
+  "Hero": {
+    "categories": {
+      "categories": "Categorías",
+      "allCategories": "Todas las categorías",
+      "subcategories": "Subcategorías",
+      "popular": "Popular",
+      "Pets": "Mascotas",
+      "Agriculture": "Agricultura",
+      "Food & Beverage": "Alimentos y bebidas",
+      "Apparel": "Ropa",
+      "Home & Furniture": "Hogar y muebles",
+      "Beauty & Personal Care": "Belleza y cuidado personal",
+      "Packaging & Supplies": "Embalajes y suministros",
+      "Minerals & Mettalurgy": "Minerales y metalurgia",
+      "Construction Materials": "Materiales de construcción",
+      "prevAriaLabel": "Ver categorías anteriores",
+      "nextAriaLabel": "Ver categorías siguientes"
+    }
+  },
   "aboutUs": {
     "ourStory": "Nuestra historia",
     "theStory": "¡Todo comenzó gracias a los cacahuetes! Antes había pirámides de cacahuetes en Kano y otras ciudades del norte de Nigeria: decenas de miles de sacos apilados en estructuras con forma de pirámide. Ahora imagina no poder encontrar hoy grandes cantidades de cacahuetes en Nigeria ni en África. Así se sentía Uju justo antes de fundar TOFA.",
@@ -43,17 +145,111 @@
     "teamDesc": "Traders of Africa promueve un entorno de trabajo relajado y culturalmente diverso para lograr el mejor desempeño de sus empleados y ofrecer una experiencia cordial a todos los que cruzan nuestras puertas. ¡Somos Team Awesome!",
     "teamQuote": "Un equipo de innovadores jóvenes y dinámicos que siembra las semillas del comercio africano de calidad.",
     "watchGroundnutStory": "Ver la historia del cacahuete",
-    "roles": {"ceoFounder":"CEO y fundadora","techLead":"Líder técnico","legalOfficer":"Responsable legal","backendDeveloper":"Desarrollador backend","graphicsContentManager":"Responsable de gráficos y contenidos","hrAdmin":"RR. HH./Administración","strategicPartnerships":"Alianzas estratégicas"}
+    "roles": {
+      "ceoFounder": "CEO y fundadora",
+      "techLead": "Líder técnico",
+      "legalOfficer": "Responsable legal",
+      "backendDeveloper": "Desarrollador backend",
+      "graphicsContentManager": "Responsable de gráficos y contenidos",
+      "hrAdmin": "RR. HH./Administración",
+      "strategicPartnerships": "Alianzas estratégicas"
+    }
   },
   "becomeSeller": {
-    "register":"Registrarse ahora","hero":{"accent":"Conecta y comercia","title":"con proveedores de alimentos y agricultura","description":"Lleva tu negocio al siguiente nivel convirtiéndote en vendedor del mercado de proveedores."},
-    "benefits":{"title":"¿Por qué vender en el mercado?","subtitle":"Conoce las ventajas y todo lo necesario para empezar a vender.","items":{"listStore":{"title":"Publica tu tienda","description":"Tu tienda es el espacio para mostrar tus productos y perfil. Aprovecha nuestras herramientas para vendedores."},"fastSales":{"title":"Vende más rápido","description":"Aumenta tus ventas gestionando eficazmente tu tienda, productos y pedidos."},"connectBuyers":{"title":"Conecta con más compradores","description":"Llega a compradores de toda África y construye relaciones comerciales duraderas."},"payments":{"title":"Pagos sencillos y seguros","description":"Los compradores pagan de forma segura mientras tú gestionas las entregas con nuestro soporte."}}},
-    "onboarding":{"title":"¿Quieres convertirte en proveedor?","steps":{"one":"Paso 1: Regístrate en menos de 5 minutos y envía los documentos requeridos.","two":"Paso 2: Conviértete en experto agroemprendedor completando el vídeo de incorporación de vendedores.","three":"Paso 3: Publica tus productos y fotos para llegar a una amplia clientela africana.","four":"Paso 4: Recibe y completa los pedidos de los compradores."}},
-    "pricing":{"title":"Planes y precios","subtitle":"Precios sencillos, sin cargos ocultos, para impulsar tu negocio.","choose":"Elegir este plan","note":"Todos los anuncios pasan por nuestro proceso justo de validación. Elige el plan que mejor se adapte a tu negocio.","basic":{"name":"Plan básico","description":"Para comenzar","price":"GRATIS","unavailable":"Sin publicación de solicitudes","features":{"quotas":"Comisión: 5 %","commission":"Número de productos: 5","products":"Número de imágenes: 10","pictures":"Datos de comprador/vendedor: 25 por contrato","buyerAccess":"Soporte estándar"}},"premium":{"name":"Plan prémium","description":"Para vendedores establecidos","price":"$40 – $150","period":" / trimestre","features":{"quotas":"Publicación de solicitudes","commission":"Comisión: 3 %","products":"Productos: ilimitados","pictures":"Imágenes: ilimitadas","buyerAccess":"Datos de comprador/vendedor: GRATIS"}}},
-    "policies":{"compliance":{"title":"Cumplimiento de proveedores","description":"Deben respetarse todas las normas del mercado de proveedores. El incumplimiento se considerará una violación de nuestros acuerdos y dará lugar a sanciones. Consulta el documento siguiente.","download":"Descargar Cumplimiento de proveedores.pdf"},"exclusions":{"title":"Productos excluidos","description":"Algunos productos no pueden publicarse en el mercado. Consulta el documento de productos excluidos para conocerlos y respetar estas reglas.","download":"Descargar Productos excluidos.pdf"}},
-    "tutorial":{"title":"Utiliza correctamente el mercado de proveedores","subtitle":"Aprende las prácticas esenciales para aprovechar el mercado y comerciar con éxito.","play":"Reproducir vídeo tutorial"}
+    "register": "Registrarse ahora",
+    "hero": {
+      "accent": "Conecta y comercia",
+      "title": "con proveedores de alimentos y agricultura",
+      "description": "Lleva tu negocio al siguiente nivel convirtiéndote en vendedor del mercado de proveedores."
+    },
+    "benefits": {
+      "title": "¿Por qué vender en el mercado?",
+      "subtitle": "Conoce las ventajas y todo lo necesario para empezar a vender.",
+      "items": {
+        "listStore": {
+          "title": "Publica tu tienda",
+          "description": "Tu tienda es el espacio para mostrar tus productos y perfil. Aprovecha nuestras herramientas para vendedores."
+        },
+        "fastSales": {
+          "title": "Vende más rápido",
+          "description": "Aumenta tus ventas gestionando eficazmente tu tienda, productos y pedidos."
+        },
+        "connectBuyers": {
+          "title": "Conecta con más compradores",
+          "description": "Llega a compradores de toda África y construye relaciones comerciales duraderas."
+        },
+        "payments": {
+          "title": "Pagos sencillos y seguros",
+          "description": "Los compradores pagan de forma segura mientras tú gestionas las entregas con nuestro soporte."
+        }
+      }
+    },
+    "onboarding": {
+      "title": "¿Quieres convertirte en proveedor?",
+      "steps": {
+        "one": "Paso 1: Regístrate en menos de 5 minutos y envía los documentos requeridos.",
+        "two": "Paso 2: Conviértete en experto agroemprendedor completando el vídeo de incorporación de vendedores.",
+        "three": "Paso 3: Publica tus productos y fotos para llegar a una amplia clientela africana.",
+        "four": "Paso 4: Recibe y completa los pedidos de los compradores."
+      }
+    },
+    "pricing": {
+      "title": "Planes y precios",
+      "subtitle": "Precios sencillos, sin cargos ocultos, para impulsar tu negocio.",
+      "choose": "Elegir este plan",
+      "note": "Todos los anuncios pasan por nuestro proceso justo de validación. Elige el plan que mejor se adapte a tu negocio.",
+      "basic": {
+        "name": "Plan básico",
+        "description": "Para comenzar",
+        "price": "GRATIS",
+        "unavailable": "Sin publicación de solicitudes",
+        "features": {
+          "quotas": "Comisión: 5 %",
+          "commission": "Número de productos: 5",
+          "products": "Número de imágenes: 10",
+          "pictures": "Datos de comprador/vendedor: 25 por contrato",
+          "buyerAccess": "Soporte estándar"
+        }
+      },
+      "premium": {
+        "name": "Plan prémium",
+        "description": "Para vendedores establecidos",
+        "price": "$40 – $150",
+        "period": " / trimestre",
+        "features": {
+          "quotas": "Publicación de solicitudes",
+          "commission": "Comisión: 3 %",
+          "products": "Productos: ilimitados",
+          "pictures": "Imágenes: ilimitadas",
+          "buyerAccess": "Datos de comprador/vendedor: GRATIS"
+        }
+      }
+    },
+    "policies": {
+      "compliance": {
+        "title": "Cumplimiento de proveedores",
+        "description": "Deben respetarse todas las normas del mercado de proveedores. El incumplimiento se considerará una violación de nuestros acuerdos y dará lugar a sanciones. Consulta el documento siguiente.",
+        "download": "Descargar Cumplimiento de proveedores.pdf"
+      },
+      "exclusions": {
+        "title": "Productos excluidos",
+        "description": "Algunos productos no pueden publicarse en el mercado. Consulta el documento de productos excluidos para conocerlos y respetar estas reglas.",
+        "download": "Descargar Productos excluidos.pdf"
+      }
+    },
+    "tutorial": {
+      "title": "Utiliza correctamente el mercado de proveedores",
+      "subtitle": "Aprende las prácticas esenciales para aprovechar el mercado y comerciar con éxito.",
+      "play": "Reproducir vídeo tutorial"
+    }
   },
-  "notFound":{"eyebrow":"404 Página no encontrada","title":"¡Oh, no! Aquí no hay nada","description":"Parece que esta página se ha perdido o no está disponible temporalmente. Te ayudaremos a volver.","backHome":"Volver al inicio","imageAlt":"Ilustración de página 404 no encontrada"},
+  "notFound": {
+    "eyebrow": "404 Página no encontrada",
+    "title": "¡Oh, no! Aquí no hay nada",
+    "description": "Parece que esta página se ha perdido o no está disponible temporalmente. Te ayudaremos a volver.",
+    "backHome": "Volver al inicio",
+    "imageAlt": "Ilustración de página 404 no encontrada"
+  },
   "whatWeDo": {
     "backedTech": "Impulsados por la tecnología",
     "backedTechDesc": "Nuestros datos se basan de manera fiable en la amplia red de personas y socios que tenemos en distintos países de África. Se actualizan periódicamente para ofrecer información clave sobre los productos fabricados en África.",
@@ -78,7 +274,11 @@
     "BuildSupplyCapacityDesc": "Mediante alianzas específicas en cada país africano, TOFA Academy ofrece formación y financiación a agricultores y agregadores para el comercio de materias primas agrícolas.",
     "BuildSupplyCapacityDesc2": "Trabajamos estrechamente con SourcePro para enseñar a nuestros participantes todo lo necesario sobre el agronegocio comercial. También proporcionamos la financiación necesaria y la compra directa de todos los productos. Únete a nuestra TOFA Tribe, donde te orientaremos para generar impacto y supervisaremos tu camino hacia el éxito."
   },
-  "ourImpact": {"customerStory":"Historias de clientes","customerDesc":"Me alegra que TOFA haya incorporado la tecnología a la agricultura, donde es muy necesaria. Además, la creación de acceso al mercado aborda una dificultad fundamental para quienes trabajan en el agronegocio, especialmente las mujeres.","speaker":"Dra. Ajibike Saratu Oluwatimilehin, 50 Million Women Speak"},
+  "ourImpact": {
+    "customerStory": "Historias de clientes",
+    "customerDesc": "Me alegra que TOFA haya incorporado la tecnología a la agricultura, donde es muy necesaria. Además, la creación de acceso al mercado aborda una dificultad fundamental para quienes trabajan en el agronegocio, especialmente las mujeres.",
+    "speaker": "Dra. Ajibike Saratu Oluwatimilehin, 50 Million Women Speak"
+  },
   "Nav": {
     "whatsapp": "Chatea con nosotros en WhatsApp",
     "join": "Únete Gratis",
@@ -103,17 +303,82 @@
       "whatWeDo": "Qué hacemos",
       "ourImpact": "Nuestro impacto"
     },
-    "needHelp": {"label":"¿Necesitas ayuda?","contactUs":"Contáctanos","faq":"Preguntas frecuentes","support":"Soporte"},
-    "buyer": {"label":"Compradores","buyComm":"Comprar productos","productInquiry":"Consulta de producto","goodInStock":"Productos en stock"},
-    "seller": {"label":"Vendedores","marketplace":"Mercado","howToTrade":"Cómo comerciar","searchRFQ":"Buscar solicitudes de cotización"}
+    "needHelp": {
+      "label": "¿Necesitas ayuda?",
+      "contactUs": "Contáctanos",
+      "faq": "Preguntas frecuentes",
+      "support": "Soporte"
+    },
+    "buyer": {
+      "label": "Compradores",
+      "buyComm": "Comprar productos",
+      "productInquiry": "Consulta de producto",
+      "goodInStock": "Productos en stock"
+    },
+    "seller": {
+      "label": "Vendedores",
+      "marketplace": "Mercado",
+      "howToTrade": "Cómo comerciar",
+      "searchRFQ": "Buscar solicitudes de cotización"
+    }
   },
   "ProductCatalogue": {
-    "home": "Inicio", "searchResult": "Resultado de búsqueda", "breadcrumbLabel": "Ruta de navegación", "foundResults": "Se encontraron {count} resultados para", "selectedFilters": "{count, plural, one {# filtro seleccionado} other {# filtros seleccionados}}", "clearAll": "Borrar todo", "sortBy": "Ordenar por", "gallery": "Galería", "list": "Lista", "galleryView": "Vista de galería", "listView": "Vista de lista",
-    "collections": {"popular": "Productos populares", "new": "Productos nuevos", "all": "Todos los productos"},
-    "sort": {"relevance": "Mejor coincidencia", "newest": "Más recientes", "oldest": "Más antiguos", "price-low": "Precio: menor a mayor", "price-high": "Precio: mayor a menor", "rating": "Mejor valorados", "reviews": "Más reseñados", "name-asc": "Nombre del producto: A–Z"},
-    "filters": {"title": "Filtros", "reset": "Restablecer", "close": "Cerrar filtros", "categories": "Categorías", "allCategories": "Todas las categorías", "price": "Precio", "min": "Precio mínimo", "max": "Precio máximo", "rating": "Valoración del cliente", "ratingUp": "{rating}+ o más", "availability": "Disponibilidad y proveedor", "verified": "Proveedores verificados", "readyToShip": "Listo para enviar", "maximumMinimumOrder": "Pedido mínimo máximo", "anyQuantity": "Cualquier cantidad", "units": "unidades", "apply": "Aplicar", "clear": "Borrar"},
-    "empty": {"title": "No se encontraron productos", "description": "Elimina un filtro o busca otro producto."},
-    "pagination": {"label": "Paginación", "pageOf": "Página {page} de {total}", "previous": "Anterior", "next": "Siguiente"}
+    "home": "Inicio",
+    "searchResult": "Resultado de búsqueda",
+    "breadcrumbLabel": "Ruta de navegación",
+    "foundResults": "Se encontraron {count} resultados para",
+    "selectedFilters": "{count, plural, one {# filtro seleccionado} other {# filtros seleccionados}}",
+    "clearAll": "Borrar todo",
+    "sortBy": "Ordenar por",
+    "gallery": "Galería",
+    "list": "Lista",
+    "galleryView": "Vista de galería",
+    "listView": "Vista de lista",
+    "collections": {
+      "popular": "Productos populares",
+      "new": "Productos nuevos",
+      "all": "Todos los productos"
+    },
+    "sort": {
+      "relevance": "Mejor coincidencia",
+      "newest": "Más recientes",
+      "oldest": "Más antiguos",
+      "price-low": "Precio: menor a mayor",
+      "price-high": "Precio: mayor a menor",
+      "rating": "Mejor valorados",
+      "reviews": "Más reseñados",
+      "name-asc": "Nombre del producto: A–Z"
+    },
+    "filters": {
+      "title": "Filtros",
+      "reset": "Restablecer",
+      "close": "Cerrar filtros",
+      "categories": "Categorías",
+      "allCategories": "Todas las categorías",
+      "price": "Precio",
+      "min": "Precio mínimo",
+      "max": "Precio máximo",
+      "rating": "Valoración del cliente",
+      "ratingUp": "{rating}+ o más",
+      "availability": "Disponibilidad y proveedor",
+      "verified": "Proveedores verificados",
+      "readyToShip": "Listo para enviar",
+      "maximumMinimumOrder": "Pedido mínimo máximo",
+      "anyQuantity": "Cualquier cantidad",
+      "units": "unidades",
+      "apply": "Aplicar",
+      "clear": "Borrar"
+    },
+    "empty": {
+      "title": "No se encontraron productos",
+      "description": "Elimina un filtro o busca otro producto."
+    },
+    "pagination": {
+      "label": "Paginación",
+      "pageOf": "Página {page} de {total}",
+      "previous": "Anterior",
+      "next": "Siguiente"
+    }
   },
   "Auth": {
     "signUp": {
@@ -122,10 +387,9 @@
       "subtitle": "Comercia en el mayor marketplace verificado de África, para empresas y compradores por igual.",
       "emailLabel": "Correo electrónico",
       "emailPlaceholder": "tu@empresa.com",
+      "emailUnavailable": "Correo electrónico no disponible",
       "passwordLabel": "Contraseña",
       "passwordPlaceholder": "Crea una contraseña segura",
-      "confirmPasswordLabel": "Confirmar contraseña",
-      "confirmPasswordPlaceholder": "Vuelve a ingresar tu contraseña",
       "referralTrigger": "¿Tienes un código de referido?",
       "referralPlaceholder": "Ingresa el código de referido",
       "submit": "Crear tu cuenta",
@@ -159,6 +423,89 @@
         "countries": "Países alcanzados",
         "volume": "Volumen de comercio"
       }
+    },
+    "verifyEmail": {
+      "title": "Verifica tu correo electrónico",
+      "subtitle": "Introduce el código de 6 dígitos para activar tu cuenta.",
+      "otpLabel": "Código de verificación",
+      "sentTo": "Hemos enviado un código de 6 dígitos a",
+      "verify": "Verificar correo",
+      "verifying": "Verificando…",
+      "resend": "Reenviar código",
+      "resending": "Reenviando…",
+      "resendIn": "Reenviar código en {timer}",
+      "changeEmail": "Cambiar correo / Volver",
+      "invalidEmail": "Introduce un correo electrónico válido",
+      "invalidOtp": "Introduce el código completo de 6 dígitos",
+      "missingToken": "Este enlace de verificación no es válido. Regístrate de nuevo.",
+      "success": "Tu correo electrónico ha sido verificado.",
+      "verifyError": "No pudimos verificar tu correo. Comprueba el código e inténtalo de nuevo.",
+      "resendSuccess": "Se ha enviado un nuevo código de verificación.",
+      "resendError": "No pudimos reenviar el código. Inténtalo de nuevo."
+    },
+    "login": {
+      "badge": "Bienvenido de nuevo",
+      "title": "Bienvenido de nuevo",
+      "subtitle": "Inicia sesión para seguir comerciando en el mayor marketplace verificado de África.",
+      "showcase": {
+        "title": "Continúa donde lo dejaste",
+        "subtitle": "Gestiona pedidos, chatea con proveedores y rastrea envíos, todo en un solo lugar."
+      },
+      "emailLabel": "Correo electrónico",
+      "emailPlaceholder": "tu@empresa.com",
+      "passwordLabel": "Contraseña",
+      "passwordPlaceholder": "Ingresa tu contraseña",
+      "rememberMe": "Recordarme",
+      "forgotPassword": "¿Olvidaste tu contraseña?",
+      "submit": "Iniciar sesión",
+      "submitting": "Iniciando sesión…",
+      "orDivider": "o inicia sesión con tu correo",
+      "google": "Continuar con Google",
+      "noAccount": "¿No tienes una cuenta de TOFA?",
+      "register": "Crea una",
+      "verificationRequired": "Verifica tu correo para continuar. Te hemos enviado un nuevo código.",
+      "success": "¡Bienvenido de nuevo!",
+      "loginError": "No pudimos iniciar tu sesión. Comprueba tus datos e inténtalo de nuevo."
+    },
+    "forgotPassword": {
+      "badge": "Recuperación de cuenta",
+      "title": "¿Olvidaste tu contraseña?",
+      "subtitle": "Ingresa tu correo electrónico y te enviaremos un código para restablecerla.",
+      "showcase": {
+        "title": "Recupera el acceso a tu cuenta en minutos",
+        "subtitle": "Proveedores y compradores verificados confían en TOFA para proteger sus cuentas."
+      },
+      "emailLabel": "Correo electrónico",
+      "emailPlaceholder": "tu@empresa.com",
+      "submit": "Enviar código",
+      "submitting": "Enviando…",
+      "backToLogin": "Volver a iniciar sesión",
+      "success": "Un código de restablecimiento va en camino a tu correo.",
+      "submitError": "No pudimos enviar el código. Inténtalo de nuevo."
+    },
+    "resetPassword": {
+      "badge": "Ya casi está",
+      "title": "Restablece tu contraseña",
+      "subtitle": "Ingresa el código que recibiste y elige una nueva contraseña.",
+      "showcase": {
+        "title": "Comercia con confianza",
+        "subtitle": "Tu cuenta, tus datos y tus rutas comerciales permanecen protegidos en TOFA."
+      },
+      "sentTo": "Hemos enviado un código de 6 dígitos a",
+      "otpLabel": "Código de verificación",
+      "passwordLabel": "Nueva contraseña",
+      "passwordPlaceholder": "Crea una contraseña segura",
+      "submit": "Restablecer contraseña",
+      "submitting": "Restableciendo…",
+      "backToLogin": "Volver a iniciar sesión",
+      "success": "Tu contraseña ha sido restablecida. Ya puedes iniciar sesión.",
+      "submitError": "No pudimos restablecer tu contraseña. Comprueba el código e inténtalo de nuevo."
+    },
+    "termsModal": {
+      "title": "Acepta nuestros Términos para continuar",
+      "description": "Antes de comenzar a comerciar en TOFA, revisa y acepta nuestros Términos de uso y Política de privacidad.",
+      "accept": "Aceptar y continuar",
+      "decline": "Ahora no"
     }
   }
 }

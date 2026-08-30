@@ -1,33 +1,29 @@
 "use client";
 
+import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { Mail } from "lucide-react";
 
 import AuthFormMotion from "@/features/auth/components/atoms/AuthFormMotion/AuthFormMotion";
 import AuthFormField from "@/features/auth/components/molecules/AuthFormField/AuthFormField";
 import PasswordField from "@/features/auth/components/molecules/PasswordField/PasswordField";
-import PasswordStrengthChecklist from "@/features/auth/components/molecules/PasswordStrengthChecklist/PasswordStrengthChecklist";
-import TermsCheckboxField from "@/features/auth/components/molecules/TermsCheckboxField/TermsCheckboxField";
-import ReferralCodeField from "@/features/auth/components/molecules/ReferralCodeField/ReferralCodeField";
+import RememberMeField from "@/features/auth/components/molecules/RememberMeField/RememberMeField";
 import AuthSubmitButton from "@/features/auth/components/atoms/AuthSubmitButton/AuthSubmitButton";
 import AuthDivider from "@/features/auth/components/molecules/AuthDivider/AuthDivider";
 import GoogleAuthButton from "@/features/auth/components/molecules/GoogleAuthButton/GoogleAuthButton";
 import AuthFooterPrompt from "@/features/auth/components/molecules/AuthFooterPrompt/AuthFooterPrompt";
 import TermsPromptModal from "@/features/auth/components/organisms/TermsPromptModal/TermsPromptModal";
 
-import { useSignUpForm } from "@/features/auth/hooks/useSignUpForm";
-import { useSignUp } from "@/features/auth/hooks/useSignUp";
+import { useLoginForm } from "@/features/auth/hooks/useLoginForm";
+import { useLogin } from "@/features/auth/hooks/useLogin";
 import { useGoogleAuth } from "@/features/auth/hooks/useGoogleAuth";
 import { useGetAllRoutes } from "@/lib/hooks/useGetAllRoutes";
 
-const SignUpForm = ({
-  initialReferralCode,
-}: {
-  initialReferralCode?: string;
-}) => {
-  const t = useTranslations("Auth.signUp");
+const LoginForm = ({ returnUrl }: { returnUrl?: string }) => {
+  const t = useTranslations("Auth.login");
   const { routes } = useGetAllRoutes();
 
+  const { submit, isSubmitting } = useLogin({ returnUrl });
   const {
     handleCredential,
     isAuthenticating,
@@ -35,8 +31,7 @@ const SignUpForm = ({
     handleAcceptTerms,
     handleDeclineTerms,
     isAcceptingTerms,
-  } = useGoogleAuth();
-  const { submit, isSubmitting } = useSignUp();
+  } = useGoogleAuth({ returnUrl });
 
   const {
     values,
@@ -44,9 +39,9 @@ const SignUpForm = ({
     touched,
     handleChange,
     handleBlur,
-    setTermsOfUse,
+    setRememberMe,
     handleSubmit,
-  } = useSignUpForm(submit, initialReferralCode);
+  } = useLoginForm(submit);
 
   return (
     <AuthFormMotion
@@ -68,41 +63,31 @@ const SignUpForm = ({
         autoComplete="email"
       />
 
-      <div className="flex flex-col gap-1">
-        <PasswordField
-          id="password"
-          name="password"
-          label={t("passwordLabel")}
-          placeholder={t("passwordPlaceholder")}
-          value={values.password}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          error={touched.password ? errors.password : undefined}
-          autoComplete="new-password"
-        />
-        <PasswordStrengthChecklist
-          password={values.password}
-          visible={values.password.length > 0}
-        />
-      </div>
-
-      <ReferralCodeField
-        value={values.referralCode}
+      <PasswordField
+        id="password"
+        name="password"
+        label={t("passwordLabel")}
+        placeholder={t("passwordPlaceholder")}
+        value={values.password}
         onChange={handleChange}
-        label={t("referralPlaceholder")}
-        triggerLabel={t("referralTrigger")}
+        onBlur={handleBlur}
+        error={touched.password ? errors.password : undefined}
+        autoComplete="current-password"
       />
 
-      <TermsCheckboxField
-        checked={values.termsOfUse}
-        onCheckedChange={setTermsOfUse}
-        error={touched.termsOfUse ? errors.termsOfUse : undefined}
-      >
-        {t("termsPrefix")}{" "}
-        <span className="font-semibold text-foreground">{t("terms")}</span>{" "}
-        {t("and")}{" "}
-        <span className="font-semibold text-foreground">{t("privacy")}</span>
-      </TermsCheckboxField>
+      <div className="flex items-center justify-between">
+        <RememberMeField
+          checked={values.rememberMe}
+          onCheckedChange={setRememberMe}
+          label={t("rememberMe")}
+        />
+        <Link
+          href={routes.forgotPassword}
+          className="text-sm font-semibold text-(--orange) transition-colors hover:text-(--orange-dark) hover:underline"
+        >
+          {t("forgotPassword")}
+        </Link>
+      </div>
 
       <AuthSubmitButton loading={isSubmitting}>
         {isSubmitting ? t("submitting") : t("submit")}
@@ -117,9 +102,9 @@ const SignUpForm = ({
       />
 
       <AuthFooterPrompt
-        text={t("haveAccount")}
-        actionText={t("login")}
-        href={routes.login}
+        text={t("noAccount")}
+        actionText={t("register")}
+        href={routes.register}
       />
 
       <TermsPromptModal
@@ -132,4 +117,4 @@ const SignUpForm = ({
   );
 };
 
-export default SignUpForm;
+export default LoginForm;

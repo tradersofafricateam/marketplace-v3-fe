@@ -2,27 +2,20 @@
 
 import { type ChangeEvent, type SubmitEvent, useState } from "react";
 
-import { SignUpFormErrors, SignUpFormState } from "../types";
-import { validateSignUpForm } from "../helpers";
+import { LoginFormErrors, LoginFormState } from "../types";
+import { validateLoginForm } from "../helpers";
 
-const initialValues: SignUpFormState = {
+const initialValues: LoginFormState = {
   email: "",
   password: "",
-  referralCode: "",
-  termsOfUse: false,
+  rememberMe: true,
 };
 
-export const useSignUpForm = (
-  onValid: (values: SignUpFormState) => void,
-  initialReferralCode = "",
-) => {
-  const [values, setValues] = useState<SignUpFormState>(() => ({
-    ...initialValues,
-    referralCode: initialReferralCode,
-  }));
-  const [errors, setErrors] = useState<SignUpFormErrors>({});
+export const useLoginForm = (onValid: (values: LoginFormState) => void) => {
+  const [values, setValues] = useState<LoginFormState>(initialValues);
+  const [errors, setErrors] = useState<LoginFormErrors>({});
   const [touched, setTouched] = useState<
-    Partial<Record<keyof SignUpFormState, boolean>>
+    Partial<Record<keyof LoginFormState, boolean>>
   >({});
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -37,20 +30,16 @@ export const useSignUpForm = (
     setTouched((prev) => ({ ...prev, [e.target.name]: true }));
   };
 
-  const setTermsOfUse = (checked: boolean) => {
-    setValues((prev) => ({ ...prev, termsOfUse: checked }));
+  const setRememberMe = (checked: boolean) => {
+    setValues((prev) => ({ ...prev, rememberMe: checked }));
   };
 
   const handleSubmit = (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const validationErrors = validateSignUpForm(values);
+    const validationErrors = validateLoginForm(values);
     setErrors(validationErrors);
-    setTouched({
-      email: true,
-      password: true,
-      termsOfUse: true,
-    });
+    setTouched({ email: true, password: true });
 
     if (Object.keys(validationErrors).length === 0) {
       onValid(values);
@@ -63,7 +52,7 @@ export const useSignUpForm = (
     touched,
     handleChange,
     handleBlur,
-    setTermsOfUse,
+    setRememberMe,
     handleSubmit,
   };
 };

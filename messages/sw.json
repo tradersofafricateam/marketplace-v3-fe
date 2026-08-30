@@ -12,25 +12,127 @@
     "popularProducts": "Bidhaa Maarufu",
     "newlyAddedProducts": "Bidhaa Mpya",
     "slides": {
-      "previous":"Ofa iliyotangulia","next":"Ofa inayofuata",
-      "1":{"badge":"Ofa Kali","title":"Punguzo la Majira — Hadi 60%","subtitle":"Nunua ofa kubwa zaidi za msimu huu"},
-      "2":{"badge":"Mpya","title":"Bidhaa Mpya za Elektroniki","subtitle":"Simu na kompyuta bora sasa zinapatikana"},
-      "3":{"badge":"Maarufu","title":"Mkusanyiko wa Wiki ya Mitindo","subtitle":"Mitindo iliyochaguliwa kutoka kwa wabunifu bora"},
-      "4":{"badge":"Nyumbani","title":"Badilisha Mwonekano wa Nyumba Yako","subtitle":"Samani na mapambo kwa bei nzuri sana"},
-      "a1":{"title":"Ofa ya Haraka — Saa 2 Zimebaki","subtitle":"Hadi punguzo la 40% kwa teknolojia"},
-      "a2":{"title":"Seti za Zawadi Zinapatikana","subtitle":"Nzuri kwa tukio lolote"},
-      "a3":{"title":"Usafirishaji Bila Malipo Leo","subtitle":"Kwa oda zaidi ya $50"},
-      "b1":{"title":"Nunua Sasa, Lipa Baadaye","subtitle":"Riba 0% kwa miezi 6"},
-      "b2":{"title":"Wauzaji Wenye Ukadiriaji Bora","subtitle":"Ubora unaoweza kuamini"},
-      "b3":{"title":"Tunasafirisha Ulimwenguni","subtitle":"Usafirishaji wa haraka na wa kuaminika"}
+      "previous": "Ofa iliyotangulia",
+      "next": "Ofa inayofuata",
+      "1": {
+        "badge": "Ofa Kali",
+        "title": "Punguzo la Majira — Hadi 60%",
+        "subtitle": "Nunua ofa kubwa zaidi za msimu huu"
+      },
+      "2": {
+        "badge": "Mpya",
+        "title": "Bidhaa Mpya za Elektroniki",
+        "subtitle": "Simu na kompyuta bora sasa zinapatikana"
+      },
+      "3": {
+        "badge": "Maarufu",
+        "title": "Mkusanyiko wa Wiki ya Mitindo",
+        "subtitle": "Mitindo iliyochaguliwa kutoka kwa wabunifu bora"
+      },
+      "4": {
+        "badge": "Nyumbani",
+        "title": "Badilisha Mwonekano wa Nyumba Yako",
+        "subtitle": "Samani na mapambo kwa bei nzuri sana"
+      },
+      "a1": {
+        "title": "Ofa ya Haraka — Saa 2 Zimebaki",
+        "subtitle": "Hadi punguzo la 40% kwa teknolojia"
+      },
+      "a2": {
+        "title": "Seti za Zawadi Zinapatikana",
+        "subtitle": "Nzuri kwa tukio lolote"
+      },
+      "a3": {
+        "title": "Usafirishaji Bila Malipo Leo",
+        "subtitle": "Kwa oda zaidi ya $50"
+      },
+      "b1": {
+        "title": "Nunua Sasa, Lipa Baadaye",
+        "subtitle": "Riba 0% kwa miezi 6"
+      },
+      "b2": {
+        "title": "Wauzaji Wenye Ukadiriaji Bora",
+        "subtitle": "Ubora unaoweza kuamini"
+      },
+      "b3": {
+        "title": "Tunasafirisha Ulimwenguni",
+        "subtitle": "Usafirishaji wa haraka na wa kuaminika"
+      }
     }
   },
-  "HowItWorks":{"weProvide":"Tunatoa","bestCustomer":"uzoefu bora kwa wateja","howItWorks":"Jinsi inavyofanya kazi"},
-  "steps":{"tradeConfidence":{"title":"Fanya biashara kwa ujasiri","desc":"Tumia jukwaa salama ambapo oda hushughulikiwa baada ya malipo kuthibitishwa"},"negotiations":{"title":"Majadiliano","desc":"Jadiliana bei za bidhaa moja kwa moja na wauzaji kabla ya kununua."},"rfq":{"title":"Maombi ya bei","desc":"Omba bei na usubiri majibu kutoka kwa wauzaji mbalimbali."},"network":{"title":"Mtandao Mpana wa Afrika","desc":"Gundua mtandao wa wafanyabiashara wa Afrika na ununue kwa urahisi barani kote."}},
-  "videoGuide":{"howToPlaceOrder":{"title":"Jinsi ya kuweka oda kwa mafanikio."},"howToRequestQuote":{"title":"Jinsi ya kuomba bei."},"howToBecomeSeller":{"title":"Jinsi ya kuwa muuzaji."}},
-  "moreCollection":{"computingDeals":{"title":"Ofa za Kompyuta"},"fitnessDeals":{"title":"Ofa za Mazoezi"},"mobileAccessories":{"title":"Vifaa vya Simu"},"gamingDeals":{"title":"Ofa za Michezo"},"homeAppliances":{"title":"Vifaa vya Nyumbani"}},
-  "Product":{"addToCart":"Ongeza kwenye Kikapu"},
-  "Hero":{"categories":{"categories":"Kategoria","allCategories":"Kategoria Zote","subcategories":"Kategoria Ndogo","popular":"Maarufu","Pets":"Wanyama wa Nyumbani","Agriculture":"Kilimo","Food & Beverage":"Chakula na Vinywaji","Apparel":"Mavazi","Home & Furniture":"Nyumbani na Samani","Beauty & Personal Care":"Urembo na Huduma Binafsi","Packaging & Supplies":"Vifungashio na Vifaa","Minerals & Mettalurgy":"Madini na Metali","Construction Materials":"Vifaa vya Ujenzi","prevAriaLabel":"Tazama kategoria zilizotangulia","nextAriaLabel":"Tazama kategoria zinazofuata"}},
+  "HowItWorks": {
+    "weProvide": "Tunatoa",
+    "bestCustomer": "uzoefu bora kwa wateja",
+    "howItWorks": "Jinsi inavyofanya kazi"
+  },
+  "steps": {
+    "tradeConfidence": {
+      "title": "Fanya biashara kwa ujasiri",
+      "desc": "Tumia jukwaa salama ambapo oda hushughulikiwa baada ya malipo kuthibitishwa"
+    },
+    "negotiations": {
+      "title": "Majadiliano",
+      "desc": "Jadiliana bei za bidhaa moja kwa moja na wauzaji kabla ya kununua."
+    },
+    "rfq": {
+      "title": "Maombi ya bei",
+      "desc": "Omba bei na usubiri majibu kutoka kwa wauzaji mbalimbali."
+    },
+    "network": {
+      "title": "Mtandao Mpana wa Afrika",
+      "desc": "Gundua mtandao wa wafanyabiashara wa Afrika na ununue kwa urahisi barani kote."
+    }
+  },
+  "videoGuide": {
+    "howToPlaceOrder": {
+      "title": "Jinsi ya kuweka oda kwa mafanikio."
+    },
+    "howToRequestQuote": {
+      "title": "Jinsi ya kuomba bei."
+    },
+    "howToBecomeSeller": {
+      "title": "Jinsi ya kuwa muuzaji."
+    }
+  },
+  "moreCollection": {
+    "computingDeals": {
+      "title": "Ofa za Kompyuta"
+    },
+    "fitnessDeals": {
+      "title": "Ofa za Mazoezi"
+    },
+    "mobileAccessories": {
+      "title": "Vifaa vya Simu"
+    },
+    "gamingDeals": {
+      "title": "Ofa za Michezo"
+    },
+    "homeAppliances": {
+      "title": "Vifaa vya Nyumbani"
+    }
+  },
+  "Product": {
+    "addToCart": "Ongeza kwenye Kikapu"
+  },
+  "Hero": {
+    "categories": {
+      "categories": "Kategoria",
+      "allCategories": "Kategoria Zote",
+      "subcategories": "Kategoria Ndogo",
+      "popular": "Maarufu",
+      "Pets": "Wanyama wa Nyumbani",
+      "Agriculture": "Kilimo",
+      "Food & Beverage": "Chakula na Vinywaji",
+      "Apparel": "Mavazi",
+      "Home & Furniture": "Nyumbani na Samani",
+      "Beauty & Personal Care": "Urembo na Huduma Binafsi",
+      "Packaging & Supplies": "Vifungashio na Vifaa",
+      "Minerals & Mettalurgy": "Madini na Metali",
+      "Construction Materials": "Vifaa vya Ujenzi",
+      "prevAriaLabel": "Tazama kategoria zilizotangulia",
+      "nextAriaLabel": "Tazama kategoria zinazofuata"
+    }
+  },
   "aboutUs": {
     "ourStory": "Hadithi Yetu",
     "theStory": "Yote yalianza kwa sababu ya karanga! Zamani kulikuwa na mapiramidi ya karanga Kano na katika miji mingine ya Kaskazini mwa Nigeria—makumi ya maelfu ya magunia yaliyopangwa kama mapiramidi. Sasa fikiria kutoweza kupata karanga kwa wingi nchini Nigeria au Afrika kwa ujumla. Hivyo ndivyo Uju alivyohisi kabla tu ya kuanzisha TOFA.",
@@ -43,17 +145,111 @@
     "teamDesc": "Traders of Africa inakuza mazingira ya kazi yenye utulivu na utofauti wa kitamaduni ili wafanyakazi wafanye kazi kwa ubora na kila anayeingia milangoni mwetu apate uzoefu wa kirafiki. Tunaitwa Team Awesome!",
     "teamQuote": "Timu ya wabunifu vijana na mahiri inayopanda mbegu za biashara bora kutoka Afrika.",
     "watchGroundnutStory": "Tazama Hadithi ya Karanga",
-    "roles": {"ceoFounder":"Mkurugenzi Mtendaji na Mwanzilishi","techLead":"Kiongozi wa Teknolojia","legalOfficer":"Afisa wa Sheria","backendDeveloper":"Msanidi wa Backend","graphicsContentManager":"Meneja wa Michoro na Maudhui","hrAdmin":"Rasilimali Watu/Utawala","strategicPartnerships":"Ushirikiano wa Kimkakati"}
+    "roles": {
+      "ceoFounder": "Mkurugenzi Mtendaji na Mwanzilishi",
+      "techLead": "Kiongozi wa Teknolojia",
+      "legalOfficer": "Afisa wa Sheria",
+      "backendDeveloper": "Msanidi wa Backend",
+      "graphicsContentManager": "Meneja wa Michoro na Maudhui",
+      "hrAdmin": "Rasilimali Watu/Utawala",
+      "strategicPartnerships": "Ushirikiano wa Kimkakati"
+    }
   },
   "becomeSeller": {
-    "register":"Jisajili Sasa","hero":{"accent":"Unganika na Ufanye Biashara","title":"na Wasambazaji wa Chakula na Kilimo","description":"Peleka biashara yako kiwango kingine kwa kuwa muuzaji kwenye soko la wasambazaji."},
-    "benefits":{"title":"Kwa Nini Uuze Sokoni?","subtitle":"Fahamu faida na mambo unayohitaji ili kuanza kuuza.","items":{"listStore":{"title":"Orodhesha Duka Lako","description":"Duka lako ni sehemu ya kuonyesha bidhaa na wasifu wako. Tumia zana zetu bora za wauzaji."},"fastSales":{"title":"Uza kwa Haraka","description":"Ongeza mauzo kwa kusimamia duka, bidhaa na oda zako kwa ufanisi."},"connectBuyers":{"title":"Unganika na Wanunuzi Zaidi","description":"Fikia wanunuzi kote Afrika na ujenge mahusiano ya biashara ya kudumu."},"payments":{"title":"Malipo Rahisi na Salama","description":"Wanunuzi hulipa kwa usalama huku ukisimamia usafirishaji kwa msaada wetu."}}},
-    "onboarding":{"title":"Unataka Kuwa Msambazaji?","steps":{"one":"Hatua ya 1: Jisajili ndani ya dakika 5 na uwasilishe nyaraka zinazohitajika.","two":"Hatua ya 2: Kuwa mtaalamu wa ujasiriamali wa kilimo kwa kukamilisha video ya mafunzo ya wauzaji.","three":"Hatua ya 3: Orodhesha bidhaa na picha zako ili kufikia wateja wengi wa Afrika.","four":"Hatua ya 4: Pokea na ukamilishe oda za wanunuzi."}},
-    "pricing":{"title":"Mipango na Bei","subtitle":"Bei rahisi bila gharama zilizofichwa ili kukuza biashara yako.","choose":"Chagua Mpango Huu","note":"Orodha zote hupitia utaratibu wetu wa haki wa uthibitishaji. Chagua mpango unaofaa biashara yako.","basic":{"name":"Mpango wa Msingi","description":"Kwa wanaoanza","price":"BURE","unavailable":"Hakuna kuchapisha maombi","features":{"quotas":"Kamisheni: 5%","commission":"Idadi ya bidhaa: 5","products":"Idadi ya picha: 10","pictures":"Mawasiliano ya mnunuzi/muuzaji: 25 kwa mkataba","buyerAccess":"Msaada wa kawaida"}},"premium":{"name":"Mpango wa Premium","description":"Kwa wauzaji waliokomaa","price":"$40 – $150","period":" / robo mwaka","features":{"quotas":"Kuchapisha maombi","commission":"Kamisheni: 3%","products":"Bidhaa: bila kikomo","pictures":"Picha: bila kikomo","buyerAccess":"Mawasiliano ya mnunuzi/muuzaji: BURE"}}},
-    "policies":{"compliance":{"title":"Masharti ya Wasambazaji","description":"Masharti yote ya soko la wasambazaji lazima yafuatwe. Kutoyafuata kutachukuliwa kuwa ukiukaji wa makubaliano na kutasababisha adhabu. Soma hati iliyo hapa chini.","download":"Pakua Masharti ya Wasambazaji.pdf"},"exclusions":{"title":"Bidhaa Zilizozuiwa","description":"Baadhi ya bidhaa haziruhusiwi kuorodheshwa sokoni. Soma hati ya bidhaa zilizozuiwa ili uzifahamu na kufuata kanuni hizi.","download":"Pakua Bidhaa Zilizozuiwa.pdf"}},
-    "tutorial":{"title":"Tumia Soko la Wasambazaji kwa Njia Sahihi","subtitle":"Jifunze mbinu muhimu za kutumia soko kwa mafanikio katika biashara.","play":"Cheza Video ya Mafunzo"}
+    "register": "Jisajili Sasa",
+    "hero": {
+      "accent": "Unganika na Ufanye Biashara",
+      "title": "na Wasambazaji wa Chakula na Kilimo",
+      "description": "Peleka biashara yako kiwango kingine kwa kuwa muuzaji kwenye soko la wasambazaji."
+    },
+    "benefits": {
+      "title": "Kwa Nini Uuze Sokoni?",
+      "subtitle": "Fahamu faida na mambo unayohitaji ili kuanza kuuza.",
+      "items": {
+        "listStore": {
+          "title": "Orodhesha Duka Lako",
+          "description": "Duka lako ni sehemu ya kuonyesha bidhaa na wasifu wako. Tumia zana zetu bora za wauzaji."
+        },
+        "fastSales": {
+          "title": "Uza kwa Haraka",
+          "description": "Ongeza mauzo kwa kusimamia duka, bidhaa na oda zako kwa ufanisi."
+        },
+        "connectBuyers": {
+          "title": "Unganika na Wanunuzi Zaidi",
+          "description": "Fikia wanunuzi kote Afrika na ujenge mahusiano ya biashara ya kudumu."
+        },
+        "payments": {
+          "title": "Malipo Rahisi na Salama",
+          "description": "Wanunuzi hulipa kwa usalama huku ukisimamia usafirishaji kwa msaada wetu."
+        }
+      }
+    },
+    "onboarding": {
+      "title": "Unataka Kuwa Msambazaji?",
+      "steps": {
+        "one": "Hatua ya 1: Jisajili ndani ya dakika 5 na uwasilishe nyaraka zinazohitajika.",
+        "two": "Hatua ya 2: Kuwa mtaalamu wa ujasiriamali wa kilimo kwa kukamilisha video ya mafunzo ya wauzaji.",
+        "three": "Hatua ya 3: Orodhesha bidhaa na picha zako ili kufikia wateja wengi wa Afrika.",
+        "four": "Hatua ya 4: Pokea na ukamilishe oda za wanunuzi."
+      }
+    },
+    "pricing": {
+      "title": "Mipango na Bei",
+      "subtitle": "Bei rahisi bila gharama zilizofichwa ili kukuza biashara yako.",
+      "choose": "Chagua Mpango Huu",
+      "note": "Orodha zote hupitia utaratibu wetu wa haki wa uthibitishaji. Chagua mpango unaofaa biashara yako.",
+      "basic": {
+        "name": "Mpango wa Msingi",
+        "description": "Kwa wanaoanza",
+        "price": "BURE",
+        "unavailable": "Hakuna kuchapisha maombi",
+        "features": {
+          "quotas": "Kamisheni: 5%",
+          "commission": "Idadi ya bidhaa: 5",
+          "products": "Idadi ya picha: 10",
+          "pictures": "Mawasiliano ya mnunuzi/muuzaji: 25 kwa mkataba",
+          "buyerAccess": "Msaada wa kawaida"
+        }
+      },
+      "premium": {
+        "name": "Mpango wa Premium",
+        "description": "Kwa wauzaji waliokomaa",
+        "price": "$40 – $150",
+        "period": " / robo mwaka",
+        "features": {
+          "quotas": "Kuchapisha maombi",
+          "commission": "Kamisheni: 3%",
+          "products": "Bidhaa: bila kikomo",
+          "pictures": "Picha: bila kikomo",
+          "buyerAccess": "Mawasiliano ya mnunuzi/muuzaji: BURE"
+        }
+      }
+    },
+    "policies": {
+      "compliance": {
+        "title": "Masharti ya Wasambazaji",
+        "description": "Masharti yote ya soko la wasambazaji lazima yafuatwe. Kutoyafuata kutachukuliwa kuwa ukiukaji wa makubaliano na kutasababisha adhabu. Soma hati iliyo hapa chini.",
+        "download": "Pakua Masharti ya Wasambazaji.pdf"
+      },
+      "exclusions": {
+        "title": "Bidhaa Zilizozuiwa",
+        "description": "Baadhi ya bidhaa haziruhusiwi kuorodheshwa sokoni. Soma hati ya bidhaa zilizozuiwa ili uzifahamu na kufuata kanuni hizi.",
+        "download": "Pakua Bidhaa Zilizozuiwa.pdf"
+      }
+    },
+    "tutorial": {
+      "title": "Tumia Soko la Wasambazaji kwa Njia Sahihi",
+      "subtitle": "Jifunze mbinu muhimu za kutumia soko kwa mafanikio katika biashara.",
+      "play": "Cheza Video ya Mafunzo"
+    }
   },
-  "notFound":{"eyebrow":"404 Ukurasa Haujapatikana","title":"Lo! Hakuna Kitu Hapa","description":"Inaonekana ukurasa huu umepotea au haupatikani kwa muda. Hebu tukusaidie kurudi.","backHome":"Rudi Ukurasa wa Mwanzo","imageAlt":"Mchoro wa ukurasa wa 404 ambao haujapatikana"},
+  "notFound": {
+    "eyebrow": "404 Ukurasa Haujapatikana",
+    "title": "Lo! Hakuna Kitu Hapa",
+    "description": "Inaonekana ukurasa huu umepotea au haupatikani kwa muda. Hebu tukusaidie kurudi.",
+    "backHome": "Rudi Ukurasa wa Mwanzo",
+    "imageAlt": "Mchoro wa ukurasa wa 404 ambao haujapatikana"
+  },
   "whatWeDo": {
     "backedTech": "Tunawezeshwa na Teknolojia",
     "backedTechDesc": "Taarifa zetu zinategemea kwa uhakika mtandao mkubwa wa watu na washirika tulio nao katika nchi mbalimbali za Afrika. Taarifa hizi husasishwa mara kwa mara ili kutoa maelezo muhimu kuhusu bidhaa zinazotengenezwa Afrika.",
@@ -78,7 +274,11 @@
     "BuildSupplyCapacityDesc": "Kupitia ushirikiano maalumu katika kila nchi ya Afrika, TOFA Academy hutoa mafunzo na ufadhili kwa wakulima na wakusanyaji kwa ajili ya biashara ya mazao ya kilimo.",
     "BuildSupplyCapacityDesc2": "Tunafanya kazi kwa karibu na SourcePro kuwafundisha washiriki wetu kila kitu wanachohitaji kujua kuhusu biashara ya kilimo. Pia tunatoa ufadhili unaohitajika na kununua bidhaa zote moja kwa moja. Jiunge na TOFA Tribe yetu, ambapo tutakushauri ili kuleta matokeo na kufuatilia maendeleo yako kuelekea mafanikio!"
   },
-  "ourImpact": {"customerStory":"Hadithi za Wateja","customerDesc":"Nimefurahi kwamba TOFA imeleta teknolojia katika kilimo, ambako inahitajika sana. Pia, kuunda fursa ya kufikia soko kunatatua changamoto kubwa kwa watu katika biashara ya kilimo, hasa wanawake.","speaker":"Dkt. Ajibike Saratu Oluwatimilehin, 50 Million Women Speak"},
+  "ourImpact": {
+    "customerStory": "Hadithi za Wateja",
+    "customerDesc": "Nimefurahi kwamba TOFA imeleta teknolojia katika kilimo, ambako inahitajika sana. Pia, kuunda fursa ya kufikia soko kunatatua changamoto kubwa kwa watu katika biashara ya kilimo, hasa wanawake.",
+    "speaker": "Dkt. Ajibike Saratu Oluwatimilehin, 50 Million Women Speak"
+  },
   "Nav": {
     "whatsapp": "Zungumza nasi kwenye WhatsApp",
     "join": "Jiunge Bure",
@@ -103,17 +303,82 @@
       "whatWeDo": "Tunachofanya",
       "ourImpact": "Athari Zetu"
     },
-    "needHelp": {"label":"Unahitaji Msaada","contactUs":"Wasiliana nasi","faq":"Maswali Yanayoulizwa Mara kwa Mara","support":"Usaidizi"},
-    "buyer": {"label":"Wanunuzi","buyComm":"Nunua bidhaa","productInquiry":"Ulizo la bidhaa","goodInStock":"Bidhaa zilizopo"},
-    "seller": {"label":"Wauzaji","marketplace":"Soko","howToTrade":"Jinsi ya kufanya biashara","searchRFQ":"Tafuta maombi ya bei"}
+    "needHelp": {
+      "label": "Unahitaji Msaada",
+      "contactUs": "Wasiliana nasi",
+      "faq": "Maswali Yanayoulizwa Mara kwa Mara",
+      "support": "Usaidizi"
+    },
+    "buyer": {
+      "label": "Wanunuzi",
+      "buyComm": "Nunua bidhaa",
+      "productInquiry": "Ulizo la bidhaa",
+      "goodInStock": "Bidhaa zilizopo"
+    },
+    "seller": {
+      "label": "Wauzaji",
+      "marketplace": "Soko",
+      "howToTrade": "Jinsi ya kufanya biashara",
+      "searchRFQ": "Tafuta maombi ya bei"
+    }
   },
   "ProductCatalogue": {
-    "home": "Nyumbani", "searchResult": "Matokeo ya utafutaji", "breadcrumbLabel": "Njia ya ukurasa", "foundResults": "Matokeo {count} yamepatikana kwa", "selectedFilters": "{count, plural, one {Kichujio # kimechaguliwa} other {Vichujio # vimechaguliwa}}", "clearAll": "Futa zote", "sortBy": "Panga kwa", "gallery": "Matunzio", "list": "Orodha", "galleryView": "Mwonekano wa matunzio", "listView": "Mwonekano wa orodha",
-    "collections": {"popular": "Bidhaa maarufu", "new": "Bidhaa mpya", "all": "Bidhaa zote"},
-    "sort": {"relevance": "Zinazolingana zaidi", "newest": "Mpya zaidi", "oldest": "Za zamani zaidi", "price-low": "Bei: chini hadi juu", "price-high": "Bei: juu hadi chini", "rating": "Ukadiriaji wa juu", "reviews": "Maoni mengi", "name-asc": "Jina la bidhaa: A–Z"},
-    "filters": {"title": "Vichujio", "reset": "Weka upya", "close": "Funga vichujio", "categories": "Kategoria", "allCategories": "Kategoria zote", "price": "Bei", "min": "Bei ya chini", "max": "Bei ya juu", "rating": "Ukadiriaji wa wateja", "ratingUp": "{rating}+ na zaidi", "availability": "Upatikanaji na muuzaji", "verified": "Wauzaji waliothibitishwa", "readyToShip": "Tayari kusafirishwa", "maximumMinimumOrder": "Kiwango cha juu cha oda ya chini", "anyQuantity": "Kiasi chochote", "units": "vipimo", "apply": "Tumia", "clear": "Futa"},
-    "empty": {"title": "Hakuna bidhaa zilizopatikana", "description": "Ondoa kichujio au tafuta bidhaa nyingine."},
-    "pagination": {"label": "Kurasa", "pageOf": "Ukurasa {page} kati ya {total}", "previous": "Iliyotangulia", "next": "Inayofuata"}
+    "home": "Nyumbani",
+    "searchResult": "Matokeo ya utafutaji",
+    "breadcrumbLabel": "Njia ya ukurasa",
+    "foundResults": "Matokeo {count} yamepatikana kwa",
+    "selectedFilters": "{count, plural, one {Kichujio # kimechaguliwa} other {Vichujio # vimechaguliwa}}",
+    "clearAll": "Futa zote",
+    "sortBy": "Panga kwa",
+    "gallery": "Matunzio",
+    "list": "Orodha",
+    "galleryView": "Mwonekano wa matunzio",
+    "listView": "Mwonekano wa orodha",
+    "collections": {
+      "popular": "Bidhaa maarufu",
+      "new": "Bidhaa mpya",
+      "all": "Bidhaa zote"
+    },
+    "sort": {
+      "relevance": "Zinazolingana zaidi",
+      "newest": "Mpya zaidi",
+      "oldest": "Za zamani zaidi",
+      "price-low": "Bei: chini hadi juu",
+      "price-high": "Bei: juu hadi chini",
+      "rating": "Ukadiriaji wa juu",
+      "reviews": "Maoni mengi",
+      "name-asc": "Jina la bidhaa: A–Z"
+    },
+    "filters": {
+      "title": "Vichujio",
+      "reset": "Weka upya",
+      "close": "Funga vichujio",
+      "categories": "Kategoria",
+      "allCategories": "Kategoria zote",
+      "price": "Bei",
+      "min": "Bei ya chini",
+      "max": "Bei ya juu",
+      "rating": "Ukadiriaji wa wateja",
+      "ratingUp": "{rating}+ na zaidi",
+      "availability": "Upatikanaji na muuzaji",
+      "verified": "Wauzaji waliothibitishwa",
+      "readyToShip": "Tayari kusafirishwa",
+      "maximumMinimumOrder": "Kiwango cha juu cha oda ya chini",
+      "anyQuantity": "Kiasi chochote",
+      "units": "vipimo",
+      "apply": "Tumia",
+      "clear": "Futa"
+    },
+    "empty": {
+      "title": "Hakuna bidhaa zilizopatikana",
+      "description": "Ondoa kichujio au tafuta bidhaa nyingine."
+    },
+    "pagination": {
+      "label": "Kurasa",
+      "pageOf": "Ukurasa {page} kati ya {total}",
+      "previous": "Iliyotangulia",
+      "next": "Inayofuata"
+    }
   },
   "Auth": {
     "signUp": {
@@ -122,10 +387,9 @@
       "subtitle": "Fanya biashara katika soko kubwa zaidi lililothibitishwa Afrika, kwa ajili ya biashara na wanunuzi wote.",
       "emailLabel": "Anwani ya barua pepe",
       "emailPlaceholder": "wewe@kampuni.com",
+      "emailUnavailable": "Barua pepe haipatikani",
       "passwordLabel": "Nenosiri",
       "passwordPlaceholder": "Unda nenosiri imara",
-      "confirmPasswordLabel": "Thibitisha nenosiri",
-      "confirmPasswordPlaceholder": "Ingiza tena nenosiri lako",
       "referralTrigger": "Una msimbo wa rufaa?",
       "referralPlaceholder": "Ingiza msimbo wa rufaa",
       "submit": "Fungua akaunti yako",
@@ -159,6 +423,89 @@
         "countries": "Nchi zilizofikiwa",
         "volume": "Kiwango cha biashara"
       }
+    },
+    "verifyEmail": {
+      "title": "Thibitisha barua pepe yako",
+      "subtitle": "Weka msimbo wa tarakimu 6 ili kuwezesha akaunti.",
+      "otpLabel": "Msimbo wa uthibitishaji",
+      "sentTo": "Tumetuma msimbo wa tarakimu 6 kwa",
+      "verify": "Thibitisha barua pepe",
+      "verifying": "Inathibitisha…",
+      "resend": "Tuma OTP tena",
+      "resending": "Inatuma tena…",
+      "resendIn": "Tuma OTP tena baada ya {timer}",
+      "changeEmail": "Badilisha barua pepe / Rudi",
+      "invalidEmail": "Weka anwani halali ya barua pepe",
+      "invalidOtp": "Weka msimbo kamili wa tarakimu 6",
+      "missingToken": "Kiungo hiki cha uthibitishaji si halali. Tafadhali jisajili tena.",
+      "success": "Barua pepe yako imethibitishwa.",
+      "verifyError": "Hatukuweza kuthibitisha barua pepe yako. Kagua msimbo ujaribu tena.",
+      "resendSuccess": "Msimbo mpya wa uthibitishaji umetumwa.",
+      "resendError": "Hatukuweza kutuma msimbo tena. Jaribu tena."
+    },
+    "login": {
+      "badge": "Karibu tena",
+      "title": "Karibu tena",
+      "subtitle": "Ingia ili kuendelea kufanya biashara katika soko kubwa zaidi lililothibitishwa Afrika.",
+      "showcase": {
+        "title": "Endelea pale ulipoishia",
+        "subtitle": "Simamia oda, ongea na wauzaji, na fuatilia usafirishaji — yote mahali pamoja."
+      },
+      "emailLabel": "Anwani ya barua pepe",
+      "emailPlaceholder": "wewe@kampuni.com",
+      "passwordLabel": "Nenosiri",
+      "passwordPlaceholder": "Ingiza nenosiri lako",
+      "rememberMe": "Nikumbuke",
+      "forgotPassword": "Umesahau nenosiri?",
+      "submit": "Ingia",
+      "submitting": "Inaingia…",
+      "orDivider": "au ingia kwa barua pepe",
+      "google": "Endelea na Google",
+      "noAccount": "Huna akaunti ya TOFA?",
+      "register": "Fungua moja",
+      "verificationRequired": "Tafadhali thibitisha barua pepe yako ili kuendelea. Tumekutumia msimbo mpya.",
+      "success": "Karibu tena!",
+      "loginError": "Hatukuweza kukuingiza. Kagua taarifa zako na ujaribu tena."
+    },
+    "forgotPassword": {
+      "badge": "Kurejesha akaunti",
+      "title": "Umesahau nenosiri lako?",
+      "subtitle": "Ingiza barua pepe yako nasi tutakutumia msimbo wa kulirejesha.",
+      "showcase": {
+        "title": "Rejesha ufikiaji wa akaunti yako kwa dakika chache",
+        "subtitle": "Wauzaji na wanunuzi waliothibitishwa wanaitegemea TOFA kulinda akaunti zao."
+      },
+      "emailLabel": "Anwani ya barua pepe",
+      "emailPlaceholder": "wewe@kampuni.com",
+      "submit": "Tuma msimbo",
+      "submitting": "Inatuma…",
+      "backToLogin": "Rudi kuingia",
+      "success": "Msimbo wa kurejesha unakuja kwenye barua pepe yako.",
+      "submitError": "Hatukuweza kutuma msimbo. Jaribu tena."
+    },
+    "resetPassword": {
+      "badge": "Karibu kumaliza",
+      "title": "Weka upya nenosiri lako",
+      "subtitle": "Ingiza msimbo ulioupokea na uchague nenosiri jipya.",
+      "showcase": {
+        "title": "Fanya biashara kwa ujasiri",
+        "subtitle": "Akaunti yako, data yako, na njia zako za biashara zinabaki salama kwenye TOFA."
+      },
+      "sentTo": "Tumetuma msimbo wa tarakimu 6 kwa",
+      "otpLabel": "Msimbo wa uthibitishaji",
+      "passwordLabel": "Nenosiri jipya",
+      "passwordPlaceholder": "Unda nenosiri imara",
+      "submit": "Weka upya nenosiri",
+      "submitting": "Inaweka upya…",
+      "backToLogin": "Rudi kuingia",
+      "success": "Nenosiri lako limewekwa upya. Sasa unaweza kuingia.",
+      "submitError": "Hatukuweza kuweka upya nenosiri lako. Kagua msimbo ujaribu tena."
+    },
+    "termsModal": {
+      "title": "Kubali Masharti yetu ili kuendelea",
+      "description": "Kabla ya kuanza kufanya biashara kwenye TOFA, tafadhali pitia na ukubali Masharti yetu ya Matumizi na Sera ya Faragha.",
+      "accept": "Kubali na Endelea",
+      "decline": "Sio sasa"
     }
   }
 }

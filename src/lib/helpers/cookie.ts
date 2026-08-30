@@ -11,9 +11,16 @@ export const readCookie = (name: string) => {
 export const writeCookie = (
   name: string,
   value: string,
-  maxAgeSeconds = 60 * 60 * 24 * 7,
+  maxAgeSeconds?: number,
 ) => {
   if (typeof document === "undefined") return;
 
-  document.cookie = `${name}=${encodeURIComponent(value)}; path=/; max-age=${maxAgeSeconds}; SameSite=Lax`;
+  const maxAge = maxAgeSeconds !== undefined ? `; max-age=${maxAgeSeconds}` : "";
+  document.cookie = `${name}=${encodeURIComponent(value)}; path=/${maxAge}; SameSite=Lax`;
+};
+
+export const deleteCookie = (name: string) => {
+  if (typeof document === "undefined") return;
+
+  document.cookie = `${name}=; path=/; max-age=0; SameSite=Lax`;
 };

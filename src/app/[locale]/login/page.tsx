@@ -3,29 +3,26 @@ import { getTranslations } from "next-intl/server";
 
 import AuthLayout from "@/features/auth/components/templates/AuthLayout/AuthLayout";
 import AuthHeading from "@/features/auth/components/molecules/AuthHeading/AuthHeading";
-import SignUpForm from "@/features/auth/components/organisms/SignUpForm/SignUpForm";
+import LoginForm from "@/features/auth/components/organisms/LoginForm/LoginForm";
 import TradeShowcase from "@/features/auth/components/organisms/TradeShowcase/TradeShowcase";
 
 export const metadata: Metadata = {
-  title: "Create Your Account",
+  title: "Log In",
   description:
-    "Join Traders of Africa — the B2B and B2C marketplace connecting African suppliers to businesses and everyday buyers.",
+    "Log in to your Traders of Africa account to buy, sell, and trade across the continent.",
 };
 
-type RegisterPageProps = {
-  searchParams: Promise<{
-    referral?: string | string[];
-    referralCode?: string | string[];
-  }>;
+type LoginPageProps = {
+  searchParams: Promise<{ returnUrl?: string | string[] }>;
 };
 
-export default async function RegisterPage({ searchParams }: RegisterPageProps) {
-  const t = await getTranslations("Auth.signUp");
+const firstQueryValue = (value?: string | string[]) =>
+  Array.isArray(value) ? value[0] : value;
+
+export default async function LoginPage({ searchParams }: LoginPageProps) {
+  const t = await getTranslations("Auth.login");
   const query = await searchParams;
-  const referralParam = query.referralCode ?? query.referral;
-  const referralCode = Array.isArray(referralParam)
-    ? referralParam[0]
-    : referralParam;
+  const returnUrl = firstQueryValue(query.returnUrl)?.trim();
 
   return (
     <AuthLayout
@@ -38,7 +35,7 @@ export default async function RegisterPage({ searchParams }: RegisterPageProps) 
       }
     >
       <AuthHeading title={t("title")} subtitle={t("subtitle")} />
-      <SignUpForm initialReferralCode={referralCode?.trim()} />
+      <LoginForm returnUrl={returnUrl} />
     </AuthLayout>
   );
 }

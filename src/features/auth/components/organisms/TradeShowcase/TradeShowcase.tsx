@@ -19,7 +19,15 @@ const ROUTES = [
   "M 150 205 Q 90 150 130 90",
 ];
 
-const TradeShowcase = () => {
+const TradeShowcase = ({
+  badge,
+  title,
+  subtitle,
+}: {
+  badge: string;
+  title: string;
+  subtitle: string;
+}) => {
   const t = useTranslations("Auth.signUp");
   const reduceMotion = useReducedMotion();
 
@@ -214,14 +222,12 @@ const TradeShowcase = () => {
       >
         <span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-white/15 px-3 py-1 text-xs font-semibold text-white backdrop-blur-sm">
           <ShieldCheck size={13} />
-          {t("badge")}
+          {badge}
         </span>
         <h2 className="heading-font text-2xl leading-tight font-bold text-white sm:text-3xl">
-          {t("showcase.title")}
+          {title}
         </h2>
-        <p className="text-sm leading-relaxed text-white/80">
-          {t("showcase.subtitle")}
-        </p>
+        <p className="text-sm leading-relaxed text-white/80">{subtitle}</p>
       </motion.div>
     </div>
   );

@@ -1,4 +1,13 @@
-import { SignUpFormErrors, SignUpFormState } from "../types";
+import {
+  ForgotPasswordFormErrors,
+  ForgotPasswordFormState,
+  LoginFormErrors,
+  LoginFormState,
+  ResetPasswordFormErrors,
+  ResetPasswordFormState,
+  SignUpFormErrors,
+  SignUpFormState,
+} from "../types";
 
 export const passwordRules = [
   {
@@ -46,12 +55,56 @@ export const validateSignUpForm = (
     errors.password = "Password doesn't meet the requirements below";
   }
 
-  if (values.confirmPassword !== values.password) {
-    errors.confirmPassword = "Passwords do not match";
-  }
-
   if (!values.termsOfUse) {
     errors.termsOfUse = "You must accept the Terms of Use to continue";
+  }
+
+  return errors;
+};
+
+export const validateLoginForm = (values: LoginFormState): LoginFormErrors => {
+  const errors: LoginFormErrors = {};
+
+  if (!values.email.trim()) {
+    errors.email = "Email address is required";
+  } else if (!isEmailValid(values.email)) {
+    errors.email = "Enter a valid email address";
+  }
+
+  if (!values.password) {
+    errors.password = "Password is required";
+  }
+
+  return errors;
+};
+
+export const validateForgotPasswordForm = (
+  values: ForgotPasswordFormState,
+): ForgotPasswordFormErrors => {
+  const errors: ForgotPasswordFormErrors = {};
+
+  if (!values.email.trim()) {
+    errors.email = "Email address is required";
+  } else if (!isEmailValid(values.email)) {
+    errors.email = "Enter a valid email address";
+  }
+
+  return errors;
+};
+
+export const validateResetPasswordForm = (
+  values: ResetPasswordFormState,
+): ResetPasswordFormErrors => {
+  const errors: ResetPasswordFormErrors = {};
+
+  if (values.otp.length !== 6) {
+    errors.otp = "Enter the complete 6-digit code";
+  }
+
+  if (!values.password) {
+    errors.password = "Password is required";
+  } else if (!isPasswordValid(values.password)) {
+    errors.password = "Password doesn't meet the requirements below";
   }
 
   return errors;
