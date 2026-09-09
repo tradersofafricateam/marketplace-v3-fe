@@ -32,7 +32,8 @@ const VerifyEmailPanel = ({
     isVerifying,
     isResending,
     canResend,
-    timer,
+    resendTimer,
+    expiryTimer,
   } = useVerifyEmail({ email, token: initialToken.trim() });
 
   return (
@@ -67,6 +68,13 @@ const VerifyEmailPanel = ({
         />
         <AuthErrorText>{otpError}</AuthErrorText>
 
+        <div className="flex items-center justify-between rounded-xl bg-muted/70 px-4 py-3 text-xs">
+          <span className="text-muted-foreground">{t("timerLabel")}</span>
+          <span className="font-semibold tabular-nums text-foreground">
+            {expiryTimer}
+          </span>
+        </div>
+
         <AuthSubmitButton loading={isVerifying}>
           {isVerifying ? t("verifying") : t("verify")}
         </AuthSubmitButton>
@@ -81,7 +89,7 @@ const VerifyEmailPanel = ({
             ? t("resending")
             : canResend
               ? t("resend")
-              : t("resendIn", { timer })}
+              : t("resendIn", { timer: resendTimer })}
         </button>
 
         <Link

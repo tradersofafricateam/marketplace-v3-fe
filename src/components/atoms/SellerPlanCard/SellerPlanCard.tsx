@@ -1,5 +1,6 @@
 import { Check, X } from "lucide-react";
 
+import { cn } from "@/lib/utils";
 import SellerCta from "@/components/atoms/SellerCta/SellerCta";
 
 const SellerPlanCard = ({
@@ -11,6 +12,8 @@ const SellerPlanCard = ({
   href,
   features,
   unavailableFeature,
+  highlighted,
+  badge,
 }: {
   name: string;
   description: string;
@@ -20,11 +23,28 @@ const SellerPlanCard = ({
   href: string;
   features: string[];
   unavailableFeature?: string;
+  highlighted?: boolean;
+  badge?: string;
 }) => (
-  <article className="mx-auto flex w-full max-w-90 flex-col rounded-lg border border-border bg-background p-6 shadow-sm lg:mx-0">
+  <article
+    className={cn(
+      "relative mx-auto flex w-full max-w-90 flex-col rounded-2xl border bg-background p-6 lg:mx-0",
+      highlighted
+        ? "border-(--orange) shadow-lg lg:-translate-y-2"
+        : "border-border shadow-sm",
+    )}
+  >
+    {badge && (
+      <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-(--orange) px-3 py-1 text-xs font-semibold whitespace-nowrap text-white shadow-sm">
+        {badge}
+      </span>
+    )}
     <span
       aria-hidden="true"
-      className="mb-4 block size-4 shrink-0 rounded-full border-2 border-blue-500"
+      className={cn(
+        "mb-4 block size-4 shrink-0 rounded-full border-2",
+        highlighted ? "border-(--orange)" : "border-muted-foreground/30",
+      )}
     />
     <h3 className="font-bold">{name}</h3>
     <p className="mt-1 text-xs text-muted-foreground">{description}</p>
@@ -36,7 +56,7 @@ const SellerPlanCard = ({
         </span>
       )}
     </p>
-    <SellerCta href={href} variant="blue" fullWidth>
+    <SellerCta href={href} variant={highlighted ? "orange" : "outline"} fullWidth>
       {cta}
     </SellerCta>
     <ul className="mt-6 space-y-3 text-xs">

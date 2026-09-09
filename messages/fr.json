@@ -160,7 +160,23 @@
     "hero": {
       "accent": "Connectez-vous et commercez",
       "title": "avec des fournisseurs de produits alimentaires et agricoles",
-      "description": "Faites passer votre entreprise au niveau supérieur en devenant vendeur sur la place de marché des fournisseurs."
+      "description": "Faites passer votre entreprise au niveau supérieur en devenant vendeur sur la place de marché des fournisseurs.",
+      "badge": "Pour les fournisseurs africains",
+      "secondaryCta": "Voir comment ça marche",
+      "stats": {
+        "sellers": {
+          "value": "5 000+",
+          "label": "Vendeurs actifs"
+        },
+        "countries": {
+          "value": "40+",
+          "label": "Pays couverts"
+        },
+        "payout": {
+          "value": "48h",
+          "label": "Délai moyen de paiement"
+        }
+      }
     },
     "benefits": {
       "title": "Pourquoi vendre sur la place de marché ?",
@@ -191,7 +207,8 @@
         "two": "Étape 2 : Devenez un expert de l'agro-entrepreneuriat en suivant la vidéo d'intégration des vendeurs.",
         "three": "Étape 3 : Publiez vos produits et leurs photos afin de toucher une vaste clientèle africaine.",
         "four": "Étape 4 : Recevez et exécutez les commandes des acheteurs."
-      }
+      },
+      "stepLabel": "Étape {number}"
     },
     "pricing": {
       "title": "Formules et tarifs",
@@ -223,7 +240,8 @@
           "pictures": "Photos : illimitées",
           "buyerAccess": "Coordonnées acheteur/vendeur : GRATUITES"
         }
-      }
+      },
+      "mostPopular": "Le plus populaire"
     },
     "policies": {
       "compliance": {

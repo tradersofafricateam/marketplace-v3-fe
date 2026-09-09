@@ -1,10 +1,10 @@
-import Image from "next/image";
 import { useTranslations } from "next-intl";
+import { ShieldCheck } from "lucide-react";
 
 import ScrollReveal from "@/components/atoms/ScrollReveal/ScrollReveal";
 import SectionWrapper from "@/components/atoms/SectionWrapper/SectionWrapper";
 import SellerCta from "@/components/atoms/SellerCta/SellerCta";
-import DotPattern from "@/components/atoms/DotPattern/DotPattern";
+import SellerShowcase from "@/components/organisms/SellerShowcase/SellerShowcase";
 
 const SellerHero = () => {
   const t = useTranslations("becomeSeller");
@@ -14,6 +14,10 @@ const SellerHero = () => {
       <div className="grid items-center gap-12 lg:grid-cols-2">
         <ScrollReveal>
           <div className="max-w-xl space-y-6">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-(--orange-light) px-3 py-1 text-xs font-semibold text-(--orange)">
+              <ShieldCheck size={13} />
+              {t("hero.badge")}
+            </span>
             <h1 className="heading-font text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">
               <span className="text-(--orange)">{t("hero.accent")}</span>{" "}
               {t("hero.title")}
@@ -21,38 +25,32 @@ const SellerHero = () => {
             <p className="max-w-md text-sm leading-6 text-muted-foreground">
               {t("hero.description")}
             </p>
-            <SellerCta href="#seller-plans">{t("register")}</SellerCta>
+            <div className="flex flex-wrap items-center gap-4">
+              <SellerCta href="#seller-plans">{t("register")}</SellerCta>
+              <a
+                href="#seller-onboarding"
+                className="text-sm font-semibold text-foreground underline-offset-4 transition-colors hover:text-(--orange) hover:underline"
+              >
+                {t("hero.secondaryCta")}
+              </a>
+            </div>
+            <dl className="grid max-w-md grid-cols-3 gap-4 border-t border-border pt-6">
+              {(["sellers", "countries", "payout"] as const).map((stat) => (
+                <div key={stat}>
+                  <dt className="sr-only">{t(`hero.stats.${stat}.label`)}</dt>
+                  <dd className="heading-font text-xl font-bold text-foreground sm:text-2xl">
+                    {t(`hero.stats.${stat}.value`)}
+                  </dd>
+                  <dd className="text-xs text-muted-foreground">
+                    {t(`hero.stats.${stat}.label`)}
+                  </dd>
+                </div>
+              ))}
+            </dl>
           </div>
         </ScrollReveal>
-        <ScrollReveal>
-          <div className="relative mx-auto flex min-h-105 w-full max-w-120 items-center justify-center sm:min-h-120">
-            <DotPattern
-              count={16}
-              columns={4}
-              color="blue"
-              className="left-0 top-8 z-0"
-            />
-            <DotPattern
-              count={12}
-              columns={3}
-              color="blue"
-              className="bottom-16 right-0 z-0"
-            />
-            <DotPattern
-              count={4}
-              columns={2}
-              color="orange"
-              className="bottom-6 left-1/3 z-0"
-            />
-            <Image
-              src="/assets/images/trade.svg"
-              alt=""
-              width={358}
-              height={418}
-              priority
-              className="relative z-10 h-auto w-full max-w-[358px]"
-            />
-          </div>
+        <ScrollReveal delay={0.1}>
+          <SellerShowcase />
         </ScrollReveal>
       </div>
     </SectionWrapper>

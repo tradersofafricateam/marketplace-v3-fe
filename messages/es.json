@@ -160,7 +160,23 @@
     "hero": {
       "accent": "Conecta y comercia",
       "title": "con proveedores de alimentos y agricultura",
-      "description": "Lleva tu negocio al siguiente nivel convirtiéndote en vendedor del mercado de proveedores."
+      "description": "Lleva tu negocio al siguiente nivel convirtiéndote en vendedor del mercado de proveedores.",
+      "badge": "Para proveedores africanos",
+      "secondaryCta": "Ver cómo funciona",
+      "stats": {
+        "sellers": {
+          "value": "5,000+",
+          "label": "Vendedores activos"
+        },
+        "countries": {
+          "value": "40+",
+          "label": "Países alcanzados"
+        },
+        "payout": {
+          "value": "48h",
+          "label": "Tiempo medio de pago"
+        }
+      }
     },
     "benefits": {
       "title": "¿Por qué vender en el mercado?",
@@ -191,7 +207,8 @@
         "two": "Paso 2: Conviértete en experto agroemprendedor completando el vídeo de incorporación de vendedores.",
         "three": "Paso 3: Publica tus productos y fotos para llegar a una amplia clientela africana.",
         "four": "Paso 4: Recibe y completa los pedidos de los compradores."
-      }
+      },
+      "stepLabel": "Paso {number}"
     },
     "pricing": {
       "title": "Planes y precios",
@@ -223,7 +240,8 @@
           "pictures": "Imágenes: ilimitadas",
           "buyerAccess": "Datos de comprador/vendedor: GRATIS"
         }
-      }
+      },
+      "mostPopular": "Más popular"
     },
     "policies": {
       "compliance": {

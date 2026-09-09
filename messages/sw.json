@@ -160,7 +160,23 @@
     "hero": {
       "accent": "Unganika na Ufanye Biashara",
       "title": "na Wasambazaji wa Chakula na Kilimo",
-      "description": "Peleka biashara yako kiwango kingine kwa kuwa muuzaji kwenye soko la wasambazaji."
+      "description": "Peleka biashara yako kiwango kingine kwa kuwa muuzaji kwenye soko la wasambazaji.",
+      "badge": "Kwa Wauzaji wa Kiafrika",
+      "secondaryCta": "Angalia Jinsi Inavyofanya Kazi",
+      "stats": {
+        "sellers": {
+          "value": "5,000+",
+          "label": "Wauzaji hai"
+        },
+        "countries": {
+          "value": "40+",
+          "label": "Nchi zilizofikiwa"
+        },
+        "payout": {
+          "value": "Saa 48",
+          "label": "Muda wa wastani wa malipo"
+        }
+      }
     },
     "benefits": {
       "title": "Kwa Nini Uuze Sokoni?",
@@ -191,7 +207,8 @@
         "two": "Hatua ya 2: Kuwa mtaalamu wa ujasiriamali wa kilimo kwa kukamilisha video ya mafunzo ya wauzaji.",
         "three": "Hatua ya 3: Orodhesha bidhaa na picha zako ili kufikia wateja wengi wa Afrika.",
         "four": "Hatua ya 4: Pokea na ukamilishe oda za wanunuzi."
-      }
+      },
+      "stepLabel": "Hatua {number}"
     },
     "pricing": {
       "title": "Mipango na Bei",
@@ -223,7 +240,8 @@
           "pictures": "Picha: bila kikomo",
           "buyerAccess": "Mawasiliano ya mnunuzi/muuzaji: BURE"
         }
-      }
+      },
+      "mostPopular": "Maarufu Zaidi"
     },
     "policies": {
       "compliance": {
