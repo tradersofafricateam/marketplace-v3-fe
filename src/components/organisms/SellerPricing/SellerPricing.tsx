@@ -10,17 +10,17 @@ const SellerPricing = () => {
   const locale = useLocale();
 
   return (
-    <SectionWrapper className="bg-background py-14" id="seller-plans">
+    <SectionWrapper className="bg-muted/40 py-16 lg:py-20" id="seller-plans">
       <ScrollReveal>
         <div className="text-center">
-          <h2 className="heading-font text-2xl font-bold">
+          <h2 className="heading-font text-2xl font-bold sm:text-3xl">
             {t("pricing.title")}
           </h2>
           <p className="mt-2 text-sm text-muted-foreground">
             {t("pricing.subtitle")}
           </p>
         </div>
-        <div className="mx-auto mt-10 flex w-full max-w-3xl flex-col items-center justify-center gap-6 lg:flex-row lg:items-stretch">
+        <div className="mx-auto mt-12 flex w-full max-w-3xl flex-col items-center justify-center gap-8 lg:flex-row lg:items-stretch lg:gap-6">
           {sellerPlans.map(({ key, features }) => (
             <SellerPlanCard
               key={key}
@@ -32,6 +32,8 @@ const SellerPricing = () => {
               }
               cta={t("pricing.choose")}
               href={`/${locale}/register`}
+              highlighted={key === "premium"}
+              badge={key === "premium" ? t("pricing.mostPopular") : undefined}
               unavailableFeature={
                 key === "basic" ? t("pricing.basic.unavailable") : undefined
               }
@@ -41,7 +43,7 @@ const SellerPricing = () => {
             />
           ))}
         </div>
-        <p className="mx-auto mt-7 max-w-2xl text-center text-xs leading-5 text-muted-foreground">
+        <p className="mx-auto mt-8 max-w-2xl text-center text-xs leading-5 text-muted-foreground">
           {t("pricing.note")}
         </p>
       </ScrollReveal>

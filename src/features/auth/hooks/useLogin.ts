@@ -18,13 +18,13 @@ export const useLogin = ({ returnUrl }: { returnUrl?: string } = {}) => {
 
   const { mutate, isPending: isSubmitting } = useMutation({
     mutationFn: (values: LoginFormState) =>
-      login({ email: values.email, password: values.password }),
+      login({ email: values.email.trim(), password: values.password }),
     onSuccess: (data, variables) => {
       if (data.requiresEmailVerification) {
         toast.info(t("verificationRequired"));
         const query = new URLSearchParams({
           token: data.token,
-          email: variables.email,
+          email: variables.email.trim(),
         });
         router.push(`${routes.verifyEmail}?${query.toString()}`);
         return;
@@ -34,8 +34,7 @@ export const useLogin = ({ returnUrl }: { returnUrl?: string } = {}) => {
       toast.success(t("success"));
       router.push(returnUrl || routes.dashboard);
     },
-    onError: (error) =>
-      promiseErrorFunction(error, t("loginError")),
+    onError: (error) => promiseErrorFunction(error, t("loginError")),
   });
 
   const submit = (values: LoginFormState) => mutate(values);

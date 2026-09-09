@@ -59,7 +59,10 @@ export const googleAuth = async ({ googleToken }: GoogleAuthPayload) => {
   }
 };
 
-export const updateTerms = async ({ userId, termsOfUse }: UpdateTermsPayload) => {
+export const updateTerms = async ({
+  userId,
+  termsOfUse,
+}: UpdateTermsPayload) => {
   try {
     const url = `/auth/update-terms/${userId}`;
     const { data } = await axiosInstance.patch(url, { termsOfUse });
@@ -72,11 +75,11 @@ export const updateTerms = async ({ userId, termsOfUse }: UpdateTermsPayload) =>
 export const login = async (payload: LoginPayload) => {
   try {
     const url = "/auth/login";
-    const { data } = await axiosInstance.post<{ data: LoginResponse }>(
-      url,
-      payload,
-    );
-    return data?.data;
+    const { data } = await axiosInstance.post<
+      LoginResponse | { data: LoginResponse }
+    >(url, payload);
+
+    return "data" in data ? data.data : data;
   } catch (error) {
     throw error;
   }
@@ -92,7 +95,10 @@ export const forgotPassword = async ({ email }: ForgotPasswordPayload) => {
   }
 };
 
-export const resetPassword = async ({ otp, password }: ResetPasswordPayload) => {
+export const resetPassword = async ({
+  otp,
+  password,
+}: ResetPasswordPayload) => {
   try {
     const url = "/auth/reset-password";
     const { data } = await axiosInstance.post(url, { otp, password });

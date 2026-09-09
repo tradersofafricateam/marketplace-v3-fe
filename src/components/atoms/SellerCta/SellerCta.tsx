@@ -9,16 +9,16 @@ const SellerCta = ({
 }: {
   href: string;
   children: string;
-  variant?: "orange" | "blue";
+  variant?: "orange" | "outline";
   fullWidth?: boolean;
 }) => (
   <Link
     href={href}
     className={cn(
-      "inline-flex min-h-10 items-center justify-center rounded-sm px-7 py-2 text-sm font-semibold text-white transition-colors focus-visible:outline-2 focus-visible:outline-offset-2",
-      variant === "blue"
-        ? "bg-blue-600 hover:bg-blue-700 focus-visible:outline-blue-600"
-        : "bg-(--orange) hover:bg-(--orange-dark) focus-visible:outline-(--orange)",
+      "inline-flex min-h-10 items-center justify-center rounded-lg px-7 py-2 text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2",
+      variant === "outline"
+        ? "border border-border text-foreground hover:border-(--orange)/40 hover:bg-(--orange-light) focus-visible:outline-(--orange)"
+        : "bg-(--orange) text-white hover:bg-(--orange-dark) focus-visible:outline-(--orange)",
       fullWidth && "w-full",
     )}
   >

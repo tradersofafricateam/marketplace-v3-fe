@@ -57,7 +57,7 @@ body {
 }
 
 :root {
-  --background: oklch(1 0 0);
+  --background: oklch(100% 0.00011 271.152);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
@@ -184,7 +184,9 @@ body {
   box-shadow: 0 0 0 1px var(--orange);
   cursor: grab;
   pointer-events: auto;
-  transition: transform 150ms ease, box-shadow 150ms ease;
+  transition:
+    transform 150ms ease,
+    box-shadow 150ms ease;
 }
 
 .catalogue-range::-webkit-slider-thumb:hover {

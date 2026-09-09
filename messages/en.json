@@ -85,7 +85,23 @@
     "hero": {
       "accent": "Connect And Trade",
       "title": "With Suppliers Of Food And Agriculture",
-      "description": "Take your business to the next level by becoming a seller on the supplier's marketplace."
+      "description": "Take your business to the next level by becoming a seller on the supplier's marketplace.",
+      "badge": "For African Suppliers",
+      "secondaryCta": "See How It Works",
+      "stats": {
+        "sellers": {
+          "value": "5,000+",
+          "label": "Active sellers"
+        },
+        "countries": {
+          "value": "40+",
+          "label": "Countries reached"
+        },
+        "payout": {
+          "value": "48hrs",
+          "label": "Average payout time"
+        }
+      }
     },
     "benefits": {
       "title": "Why Sell On The Marketplace?",
@@ -116,7 +132,8 @@
         "two": "Step 2: Become an Agro-entrepreneur expert. Complete the dedicated core seller onboarding video.",
         "three": "Step 3: List your products and upload product images to start selling by exposing your product to a wide African client base on the marketplace.",
         "four": "Step 4: Receive and fulfill orders from buyers."
-      }
+      },
+      "stepLabel": "Step {number}"
     },
     "pricing": {
       "title": "Plans & Pricing",
@@ -148,7 +165,8 @@
           "pictures": "Number of Pictures: Unlimited",
           "buyerAccess": "Access Buyer/Seller Contact Details: FREE"
         }
-      }
+      },
+      "mostPopular": "Most Popular"
     },
     "policies": {
       "compliance": {

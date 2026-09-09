@@ -12,6 +12,7 @@ import { promiseErrorFunction } from "@/lib/helpers/promiseError";
 import { useGetAllRoutes } from "@/lib/hooks/useGetAllRoutes";
 
 const RESEND_DELAY_SECONDS = 60;
+const OTP_EXPIRY_SECONDS = 10 * 60;
 
 export const useVerifyEmail = ({
   email,
@@ -26,15 +27,21 @@ export const useVerifyEmail = ({
 
   const [otp, setOtp] = useState("");
   const [otpError, setOtpError] = useState<string>();
-  const [secondsLeft, setSecondsLeft] = useState(RESEND_DELAY_SECONDS);
+  const [resendSecondsLeft, setResendSecondsLeft] = useState(
+    RESEND_DELAY_SECONDS,
+  );
+  const [expirySecondsLeft, setExpirySecondsLeft] = useState(
+    OTP_EXPIRY_SECONDS,
+  );
 
   useEffect(() => {
-    if (secondsLeft <= 0) return;
+    if (resendSecondsLeft <= 0 && expirySecondsLeft <= 0) return;
     const timer = window.setInterval(() => {
-      setSecondsLeft((seconds) => Math.max(0, seconds - 1));
+      setResendSecondsLeft((seconds) => Math.max(0, seconds - 1));
+      setExpirySecondsLeft((seconds) => Math.max(0, seconds - 1));
     }, 1000);
     return () => window.clearInterval(timer);
-  }, [secondsLeft]);
+  }, [resendSecondsLeft, expirySecondsLeft]);
 
   const { mutate: verify, isPending: isVerifying } = useMutation({
     mutationFn: verifyEmail,
@@ -48,7 +55,8 @@ export const useVerifyEmail = ({
   const { mutate: resend, isPending: isResending } = useMutation({
     mutationFn: resendOtp,
     onSuccess: () => {
-      setSecondsLeft(RESEND_DELAY_SECONDS);
+      setResendSecondsLeft(RESEND_DELAY_SECONDS);
+      setExpirySecondsLeft(OTP_EXPIRY_SECONDS);
       toast.success(t("resendSuccess"));
     },
     onError: (error) => promiseErrorFunction(error, t("resendError")),
@@ -83,7 +91,8 @@ export const useVerifyEmail = ({
     resend({ email });
   };
 
-  const timer = `${String(Math.floor(secondsLeft / 60)).padStart(2, "0")}:${String(secondsLeft % 60).padStart(2, "0")}`;
+  const formatTimer = (seconds: number) =>
+    `${String(Math.floor(seconds / 60)).padStart(2, "0")}:${String(seconds % 60).padStart(2, "0")}`;
 
   return {
     otp,
@@ -93,7 +102,8 @@ export const useVerifyEmail = ({
     handleResend,
     isVerifying,
     isResending,
-    canResend: secondsLeft <= 0,
-    timer,
+    canResend: resendSecondsLeft <= 0,
+    resendTimer: formatTimer(resendSecondsLeft),
+    expiryTimer: formatTimer(expirySecondsLeft),
   };
 };

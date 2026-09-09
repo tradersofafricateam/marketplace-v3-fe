@@ -160,7 +160,23 @@
     "hero": {
       "accent": "Ligue-se e negocie",
       "title": "com fornecedores de alimentos e agricultura",
-      "description": "Leve o seu negócio ao próximo nível tornando-se vendedor no marketplace de fornecedores."
+      "description": "Leve o seu negócio ao próximo nível tornando-se vendedor no marketplace de fornecedores.",
+      "badge": "Para fornecedores africanos",
+      "secondaryCta": "Veja como funciona",
+      "stats": {
+        "sellers": {
+          "value": "5.000+",
+          "label": "Vendedores ativos"
+        },
+        "countries": {
+          "value": "40+",
+          "label": "Países alcançados"
+        },
+        "payout": {
+          "value": "48h",
+          "label": "Tempo médio de pagamento"
+        }
+      }
     },
     "benefits": {
       "title": "Por que vender no marketplace?",
@@ -191,7 +207,8 @@
         "two": "Passo 2: Torne-se especialista em agroempreendedorismo concluindo o vídeo de integração de vendedores.",
         "three": "Passo 3: Publique produtos e imagens para alcançar uma ampla base de clientes africanos.",
         "four": "Passo 4: Receba e satisfaça as encomendas dos compradores."
-      }
+      },
+      "stepLabel": "Etapa {number}"
     },
     "pricing": {
       "title": "Planos e preços",
@@ -223,7 +240,8 @@
           "pictures": "Imagens: ilimitadas",
           "buyerAccess": "Contactos comprador/vendedor: GRÁTIS"
         }
-      }
+      },
+      "mostPopular": "Mais popular"
     },
     "policies": {
       "compliance": {

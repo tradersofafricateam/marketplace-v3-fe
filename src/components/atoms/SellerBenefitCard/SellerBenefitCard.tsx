@@ -9,9 +9,9 @@ const SellerBenefitCard = ({
   title: string;
   description: string;
 }) => (
-  <article className="space-y-4">
-    <div className="flex size-9 items-center justify-center rounded-full bg-primary text-primary-foreground">
-      <Icon size={16} aria-hidden="true" />
+  <article className="group h-full space-y-4 rounded-2xl border border-border bg-background p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-(--orange)/30 hover:shadow-md">
+    <div className="flex size-11 items-center justify-center rounded-xl bg-(--orange-light) text-(--orange) transition-colors duration-300 group-hover:bg-(--orange) group-hover:text-white">
+      <Icon size={19} aria-hidden="true" />
     </div>
     <div className="space-y-2">
       <h3 className="text-sm font-bold">{title}</h3>
