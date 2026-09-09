@@ -1,6 +1,6 @@
 "use client";
 
-import { type ChangeEvent, type SubmitEvent, useState } from "react";
+import { type ChangeEvent, type SubmitEvent, useCallback, useState } from "react";
 
 import { LoginFormErrors, LoginFormState } from "../types";
 import { validateLoginForm } from "../helpers";
@@ -18,21 +18,21 @@ export const useLoginForm = (onValid: (values: LoginFormState) => void) => {
     Partial<Record<keyof LoginFormState, boolean>>
   >({});
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
     setValues((prev) => ({
       ...prev,
       [name]: type === "checkbox" ? checked : value,
     }));
-  };
+  }, []);
 
-  const handleBlur = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleBlur = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setTouched((prev) => ({ ...prev, [e.target.name]: true }));
-  };
+  }, []);
 
-  const setRememberMe = (checked: boolean) => {
+  const setRememberMe = useCallback((checked: boolean) => {
     setValues((prev) => ({ ...prev, rememberMe: checked }));
-  };
+  }, []);
 
   const handleSubmit = (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();

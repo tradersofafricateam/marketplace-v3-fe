@@ -73,6 +73,11 @@ export type AuthUser = {
   createdAt?: string;
   deliveryAddress?: string;
   pickupAddress?: string;
+  /**
+   * Buyer -> seller upgrade / KYC review state. Backend field name is a
+   * placeholder pending confirmation; update here if it ships differently.
+   */
+  sellerVerificationStatus?: "not_requested" | "pending" | "approved" | "rejected";
 };
 
 export type LoginPayload = {

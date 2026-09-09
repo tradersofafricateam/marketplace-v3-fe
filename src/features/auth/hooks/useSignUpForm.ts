@@ -1,6 +1,6 @@
 "use client";
 
-import { type ChangeEvent, type SubmitEvent, useState } from "react";
+import { type ChangeEvent, type SubmitEvent, useCallback, useState } from "react";
 
 import { SignUpFormErrors, SignUpFormState } from "../types";
 import { validateSignUpForm } from "../helpers";
@@ -25,21 +25,21 @@ export const useSignUpForm = (
     Partial<Record<keyof SignUpFormState, boolean>>
   >({});
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
     setValues((prev) => ({
       ...prev,
       [name]: type === "checkbox" ? checked : value,
     }));
-  };
+  }, []);
 
-  const handleBlur = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleBlur = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setTouched((prev) => ({ ...prev, [e.target.name]: true }));
-  };
+  }, []);
 
-  const setTermsOfUse = (checked: boolean) => {
+  const setTermsOfUse = useCallback((checked: boolean) => {
     setValues((prev) => ({ ...prev, termsOfUse: checked }));
-  };
+  }, []);
 
   const handleSubmit = (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();

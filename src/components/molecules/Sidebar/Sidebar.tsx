@@ -6,6 +6,8 @@ import { useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { useAboutUs } from "@/lib/hooks/useAboutUs";
 import { useGetAllRoutes } from "@/lib/hooks/useGetAllRoutes";
+import { useStore } from "@/store/authStore";
+import { useRequestLogout } from "@/features/auth/hooks/useLogout";
 
 import { motion } from "framer-motion";
 import { LogIn, User, UserPlus, X } from "lucide-react";
@@ -18,8 +20,9 @@ const Sidebar = ({ toggle }: { toggle: () => void }) => {
 
   const { aboutItems } = useAboutUs();
   const { routes } = useGetAllRoutes();
+  const { requestLogout } = useRequestLogout();
 
-  const isUserSignedIn = false;
+  const isUserSignedIn = Boolean(useStore((state) => state.currentUser));
 
   useEffect(() => {
     const previousOverflow = document.body.style.overflow;
@@ -102,11 +105,11 @@ const Sidebar = ({ toggle }: { toggle: () => void }) => {
               </Link>
               {isUserSignedIn ? (
                 <Link
-                  href={routes?.overview}
+                  href={routes?.dashboard}
                   onClick={toggle}
                   className="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm hover:bg-(--orange-light) hover:text-(--orange) font-medium transition-colors"
                 >
-                  <User size={16} /> {t("account")}
+                  <User size={16} /> {t("dashboard")}
                 </Link>
               ) : (
                 <Link
@@ -130,7 +133,10 @@ const Sidebar = ({ toggle }: { toggle: () => void }) => {
                 </Link>
               ) : (
                 <button
-                  onClick={toggle}
+                  onClick={() => {
+                    toggle();
+                    requestLogout();
+                  }}
                   className="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm hover:text-red-700 text-red-500 font-medium transition-colors"
                 >
                   <LogIn size={16} /> {t("logout")}

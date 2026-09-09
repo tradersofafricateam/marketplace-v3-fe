@@ -1,3 +1,4 @@
+import { memo } from "react";
 import type { LucideIcon } from "lucide-react";
 
 const SellerBenefitCard = ({
@@ -20,4 +21,4 @@ const SellerBenefitCard = ({
   </article>
 );
 
-export default SellerBenefitCard;
+export default memo(SellerBenefitCard);

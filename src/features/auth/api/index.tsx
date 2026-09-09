@@ -1,5 +1,6 @@
 import { axiosInstance } from "@/lib/axiosInstance";
 import {
+  AuthUser,
   ForgotPasswordPayload,
   GoogleAuthPayload,
   GoogleAuthResponse,
@@ -85,6 +86,19 @@ export const login = async (payload: LoginPayload) => {
   }
 };
 
+export const getCurrentUser = async () => {
+  try {
+    const url = "/users/me";
+    const { data } = await axiosInstance.get<
+      AuthUser | { data: AuthUser }
+    >(url);
+
+    return "data" in data ? data.data : data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const forgotPassword = async ({ email }: ForgotPasswordPayload) => {
   try {
     const url = "/auth/forgot-password";
@@ -102,6 +116,26 @@ export const resetPassword = async ({
   try {
     const url = "/auth/reset-password";
     const { data } = await axiosInstance.post(url, { otp, password });
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const logout = async () => {
+  try {
+    const url = "/auth/logout";
+    const { data } = await axiosInstance.post(url);
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const logoutAllDevices = async () => {
+  try {
+    const url = "/auth/logout-all";
+    const { data } = await axiosInstance.post(url);
     return data;
   } catch (error) {
     throw error;
