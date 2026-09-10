@@ -10,7 +10,7 @@ const SellerHero = () => {
   const t = useTranslations("becomeSeller");
 
   return (
-    <SectionWrapper className="bg-background py-14 lg:py-20">
+    <SectionWrapper className="bg-muted/40 py-14 lg:py-20">
       <div className="grid items-center gap-12 lg:grid-cols-2">
         <ScrollReveal>
           <div className="max-w-xl space-y-6">
