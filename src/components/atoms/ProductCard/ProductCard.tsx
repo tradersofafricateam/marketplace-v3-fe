@@ -20,6 +20,7 @@ const ProductCard = ({
   productName,
   storeName,
   id,
+  slug,
   currency,
   amount,
   imgUrl,
@@ -35,7 +36,7 @@ const ProductCard = ({
     <article className="relative flex h-full min-w-0 flex-col overflow-hidden rounded-lg bg-background transition-shadow duration-300 hover:shadow">
       <WishListBtn productId={id} isInWishList={isInWishList} />
       <Link
-        href={routes?.productInfo(id)}
+        href={routes?.productInfo(slug)}
         className="group flex min-w-0 flex-1 flex-col"
       >
         <div className="aspect-4/3 w-full overflow-hidden rounded-lg bg-muted/40">

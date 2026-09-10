@@ -72,7 +72,10 @@ export type AuthUser = {
   selectedLanguage?: string;
   createdAt?: string;
   deliveryAddress?: string;
+  companyBio?: string;
   pickupAddress?: string;
+  isProfileUpdated?: boolean;
+  isProfileComplete?: boolean;
   /**
    * Buyer -> seller upgrade / KYC review state. Backend field name is a
    * placeholder pending confirmation; update here if it ships differently.

@@ -37,6 +37,7 @@ const ProductCardWrapper = ({
             productName={prod?.productName}
             storeName={prod?.storeName}
             id={prod?.id}
+            slug={prod?.slug}
             totalReviews={prod?.totalReviews}
             currency={prod?.currency}
           />

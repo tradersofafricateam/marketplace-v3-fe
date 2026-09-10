@@ -38,7 +38,8 @@ export const useGetAllRoutes = () => {
     product: `/${locale}/products`,
     productCollection: (collection: string) =>
       `/${locale}/products?collection=${encodeURIComponent(collection)}`,
-    productInfo: (id: string) => `/${locale}/products/info/${id}`,
+    productInfo: (slug: string) => `/${locale}/products/info/${slug}`,
+    sellerStore: (slug: string) => `/${locale}/sellers/${slug}`,
     orders: `/${locale}/dashboard/orders`,
     orderInfo: (id: string) => `/${locale}/dashboard/orders/info/${id}`,
     sellerProduct: `/${locale}/dashboard/products`,

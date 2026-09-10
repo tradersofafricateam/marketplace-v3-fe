@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 
 import DashboardSidebar from "@/features/dashboard/components/organisms/DashboardSidebar/DashboardSidebar";
 import DashboardTopbar from "@/features/dashboard/components/organisms/DashboardTopbar/DashboardTopbar";
+import DashboardContainer from "@/features/dashboard/components/atoms/DashboardContainer/DashboardContainer";
 import { DashboardNavSection } from "@/features/dashboard/types";
 
 const DashboardLayout = ({
@@ -60,7 +61,9 @@ const DashboardLayout = ({
 
       <div className="flex min-w-0 flex-1 flex-col">
         <DashboardTopbar title={title} onMenuClick={() => setMobileOpen(true)} />
-        <main className="flex-1 px-4 py-6 sm:px-6 lg:px-8">{children}</main>
+        <main className="flex-1 px-4 py-6 sm:px-6 lg:px-8">
+          <DashboardContainer>{children}</DashboardContainer>
+        </main>
       </div>
     </div>
   );

@@ -13,15 +13,15 @@ const SellerShowcase = () => {
 
   return (
     <div className="relative mx-auto flex w-full max-w-110 items-center justify-center">
-      {/* <div
-        aria-hidden="true"
-        className="absolute top-1/2 left-1/2 size-88 -translate-x-1/2 -translate-y-1/2 rounded-full bg-(--orange-light)"
-      /> */}
       <div
         aria-hidden="true"
-        className="absolute -top-4 -right-6 size-40 rounded-full bg-(--orange)/15 blur-2xl"
+        className="absolute top-1/2 left-1/2 size-88 -translate-x-1/2 -translate-y-1/2 rounded-full bg-(--orange-light)"
       />
-      {/* <DotPattern
+      <div
+        aria-hidden="true"
+        className="absolute -top-4 -right-6 size-40 rounded-full bg-(--orange)/20 blur-2xl"
+      />
+      <DotPattern
         count={9}
         columns={3}
         color="orange"
@@ -32,7 +32,7 @@ const SellerShowcase = () => {
         columns={2}
         color="blue"
         className="right-2 bottom-6 z-0"
-      /> */}
+      />
 
       <motion.div
         initial={reduceMotion ? undefined : { opacity: 0, y: 24, scale: 0.97 }}
@@ -51,7 +51,7 @@ const SellerShowcase = () => {
         />
       </motion.div>
 
-      {/* <motion.div
+      <motion.div
         initial={reduceMotion ? undefined : { opacity: 0, y: 8 }}
         whileInView={reduceMotion ? undefined : { opacity: 1, y: [0, -6, 0] }}
         viewport={{ once: true, amount: 0.3 }}
@@ -70,9 +70,9 @@ const SellerShowcase = () => {
             {t("stats.countries.label")}
           </p>
         </div>
-      </motion.div> */}
+      </motion.div>
 
-      {/* <motion.div
+      <motion.div
         initial={reduceMotion ? undefined : { opacity: 0, y: 8 }}
         whileInView={reduceMotion ? undefined : { opacity: 1, y: [0, -6, 0] }}
         viewport={{ once: true, amount: 0.3 }}
@@ -91,7 +91,7 @@ const SellerShowcase = () => {
             {t("stats.payout.label")}
           </p>
         </div>
-      </motion.div> */}
+      </motion.div>
     </div>
   );
 };
