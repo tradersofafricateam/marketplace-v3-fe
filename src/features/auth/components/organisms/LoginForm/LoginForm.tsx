@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { useTranslations } from "next-intl";
 import { Mail } from "lucide-react";
 
@@ -12,12 +13,19 @@ import AuthSubmitButton from "@/features/auth/components/atoms/AuthSubmitButton/
 import AuthDivider from "@/features/auth/components/molecules/AuthDivider/AuthDivider";
 import GoogleAuthButton from "@/features/auth/components/molecules/GoogleAuthButton/GoogleAuthButton";
 import AuthFooterPrompt from "@/features/auth/components/molecules/AuthFooterPrompt/AuthFooterPrompt";
-import TermsPromptModal from "@/features/auth/components/organisms/TermsPromptModal/TermsPromptModal";
 
 import { useLoginForm } from "@/features/auth/hooks/useLoginForm";
 import { useLogin } from "@/features/auth/hooks/useLogin";
 import { useGoogleAuth } from "@/features/auth/hooks/useGoogleAuth";
 import { useGetAllRoutes } from "@/lib/hooks/useGetAllRoutes";
+
+const TermsPromptModal = dynamic(
+  () =>
+    import(
+      "@/features/auth/components/organisms/TermsPromptModal/TermsPromptModal"
+    ),
+  { ssr: false },
+);
 
 const LoginForm = ({ returnUrl }: { returnUrl?: string }) => {
   const t = useTranslations("Auth.login");

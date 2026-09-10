@@ -1,6 +1,6 @@
 "use client";
 
-import { type ChangeEvent, type SubmitEvent, useState } from "react";
+import { type ChangeEvent, type SubmitEvent, useCallback, useState } from "react";
 
 import { ForgotPasswordFormErrors, ForgotPasswordFormState } from "../types";
 import { validateForgotPasswordForm } from "../helpers";
@@ -16,14 +16,14 @@ export const useForgotPasswordForm = (
     Partial<Record<keyof ForgotPasswordFormState, boolean>>
   >({});
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setValues((prev) => ({ ...prev, [name]: value }));
-  };
+  }, []);
 
-  const handleBlur = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleBlur = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setTouched((prev) => ({ ...prev, [e.target.name]: true }));
-  };
+  }, []);
 
   const handleSubmit = (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();

@@ -1,11 +1,12 @@
 "use client";
 
+import { useMemo } from "react";
 import { useLocale } from "next-intl";
 
 export const useGetAllRoutes = () => {
   const locale = useLocale();
 
-  const routes = {
+  const routes = useMemo(() => ({
     home: `/${locale}`,
     ourImpact: `/${locale}/our-impact`,
     whatWeDo: `/${locale}/what-we-do`,
@@ -25,6 +26,14 @@ export const useGetAllRoutes = () => {
     resetPassword: `/${locale}/reset-password`,
     dashboard: `/${locale}/dashboard`,
     overview: `/${locale}/dashboard/overview`,
+    messages: `/${locale}/dashboard/messages`,
+    notifications: `/${locale}/dashboard/notifications`,
+    savedProducts: `/${locale}/dashboard/saved-products`,
+    reviews: `/${locale}/dashboard/reviews`,
+    disputes: `/${locale}/dashboard/disputes`,
+    returnsRefunds: `/${locale}/dashboard/returns-refunds`,
+    referrals: `/${locale}/dashboard/referrals`,
+    profileSettings: `/${locale}/dashboard/settings`,
     products: `/${locale}/products`,
     product: `/${locale}/products`,
     productCollection: (collection: string) =>
@@ -40,6 +49,7 @@ export const useGetAllRoutes = () => {
     quoteInfo: (id: string) => `/${locale}/dashboard/quotes/info/${id}`,
     settings: `/${locale}/dashboard/settings`,
     becomeSeller: `/${locale}/become-seller`,
-  };
+  }), [locale]);
+
   return { routes };
 };

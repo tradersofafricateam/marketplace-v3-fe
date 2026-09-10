@@ -338,6 +338,14 @@
       "marketplace": "Marché",
       "howToTrade": "Comment commercer",
       "searchRFQ": "Rechercher des appels d'offres"
+    },
+    "dashboard": "Tableau de bord",
+    "logoutConfirm": {
+      "title": "Se déconnecter ?",
+      "description": "Vous devrez vous reconnecter pour accéder à votre compte.",
+      "confirm": "Se déconnecter",
+      "cancel": "Annuler",
+      "confirmAllDevices": "Se déconnecter de tous les appareils"
     }
   },
   "ProductCatalogue": {
@@ -524,6 +532,82 @@
       "description": "Avant de commencer à commercer sur TOFA, veuillez consulter et accepter nos Conditions d'utilisation et notre Politique de confidentialité.",
       "accept": "Accepter et continuer",
       "decline": "Pas maintenant"
+    }
+  },
+  "Dashboard": {
+    "nav": {
+      "overview": {
+        "label": "Aperçu",
+        "dashboard": "Tableau de bord"
+      },
+      "buying": {
+        "label": "Achats",
+        "orders": "Commandes",
+        "rfqs": "Demandes de devis",
+        "messages": "Messages",
+        "savedProducts": "Produits enregistrés"
+      },
+      "afterSales": {
+        "label": "Après-vente",
+        "reviews": "Avis",
+        "disputes": "Litiges",
+        "returnsRefunds": "Retours et remboursements"
+      },
+      "rewards": {
+        "label": "Récompenses",
+        "referrals": "Parrainages et récompenses"
+      },
+      "account": {
+        "label": "Compte",
+        "profileSettings": "Profil et paramètres"
+      }
+    },
+    "sellerPromo": {
+      "title": "Vendez sur TOFA",
+      "description": "Touchez plus d'acheteurs à travers les marchés africains.",
+      "cta": "Devenir vendeur",
+      "pendingTitle": "Candidature en cours d'examen",
+      "pendingDescription": "Nous examinons votre candidature de vendeur. Nous vous informerons dès son approbation."
+    },
+    "becomeSellerModal": {
+      "title": "Devenir vendeur",
+      "description": "Parlez-nous de votre entreprise. Nous examinerons votre candidature et reviendrons vers vous rapidement.",
+      "storeName": "Nom de la boutique",
+      "storeNamePlaceholder": "ex. Amara's Fresh Produce",
+      "businessCategory": "Catégorie d'activité",
+      "businessCategoryPlaceholder": "ex. Produits frais, Céréales",
+      "phoneNumber": "Numéro de téléphone",
+      "phoneNumberPlaceholder": "ex. +234 800 000 0000",
+      "country": "Pays",
+      "countryPlaceholder": "ex. Nigéria",
+      "cancel": "Annuler",
+      "submit": "Envoyer la candidature",
+      "submitting": "Envoi en cours…",
+      "success": "Candidature envoyée ! Nous l'examinerons et vous répondrons bientôt.",
+      "submitError": "Impossible d'envoyer votre candidature. Réessayez."
+    },
+    "topbar": {
+      "overviewTitle": "Tableau de bord",
+      "loading": "Chargement de votre tableau de bord…",
+      "messages": "Messages",
+      "notifications": "Notifications"
+    },
+    "overview": {
+      "greeting": "Bon retour, {name}",
+      "fallbackName": "cher membre",
+      "subtitle": "Voici ce qui se passe sur votre compte aujourd'hui.",
+      "stats": {
+        "orders": "Commandes",
+        "ordersHint": "Aucune commande pour le moment",
+        "rfqs": "Demandes de devis",
+        "rfqsHint": "Aucune demande pour le moment",
+        "points": "Points de récompense",
+        "pointsHint": "Gagnez des points à chaque commande"
+      },
+      "recentOrders": {
+        "title": "Commandes récentes",
+        "empty": "Vous n'avez pas encore passé de commande. Elles apparaîtront ici."
+      }
     }
   }
 }

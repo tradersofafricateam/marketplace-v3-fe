@@ -262,6 +262,14 @@
       "marketplace": "Marketplace",
       "howToTrade": "How to trade",
       "searchRFQ": "Search RFQ's"
+    },
+    "dashboard": "Dashboard",
+    "logoutConfirm": {
+      "title": "Log out?",
+      "description": "You'll need to log in again to access your account.",
+      "confirm": "Log out",
+      "cancel": "Cancel",
+      "confirmAllDevices": "Log out of all devices"
     }
   },
   "Hero": {
@@ -774,6 +782,82 @@
       "description": "Before you start trading on TOFA, please review and accept our Terms of Use and Privacy Policy.",
       "accept": "Accept & Continue",
       "decline": "Not now"
+    }
+  },
+  "Dashboard": {
+    "nav": {
+      "overview": {
+        "label": "Overview",
+        "dashboard": "Dashboard"
+      },
+      "buying": {
+        "label": "Buying",
+        "orders": "Orders",
+        "rfqs": "RFQs",
+        "messages": "Messages",
+        "savedProducts": "Saved Products"
+      },
+      "afterSales": {
+        "label": "After Sales",
+        "reviews": "Reviews",
+        "disputes": "Disputes",
+        "returnsRefunds": "Returns & Refunds"
+      },
+      "rewards": {
+        "label": "Rewards",
+        "referrals": "Referrals & Rewards"
+      },
+      "account": {
+        "label": "Account",
+        "profileSettings": "Profile & Settings"
+      }
+    },
+    "sellerPromo": {
+      "title": "Start selling on TOFA",
+      "description": "Reach more buyers across African markets.",
+      "cta": "Become a Seller",
+      "pendingTitle": "Application under review",
+      "pendingDescription": "We're reviewing your seller application. We'll notify you once it's approved."
+    },
+    "becomeSellerModal": {
+      "title": "Become a seller",
+      "description": "Tell us about your business. We'll review your application and get back to you shortly.",
+      "storeName": "Store name",
+      "storeNamePlaceholder": "e.g. Amara's Fresh Produce",
+      "businessCategory": "Business category",
+      "businessCategoryPlaceholder": "e.g. Fresh produce, Grains",
+      "phoneNumber": "Phone number",
+      "phoneNumberPlaceholder": "e.g. +234 800 000 0000",
+      "country": "Country",
+      "countryPlaceholder": "e.g. Nigeria",
+      "cancel": "Cancel",
+      "submit": "Submit application",
+      "submitting": "Submitting…",
+      "success": "Application submitted! We'll review it and notify you soon.",
+      "submitError": "We couldn't submit your application. Please try again."
+    },
+    "topbar": {
+      "overviewTitle": "Dashboard",
+      "loading": "Loading your dashboard…",
+      "messages": "Messages",
+      "notifications": "Notifications"
+    },
+    "overview": {
+      "greeting": "Welcome back, {name}",
+      "fallbackName": "there",
+      "subtitle": "Here's what's happening with your account today.",
+      "stats": {
+        "orders": "Orders",
+        "ordersHint": "No orders yet",
+        "rfqs": "RFQs",
+        "rfqsHint": "No requests yet",
+        "points": "Reward points",
+        "pointsHint": "Earn points on every order"
+      },
+      "recentOrders": {
+        "title": "Recent orders",
+        "empty": "You haven't placed any orders yet. Once you do, they'll show up here."
+      }
     }
   }
 }

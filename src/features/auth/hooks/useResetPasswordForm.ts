@@ -1,6 +1,6 @@
 "use client";
 
-import { type ChangeEvent, type SubmitEvent, useState } from "react";
+import { type ChangeEvent, type SubmitEvent, useCallback, useState } from "react";
 
 import { ResetPasswordFormErrors, ResetPasswordFormState } from "../types";
 import { validateResetPasswordForm } from "../helpers";
@@ -16,18 +16,18 @@ export const useResetPasswordForm = (
     Partial<Record<keyof ResetPasswordFormState, boolean>>
   >({});
 
-  const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handlePasswordChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setValues((prev) => ({ ...prev, password: e.target.value }));
-  };
+  }, []);
 
-  const handlePasswordBlur = () => {
+  const handlePasswordBlur = useCallback(() => {
     setTouched((prev) => ({ ...prev, password: true }));
-  };
+  }, []);
 
-  const handleOtpChange = (otp: string) => {
+  const handleOtpChange = useCallback((otp: string) => {
     setValues((prev) => ({ ...prev, otp }));
     setErrors((prev) => ({ ...prev, otp: undefined }));
-  };
+  }, []);
 
   const handleSubmit = (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();

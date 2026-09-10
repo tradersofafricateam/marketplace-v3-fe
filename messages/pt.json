@@ -338,6 +338,14 @@
       "marketplace": "Marketplace",
       "howToTrade": "Como negociar",
       "searchRFQ": "Buscar pedidos de cotação"
+    },
+    "dashboard": "Painel",
+    "logoutConfirm": {
+      "title": "Sair da conta?",
+      "description": "Você precisará entrar novamente para acessar sua conta.",
+      "confirm": "Sair",
+      "cancel": "Cancelar",
+      "confirmAllDevices": "Sair de todos os dispositivos"
     }
   },
   "ProductCatalogue": {
@@ -524,6 +532,82 @@
       "description": "Antes de começar a negociar na TOFA, revise e aceite nossos Termos de Uso e Política de Privacidade.",
       "accept": "Aceitar e continuar",
       "decline": "Agora não"
+    }
+  },
+  "Dashboard": {
+    "nav": {
+      "overview": {
+        "label": "Visão geral",
+        "dashboard": "Painel"
+      },
+      "buying": {
+        "label": "Compras",
+        "orders": "Pedidos",
+        "rfqs": "Solicitações de cotação",
+        "messages": "Mensagens",
+        "savedProducts": "Produtos salvos"
+      },
+      "afterSales": {
+        "label": "Pós-venda",
+        "reviews": "Avaliações",
+        "disputes": "Disputas",
+        "returnsRefunds": "Devoluções e reembolsos"
+      },
+      "rewards": {
+        "label": "Recompensas",
+        "referrals": "Indicações e recompensas"
+      },
+      "account": {
+        "label": "Conta",
+        "profileSettings": "Perfil e configurações"
+      }
+    },
+    "sellerPromo": {
+      "title": "Venda na TOFA",
+      "description": "Alcance mais compradores nos mercados africanos.",
+      "cta": "Torne-se um vendedor",
+      "pendingTitle": "Solicitação em análise",
+      "pendingDescription": "Estamos analisando sua solicitação de vendedor. Avisaremos assim que for aprovada."
+    },
+    "becomeSellerModal": {
+      "title": "Torne-se um vendedor",
+      "description": "Conte-nos sobre seu negócio. Analisaremos sua solicitação e retornaremos em breve.",
+      "storeName": "Nome da loja",
+      "storeNamePlaceholder": "ex. Amara's Fresh Produce",
+      "businessCategory": "Categoria do negócio",
+      "businessCategoryPlaceholder": "ex. Produtos frescos, Grãos",
+      "phoneNumber": "Número de telefone",
+      "phoneNumberPlaceholder": "ex. +234 800 000 0000",
+      "country": "País",
+      "countryPlaceholder": "ex. Nigéria",
+      "cancel": "Cancelar",
+      "submit": "Enviar solicitação",
+      "submitting": "Enviando…",
+      "success": "Solicitação enviada! Vamos analisá-la e avisaremos em breve.",
+      "submitError": "Não foi possível enviar sua solicitação. Tente novamente."
+    },
+    "topbar": {
+      "overviewTitle": "Painel",
+      "loading": "Carregando seu painel…",
+      "messages": "Mensagens",
+      "notifications": "Notificações"
+    },
+    "overview": {
+      "greeting": "Bem-vindo de volta, {name}",
+      "fallbackName": "de volta",
+      "subtitle": "Veja o que está acontecendo na sua conta hoje.",
+      "stats": {
+        "orders": "Pedidos",
+        "ordersHint": "Nenhum pedido ainda",
+        "rfqs": "Solicitações de cotação",
+        "rfqsHint": "Nenhuma solicitação ainda",
+        "points": "Pontos de recompensa",
+        "pointsHint": "Ganhe pontos em cada pedido"
+      },
+      "recentOrders": {
+        "title": "Pedidos recentes",
+        "empty": "Você ainda não fez pedidos. Assim que fizer, eles aparecerão aqui."
+      }
     }
   }
 }

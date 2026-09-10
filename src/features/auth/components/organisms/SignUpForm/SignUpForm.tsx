@@ -1,5 +1,6 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useTranslations } from "next-intl";
 import { Mail } from "lucide-react";
 
@@ -13,12 +14,19 @@ import AuthSubmitButton from "@/features/auth/components/atoms/AuthSubmitButton/
 import AuthDivider from "@/features/auth/components/molecules/AuthDivider/AuthDivider";
 import GoogleAuthButton from "@/features/auth/components/molecules/GoogleAuthButton/GoogleAuthButton";
 import AuthFooterPrompt from "@/features/auth/components/molecules/AuthFooterPrompt/AuthFooterPrompt";
-import TermsPromptModal from "@/features/auth/components/organisms/TermsPromptModal/TermsPromptModal";
 
 import { useSignUpForm } from "@/features/auth/hooks/useSignUpForm";
 import { useSignUp } from "@/features/auth/hooks/useSignUp";
 import { useGoogleAuth } from "@/features/auth/hooks/useGoogleAuth";
 import { useGetAllRoutes } from "@/lib/hooks/useGetAllRoutes";
+
+const TermsPromptModal = dynamic(
+  () =>
+    import(
+      "@/features/auth/components/organisms/TermsPromptModal/TermsPromptModal"
+    ),
+  { ssr: false },
+);
 
 const SignUpForm = ({
   initialReferralCode,

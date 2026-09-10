@@ -338,6 +338,14 @@
       "marketplace": "Soko",
       "howToTrade": "Jinsi ya kufanya biashara",
       "searchRFQ": "Tafuta maombi ya bei"
+    },
+    "dashboard": "Dashibodi",
+    "logoutConfirm": {
+      "title": "Toka?",
+      "description": "Utahitaji kuingia tena ili kufikia akaunti yako.",
+      "confirm": "Toka",
+      "cancel": "Ghairi",
+      "confirmAllDevices": "Toka kwenye vifaa vyote"
     }
   },
   "ProductCatalogue": {
@@ -524,6 +532,82 @@
       "description": "Kabla ya kuanza kufanya biashara kwenye TOFA, tafadhali pitia na ukubali Masharti yetu ya Matumizi na Sera ya Faragha.",
       "accept": "Kubali na Endelea",
       "decline": "Sio sasa"
+    }
+  },
+  "Dashboard": {
+    "nav": {
+      "overview": {
+        "label": "Muhtasari",
+        "dashboard": "Dashibodi"
+      },
+      "buying": {
+        "label": "Ununuzi",
+        "orders": "Oda",
+        "rfqs": "Maombi ya Bei",
+        "messages": "Ujumbe",
+        "savedProducts": "Bidhaa Zilizohifadhiwa"
+      },
+      "afterSales": {
+        "label": "Baada ya Mauzo",
+        "reviews": "Maoni",
+        "disputes": "Migogoro",
+        "returnsRefunds": "Marejesho na Urejeshaji Pesa"
+      },
+      "rewards": {
+        "label": "Zawadi",
+        "referrals": "Mapendekezo na Zawadi"
+      },
+      "account": {
+        "label": "Akaunti",
+        "profileSettings": "Wasifu na Mipangilio"
+      }
+    },
+    "sellerPromo": {
+      "title": "Anza kuuza kwenye TOFA",
+      "description": "Fikia wanunuzi wengi zaidi katika masoko ya Afrika.",
+      "cta": "Kuwa Muuzaji",
+      "pendingTitle": "Ombi linakaguliwa",
+      "pendingDescription": "Tunakagua ombi lako la uuzaji. Tutakujulisha mara litakapoidhinishwa."
+    },
+    "becomeSellerModal": {
+      "title": "Kuwa muuzaji",
+      "description": "Tuambie kuhusu biashara yako. Tutakagua ombi lako na kukujibu hivi karibuni.",
+      "storeName": "Jina la duka",
+      "storeNamePlaceholder": "mfano Amara's Fresh Produce",
+      "businessCategory": "Aina ya biashara",
+      "businessCategoryPlaceholder": "mfano Mazao mapya, Nafaka",
+      "phoneNumber": "Nambari ya simu",
+      "phoneNumberPlaceholder": "mfano +234 800 000 0000",
+      "country": "Nchi",
+      "countryPlaceholder": "mfano Nigeria",
+      "cancel": "Ghairi",
+      "submit": "Tuma ombi",
+      "submitting": "Inatuma…",
+      "success": "Ombi limetumwa! Tutalikagua na kukujulisha hivi karibuni.",
+      "submitError": "Hatukuweza kutuma ombi lako. Jaribu tena."
+    },
+    "topbar": {
+      "overviewTitle": "Dashibodi",
+      "loading": "Inapakia dashibodi yako…",
+      "messages": "Ujumbe",
+      "notifications": "Arifa"
+    },
+    "overview": {
+      "greeting": "Karibu tena, {name}",
+      "fallbackName": "rafiki",
+      "subtitle": "Haya ndiyo yanayoendelea kwenye akaunti yako leo.",
+      "stats": {
+        "orders": "Oda",
+        "ordersHint": "Bado hakuna oda",
+        "rfqs": "Maombi ya Bei",
+        "rfqsHint": "Bado hakuna maombi",
+        "points": "Pointi za zawadi",
+        "pointsHint": "Pata pointi kwa kila oda"
+      },
+      "recentOrders": {
+        "title": "Oda za hivi karibuni",
+        "empty": "Bado hujafanya oda yoyote. Zitakapofanyika, zitaonekana hapa."
+      }
     }
   }
 }

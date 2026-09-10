@@ -9,7 +9,9 @@ import { ChevronDown } from "lucide-react";
 
 interface DropdownItem {
   label: string;
-  href: string;
+  href?: string;
+  onClick?: () => void;
+  tone?: "default" | "destructive";
 }
 
 interface DropdownMenuProps {
@@ -26,6 +28,13 @@ const DropdownMenu = ({
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   useClickOutside(ref, () => setOpen(false));
+
+  const itemClassName = (tone: DropdownItem["tone"]) =>
+    `block w-full px-4 py-3 text-left text-sm font-medium transition-colors border-b border-muted last:border-0 ${
+      tone === "destructive"
+        ? "text-red-500 hover:bg-red-50"
+        : "hover:bg-(--orange-light) hover:text-(--orange)"
+    }`;
 
   return (
     <div ref={ref} className="relative">
@@ -48,16 +57,30 @@ const DropdownMenu = ({
           }`}
           style={{ animation: "dropIn 0.18s ease" }}
         >
-          {items.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              onClick={() => setOpen(false)}
-              className="block px-4 py-3 text-sm hover:bg-(--orange-light) hover:text-(--orange) transition-colors font-medium border-b border-muted last:border-0"
-            >
-              {item.label}
-            </Link>
-          ))}
+          {items.map((item) =>
+            item.href ? (
+              <Link
+                key={item.label}
+                href={item.href}
+                onClick={() => setOpen(false)}
+                className={itemClassName(item.tone)}
+              >
+                {item.label}
+              </Link>
+            ) : (
+              <button
+                key={item.label}
+                type="button"
+                onClick={() => {
+                  setOpen(false);
+                  item.onClick?.();
+                }}
+                className={itemClassName(item.tone)}
+              >
+                {item.label}
+              </button>
+            ),
+          )}
         </div>
       )}
     </div>

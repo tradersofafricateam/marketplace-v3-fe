@@ -338,6 +338,14 @@
       "marketplace": "Mercado",
       "howToTrade": "Cómo comerciar",
       "searchRFQ": "Buscar solicitudes de cotización"
+    },
+    "dashboard": "Panel",
+    "logoutConfirm": {
+      "title": "¿Cerrar sesión?",
+      "description": "Deberás iniciar sesión de nuevo para acceder a tu cuenta.",
+      "confirm": "Cerrar sesión",
+      "cancel": "Cancelar",
+      "confirmAllDevices": "Cerrar sesión en todos los dispositivos"
     }
   },
   "ProductCatalogue": {
@@ -524,6 +532,82 @@
       "description": "Antes de comenzar a comerciar en TOFA, revisa y acepta nuestros Términos de uso y Política de privacidad.",
       "accept": "Aceptar y continuar",
       "decline": "Ahora no"
+    }
+  },
+  "Dashboard": {
+    "nav": {
+      "overview": {
+        "label": "Resumen",
+        "dashboard": "Panel"
+      },
+      "buying": {
+        "label": "Compras",
+        "orders": "Pedidos",
+        "rfqs": "Solicitudes de cotización",
+        "messages": "Mensajes",
+        "savedProducts": "Productos guardados"
+      },
+      "afterSales": {
+        "label": "Posventa",
+        "reviews": "Reseñas",
+        "disputes": "Disputas",
+        "returnsRefunds": "Devoluciones y reembolsos"
+      },
+      "rewards": {
+        "label": "Recompensas",
+        "referrals": "Referidos y recompensas"
+      },
+      "account": {
+        "label": "Cuenta",
+        "profileSettings": "Perfil y configuración"
+      }
+    },
+    "sellerPromo": {
+      "title": "Vende en TOFA",
+      "description": "Llega a más compradores en los mercados africanos.",
+      "cta": "Conviértete en vendedor",
+      "pendingTitle": "Solicitud en revisión",
+      "pendingDescription": "Estamos revisando tu solicitud de vendedor. Te avisaremos cuando sea aprobada."
+    },
+    "becomeSellerModal": {
+      "title": "Conviértete en vendedor",
+      "description": "Cuéntanos sobre tu negocio. Revisaremos tu solicitud y te responderemos pronto.",
+      "storeName": "Nombre de la tienda",
+      "storeNamePlaceholder": "ej. Amara's Fresh Produce",
+      "businessCategory": "Categoría del negocio",
+      "businessCategoryPlaceholder": "ej. Productos frescos, Granos",
+      "phoneNumber": "Número de teléfono",
+      "phoneNumberPlaceholder": "ej. +234 800 000 0000",
+      "country": "País",
+      "countryPlaceholder": "ej. Nigeria",
+      "cancel": "Cancelar",
+      "submit": "Enviar solicitud",
+      "submitting": "Enviando…",
+      "success": "¡Solicitud enviada! La revisaremos y te avisaremos pronto.",
+      "submitError": "No pudimos enviar tu solicitud. Inténtalo de nuevo."
+    },
+    "topbar": {
+      "overviewTitle": "Panel",
+      "loading": "Cargando tu panel…",
+      "messages": "Mensajes",
+      "notifications": "Notificaciones"
+    },
+    "overview": {
+      "greeting": "Bienvenido de nuevo, {name}",
+      "fallbackName": "de nuevo",
+      "subtitle": "Esto es lo que pasa en tu cuenta hoy.",
+      "stats": {
+        "orders": "Pedidos",
+        "ordersHint": "Aún no hay pedidos",
+        "rfqs": "Solicitudes de cotización",
+        "rfqsHint": "Aún no hay solicitudes",
+        "points": "Puntos de recompensa",
+        "pointsHint": "Gana puntos en cada pedido"
+      },
+      "recentOrders": {
+        "title": "Pedidos recientes",
+        "empty": "Aún no has realizado pedidos. Cuando lo hagas, aparecerán aquí."
+      }
     }
   }
 }
