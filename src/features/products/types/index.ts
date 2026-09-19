@@ -1,4 +1,5 @@
 export interface ProductData {
+  categoryIds?: string[];
   productName: string;
   storeName: string;
   id: string;
@@ -12,6 +13,7 @@ export interface ProductData {
 }
 
 export interface CatalogueFilters {
+  priceCurrency?: string;
   category: string;
   minPrice: string;
   maxPrice: string;

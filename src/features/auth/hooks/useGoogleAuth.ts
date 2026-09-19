@@ -1,24 +1,25 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
 
+import { getLoginDestination } from "../helpers/loginDestination";
 import { googleAuth, updateTerms } from "../api";
 import { setAuthToken } from "../helpers/session";
 import { promiseErrorFunction } from "@/lib/helpers/promiseError";
 import { useGetAllRoutes } from "@/lib/hooks/useGetAllRoutes";
 
 export const useGoogleAuth = ({ returnUrl }: { returnUrl?: string } = {}) => {
-  const router = useRouter();
   const { routes } = useGetAllRoutes();
-  const destination = returnUrl || routes.dashboard;
+  const navigate = async () => {
+    window.location.href = await getLoginDestination(returnUrl, routes.dashboard, routes.seller);
+  };
 
   const [pendingUserId, setPendingUserId] = useState<string | null>(null);
 
   const { mutate: authenticate, isPending: isAuthenticating } = useMutation({
     mutationFn: googleAuth,
-    onSuccess: (data) => {
+    onSuccess: async (data) => {
       setAuthToken(data.token);
 
       if (!data.user.termsOfUse) {
@@ -26,7 +27,7 @@ export const useGoogleAuth = ({ returnUrl }: { returnUrl?: string } = {}) => {
         return;
       }
 
-      router.push(destination);
+      await navigate();
     },
     onError: (error) =>
       promiseErrorFunction(
@@ -37,9 +38,9 @@ export const useGoogleAuth = ({ returnUrl }: { returnUrl?: string } = {}) => {
 
   const { mutate: acceptTerms, isPending: isAcceptingTerms } = useMutation({
     mutationFn: updateTerms,
-    onSuccess: () => {
+    onSuccess: async () => {
       setPendingUserId(null);
-      router.push(destination);
+      await navigate();
     },
     onError: (error) =>
       promiseErrorFunction(

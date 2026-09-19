@@ -1,6 +1,6 @@
 import { useGetAllRoutes } from "@/lib/hooks/useGetAllRoutes";
 import { ChevronRight } from "lucide-react";
-import Image from "next/image";
+import CategoryArtwork from "@/features/categories/components/atoms/CategoryArtwork/CategoryArtwork";
 import Link from "next/link";
 
 const CategoryCard = ({
@@ -14,7 +14,7 @@ const CategoryCard = ({
   isActive: boolean;
   onMouseEnter: () => void;
   onMouseLeave: () => void;
-  icon: string;
+  icon?: string;
   name: string;
   id: string;
 }) => {
@@ -31,7 +31,7 @@ const CategoryCard = ({
         href={routes?.categoryInfo(id)}
         className="flex items-center gap-2 flex-1 group"
       >
-        <Image src={icon} alt={name} width={26} height={26} />
+        <CategoryArtwork src={icon} icon={icon} className="size-7" />
         <span
           className={`text-xs flex-1 group-hover:underline transition-all duration-300 ${
             isActive ? "text-(--orange) font-medium" : "text-foreground"

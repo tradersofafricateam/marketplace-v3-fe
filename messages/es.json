@@ -152,7 +152,10 @@
       "backendDeveloper": "Desarrollador backend",
       "graphicsContentManager": "Responsable de gráficos y contenidos",
       "hrAdmin": "RR. HH./Administración",
-      "strategicPartnerships": "Alianzas estratégicas"
+      "strategicPartnerships": "Alianzas estratégicas",
+      "headOfOperations": "Responsable de operaciones",
+      "socialMediaManagerContentCreator": "Responsable de redes sociales / Creadora de contenido",
+      "customerRepresentative": "Representante de atención al cliente"
     }
   },
   "becomeSeller": {
@@ -565,11 +568,29 @@
     "sellerPromo": {
       "title": "Vende en TOFA",
       "description": "Llega a más compradores en los mercados africanos.",
-      "cta": "Conviértete en vendedor",
-      "pendingTitle": "Solicitud en revisión",
-      "pendingDescription": "Estamos revisando tu solicitud de vendedor. Te avisaremos cuando sea aprobada."
+      "cta": "Convertirse en vendedor",
+      "pendingTitle": "Pendiente de aprobación",
+      "pendingDescription": "Estamos revisando tu solicitud de vendedor. Te avisaremos cuando sea aprobada.",
+      "rejectedTitle": "Solicitud rechazada",
+      "rejectedDescription": "Actualiza tu solicitud y vuelve a enviarla.",
+      "resubmit": "Volver a enviar"
     },
     "becomeSellerModal": {
+      "businessDetails": "Datos del negocio",
+      "businessLocation": "Ubicación del negocio",
+      "brandIdentity": "Tu marca",
+      "logoHint": "Dale una imagen a tu tienda. Añade el logotipo de tu empresa.",
+      "chooseLogo": "Elegir logotipo",
+      "changeLogo": "Cambiar logotipo",
+      "bioPlaceholder": "Cuenta a los compradores qué hace tu empresa y qué la distingue.",
+      "companyName": "Nombre de la empresa",
+      "registrationNumber": "Número de registro (opcional)",
+      "businessType": "Tipo de negocio",
+      "yearsOfBusiness": "Años de actividad",
+      "companyAddress": "Dirección de la empresa",
+      "pickupAddress": "Dirección de recogida",
+      "companyBio": "Descripción de la empresa (opcional)",
+      "companyLogo": "Logotipo de la empresa (opcional)",
       "title": "Conviértete en vendedor",
       "description": "Cuéntanos sobre tu negocio. Revisaremos tu solicitud y te responderemos pronto.",
       "storeName": "Nombre de la tienda",
@@ -587,7 +608,7 @@
       "submitError": "No pudimos enviar tu solicitud. Inténtalo de nuevo."
     },
     "topbar": {
-      "overviewTitle": "Panel",
+      "overviewTitle": "Mi panel",
       "loading": "Cargando tu panel…",
       "messages": "Mensajes",
       "notifications": "Notificaciones"
@@ -705,5 +726,26 @@
     "helpful": "Útil",
     "notHelpful": "No útil",
     "wasHelpful": "¿Te resultó útil?"
+  },
+  "CategoryData": {
+    "title": "Categorías",
+    "loading": "Cargando categorías",
+    "error": "No se pudieron cargar las categorías.",
+    "retry": "Reintentar",
+    "empty": "No hay categorías disponibles.",
+    "search": "Buscar categorías",
+    "noResults": "No hay categorías coincidentes.",
+    "selected": "{count}/{max} seleccionadas",
+    "unavailableSelected": "Categoría seleccionada no disponible — pulsa para quitar"
+  },
+  "CurrencyData": {
+    "label": "Moneda",
+    "loading": "Cargando monedas…",
+    "error": "No se pudieron cargar las monedas.",
+    "retry": "Reintentar monedas",
+    "empty": "No hay monedas disponibles",
+    "select": "Seleccionar moneda",
+    "unavailable": "No disponible",
+    "unsupported": "Selecciona una moneda admitida actualmente."
   }
 }

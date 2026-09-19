@@ -6,11 +6,9 @@ import { usePathname } from "next/navigation";
 import { useGetAllRoutes } from "@/lib/hooks/useGetAllRoutes";
 
 import { locales } from "@/lib/constants/language";
-import { currencies } from "@/lib/constants/currencies";
+import MarketplaceCurrencyPicker from "@/features/currencies/components/molecules/MarketplaceCurrencyPicker/MarketplaceCurrencyPicker";
 
 import SelectDropdown from "@/components/atoms/SelectDropdown/SelectDropdown";
-import { useCurrency } from "@/lib/hooks/useCurrency/useCurrency";
-import { isCurrencyCode } from "@/lib/helpers/currency/currency";
 
 const NavTopDropdownsWrapper = () => {
   const pathname = usePathname();
@@ -18,7 +16,6 @@ const NavTopDropdownsWrapper = () => {
 
   const t = useTranslations("Nav");
 
-  const { currency, setCurrency } = useCurrency();
   const pathnameLocale = pathname.split("/")[1];
   const locale = locales.some(({ value }) => value === pathnameLocale)
     ? pathnameLocale
@@ -35,7 +32,6 @@ const NavTopDropdownsWrapper = () => {
   };
 
   const currentLocale = locales.find((l) => l.value === locale);
-  const currentCurrency = currencies.find((c) => c.value === currency);
 
   return (
     <div className="flex items-center gap-1 sm:gap-2">
@@ -71,17 +67,7 @@ const NavTopDropdownsWrapper = () => {
           </span>
         }
       />
-      <SelectDropdown
-        selected={currency}
-        onSelect={(value) => isCurrencyCode(value) && setCurrency(value)}
-        options={currencies}
-        align="right"
-        trigger={
-          <span className="flex items-center gap-1">
-            <span>{currentCurrency?.value}</span>
-          </span>
-        }
-      />
+      <MarketplaceCurrencyPicker />
       <button className="hidden md:block text-sm font-medium hover:text-(--orange) transition-colors duration-300 px-2 cursor-pointer">
         {t("requestQuote")}
       </button>

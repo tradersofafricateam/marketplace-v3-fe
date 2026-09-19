@@ -6,8 +6,8 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 import { products } from "@/features/products/constants/dummy";
 import type { CatalogueFilters, ProductView } from "@/features/products/types";
-import { categories } from "@/lib/constants/dummyData";
-import { convertCurrency } from "@/lib/helpers/currency/currency";
+import { useCategories } from "@/features/categories/hooks/useCategories";
+import { useCurrency } from "@/lib/hooks/useCurrency/useCurrency";
 
 export const PRODUCT_PRICE_LIMIT = 1000000;
 
@@ -33,15 +33,19 @@ export const productSortOptions = [
 ] as const;
 
 export const useProductCatalogue = () => {
+  const { currency } = useCurrency();
   const params = useSearchParams();
   const router = useRouter();
   const locale = useLocale();
   const t = useTranslations("ProductCatalogue");
-  const tCategories = useTranslations("Hero.categories");
+  const categoryT = useTranslations("CategoryData");
+  const categoryQuery = useCategories();
+  const categories = categoryQuery.data ?? [];
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const [view, setView] = useState<ProductView>("grid");
   const [draftFilters, setDraftFilters] = useState<CatalogueFilters>({
     ...emptyFilters,
+    priceCurrency: params.get("currency") ?? "",
     category: params.get("category") ?? "",
     minPrice: params.get("minPrice") ?? emptyFilters.minPrice,
     maxPrice: params.get("maxPrice") ?? emptyFilters.maxPrice,
@@ -58,9 +62,7 @@ export const useProductCatalogue = () => {
   const category = categories.find((item) => item.id === appliedCategory);
   const contextTitle =
     query ||
-    (category?.category && tCategories.has(category.category)
-      ? tCategories(category.category)
-      : category?.category) ||
+    (appliedCategory ? category?.name || categoryT(categoryQuery.isLoadingCurrentData ? "loading" : categoryQuery.isError ? "error" : "empty") : undefined) ||
     (collection === "popular"
       ? t("collections.popular")
       : collection === "new"
@@ -77,6 +79,9 @@ export const useProductCatalogue = () => {
     const verifiedOnly = params.get("verified") === "1";
     const inStockOnly = params.get("inStock") === "1";
     const needle = query.toLowerCase();
+    const priceCurrency = params.get("currency") || currency;
+    const hasPriceFilter = params.has("minPrice") || params.has("maxPrice");
+    const sortingByPrice = sort === "price-low" || sort === "price-high";
 
     const filtered = products.filter((product) => {
       const productNumber = Number(product.id) || 1;
@@ -87,13 +92,13 @@ export const useProductCatalogue = () => {
         `${product.productName} ${product.storeName}`
           .toLowerCase()
           .includes(needle);
-      const matchesCategory = !appliedCategory || appliedCategory === "1";
+      const matchesCategory = !appliedCategory || (product.categoryIds?.includes(appliedCategory) ?? false);
 
       return (
         matchesQuery &&
         matchesCategory &&
-        convertCurrency(product.amount, product.currency, "NGN") >= minPrice &&
-        convertCurrency(product.amount, product.currency, "NGN") <= maxPrice &&
+        (!(hasPriceFilter || sortingByPrice) || (!!priceCurrency && product.currency === priceCurrency)) &&
+        (!hasPriceFilter || (product.amount >= minPrice && product.amount <= maxPrice)) &&
         rating >= minimumRating &&
         minimumOrder <= maximumMinimumOrder &&
         (!verifiedOnly || productNumber % 2 === 0) &&
@@ -111,7 +116,7 @@ export const useProductCatalogue = () => {
       if (sort === "name-asc") return a.productName.localeCompare(b.productName);
       return 0;
     });
-  }, [appliedCategory, collection, params, query, sort]);
+  }, [appliedCategory, collection, params, query, sort, currency]);
 
   const changeFilters = (next: Partial<CatalogueFilters>) => {
     setDraftFilters((current) => ({ ...current, ...next }));
@@ -121,6 +126,7 @@ export const useProductCatalogue = () => {
     const next = new URLSearchParams(params.toString());
     const values: Record<string, string> = {
       category: filters.category,
+      currency: filters.priceCurrency || currency,
       minPrice: filters.minPrice === emptyFilters.minPrice ? "" : filters.minPrice,
       maxPrice: filters.maxPrice === emptyFilters.maxPrice ? "" : filters.maxPrice,
       rating: filters.rating,
@@ -143,6 +149,7 @@ export const useProductCatalogue = () => {
 
   const changeSort = (value: string) => {
     const next = new URLSearchParams(params.toString());
+    if (value === "price-low" || value === "price-high") next.set("currency", currency);
     if (value === "relevance") next.delete("sort");
     else next.set("sort", value);
     next.delete("page");

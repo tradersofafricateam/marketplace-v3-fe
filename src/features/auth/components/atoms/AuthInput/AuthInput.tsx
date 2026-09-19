@@ -24,8 +24,8 @@ const AuthInput = forwardRef<HTMLInputElement, AuthInputProps>(
           aria-invalid={invalid}
           className={cn(
             "h-12 w-full rounded-xl border border-border bg-background px-4 text-sm text-foreground outline-none transition-all duration-200 placeholder:text-muted-foreground/70",
-            "focus:border-(--orange) focus:ring-4 focus:ring-(--orange)/12",
-            "aria-invalid:border-destructive aria-invalid:focus:ring-destructive/15",
+            "focus:border-(--orange)",
+            "aria-invalid:border-destructive",
             icon && "pl-10.5",
             endAdornment && "pr-11",
             className,

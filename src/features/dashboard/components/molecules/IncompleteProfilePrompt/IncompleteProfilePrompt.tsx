@@ -18,7 +18,7 @@ const IncompleteProfilePrompt = ({
       </span>
       <div>
         <h3 className="text-sm font-bold text-foreground">{title}</h3>
-        <p className="mt-1 text-xs leading-5 text-muted-foreground">
+        <p className="text-body mt-1 text-muted-foreground">
           {description}
         </p>
       </div>

@@ -51,8 +51,10 @@ export const useScrollable = (scrollStep = 240) => {
     });
 
     if (viewportRef.current) ro.observe(viewportRef.current);
-    return () => ro.disconnect();
-  }, [maxOffset]);
+    const mutations = new MutationObserver(() => update(0));
+    if (trackRef.current) mutations.observe(trackRef.current, { childList: true });
+    return () => { ro.disconnect(); mutations.disconnect(); };
+  }, [maxOffset, update]);
 
   const scrollPrev = useCallback(
     () => update(state.offset - scrollStep),

@@ -6,13 +6,15 @@ import { useTranslations } from "next-intl";
 import PriceRange from "@/components/atoms/PriceRange/PriceRange";
 import RatingStar from "@/components/atoms/RatingStar/RatingStar";
 import type { CatalogueFilters } from "@/features/products/types";
-import { categories } from "@/lib/constants/dummyData";
+import { useCategories } from "@/features/categories/hooks/useCategories";
+import CategoryQueryState from "@/features/categories/components/molecules/CategoryQueryState/CategoryQueryState";
 import { usePriceFilterCurrency } from "@/lib/hooks/usePriceFilterCurrency/usePriceFilterCurrency";
 
 const ProductFilters = ({ filters, onChange, onApply, onClear, onClose }: { filters: CatalogueFilters; onChange: (next: Partial<CatalogueFilters>) => void; onApply: () => void; onClear: () => void; onClose?: () => void }) => {
   const price = usePriceFilterCurrency(filters, onChange);
+  const categoryQuery = useCategories();
+  const categories = categoryQuery.data ?? [];
   const t = useTranslations("ProductCatalogue");
-  const tCategories = useTranslations("Hero.categories");
 
   return <div className="flex h-full min-h-0 flex-col bg-background">
     <div className="flex shrink-0 items-center justify-between border-b border-border px-4 py-3.5">
@@ -30,10 +32,11 @@ const ProductFilters = ({ filters, onChange, onApply, onClear, onClose }: { filt
           <label className="flex cursor-pointer items-center gap-2 rounded px-1 py-1.5 text-sm text-muted-foreground hover:bg-muted/60">
             <input type="radio" name="category" checked={!filters.category} onChange={() => onChange({ category: "" })} className="accent-(--orange)" /> {t("filters.allCategories")}
           </label>
-          {categories.slice(0, 9).map((category) => (
+          <CategoryQueryState loading={categoryQuery.isLoadingCurrentData} error={categoryQuery.isError} empty={categories.length === 0} onRetry={() => void categoryQuery.refetch()} />
+          {categories.map((category) => (
             <label key={category.id} className="flex cursor-pointer items-center gap-2 rounded px-1 py-1.5 text-sm text-muted-foreground hover:bg-muted/60 hover:text-foreground">
               <input type="radio" name="category" checked={filters.category === category.id} onChange={() => onChange({ category: category.id })} className="accent-(--orange)" />
-              <span className="truncate">{tCategories.has(category.category) ? tCategories(category.category) : category.category}</span>
+              <span className="truncate">{category.name}</span>
             </label>
           ))}
         </div>

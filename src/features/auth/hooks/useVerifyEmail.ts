@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
 
+import { safeReturnUrl } from "../helpers/routeAccess";
 import { resendOtp, verifyEmail } from "../api";
 import { isEmailValid } from "../helpers";
 import { promiseErrorFunction } from "@/lib/helpers/promiseError";
@@ -17,9 +18,11 @@ const OTP_EXPIRY_SECONDS = 10 * 60;
 export const useVerifyEmail = ({
   email,
   token,
+  returnUrl,
 }: {
   email: string;
   token: string;
+  returnUrl?: string;
 }) => {
   const t = useTranslations("Auth.verifyEmail");
   const router = useRouter();
@@ -47,7 +50,8 @@ export const useVerifyEmail = ({
     mutationFn: verifyEmail,
     onSuccess: () => {
       toast.success(t("success"));
-      router.push(routes.login);
+      const intended = safeReturnUrl(returnUrl);
+      router.push(intended ? `${routes.login}?${new URLSearchParams({ returnUrl: intended })}` : routes.login);
     },
     onError: (error) => promiseErrorFunction(error, t("verifyError")),
   });

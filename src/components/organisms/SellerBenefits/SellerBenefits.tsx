@@ -13,7 +13,7 @@ const SellerBenefits = () => {
       <ScrollReveal>
         <div className="mx-auto mb-12 max-w-xl text-center">
           <h2 className="heading-font text-2xl font-bold sm:text-3xl">{t("benefits.title")}</h2>
-          <p className="mt-3 text-sm text-muted-foreground">{t("benefits.subtitle")}</p>
+          <p className="text-body mt-3 text-muted-foreground">{t("benefits.subtitle")}</p>
         </div>
       </ScrollReveal>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">

@@ -2,13 +2,16 @@
 
 import { useCallback, useState } from "react";
 import dynamic from "next/dynamic";
-import { X } from "lucide-react";
+import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { useGetAllRoutes } from "@/lib/hooks/useGetAllRoutes";
+import { X, ArrowUpRight } from "lucide-react";
 
 import Logo from "@/components/atoms/Logo/Logo";
 import SidebarSection from "@/features/dashboard/components/molecules/SidebarSection/SidebarSection";
 import SellerPromoCard from "@/features/dashboard/components/molecules/SellerPromoCard/SellerPromoCard";
 import SellerReviewStatusCard from "@/features/dashboard/components/molecules/SellerReviewStatusCard/SellerReviewStatusCard";
-import { useStore } from "@/store/authStore";
+import { useSellerVerificationStatus } from "@/features/dashboard/hooks/useSellerVerificationStatus";
 import { DashboardNavSection } from "@/features/dashboard/types";
 
 const BecomeSellerModal = dynamic(
@@ -28,10 +31,10 @@ const DashboardSidebar = ({
   onNavigate?: () => void;
   onClose?: () => void;
 }) => {
+  const t = useTranslations("SellerWorkspace");
+  const { routes } = useGetAllRoutes();
   const [modalOpen, setModalOpen] = useState(false);
-  const sellerStatus =
-    useStore((state) => state.currentUser?.sellerVerificationStatus) ??
-    "not_requested";
+  const { status: sellerStatus, data, canSubmit } = useSellerVerificationStatus();
 
   const handleOpenModal = useCallback(() => setModalOpen(true), []);
 
@@ -61,17 +64,19 @@ const DashboardSidebar = ({
         ))}
       </nav>
 
-      {sellerStatus !== "approved" && (
+      {sellerStatus === "approved" && <div className="p-3.5"><Link prefetch={false} href={routes.seller} className="flex items-center justify-between rounded-2xl bg-(--brown) p-5 text-sm font-bold text-white">{t("title")}<ArrowUpRight size={18} /></Link></div>}
+
+      {(sellerStatus === "pending" || canSubmit) && (
         <div className="p-3.5">
           {sellerStatus === "pending" ? (
-            <SellerReviewStatusCard />
+            <Link prefetch={false} href={routes.sellerStatus}><SellerReviewStatusCard /></Link>
           ) : (
-            <SellerPromoCard onOpen={handleOpenModal} />
+            <SellerPromoCard onOpen={handleOpenModal} rejected={sellerStatus === "rejected"} rejectionReason={data?.rejectionReason} />
           )}
         </div>
       )}
 
-      <BecomeSellerModal open={modalOpen} onOpenChange={setModalOpen} />
+      <BecomeSellerModal open={modalOpen && canSubmit} onOpenChange={setModalOpen} />
     </div>
   );
 };

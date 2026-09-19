@@ -5,10 +5,13 @@ import { useRef, useState } from "react";
 import CategoryCard from "@/components/atoms/CategoryCard/CategoryCard";
 import CategoryFlyoutOverlay from "@/components/atoms/CategoryFlyoutOverlay/CategoryFlyoutOverlay";
 
-import { categories } from "@/lib/constants/dummyData";
+import { useCategoryTree } from "@/features/categories/hooks/useCategories";
+import CategoryQueryState from "@/features/categories/components/molecules/CategoryQueryState/CategoryQueryState";
 import { useTranslations } from "next-intl";
 
 const CategoryPanel = () => {
+  const categoryQuery = useCategoryTree();
+  const categories = categoryQuery.data ?? [];
   const t = useTranslations("Hero.categories");
 
   const [activeIdx, setActiveIdx] = useState<number | null>(null);
@@ -32,6 +35,7 @@ const CategoryPanel = () => {
       </h3>
 
       <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain pb-1">
+        <CategoryQueryState loading={categoryQuery.isLoadingCurrentData} error={categoryQuery.isError} empty={categories.length === 0} onRetry={() => void categoryQuery.refetch()} />
         {categories.map((cat, idx) => {
           const onEnter = () => handleEnter(idx);
 
@@ -42,7 +46,7 @@ const CategoryPanel = () => {
               onMouseEnter={onEnter}
               onMouseLeave={handleLeave}
               icon={cat?.icon}
-              name={t.has(cat.category) ? t(cat.category) : cat.category}
+              name={cat.name}
               id={cat.id}
             />
           );

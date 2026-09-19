@@ -10,11 +10,7 @@ import RatingStar from "../RatingStar/RatingStar";
 import { ProductData } from "@/features/products/types";
 import { useGetAllRoutes } from "@/lib/hooks/useGetAllRoutes";
 import { useCurrency } from "@/lib/hooks/useCurrency/useCurrency";
-import {
-  convertCurrency,
-  formatAmount,
-  getCurrencySymbol,
-} from "@/lib/helpers/currency/currency";
+
 
 const ProductCard = ({
   productName,
@@ -29,8 +25,7 @@ const ProductCard = ({
   totalReviews,
 }: ProductData) => {
   const { routes } = useGetAllRoutes();
-  const { currency: selectedCurrency } = useCurrency();
-  const convertedAmount = convertCurrency(amount, currency, selectedCurrency);
+  const { formatMoney } = useCurrency();
 
   return (
     <article className="relative flex h-full min-w-0 flex-col overflow-hidden rounded-lg bg-background transition-shadow duration-300 hover:shadow">
@@ -58,10 +53,7 @@ const ProductCard = ({
               {productName}
             </p>
             <p className="mt-auto flex min-w-0 items-baseline text-xs font-medium sm:text-sm">
-              <span className="mr-0.5 shrink-0 font-sans font-semibold" aria-label={selectedCurrency}>
-                {getCurrencySymbol(selectedCurrency)}
-              </span>
-              <span className="truncate">{formatAmount(convertedAmount)}</span>{" "}
+              <span className="truncate" aria-label={currency}>{formatMoney(amount, currency)}</span>{" "}
               <span className="text-[9px] font-light sm:text-[11px]">
                 &nbsp;/ {unit}
               </span>

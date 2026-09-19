@@ -16,7 +16,7 @@ const SellerBenefitCard = ({
     </div>
     <div className="space-y-2">
       <h3 className="text-sm font-bold">{title}</h3>
-      <p className="text-xs leading-5 text-muted-foreground">{description}</p>
+      <p className="text-body text-muted-foreground">{description}</p>
     </div>
   </article>
 );

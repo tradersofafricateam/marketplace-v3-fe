@@ -16,7 +16,7 @@ const SellerReviewStatusCard = () => {
           {t("pendingTitle")}
         </p>
       </div>
-      <p className="mt-2 text-xs leading-5 text-foreground/70">
+      <p className="text-body mt-2 text-foreground/70">
         {t("pendingDescription")}
       </p>
     </div>

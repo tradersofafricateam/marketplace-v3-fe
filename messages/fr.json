@@ -152,7 +152,10 @@
       "backendDeveloper": "Développeur back-end",
       "graphicsContentManager": "Responsable graphisme et contenu",
       "hrAdmin": "RH/Administration",
-      "strategicPartnerships": "Partenariats stratégiques"
+      "strategicPartnerships": "Partenariats stratégiques",
+      "headOfOperations": "Responsable des opérations",
+      "socialMediaManagerContentCreator": "Responsable des réseaux sociaux / Créatrice de contenu",
+      "customerRepresentative": "Chargée de clientèle"
     }
   },
   "becomeSeller": {
@@ -566,10 +569,28 @@
       "title": "Vendez sur TOFA",
       "description": "Touchez plus d'acheteurs à travers les marchés africains.",
       "cta": "Devenir vendeur",
-      "pendingTitle": "Candidature en cours d'examen",
-      "pendingDescription": "Nous examinons votre candidature de vendeur. Nous vous informerons dès son approbation."
+      "pendingTitle": "En attente d’approbation",
+      "pendingDescription": "Nous examinons votre candidature de vendeur. Nous vous informerons dès son approbation.",
+      "rejectedTitle": "Candidature refusée",
+      "rejectedDescription": "Veuillez modifier votre candidature et la soumettre à nouveau.",
+      "resubmit": "Soumettre à nouveau"
     },
     "becomeSellerModal": {
+      "businessDetails": "Informations sur l’entreprise",
+      "businessLocation": "Adresse de l’entreprise",
+      "brandIdentity": "Votre marque",
+      "logoHint": "Donnez un visage à votre boutique. Ajoutez le logo de votre entreprise.",
+      "chooseLogo": "Choisir un logo",
+      "changeLogo": "Changer le logo",
+      "bioPlaceholder": "Présentez votre activité et ce qui rend votre entreprise unique.",
+      "companyName": "Nom de l’entreprise",
+      "registrationNumber": "Numéro d’immatriculation (facultatif)",
+      "businessType": "Type d’activité",
+      "yearsOfBusiness": "Années d’activité",
+      "companyAddress": "Adresse de l’entreprise",
+      "pickupAddress": "Adresse de collecte",
+      "companyBio": "Présentation de l’entreprise (facultatif)",
+      "companyLogo": "Logo de l’entreprise (facultatif)",
       "title": "Devenir vendeur",
       "description": "Parlez-nous de votre entreprise. Nous examinerons votre candidature et reviendrons vers vous rapidement.",
       "storeName": "Nom de la boutique",
@@ -587,7 +608,7 @@
       "submitError": "Impossible d'envoyer votre candidature. Réessayez."
     },
     "topbar": {
-      "overviewTitle": "Tableau de bord",
+      "overviewTitle": "Mon tableau de bord",
       "loading": "Chargement de votre tableau de bord…",
       "messages": "Messages",
       "notifications": "Notifications"
@@ -705,5 +726,26 @@
     "helpful": "Utile",
     "notHelpful": "Pas utile",
     "wasHelpful": "Cet avis était-il utile ?"
+  },
+  "CategoryData": {
+    "title": "Catégories",
+    "loading": "Chargement des catégories",
+    "error": "Impossible de charger les catégories.",
+    "retry": "Réessayer",
+    "empty": "Aucune catégorie disponible.",
+    "search": "Rechercher des catégories",
+    "noResults": "Aucune catégorie correspondante.",
+    "selected": "{count}/{max} sélectionnées",
+    "unavailableSelected": "Catégorie sélectionnée indisponible — cliquer pour retirer"
+  },
+  "CurrencyData": {
+    "label": "Devise",
+    "loading": "Chargement des devises…",
+    "error": "Impossible de charger les devises.",
+    "retry": "Réessayer les devises",
+    "empty": "Aucune devise disponible",
+    "select": "Choisir une devise",
+    "unavailable": "Indisponible",
+    "unsupported": "Choisissez une devise actuellement prise en charge."
   }
 }

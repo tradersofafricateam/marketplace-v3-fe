@@ -1,14 +1,18 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
+import { useFreshQuery } from "@/lib/hooks/useFreshQuery";
 
 import { getBuyerAnalyticsOverview } from "@/features/dashboard/api";
+import { useStore } from "@/store/authStore";
 import type { BuyerAnalyticsDateRange } from "@/features/dashboard/types";
 
-export const useBuyerAnalyticsOverview = (range: BuyerAnalyticsDateRange) =>
-  useQuery({
-    queryKey: ["buyerAnalyticsOverview", range.dateFrom, range.dateTo],
+export const useBuyerAnalyticsOverview = (range: BuyerAnalyticsDateRange) => {
+  const userId = useStore((state) => state.currentUser?.id);
+  return useFreshQuery({
+    queryKey: ["buyerAnalyticsOverview", userId, range.dateFrom, range.dateTo],
     queryFn: () => getBuyerAnalyticsOverview(range),
     staleTime: 60 * 1000,
-    placeholderData: (previousData) => previousData,
+    enabled: !!userId,
   });
+
+};

@@ -11,7 +11,7 @@ const ProductDescriptionSection = ({
   locale: string;
 }) => {
   return (
-    <p className="text-sm leading-7 whitespace-pre-line text-muted-foreground sm:text-base">
+    <p className="text-body whitespace-pre-line text-muted-foreground">
       {getLocalizedText(product.productDescription, locale)}
     </p>
   );

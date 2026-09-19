@@ -152,7 +152,10 @@
       "backendDeveloper": "Msanidi wa Backend",
       "graphicsContentManager": "Meneja wa Michoro na Maudhui",
       "hrAdmin": "Rasilimali Watu/Utawala",
-      "strategicPartnerships": "Ushirikiano wa Kimkakati"
+      "strategicPartnerships": "Ushirikiano wa Kimkakati",
+      "headOfOperations": "Mkuu wa Uendeshaji",
+      "socialMediaManagerContentCreator": "Meneja wa Mitandao ya Kijamii / Mtayarishaji wa Maudhui",
+      "customerRepresentative": "Mwakilishi wa Huduma kwa Wateja"
     }
   },
   "becomeSeller": {
@@ -565,11 +568,29 @@
     "sellerPromo": {
       "title": "Anza kuuza kwenye TOFA",
       "description": "Fikia wanunuzi wengi zaidi katika masoko ya Afrika.",
-      "cta": "Kuwa Muuzaji",
-      "pendingTitle": "Ombi linakaguliwa",
-      "pendingDescription": "Tunakagua ombi lako la uuzaji. Tutakujulisha mara litakapoidhinishwa."
+      "cta": "Kuwa muuzaji",
+      "pendingTitle": "Inasubiri idhini",
+      "pendingDescription": "Tunakagua ombi lako la uuzaji. Tutakujulisha mara litakapoidhinishwa.",
+      "rejectedTitle": "Ombi limekataliwa",
+      "rejectedDescription": "Sasisha ombi lako na ulitume tena.",
+      "resubmit": "Tuma ombi tena"
     },
     "becomeSellerModal": {
+      "businessDetails": "Maelezo ya biashara",
+      "businessLocation": "Mahali pa biashara",
+      "brandIdentity": "Chapa yako",
+      "logoHint": "Ipe duka lako utambulisho. Ongeza nembo ya kampuni yako.",
+      "chooseLogo": "Chagua nembo",
+      "changeLogo": "Badilisha nembo",
+      "bioPlaceholder": "Waeleze wanunuzi shughuli za kampuni yako na kinachoifanya iwe ya kipekee.",
+      "companyName": "Jina la kampuni",
+      "registrationNumber": "Nambari ya usajili (hiari)",
+      "businessType": "Aina ya biashara",
+      "yearsOfBusiness": "Miaka ya biashara",
+      "companyAddress": "Anwani ya kampuni",
+      "pickupAddress": "Anwani ya kuchukua bidhaa",
+      "companyBio": "Maelezo ya kampuni (hiari)",
+      "companyLogo": "Nembo ya kampuni (hiari)",
       "title": "Kuwa muuzaji",
       "description": "Tuambie kuhusu biashara yako. Tutakagua ombi lako na kukujibu hivi karibuni.",
       "storeName": "Jina la duka",
@@ -587,7 +608,7 @@
       "submitError": "Hatukuweza kutuma ombi lako. Jaribu tena."
     },
     "topbar": {
-      "overviewTitle": "Dashibodi",
+      "overviewTitle": "Dashibodi yangu",
       "loading": "Inapakia dashibodi yako…",
       "messages": "Ujumbe",
       "notifications": "Arifa"
@@ -705,5 +726,26 @@
     "helpful": "Imesaidia",
     "notHelpful": "Haijasaidia",
     "wasHelpful": "Je, hii ilisaidia?"
+  },
+  "CategoryData": {
+    "title": "Kategoria",
+    "loading": "Inapakia kategoria",
+    "error": "Imeshindwa kupakia kategoria.",
+    "retry": "Jaribu tena",
+    "empty": "Hakuna kategoria zinazopatikana.",
+    "search": "Tafuta kategoria",
+    "noResults": "Hakuna kategoria zinazolingana.",
+    "selected": "{count}/{max} zimechaguliwa",
+    "unavailableSelected": "Kategoria iliyochaguliwa haipatikani — bonyeza kuondoa"
+  },
+  "CurrencyData": {
+    "label": "Sarafu",
+    "loading": "Inapakia sarafu…",
+    "error": "Imeshindwa kupakia sarafu.",
+    "retry": "Jaribu sarafu tena",
+    "empty": "Hakuna sarafu zinazopatikana",
+    "select": "Chagua sarafu",
+    "unavailable": "Haipatikani",
+    "unsupported": "Chagua sarafu inayotumika kwa sasa."
   }
 }

@@ -14,13 +14,15 @@ export const validateSellerUpgradeForm = (
     errors.storeName = "Store name is required";
   }
 
-  if (!values.businessCategory.trim()) {
-    errors.businessCategory = "Business category is required";
+  if (!values.companyName.trim()) errors.companyName = "Company name is required";
+  if (!values.businessType.trim()) errors.businessType = "Business type is required";
+  if (!values.yearsOfBusiness.trim()) {
+    errors.yearsOfBusiness = "Years of business is required";
+  } else if (!Number.isFinite(Number(values.yearsOfBusiness)) || Number(values.yearsOfBusiness) < 0) {
+    errors.yearsOfBusiness = "Enter a valid non-negative number of years";
   }
-
-  if (!values.phoneNumber.trim()) {
-    errors.phoneNumber = "Phone number is required";
-  }
+  if (!values.companyAddress.trim()) errors.companyAddress = "Company address is required";
+  if (!values.pickupAddress.trim()) errors.pickupAddress = "Pickup address is required";
 
   if (!values.country.trim()) {
     errors.country = "Country is required";

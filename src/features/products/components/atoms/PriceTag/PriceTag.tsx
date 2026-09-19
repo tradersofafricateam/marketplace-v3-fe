@@ -1,7 +1,6 @@
 "use client";
 
 import { useCurrency } from "@/lib/hooks/useCurrency/useCurrency";
-import { convertCurrency, getCurrencySymbol, formatAmount } from "@/lib/helpers/currency/currency";
 
 const PriceTag = ({
   price,
@@ -16,19 +15,16 @@ const PriceTag = ({
   unit?: string;
   size?: "md" | "lg";
 }) => {
-  const { currency: selectedCurrency } = useCurrency();
+  const { formatMoney } = useCurrency();
   const finalPrice = discount ? price - (price * discount) / 100 : price;
-  const convertedFinal = convertCurrency(finalPrice, currency, selectedCurrency);
-  const convertedOriginal = convertCurrency(price, currency, selectedCurrency);
-  const symbol = getCurrencySymbol(selectedCurrency);
+
 
   return (
     <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
       <p
         className={`font-sans font-bold text-foreground ${size === "lg" ? "text-2xl sm:text-3xl" : "text-lg"}`}
       >
-        {symbol}
-        {formatAmount(convertedFinal)}
+        {formatMoney(finalPrice, currency)}
         {unit && (
           <span className="ml-1 text-xs font-normal text-muted-foreground">/{unit}</span>
         )}
@@ -36,8 +32,7 @@ const PriceTag = ({
       {discount ? (
         <>
           <p className="text-sm text-muted-foreground line-through">
-            {symbol}
-            {formatAmount(convertedOriginal)}
+            {formatMoney(price, currency)}
           </p>
           <span className="rounded-full bg-(--orange)/10 px-2 py-0.5 text-xs font-semibold text-(--orange)">
             -{discount}%

@@ -47,7 +47,7 @@ const SellerPlanCard = ({
       )}
     />
     <h3 className="font-bold">{name}</h3>
-    <p className="mt-1 text-xs text-muted-foreground">{description}</p>
+    <p className="text-body mt-1 text-muted-foreground">{description}</p>
     <p className="my-5 text-3xl font-bold">
       {price}
       {period && (

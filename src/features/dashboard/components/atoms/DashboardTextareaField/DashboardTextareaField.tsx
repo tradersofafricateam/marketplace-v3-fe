@@ -24,8 +24,8 @@ const DashboardTextareaField = ({
       aria-invalid={Boolean(error)}
       className={cn(
         "min-h-24 w-full resize-y rounded-xl border border-border bg-background px-3.5 py-3 text-sm text-foreground outline-none transition-all placeholder:text-muted-foreground/70",
-        "focus:border-(--orange) focus:ring-4 focus:ring-(--orange)/12",
-        "aria-invalid:border-destructive aria-invalid:focus:ring-destructive/15",
+        "focus:border-(--orange)",
+        "aria-invalid:border-destructive",
         className,
       )}
       {...props}

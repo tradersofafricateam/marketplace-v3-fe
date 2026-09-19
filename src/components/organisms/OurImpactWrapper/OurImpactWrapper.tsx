@@ -4,6 +4,10 @@ import SectionWrapper from "@/components/atoms/SectionWrapper/SectionWrapper";
 import AnimatedHeading from "@/components/atoms/AnimatedHeading/AnimatedHeading";
 import ScrollReveal from "@/components/atoms/ScrollReveal/ScrollReveal";
 
+import ImpactOverview from "../ImpactOverview/ImpactOverview";
+import ImpactCapacity from "../ImpactCapacity/ImpactCapacity";
+import ImpactCommunity from "../ImpactCommunity/ImpactCommunity";
+
 const OurImpactWrapper = () => {
   const t = useTranslations("ourImpact");
 
@@ -31,9 +35,9 @@ const OurImpactWrapper = () => {
           </ScrollReveal>
         </SectionWrapper>
       </div>
-      <SectionWrapper>
-        <div className=""></div>
-      </SectionWrapper>
+      <ImpactOverview />
+      <ImpactCapacity />
+      <ImpactCommunity />
     </div>
   );
 };

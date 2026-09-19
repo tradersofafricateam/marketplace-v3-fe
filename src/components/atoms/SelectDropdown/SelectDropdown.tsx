@@ -21,6 +21,7 @@ const SelectDropdown = ({
   return (
     <div ref={ref} className="relative">
       <button
+        type="button"
         onClick={() => setOpen((p) => !p)}
         className="flex items-center gap-1.5 text-xs font-medium hover:text-(--orange) transition-colors duration-300 px-2 py-1 rounded-lg hover:bg-(--orange-light)"
         aria-expanded={open}
@@ -34,13 +35,14 @@ const SelectDropdown = ({
 
       {open && (
         <div
-          className={`absolute top-full mt-1.5 w-44 bg-background rounded-xl shadow-xl border border-slate-100 overflow-hidden z-50 ${
+          className={`absolute top-full mt-1.5 w-44 bg-background rounded-xl shadow-xl border border-slate-100 max-h-80 overflow-y-auto z-50 ${
             align === "right" ? "right-0" : "left-0"
           }`}
           style={{ animation: "dropIn 0.18s ease" }}
         >
           {options.map((opt) => (
             <button
+              type="button"
               key={opt.value}
               onClick={() => {
                 onSelect(opt.value);
