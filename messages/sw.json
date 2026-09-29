@@ -747,5 +747,105 @@
     "select": "Chagua sarafu",
     "unavailable": "Haipatikani",
     "unsupported": "Chagua sarafu inayotumika kwa sasa."
+  },
+  "MessageCenter": {
+    "eyebrow": "Mahusiano yako sokoni",
+    "title": "Ujumbe",
+    "subtitle": "Weka mazungumzo yako yote pamoja, unaponunua au kuuza.",
+    "inbox": "Kikasha",
+    "conversations": "Mazungumzo",
+    "conversation": "Mazungumzo ya sokoni",
+    "search": "Tafuta mazungumzo",
+    "all": "Yote",
+    "unread": "Hayajasomwa",
+    "unreadCount": "Ujumbe {count} haujasomwa",
+    "loading": "Inapakia…",
+    "loadError": "Hatukuweza kupakia ujumbe wako. Jaribu tena.",
+    "retry": "Jaribu tena",
+    "refresh": "Onyesha ujumbe mpya",
+    "attachment": "Kiambatisho",
+    "attachmentUnavailable": "Kiambatisho hiki hakipatikani.",
+    "openAttachment": "Fungua {name}",
+    "open": "Fungua",
+    "noMessages": "Anzisha mazungumzo",
+    "explore": "Vinjari soko",
+    "pagination": "Kurasa za mazungumzo",
+    "previous": "Ukurasa uliotangulia",
+    "next": "Ukurasa unaofuata",
+    "page": "{page} kati ya {total}",
+    "back": "Rudi kwenye kikasha",
+    "verifiedSeller": "Muuzaji aliyethibitishwa",
+    "viewStore": "Tazama duka",
+    "requestQuote": "Omba bei",
+    "older": "Pakia ujumbe wa awali",
+    "today": "Leo",
+    "yesterday": "Jana",
+    "reply": "Jibu",
+    "edit": "Hariri ujumbe",
+    "delete": "Futa ujumbe",
+    "report": "Ripoti ujumbe",
+    "deleted": "Ujumbe huu umefutwa.",
+    "edited": "Umehaririwa",
+    "replyingTo": "Unamjibu {name}",
+    "cancelReply": "Ghairi jibu",
+    "compose": "Andika ujumbe…",
+    "send": "Tuma ujumbe",
+    "emoji": "Chagua emoji",
+    "composerHint": "Enter kutuma · Shift + Enter kuanza mstari mpya",
+    "sending": "Inatuma…",
+    "sendError": "Ujumbe haujatumwa. Jaribu tena bila kutuma nakala nyingine.",
+    "discard": "Ondoa",
+    "readError": "Hali ya kusoma haikusasishwa. Onyesha upya ili ujaribu tena.",
+    "blocked": "Mazungumzo haya yamewekewa kizuizi. Historia yake bado inapatikana.",
+    "editDescription": "Hariri ujumbe wako ndani ya muda unaoruhusiwa na soko.",
+    "deleteDescription": "Ungependa kufuta ujumbe huu? Taarifa ya kufutwa itabaki.",
+    "reportDescription": "Tueleze kilichotokea. Timu yetu itapitia ripoti yako.",
+    "reason": "Sababu",
+    "details": "Maelezo zaidi (si lazima)",
+    "message": "Ujumbe",
+    "cancel": "Ghairi",
+    "saving": "Inahifadhi…",
+    "save": "Hifadhi mabadiliko",
+    "reported": "Ujumbe umeripotiwa.",
+    "actionError": "Hatukuweza kukamilisha kitendo hiki. Jaribu tena.",
+    "startError": "Hatukuweza kufungua mazungumzo haya. Jaribu tena.",
+    "selfMessage": "Huwezi kujitumia ujumbe.",
+    "messagingUnavailable": "Ujumbe haupatikani kwa muuzaji huyu.",
+    "status": {
+      "sent": "Umetumwa",
+      "delivered": "Umewasilishwa",
+      "read": "Umesomwa"
+    },
+    "reasons": {
+      "spam": "Barua taka",
+      "abusive_content": "Maudhui ya matusi",
+      "fraud_attempt": "Jaribio la udanganyifu",
+      "payment_scam": "Utapeli wa malipo",
+      "inappropriate_content": "Maudhui yasiyofaa",
+      "off_platform_solicitation": "Ushawishi wa kufanya shughuli nje ya jukwaa",
+      "other": "Nyingine"
+    },
+    "empty": {
+      "inbox": {
+        "title": "Uhusiano wako unaofuata unaanzia hapa",
+        "description": "Ukimtumia mtumiaji mwingine ujumbe, mazungumzo yenu yataonekana hapa."
+      },
+      "selection": {
+        "title": "Mazungumzo mazuri hufungua milango",
+        "description": "Chagua mazungumzo ili usome ujumbe na kuendelea kuzungumza."
+      },
+      "conversation": {
+        "title": "Msalimie {name}",
+        "description": "Uliza kuhusu bidhaa, upatikanaji, vipimo au maswali mengine."
+      },
+      "search": {
+        "title": "Hakuna mazungumzo yaliyopatikana",
+        "description": "Jaribu jina, kampuni au duka lingine."
+      },
+      "unread": {
+        "title": "Umesoma yote",
+        "description": "Hakuna mazungumzo ambayo hayajasomwa. Mengine yapo kwenye Yote."
+      }
+    }
   }
 }

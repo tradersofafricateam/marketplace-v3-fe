@@ -1,6 +1,7 @@
 "use client";
 
 import { useCurrency } from "@/lib/hooks/useCurrency/useCurrency";
+import { useLocale } from "next-intl";
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -22,6 +23,7 @@ const rowActions = (status: SellerProductListItem["status"]) => ({
 });
 
 const SellerProductsTable = ({ products }: { products: SellerProductListItem[] }) => {
+  const locale = useLocale();
   const { formatMoney } = useCurrency();
   const { routes } = useGetAllRoutes();
   const { updateStatus, isUpdatingStatus } = useUpdateProductStatus();
@@ -46,16 +48,17 @@ const SellerProductsTable = ({ products }: { products: SellerProductListItem[] }
           {products.map((product) => {
             const actions = rowActions(product.status);
             const primaryImage = product.images.find((image) => image.isPrimary) ?? product.images[0];
+            const imageUrl = product.mainImage || primaryImage?.url;
             return (
               <tr key={product.id} className="border-b border-border last:border-0">
                 <td className="py-3 pl-4">
                   <div className="flex items-center gap-3">
                     <span className="relative size-11 shrink-0 overflow-hidden rounded-lg bg-muted">
-                      {primaryImage && (
-                        <Image src={primaryImage.url} alt="" fill sizes="44px" className="object-cover" />
+                      {imageUrl && (
+                        <Image src={imageUrl} alt="" fill sizes="44px" className="object-cover" />
                       )}
                     </span>
-                    <span className="text-sm font-semibold">{getLocalizedText(product.productName, "en")}</span>
+                    <span className="text-sm font-semibold">{getLocalizedText(product.productName, locale)}</span>
                   </div>
                 </td>
                 <td className="py-3">
@@ -65,7 +68,7 @@ const SellerProductsTable = ({ products }: { products: SellerProductListItem[] }
                   <InventoryStatusBadge status={product.inventoryStatus} />
                 </td>
                 <td className="py-3 text-sm font-medium">
-                  {product.productType === "SIMPLE" ? (product.price == null ? "—" : formatMoney(product.price, product.currency)) : "Varies"}
+                  {product.productType === "SIMPLE" ? (product.price == null ? "—" : formatMoney(product.finalPrice ?? product.price, product.currency)) : "Varies"}
                 </td>
                 <td className="py-3 pr-4">
                   <div className="flex items-center justify-end gap-1">
@@ -130,7 +133,7 @@ const SellerProductsTable = ({ products }: { products: SellerProductListItem[] }
         title="Delete this product?"
         description={
           pendingDeleteProduct
-            ? `"${getLocalizedText(pendingDeleteProduct.productName, "en")}" will be removed from your catalog. This can't be undone.`
+            ? `"${getLocalizedText(pendingDeleteProduct.productName, locale)}" will be removed from your catalog. This can't be undone.`
             : ""
         }
         pending={isDeleting}

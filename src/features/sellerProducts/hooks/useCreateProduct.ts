@@ -9,7 +9,11 @@ import { mapFormStateToPayload } from "../helpers/mapFormStateToPayload";
 import type { ProductFormState } from "../types";
 import { promiseErrorFunction } from "@/lib/helpers/promiseError";
 
-export const useCreateProduct = ({ onSuccess }: { onSuccess: (productId: string) => void }) => {
+export const useCreateProduct = ({
+  onSuccess,
+}: {
+  onSuccess: (productId: string) => void;
+}) => {
   const t = useTranslations("SellerProducts.wizard");
   const client = useQueryClient();
 
@@ -30,7 +34,12 @@ export const useCreateProduct = ({ onSuccess }: { onSuccess: (productId: string)
         ),
       ]);
 
-      return { product, imagesFailed: imageResults.some((result) => result.status === "rejected") };
+      return {
+        product,
+        imagesFailed: imageResults.some(
+          (result) => result.status === "rejected",
+        ),
+      };
     },
     onSuccess: ({ product, imagesFailed }) => {
       toast.success(imagesFailed ? t("createdWithImageWarning") : t("created"));

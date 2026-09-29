@@ -1191,5 +1191,105 @@
     "communityTitleLineTwo": "our Community",
     "communityDescription": "The aim of TOFA Academy is to Build a Network of Credible Suppliers all over Africa in Order to Meet Both Local and Global Demand for Agro-Commodities and African Products.",
     "getStarted": "Get Started"
+  },
+  "MessageCenter": {
+    "eyebrow": "Your marketplace connections",
+    "title": "Messages",
+    "subtitle": "Keep every conversation in one place, wherever you buy or sell.",
+    "inbox": "Inbox",
+    "conversations": "Conversations",
+    "conversation": "Marketplace conversation",
+    "search": "Search conversations",
+    "all": "All",
+    "unread": "Unread",
+    "unreadCount": "{count} unread messages",
+    "loading": "Loading…",
+    "loadError": "We couldn’t load your messages. Please try again.",
+    "retry": "Retry",
+    "refresh": "Refresh messages",
+    "attachment": "Attachment",
+    "attachmentUnavailable": "This attachment is unavailable.",
+    "openAttachment": "Open {name}",
+    "open": "Open",
+    "noMessages": "Start the conversation",
+    "explore": "Explore marketplace",
+    "pagination": "Conversation pages",
+    "previous": "Previous page",
+    "next": "Next page",
+    "page": "{page} of {total}",
+    "back": "Back to inbox",
+    "verifiedSeller": "Verified seller",
+    "viewStore": "View store",
+    "requestQuote": "Request quote",
+    "older": "Load earlier messages",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "reply": "Reply",
+    "edit": "Edit message",
+    "delete": "Delete message",
+    "report": "Report message",
+    "deleted": "This message was deleted.",
+    "edited": "Edited",
+    "replyingTo": "Replying to {name}",
+    "cancelReply": "Cancel reply",
+    "compose": "Type a message…",
+    "send": "Send message",
+    "emoji": "Choose an emoji",
+    "composerHint": "Enter to send · Shift + Enter for a new line",
+    "sending": "Sending…",
+    "sendError": "Message not sent. You can retry without sending a duplicate.",
+    "discard": "Discard",
+    "readError": "Read receipt could not be updated. Refresh to retry.",
+    "blocked": "This conversation is restricted. Your message history is still available.",
+    "editDescription": "Update your message. Editing is subject to the marketplace’s time limit.",
+    "deleteDescription": "Delete this message? A deleted-message notice will remain in the conversation.",
+    "reportDescription": "Tell us what happened. Our team will review your report.",
+    "reason": "Reason",
+    "details": "Additional details (optional)",
+    "message": "Message",
+    "cancel": "Cancel",
+    "saving": "Saving…",
+    "save": "Save changes",
+    "reported": "Message reported successfully.",
+    "actionError": "We couldn’t complete that action. Please try again.",
+    "startError": "We couldn’t open this conversation. Please try again.",
+    "selfMessage": "You cannot message yourself.",
+    "messagingUnavailable": "Messaging is unavailable for this seller.",
+    "status": {
+      "sent": "Sent",
+      "delivered": "Delivered",
+      "read": "Read"
+    },
+    "reasons": {
+      "spam": "Spam",
+      "abusive_content": "Abusive content",
+      "fraud_attempt": "Fraud attempt",
+      "payment_scam": "Payment scam",
+      "inappropriate_content": "Inappropriate content",
+      "off_platform_solicitation": "Off-platform solicitation",
+      "other": "Other"
+    },
+    "empty": {
+      "inbox": {
+        "title": "Your next connection starts here",
+        "description": "When you message another marketplace user, your conversations will appear here."
+      },
+      "selection": {
+        "title": "A good conversation goes a long way",
+        "description": "Choose a conversation to read messages and continue the discussion."
+      },
+      "conversation": {
+        "title": "Say hello to {name}",
+        "description": "Ask about products, availability, specifications or other enquiries."
+      },
+      "search": {
+        "title": "No conversations found",
+        "description": "Try another name, company or store."
+      },
+      "unread": {
+        "title": "You’re all caught up",
+        "description": "There are no unread conversations. Your other chats are in All."
+      }
+    }
   }
 }

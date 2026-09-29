@@ -14,18 +14,27 @@ import type { ProductStatus } from "../../../types";
 
 const SellerProductsListTemplate = () => {
   const { routes } = useGetAllRoutes();
-  const [statusFilter, setStatusFilter] = useState<ProductStatus | "all">("all");
+  const [statusFilter, setStatusFilter] = useState<ProductStatus | "all">(
+    "all",
+  );
+  const [page, setPage] = useState(1);
   const { data, isLoadingCurrentData, isError, refetch } = useSellerProducts(
-    statusFilter === "all" ? {} : { status: statusFilter },
+    { page, limit: 20, ...(statusFilter === "all" ? {} : { status: statusFilter }) },
   );
 
-  const hasNoProductsAtAll = statusFilter === "all" && !isLoadingCurrentData && !isError && data?.items.length === 0;
+  const hasNoProductsAtAll =
+    statusFilter === "all" &&
+    !isLoadingCurrentData &&
+    !isError &&
+    data?.total === 0;
 
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-widest text-(--orange)">Catalog</p>
+          <p className="text-xs font-semibold uppercase tracking-widest text-(--orange)">
+            Catalog
+          </p>
           <h1 className="heading-font mt-1 text-2xl font-bold">Products</h1>
         </div>
         <Link
@@ -45,11 +54,16 @@ const SellerProductsListTemplate = () => {
         <SellerProductsEmptyState />
       ) : (
         <>
-          <ProductFilterTabs value={statusFilter} onChange={setStatusFilter} />
+          <ProductFilterTabs value={statusFilter} onChange={(status) => { setStatusFilter(status); setPage(1); }} />
 
           {isError && (
-            <div role="alert" className="rounded-2xl border border-border p-10 text-center">
-              <p className="text-sm text-muted-foreground">We couldn&apos;t load your products.</p>
+            <div
+              role="alert"
+              className="rounded-2xl border border-border p-10 text-center"
+            >
+              <p className="text-sm text-muted-foreground">
+                We couldn&apos;t load your products.
+              </p>
               <button
                 type="button"
                 onClick={() => void refetch()}
@@ -60,13 +74,30 @@ const SellerProductsListTemplate = () => {
             </div>
           )}
 
-          {!isLoadingCurrentData && !isError && data && data.items.length === 0 && (
-            <p className="rounded-2xl border border-dashed border-border p-10 text-center text-sm text-muted-foreground">
-              No products match this filter.
-            </p>
-          )}
+          {!isLoadingCurrentData &&
+            !isError &&
+            data &&
+            data.items.length === 0 && (
+              <p className="rounded-2xl border border-dashed border-border p-10 text-center text-sm text-muted-foreground">
+                No products match this filter.
+              </p>
+            )}
 
-          {!isLoadingCurrentData && !isError && data && data.items.length > 0 && <SellerProductsTable products={data.items} />}
+          {!isLoadingCurrentData &&
+            !isError &&
+            data &&
+            data.items.length > 0 && (
+              <SellerProductsTable products={data.items} />
+            )}
+          {!isLoadingCurrentData && !isError && data && (data.totalPages > 1 || page > 1) && (
+            <nav aria-label="Product pages" className="flex flex-wrap items-center justify-between gap-3">
+              <p className="text-sm text-muted-foreground">{data.total.toLocaleString()} products · Page {data.page} of {Math.max(1, data.totalPages)}</p>
+              <div className="flex gap-2">
+                <button type="button" disabled={page <= 1} onClick={() => setPage((current) => current - 1)} className="rounded-xl border border-border px-4 py-2 text-sm font-semibold disabled:opacity-40">Previous</button>
+                <button type="button" disabled={page >= data.totalPages} onClick={() => setPage((current) => current + 1)} className="rounded-xl border border-border px-4 py-2 text-sm font-semibold disabled:opacity-40">Next</button>
+              </div>
+            </nav>
+          )}
         </>
       )}
     </div>

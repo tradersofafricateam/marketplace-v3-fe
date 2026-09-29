@@ -1,6 +1,7 @@
 "use client";
 
-import { Bell, Menu, MessageSquare } from "lucide-react";
+import MessageNavLink from "@/features/messages/components/molecules/MessageNavLink";
+import { Bell, Menu } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 import UserMenu from "@/components/molecules/UserMenu/UserMenu";
@@ -35,11 +36,7 @@ const DashboardTopbar = ({
       </div>
 
       <div className="flex items-center gap-1 sm:gap-2">
-        <TopbarIconLink
-          href={routes.messages}
-          icon={MessageSquare}
-          label={t("messages")}
-        />
+        <MessageNavLink href={routes.messages} />
         <TopbarIconLink
           href={routes.notifications}
           icon={Bell}

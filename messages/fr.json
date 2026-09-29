@@ -747,5 +747,105 @@
     "select": "Choisir une devise",
     "unavailable": "Indisponible",
     "unsupported": "Choisissez une devise actuellement prise en charge."
+  },
+  "MessageCenter": {
+    "eyebrow": "Vos contacts sur le marché",
+    "title": "Messages",
+    "subtitle": "Retrouvez toutes vos conversations, que vous achetiez ou vendiez.",
+    "inbox": "Boîte de réception",
+    "conversations": "Conversations",
+    "conversation": "Conversation sur le marché",
+    "search": "Rechercher une conversation",
+    "all": "Toutes",
+    "unread": "Non lues",
+    "unreadCount": "{count} messages non lus",
+    "loading": "Chargement…",
+    "loadError": "Impossible de charger vos messages. Réessayez.",
+    "retry": "Réessayer",
+    "refresh": "Actualiser les messages",
+    "attachment": "Pièce jointe",
+    "attachmentUnavailable": "Cette pièce jointe est indisponible.",
+    "openAttachment": "Ouvrir {name}",
+    "open": "Ouvrir",
+    "noMessages": "Commencer la conversation",
+    "explore": "Explorer le marché",
+    "pagination": "Pages des conversations",
+    "previous": "Page précédente",
+    "next": "Page suivante",
+    "page": "{page} sur {total}",
+    "back": "Retour aux conversations",
+    "verifiedSeller": "Vendeur vérifié",
+    "viewStore": "Voir la boutique",
+    "requestQuote": "Demander un devis",
+    "older": "Charger les messages précédents",
+    "today": "Aujourd’hui",
+    "yesterday": "Hier",
+    "reply": "Répondre",
+    "edit": "Modifier le message",
+    "delete": "Supprimer le message",
+    "report": "Signaler le message",
+    "deleted": "Ce message a été supprimé.",
+    "edited": "Modifié",
+    "replyingTo": "Réponse à {name}",
+    "cancelReply": "Annuler la réponse",
+    "compose": "Écrivez un message…",
+    "send": "Envoyer",
+    "emoji": "Choisir un émoji",
+    "composerHint": "Entrée pour envoyer · Maj + Entrée pour une nouvelle ligne",
+    "sending": "Envoi…",
+    "sendError": "Message non envoyé. Réessayez sans créer de doublon.",
+    "discard": "Abandonner",
+    "readError": "La confirmation de lecture a échoué. Actualisez pour réessayer.",
+    "blocked": "Cette conversation est restreinte. L’historique reste accessible.",
+    "editDescription": "Modifiez votre message dans le délai autorisé par le marché.",
+    "deleteDescription": "Supprimer ce message ? Une mention de suppression restera dans la conversation.",
+    "reportDescription": "Expliquez ce qui s’est passé. Notre équipe examinera votre signalement.",
+    "reason": "Motif",
+    "details": "Informations supplémentaires (facultatif)",
+    "message": "Message",
+    "cancel": "Annuler",
+    "saving": "Enregistrement…",
+    "save": "Enregistrer",
+    "reported": "Message signalé avec succès.",
+    "actionError": "Impossible d’effectuer cette action. Réessayez.",
+    "startError": "Impossible d’ouvrir cette conversation. Réessayez.",
+    "selfMessage": "Vous ne pouvez pas vous envoyer de message.",
+    "messagingUnavailable": "La messagerie est indisponible pour ce vendeur.",
+    "status": {
+      "sent": "Envoyé",
+      "delivered": "Livré",
+      "read": "Lu"
+    },
+    "reasons": {
+      "spam": "Spam",
+      "abusive_content": "Contenu abusif",
+      "fraud_attempt": "Tentative de fraude",
+      "payment_scam": "Arnaque au paiement",
+      "inappropriate_content": "Contenu inapproprié",
+      "off_platform_solicitation": "Sollicitation hors plateforme",
+      "other": "Autre"
+    },
+    "empty": {
+      "inbox": {
+        "title": "Votre prochain contact commence ici",
+        "description": "Vos conversations apparaîtront ici lorsque vous écrirez à un autre utilisateur."
+      },
+      "selection": {
+        "title": "Une bonne conversation fait avancer les choses",
+        "description": "Choisissez une conversation pour lire les messages et poursuivre la discussion."
+      },
+      "conversation": {
+        "title": "Dites bonjour à {name}",
+        "description": "Posez vos questions sur les produits, leur disponibilité ou leurs caractéristiques."
+      },
+      "search": {
+        "title": "Aucune conversation trouvée",
+        "description": "Essayez un autre nom, une entreprise ou une boutique."
+      },
+      "unread": {
+        "title": "Vous avez tout lu",
+        "description": "Aucune conversation non lue. Retrouvez vos autres échanges dans Toutes."
+      }
+    }
   }
 }

@@ -78,9 +78,12 @@ export type SellerProductListItem = Pick<
   | "currency"
   | "productType"
   | "totalStock"
-  | "images"
   | "updatedAt"
->;
+> & {
+  images: Pick<ProductImage, "url" | "isPrimary">[];
+  mainImage: string | null;
+  finalPrice: number | null;
+};
 
 /** Fields the seller supplies. Ids, status, inventoryStatus, totalStock and sku are backend-owned. */
 export type CreateProductPayload = {
@@ -111,6 +114,7 @@ export type SellerProductsQuery = {
   status?: ProductStatus;
   search?: string;
   page?: number;
+  limit?: number;
 };
 
 export type SellerProductsPage = {
@@ -118,6 +122,7 @@ export type SellerProductsPage = {
   total: number;
   page: number;
   pageSize: number;
+  totalPages: number;
 };
 
 export type { Category } from "@/features/categories/types";

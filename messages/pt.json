@@ -747,5 +747,105 @@
     "select": "Selecionar moeda",
     "unavailable": "Indisponível",
     "unsupported": "Selecione uma moeda atualmente suportada."
+  },
+  "MessageCenter": {
+    "eyebrow": "Seus contatos no mercado",
+    "title": "Mensagens",
+    "subtitle": "Todas as suas conversas em um só lugar, comprando ou vendendo.",
+    "inbox": "Caixa de entrada",
+    "conversations": "Conversas",
+    "conversation": "Conversa do mercado",
+    "search": "Pesquisar conversas",
+    "all": "Todas",
+    "unread": "Não lidas",
+    "unreadCount": "{count} mensagens não lidas",
+    "loading": "Carregando…",
+    "loadError": "Não foi possível carregar as mensagens. Tente novamente.",
+    "retry": "Tentar novamente",
+    "refresh": "Atualizar mensagens",
+    "attachment": "Anexo",
+    "attachmentUnavailable": "Este anexo não está disponível.",
+    "openAttachment": "Abrir {name}",
+    "open": "Abrir",
+    "noMessages": "Iniciar a conversa",
+    "explore": "Explorar o mercado",
+    "pagination": "Páginas de conversas",
+    "previous": "Página anterior",
+    "next": "Próxima página",
+    "page": "{page} de {total}",
+    "back": "Voltar às conversas",
+    "verifiedSeller": "Vendedor verificado",
+    "viewStore": "Ver loja",
+    "requestQuote": "Solicitar cotação",
+    "older": "Carregar mensagens anteriores",
+    "today": "Hoje",
+    "yesterday": "Ontem",
+    "reply": "Responder",
+    "edit": "Editar mensagem",
+    "delete": "Excluir mensagem",
+    "report": "Denunciar mensagem",
+    "deleted": "Esta mensagem foi excluída.",
+    "edited": "Editada",
+    "replyingTo": "Respondendo a {name}",
+    "cancelReply": "Cancelar resposta",
+    "compose": "Digite uma mensagem…",
+    "send": "Enviar",
+    "emoji": "Escolher um emoji",
+    "composerHint": "Enter para enviar · Shift + Enter para uma nova linha",
+    "sending": "Enviando…",
+    "sendError": "Mensagem não enviada. Tente novamente sem criar duplicatas.",
+    "discard": "Descartar",
+    "readError": "Não foi possível atualizar a confirmação de leitura. Atualize para tentar novamente.",
+    "blocked": "Esta conversa está restrita. O histórico continua disponível.",
+    "editDescription": "Atualize sua mensagem dentro do prazo permitido pelo mercado.",
+    "deleteDescription": "Excluir esta mensagem? Um aviso de exclusão permanecerá na conversa.",
+    "reportDescription": "Conte o que aconteceu. Nossa equipe analisará sua denúncia.",
+    "reason": "Motivo",
+    "details": "Detalhes adicionais (opcional)",
+    "message": "Mensagem",
+    "cancel": "Cancelar",
+    "saving": "Salvando…",
+    "save": "Salvar alterações",
+    "reported": "Mensagem denunciada com sucesso.",
+    "actionError": "Não foi possível concluir a ação. Tente novamente.",
+    "startError": "Não foi possível abrir esta conversa. Tente novamente.",
+    "selfMessage": "Você não pode enviar mensagens para si mesmo.",
+    "messagingUnavailable": "As mensagens estão indisponíveis para este vendedor.",
+    "status": {
+      "sent": "Enviada",
+      "delivered": "Entregue",
+      "read": "Lida"
+    },
+    "reasons": {
+      "spam": "Spam",
+      "abusive_content": "Conteúdo abusivo",
+      "fraud_attempt": "Tentativa de fraude",
+      "payment_scam": "Golpe de pagamento",
+      "inappropriate_content": "Conteúdo impróprio",
+      "off_platform_solicitation": "Solicitação fora da plataforma",
+      "other": "Outro"
+    },
+    "empty": {
+      "inbox": {
+        "title": "Seu próximo contato começa aqui",
+        "description": "Suas conversas aparecerão aqui quando você enviar uma mensagem a outro usuário."
+      },
+      "selection": {
+        "title": "Uma boa conversa abre caminhos",
+        "description": "Escolha uma conversa para ler as mensagens e continuar a discussão."
+      },
+      "conversation": {
+        "title": "Diga olá a {name}",
+        "description": "Pergunte sobre produtos, disponibilidade ou especificações."
+      },
+      "search": {
+        "title": "Nenhuma conversa encontrada",
+        "description": "Tente outro nome, empresa ou loja."
+      },
+      "unread": {
+        "title": "Tudo em dia",
+        "description": "Não há conversas não lidas. As outras estão em Todas."
+      }
+    }
   }
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import { useStore } from "@/store/authStore";
 import Image from "next/image";
 import Link from "next/link";
 import { MessageCircle, Share2 } from "lucide-react";
@@ -10,6 +11,8 @@ import { ProductSeller } from "@/features/products/types";
 
 const SellerMiniCard = ({ seller }: { seller: ProductSeller }) => {
   const t = useTranslations("ProductInfo");
+  const messageT = useTranslations("MessageCenter");
+  const userId = useStore((state) => state.currentUser?.id);
   const { routes } = useGetAllRoutes();
 
   const shareProduct = async () => {
@@ -85,13 +88,13 @@ const SellerMiniCard = ({ seller }: { seller: ProductSeller }) => {
       </div>
 
       <div className="flex flex-wrap items-center gap-2">
-        <Link
-          href={`${routes.messages}?supplier=${encodeURIComponent(seller.id)}`}
+        {seller.userId && seller.userId !== userId ? <Link
+          href={`${routes.messages}?recipientUserId=${encodeURIComponent(seller.userId)}`}
           className="flex h-10 w-fit items-center justify-center gap-2 rounded-full bg-(--orange) px-4 text-sm font-semibold text-white transition-transform duration-200 hover:-translate-y-0.5 hover:brightness-95"
         >
           <MessageCircle aria-hidden="true" size={17} />
           {t("messageSupplier")}
-        </Link>
+        </Link> : <span className="text-xs text-muted-foreground">{messageT(seller.userId === userId ? "selfMessage" : "messagingUnavailable")}</span>}
         <Link
           href={routes.sellerStore(seller.slug)}
           className="flex h-10 w-fit items-center justify-center rounded-full border border-(--orange) px-4 text-sm font-semibold text-(--orange) transition-colors duration-200 hover:bg-(--orange)/10"

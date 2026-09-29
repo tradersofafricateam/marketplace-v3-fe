@@ -26,17 +26,26 @@ import ProductImagesStep from "../../organisms/ProductImagesStep/ProductImagesSt
 import ProductReviewStep from "../../organisms/ProductReviewStep/ProductReviewStep";
 import DashboardSkeleton from "@/features/dashboard/components/templates/DashboardSkeleton/DashboardSkeleton";
 
-const ProductWizardTemplate = ({ mode, productId }: { mode: "create" | "edit"; productId?: string }) => {
+const ProductWizardTemplate = ({
+  mode,
+  productId,
+}: {
+  mode: "create" | "edit";
+  productId?: string;
+}) => {
   const router = useRouter();
   const { routes } = useGetAllRoutes();
   const existingProduct = useSellerProduct(productId ?? "");
 
-  if (mode === "edit" && existingProduct.isLoadingCurrentData) return <DashboardSkeleton />;
+  if (mode === "edit" && existingProduct.isLoadingCurrentData)
+    return <DashboardSkeleton />;
 
   if (mode === "edit" && existingProduct.isError) {
     return (
       <div role="alert" className="mx-auto max-w-lg py-16 text-center">
-        <p className="text-sm text-muted-foreground">We couldn&apos;t load this product.</p>
+        <p className="text-sm text-muted-foreground">
+          We couldn&apos;t load this product.
+        </p>
         <button
           type="button"
           onClick={() => void existingProduct.refetch()}
@@ -54,7 +63,11 @@ const ProductWizardTemplate = ({ mode, productId }: { mode: "create" | "edit"; p
       mode={mode}
       hasExistingImages={!!existingProduct.data?.images?.length}
       productId={productId}
-      initialValues={existingProduct.data ? mapProductToFormState(existingProduct.data) : undefined}
+      initialValues={
+        existingProduct.data
+          ? mapProductToFormState(existingProduct.data)
+          : undefined
+      }
       onDone={() => router.push(routes.sellerProducts)}
     />
   );
@@ -73,26 +86,49 @@ const ProductWizardForm = ({
   hasExistingImages: boolean;
   onDone: () => void;
 }) => {
-  const { currencies, isLoading: currenciesLoading, isError: currenciesError } = useCurrency();
+  const {
+    currencies,
+    isLoading: currenciesLoading,
+    isError: currenciesError,
+  } = useCurrency();
   const currencyT = useTranslations("CurrencyData");
-  const { values, errors, handleChange, setFieldValue, validate } = useProductForm(initialValues, hasExistingImages);
+  const { values, errors, handleChange, setFieldValue, validate } =
+    useProductForm(initialValues, hasExistingImages);
   const steps = getWizardSteps(values.productType);
-  const { stepIndex, isFirstStep, isLastStep, goBack, goTo } = useProductWizardStep(steps.length);
+  const { stepIndex, isFirstStep, isLastStep, goBack, goTo } =
+    useProductWizardStep(steps.length);
 
   const { createProduct, isCreating } = useCreateProduct({ onSuccess: onDone });
-  const { updateProduct, isUpdating } = useUpdateProduct({ productId: productId ?? "", onSuccess: onDone });
+  const { updateProduct, isUpdating } = useUpdateProduct({
+    productId: productId ?? "",
+    onSuccess: onDone,
+  });
   const isSaving = isCreating || isUpdating;
 
   const handleSubmit = () => {
     if (!validate()) {
       const invalid = validateProductForm(values, hasExistingImages);
-      const index = steps.findIndex((step) => stepFields[step.key]?.some((field) => invalid[field]));
+      const index = steps.findIndex((step) =>
+        stepFields[step.key]?.some((field) => invalid[field]),
+      );
       if (index >= 0) goTo(index);
       toast.error("Please complete the required fields highlighted below.");
       return;
     }
-    if (currenciesLoading || currenciesError || !currencies.some((item) => item.code === values.currency)) {
-      toast.error(currencyT(currenciesLoading ? "loading" : currenciesError ? "error" : "unsupported"));
+    if (
+      currenciesLoading ||
+      currenciesError ||
+      !currencies.some((item) => item.code === values.currency)
+    ) {
+      toast.error(
+        currencyT(
+          currenciesLoading
+            ? "loading"
+            : currenciesError
+              ? "error"
+              : "unsupported",
+        ),
+      );
       return;
     }
     if (mode === "create") createProduct(values);
@@ -103,7 +139,10 @@ const ProductWizardForm = ({
 
   const navigateToStep = (target: number) => {
     if (isSaving) return;
-    if (target <= stepIndex) { goTo(target); return; }
+    if (target <= stepIndex) {
+      goTo(target);
+      return;
+    }
     const invalid = validateProductForm(values, hasExistingImages);
     for (let index = 0; index < target; index++) {
       const fields = stepFields[steps[index].key] ?? [];
@@ -113,15 +152,27 @@ const ProductWizardForm = ({
         toast.error("Please complete the required fields highlighted below.");
         return;
       }
-      if (steps[index].key === "basicInfo" && (currenciesLoading || currenciesError || !currencies.some((item) => item.code === values.currency))) {
+      if (
+        steps[index].key === "basicInfo" &&
+        (currenciesLoading ||
+          currenciesError ||
+          !currencies.some((item) => item.code === values.currency))
+      ) {
         goTo(index);
-        toast.error(currencyT(currenciesLoading ? "loading" : currenciesError ? "error" : "unsupported"));
+        toast.error(
+          currencyT(
+            currenciesLoading
+              ? "loading"
+              : currenciesError
+                ? "error"
+                : "unsupported",
+          ),
+        );
         return;
       }
     }
     goTo(target);
   };
-
 
   return (
     <div className="space-y-6">
@@ -142,37 +193,69 @@ const ProductWizardForm = ({
             {mode === "create" ? "New product" : "Edit product"}
           </p>
           <h1 className="heading-font mt-2 text-2xl font-bold sm:text-3xl">
-            {mode === "create" ? "Tell buyers about your product" : values.productName || "Edit product"}
+            {mode === "create"
+              ? "Tell buyers about your product"
+              : values.productName || "Edit product"}
           </h1>
         </div>
       </div>
 
       <div className="rounded-2xl border border-border bg-background p-5 sm:p-7">
-        <WizardStepper steps={steps} activeIndex={stepIndex} onStepClick={navigateToStep} />
+        <WizardStepper
+          steps={steps}
+          activeIndex={stepIndex}
+          onStepClick={navigateToStep}
+        />
 
         <div className="mt-7">
           {currentStepKey === "basicInfo" && (
-            <ProductBasicInfoStep values={values} errors={errors} handleChange={handleChange} setFieldValue={setFieldValue} />
+            <ProductBasicInfoStep
+              values={values}
+              errors={errors}
+              handleChange={handleChange}
+              setFieldValue={setFieldValue}
+            />
           )}
           {currentStepKey === "pricing" && (
-            <ProductPricingStep values={values} errors={errors} handleChange={handleChange} setFieldValue={setFieldValue} />
+            <ProductPricingStep
+              values={values}
+              errors={errors}
+              handleChange={handleChange}
+              setFieldValue={setFieldValue}
+            />
           )}
           {currentStepKey === "variants" && (
             <ProductVariantsStep
               options={values.variantOptions}
               variants={values.variants}
               errors={errors}
-              onOptionsChange={(variantOptions) => setFieldValue("variantOptions", variantOptions)}
-              onVariantsChange={(variants) => setFieldValue("variants", variants)}
+              onOptionsChange={(variantOptions) =>
+                setFieldValue("variantOptions", variantOptions)
+              }
+              onVariantsChange={(variants) =>
+                setFieldValue("variants", variants)
+              }
             />
           )}
           {currentStepKey === "logistics" && (
-            <ProductLogisticsStep values={values} errors={errors} handleChange={handleChange} setFieldValue={setFieldValue} />
+            <ProductLogisticsStep
+              values={values}
+              errors={errors}
+              handleChange={handleChange}
+              setFieldValue={setFieldValue}
+            />
           )}
           {currentStepKey === "images" && (
-            <ProductImagesStep values={values} errors={errors} handleChange={handleChange} setFieldValue={setFieldValue} />
+            <ProductImagesStep
+              values={values}
+              errors={errors}
+              handleChange={handleChange}
+              setFieldValue={setFieldValue}
+            />
           )}
-          {currentStepKey === "review" && <ProductReviewStep values={values} isEditing={mode === "edit"} />}
+          {currentStepKey === "review" && (
+            <ProductReviewStep values={values} isEditing={mode === "edit"} />
+          )}
         </div>
 
         <div className="mt-8 flex items-center justify-between border-t border-border pt-6">

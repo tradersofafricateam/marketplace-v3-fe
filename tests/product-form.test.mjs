@@ -59,7 +59,7 @@ test('country and unit choices are comprehensive and existing images satisfy edi
 });
 test('create product uses the documented POST /products/ route', async () => {
   const calls=[];
-  const api=load('src/features/sellerProducts/api/index.ts', {'@/lib/axiosInstance':{axiosInstance:{post:async (...args)=>{calls.push(args);return {data:{data:{id:'created'}}};}}}});
+  const api=load('src/features/sellerProducts/api/index.ts', {'../helpers/normalizeSellerProducts': load('src/features/sellerProducts/helpers/normalizeSellerProducts.ts'), '@/lib/axiosInstance':{axiosInstance:{post:async (...args)=>{calls.push(args);return {data:{data:{id:'created'}}};}}}});
   assert.deepEqual(await api.createProduct(valid), {id:'created'});
   assert.equal(calls[0][0], '/products/');
 });
