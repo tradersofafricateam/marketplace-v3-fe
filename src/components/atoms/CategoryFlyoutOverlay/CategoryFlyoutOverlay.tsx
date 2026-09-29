@@ -1,8 +1,7 @@
 "use client";
 
-import { useTranslations } from "next-intl";
 
-import { Category } from "@/lib/types/category";
+import { Category } from "@/features/categories/types";
 
 import PointerArrow from "../PointerArrow/PointerArrow";
 import Link from "next/link";
@@ -17,7 +16,6 @@ const CategoryFlyoutOverlay = ({
   onMouseLeave: () => void;
   subCategories: Category[];
 }) => {
-  const t = useTranslations("Hero.categories");
 
   const { routes } = useGetAllRoutes();
 
@@ -35,7 +33,7 @@ const CategoryFlyoutOverlay = ({
             href={routes?.categoryInfo(cat?.id)}
             className="text-[11px] font-medium text-muted-foreground uppercase pb-4 mb-2  hover:underline transition-all duration-300"
           >
-            {t.has(cat.category) ? t(cat.category) : cat.category}
+            {cat.name}
           </Link>
           {cat?.children?.map((sub) => (
             <Link
@@ -43,7 +41,7 @@ const CategoryFlyoutOverlay = ({
               href={routes?.categoryInfo(sub?.id)}
               className="block text-xs text-foreground hover:text-(--orange)  py-1 rounded-md hover:bg-muted/50 transition-colors"
             >
-              {t.has(sub.category) ? t(sub.category) : sub.category}
+              {sub.name}
             </Link>
           ))}
         </div>

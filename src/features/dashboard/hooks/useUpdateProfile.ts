@@ -31,7 +31,7 @@ export const useUpdateProfile = ({
           isProfileComplete: true,
         };
         setCurrentUser(nextUser);
-        queryClient.setQueryData(["currentUser"], nextUser);
+        queryClient.setQueriesData({ queryKey: ["currentUser"] }, nextUser);
       }
       toast.success(t("success"));
       onSuccess?.();

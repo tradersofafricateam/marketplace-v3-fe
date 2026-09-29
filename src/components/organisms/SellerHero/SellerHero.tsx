@@ -1,17 +1,30 @@
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { ShieldCheck } from "lucide-react";
 
 import ScrollReveal from "@/components/atoms/ScrollReveal/ScrollReveal";
 import SectionWrapper from "@/components/atoms/SectionWrapper/SectionWrapper";
 import SellerCta from "@/components/atoms/SellerCta/SellerCta";
-import SellerShowcase from "@/components/organisms/SellerShowcase/SellerShowcase";
 
 const SellerHero = () => {
   const t = useTranslations("becomeSeller");
 
   return (
-    <SectionWrapper className="bg-muted/40 py-14 lg:py-20">
-      <div className="grid items-center gap-12 lg:grid-cols-2">
+    <SectionWrapper className="relative isolate overflow-hidden bg-[#fbf6ef] pb-16 pt-80 lg:py-24">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-80 lg:h-full">
+        <Image
+          src="/assets/images/become-hero-section.png"
+          alt=""
+          fill
+          sizes="100vw"
+          loading="eager"
+          fetchPriority="high"
+          className="object-cover object-[75%_center] lg:object-center"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_55%,#fbf6ef_100%)] lg:bg-[linear-gradient(to_right,#fbf6ef_0%,rgba(251,246,239,0.96)_25%,rgba(251,246,239,0.8)_40%,rgba(251,246,239,0.15)_60%,transparent_75%)]" />
+      </div>
+      <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-linear-to-t from-background to-transparent" />
+      <div className="relative z-10 lg:w-[48%]">
         <ScrollReveal>
           <div className="max-w-xl space-y-6">
             <span className="inline-flex items-center gap-1.5 rounded-full bg-(--orange-light) px-3 py-1 text-xs font-semibold text-(--orange)">
@@ -22,7 +35,7 @@ const SellerHero = () => {
               <span className="text-(--orange)">{t("hero.accent")}</span>{" "}
               {t("hero.title")}
             </h1>
-            <p className="max-w-md text-sm leading-6 text-muted-foreground">
+            <p className="text-body max-w-md text-foreground/70">
               {t("hero.description")}
             </p>
             <div className="flex flex-wrap items-center gap-4">
@@ -48,9 +61,6 @@ const SellerHero = () => {
               ))}
             </dl>
           </div>
-        </ScrollReveal>
-        <ScrollReveal delay={0.1}>
-          <SellerShowcase />
         </ScrollReveal>
       </div>
     </SectionWrapper>

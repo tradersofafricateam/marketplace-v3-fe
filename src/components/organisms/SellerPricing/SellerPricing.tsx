@@ -16,7 +16,7 @@ const SellerPricing = () => {
           <h2 className="heading-font text-2xl font-bold sm:text-3xl">
             {t("pricing.title")}
           </h2>
-          <p className="mt-2 text-sm text-muted-foreground">
+          <p className="text-body mt-2 text-muted-foreground">
             {t("pricing.subtitle")}
           </p>
         </div>
@@ -43,7 +43,7 @@ const SellerPricing = () => {
             />
           ))}
         </div>
-        <p className="mx-auto mt-8 max-w-2xl text-center text-xs leading-5 text-muted-foreground">
+        <p className="text-body mx-auto mt-8 max-w-2xl text-center text-muted-foreground">
           {t("pricing.note")}
         </p>
       </ScrollReveal>

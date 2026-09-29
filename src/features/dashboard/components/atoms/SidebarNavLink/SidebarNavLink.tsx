@@ -24,6 +24,7 @@ const SidebarNavLink = ({
 
   return (
     <Link
+      prefetch={false}
       href={href}
       onClick={onNavigate}
       aria-current={isActive ? "page" : undefined}

@@ -5,7 +5,8 @@ import { useTranslations } from "next-intl";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-import { categories } from "@/lib/constants/dummyData";
+import { useCategories } from "@/features/categories/hooks/useCategories";
+import CategoryQueryState from "@/features/categories/components/molecules/CategoryQueryState/CategoryQueryState";
 import { useScrollable } from "@/lib/hooks/useSrollable";
 import { useGetAllRoutes } from "@/lib/hooks/useGetAllRoutes";
 
@@ -14,6 +15,8 @@ import MainCategoryCard from "@/components/atoms/MainCategoryCard/MainCategoryCa
 import SectionWrapper from "@/components/atoms/SectionWrapper/SectionWrapper";
 
 const MainCategorySection = () => {
+  const categoryQuery = useCategories();
+  const categories = categoryQuery.data ?? [];
   const t = useTranslations("Hero.categories");
 
   const { routes } = useGetAllRoutes();
@@ -75,13 +78,14 @@ const MainCategorySection = () => {
               className="flex gap-4 transition-transform duration-380 ease-in-out will-change-transform pb-1"
               style={{ transform: `translateX(-${offset}px)` }}
             >
-              {categories.map((cat) => (
+              <CategoryQueryState loading={categoryQuery.isLoadingCurrentData} error={categoryQuery.isError} empty={categories.length === 0} onRetry={() => void categoryQuery.refetch()} />
+              {categories.filter((category) => !category.parentId).map((cat) => (
                 <MainCategoryCard
                   key={cat?.id}
                   href={routes?.categoryInfo(cat?.id)}
                   image={cat?.image}
                   category={
-                    t.has(cat.category) ? t(cat.category) : cat.category
+                    cat.name
                   }
                 />
               ))}

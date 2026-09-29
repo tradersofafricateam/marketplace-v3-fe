@@ -1,4 +1,5 @@
 export interface ProductData {
+  categoryIds?: string[];
   productName: string;
   storeName: string;
   id: string;
@@ -12,6 +13,7 @@ export interface ProductData {
 }
 
 export interface CatalogueFilters {
+  priceCurrency?: string;
   category: string;
   minPrice: string;
   maxPrice: string;
@@ -48,6 +50,8 @@ export type ProductType = "SIMPLE" | "VARIABLE";
 
 export type ProductSeller = {
   id: string;
+  /** Marketplace user ID for messaging; never substitute a store/profile ID. */
+  userId?: string;
   slug: string;
   storeName: string;
   logoUrl?: string;

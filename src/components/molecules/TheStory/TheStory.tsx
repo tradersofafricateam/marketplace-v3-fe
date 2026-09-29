@@ -21,7 +21,7 @@ const TheStory = () => {
               {t("ourStory")}
             </AnimatedHeading>
             <div className="space-y-8">
-              <p className=" leading-loose">{t("theStory")}</p>
+              <p className="text-body">{t("theStory")}</p>
               <StyledParagraph desc={t("ujuQuote")} />
               <div className="">
                 <a

@@ -8,37 +8,42 @@ const TeamCard = ({
 }: {
   name: string;
   url: string;
-  imgUrl: string;
+  imgUrl: string | null;
   role: string;
 }) => {
   return (
-    <div className="space-y-2">
-      <div className="bg-muted/40 w-37.5 min-w-37.5 h-42.5 max-h-42.5 overflow-hidden relative">
-        <Image
+    <div className="min-w-0 space-y-3">
+      <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl bg-muted/40">
+        {imgUrl ? <Image
           src={imgUrl}
-          width={150}
-          height={170}
+          fill
+          sizes="(max-width: 359px) 100vw, (max-width: 767px) 50vw, (max-width: 1023px) 33vw, 25vw"
           alt={`profile pic of ${name}`}
-          className="w-full h-full object-cover relative"
-        />
+          className="object-cover grayscale"
+        /> : (
+          <div className="flex h-full w-full items-center justify-center bg-neutral-200 text-3xl font-semibold text-neutral-600" aria-hidden="true">
+            {name.split(" ").map((part) => part[0]).join("")}
+          </div>
+        )}
         <a
           href={url}
           target="_blank"
           rel="noopener noreferrer"
-          className="absolute w-8 h-8 bg-blue-800 overflow-hidden bottom-0 right-0"
+          aria-label={`${name} — LinkedIn`}
+          className="absolute bottom-2 right-2 flex size-11 items-center justify-center overflow-hidden rounded-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground"
         >
           <Image
             src="/assets/icons/linkedin.svg"
             width={32}
             height={32}
-            alt="linkedIn Icon"
+            alt=""
             className="object-contain hover:scale-110 transition-all duration-300 ease-out"
           />
         </a>
       </div>
-      <div className="">
-        <p className="font-bold">{name}</p>
-        <p className="font-light text-xs">{role}</p>
+      <div className="space-y-1 break-words">
+        <p className="text-base font-bold leading-snug">{name}</p>
+        <p className="text-body text-muted-foreground">{role}</p>
       </div>
     </div>
   );

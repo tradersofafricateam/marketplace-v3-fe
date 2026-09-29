@@ -1,5 +1,6 @@
 "use client";
 
+import { useCategories } from "@/features/categories/hooks/useCategories";
 import { useTranslations } from "next-intl";
 
 import { formatLeadTime } from "@/features/products/helpers";
@@ -20,9 +21,12 @@ const ProductSpecificationsSection = ({
   activeVariant?: ProductVariant;
 }) => {
   const t = useTranslations("ProductInfo");
+  const categoryT = useTranslations("CategoryData");
+  const categories = useCategories();
+  const categoryNames = categories.data?.filter((category) => product.categoryIds.includes(category.id)).map((category) => category.name).join(", ");
 
   const rows: { label: string; value: string }[] = [
-    { label: t("category"), value: product.categoryIds.join(", ") || "—" },
+    { label: t("category"), value: categories.isLoadingCurrentData ? categoryT("loading") : categories.isError ? categoryT("error") : categoryNames || "—" },
     { label: t("countryOfOrigin"), value: product.countryOfOrigin },
     {
       label: t("minOrder"),

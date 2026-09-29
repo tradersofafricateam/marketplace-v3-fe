@@ -14,7 +14,7 @@ const SellerTutorial = () => {
           <h2 className="heading-font text-2xl font-bold sm:text-3xl">
             {t("tutorial.title")}
           </h2>
-          <p className="mt-2 text-sm text-muted-foreground">
+          <p className="text-body mt-2 text-muted-foreground">
             {t("tutorial.subtitle")}
           </p>
         </div>

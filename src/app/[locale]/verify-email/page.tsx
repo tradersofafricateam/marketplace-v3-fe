@@ -15,6 +15,7 @@ type VerifyEmailPageProps = {
   searchParams: Promise<{
     email?: string | string[];
     token?: string | string[];
+    returnUrl?: string | string[];
   }>;
 };
 
@@ -40,6 +41,7 @@ export default async function VerifyEmailPage({
     >
       <AuthHeading title={t("title")} subtitle={t("subtitle")} />
       <VerifyEmailPanel
+        returnUrl={firstQueryValue(query.returnUrl)}
         initialEmail={firstQueryValue(query.email)?.trim()}
         initialToken={firstQueryValue(query.token)?.trim()}
       />

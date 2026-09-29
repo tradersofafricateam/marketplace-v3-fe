@@ -25,6 +25,8 @@ export const useGetAllRoutes = () => {
     forgotPassword: `/${locale}/forgot-password`,
     resetPassword: `/${locale}/reset-password`,
     dashboard: `/${locale}/dashboard`,
+    seller: `/${locale}/seller`,
+    sellerStatus: `/${locale}/become-seller/status`,
     overview: `/${locale}/dashboard/overview`,
     messages: `/${locale}/dashboard/messages`,
     notifications: `/${locale}/dashboard/notifications`,
@@ -42,9 +44,9 @@ export const useGetAllRoutes = () => {
     sellerStore: (slug: string) => `/${locale}/sellers/${slug}`,
     orders: `/${locale}/dashboard/orders`,
     orderInfo: (id: string) => `/${locale}/dashboard/orders/info/${id}`,
-    sellerProduct: `/${locale}/dashboard/products`,
-    sellerProductInfo: (id: string) =>
-      `/${locale}/dashboard/products/info/${id}`,
+    sellerProducts: `/${locale}/seller/products`,
+    sellerProductNew: `/${locale}/seller/products/new`,
+    sellerProductEdit: (id: string) => `/${locale}/seller/products/${id}/edit`,
 
     quotes: `/${locale}/dashboard/quotes`,
     quoteInfo: (id: string) => `/${locale}/dashboard/quotes/info/${id}`,

@@ -2,7 +2,7 @@ import Container from "@/components/atoms/Container/Container";
 import { Skeleton } from "@/components/ui/skeleton";
 
 const ProductInfoSkeleton = () => (
-  <Container className="space-y-6 py-6 sm:py-8">
+  <Container className="space-y-6 py-6 sm:py-8 xl:px-14">
     <Skeleton className="h-4 w-64" />
 
     <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,620px)_minmax(360px,1fr)] xl:grid-cols-[minmax(0,680px)_minmax(400px,1fr)]">

@@ -59,7 +59,7 @@ const ProductInfoTemplate = ({
 
   return (
     <div className="bg-background">
-      <Container className="space-y-8 py-6 sm:py-8">
+      <Container className="space-y-8 py-6 sm:py-8 xl:px-14">
         <nav
           aria-label={t("breadcrumb")}
           className="flex items-center gap-1.5 text-xs text-muted-foreground"
@@ -84,7 +84,7 @@ const ProductInfoTemplate = ({
         </nav>
 
         <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,680px)_minmax(360px,1fr)] xl:gap-12">
-          <div className="min-w-0 space-y-10">
+          <div className="min-w-0 lg:col-start-1 lg:row-start-1">
             <ProductGallery
               product={product}
               activeVariant={activeVariant}
@@ -92,15 +92,9 @@ const ProductInfoTemplate = ({
                 isVariable ? handleSelectVariantByImage : undefined
               }
             />
-            <ProductDetailsTabs
-              product={product}
-              locale={locale}
-              activeVariant={activeVariant}
-            />
-            <ProductReviewsSection product={product} />
           </div>
 
-          <aside className="space-y-8 rounded-2xl bg-(--orange-light)/35 p-5 sm:p-6 lg:sticky lg:top-4 lg:max-h-[calc(100vh-2rem)] lg:overflow-y-auto">
+          <aside className="space-y-8 rounded-2xl bg-(--orange-light)/35 p-5 sm:p-6 lg:sticky lg:top-4 lg:col-start-2 lg:row-start-1 lg:row-span-2 lg:max-h-[calc(100vh-2rem)] lg:overflow-y-auto">
             <ProductPurchasePanel
               product={product}
               locale={locale}
@@ -116,6 +110,15 @@ const ProductInfoTemplate = ({
             />
             <SellerMiniCard seller={product.seller} />
           </aside>
+
+          <div className="min-w-0 space-y-10 lg:col-start-1 lg:row-start-2">
+            <ProductDetailsTabs
+              product={product}
+              locale={locale}
+              activeVariant={activeVariant}
+            />
+            <ProductReviewsSection product={product} />
+          </div>
         </div>
 
         <MoreFromSellerSection

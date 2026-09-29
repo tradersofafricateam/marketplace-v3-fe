@@ -2,7 +2,7 @@
 
 import { useMemo, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { CalendarDays, ChevronLeft, ChevronRight, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 
 import {
@@ -13,6 +13,7 @@ import {
   getTrailingDayRange,
   parseApiDate,
 } from "@/features/dashboard/helpers/dateRange";
+import AnalyticsDateRangeTrigger from "@/features/dashboard/components/atoms/AnalyticsDateRangeTrigger/AnalyticsDateRangeTrigger";
 import AnalyticsCalendarDay from "@/features/dashboard/components/atoms/AnalyticsCalendarDay/AnalyticsCalendarDay";
 import AnalyticsDatePresetButton from "@/features/dashboard/components/atoms/AnalyticsDatePresetButton/AnalyticsDatePresetButton";
 import { useAnalyticsDateRangePicker } from "@/features/dashboard/hooks/useAnalyticsDateRangePicker";
@@ -55,23 +56,15 @@ const AnalyticsDateRangePicker = ({
 
   return (
     <div ref={containerRef} className="relative z-30 w-full sm:w-auto">
-      <button
-        type="button"
+      <AnalyticsDateRangeTrigger
+        label={t("label")}
+        dateRange={displayDateFormatter.formatRange(
+          parseApiDate(value.dateFrom),
+          parseApiDate(value.dateTo),
+        )}
+        open={picker.open}
         onClick={picker.toggle}
-        aria-expanded={picker.open}
-        aria-haspopup="dialog"
-        className="flex min-h-11 w-full items-center gap-3 rounded-xl border border-border bg-background px-3.5 text-left shadow-sm transition hover:border-(--orange)/45 hover:shadow-md sm:w-auto"
-      >
-        <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-(--orange-light) text-(--orange)">
-          <CalendarDays aria-hidden="true" size={17} />
-        </span>
-        <span className="min-w-0">
-          <span className="block text-[10px] font-bold tracking-wider text-muted-foreground uppercase">{t("label")}</span>
-          <span className="block truncate text-xs font-semibold text-foreground sm:text-sm">
-            {displayDate(value.dateFrom)} <span className="px-1 text-muted-foreground">–</span> {displayDate(value.dateTo)}
-          </span>
-        </span>
-      </button>
+      />
 
       <AnimatePresence>
         {picker.open && (

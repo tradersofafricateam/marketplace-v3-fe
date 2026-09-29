@@ -11,6 +11,9 @@
   "dependencies": {
     "@base-ui/react": "^1.3.0",
     "@tanstack/react-query": "^5.91.2",
+    "@tiptap/pm": "^3.31.3",
+    "@tiptap/react": "^3.31.3",
+    "@tiptap/starter-kit": "^3.31.3",
     "axios": "^1.13.6",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",

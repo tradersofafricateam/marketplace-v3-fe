@@ -48,9 +48,9 @@ const SellerOnboarding = () => {
                   <span className="text-xs font-bold text-(--orange)">
                     {t("onboarding.stepLabel", { number: index + 1 })}
                   </span>
-                  <p className="text-sm font-bold text-foreground">{lead}</p>
+                  <p className="text-base font-bold text-foreground">{lead}</p>
                   {description && (
-                    <p className="text-xs leading-5 text-muted-foreground">
+                    <p className="text-body text-muted-foreground">
                       {description}
                     </p>
                   )}

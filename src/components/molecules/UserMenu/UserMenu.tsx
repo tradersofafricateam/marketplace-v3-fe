@@ -1,5 +1,6 @@
 "use client";
 
+import { useSellerVerificationStatus } from "@/features/dashboard/hooks/useSellerVerificationStatus";
 import { useRef, useState } from "react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
@@ -11,6 +12,8 @@ import { useRequestLogout } from "@/features/auth/hooks/useLogout";
 
 const UserMenu = ({ align = "right" }: { align?: "left" | "right" }) => {
   const t = useTranslations("Nav");
+  const workspaceT = useTranslations("SellerWorkspace");
+  const { status } = useSellerVerificationStatus();
   const { routes } = useGetAllRoutes();
   const currentUser = useStore((state) => state.currentUser);
   const { requestLogout } = useRequestLogout();
@@ -31,6 +34,7 @@ const UserMenu = ({ align = "right" }: { align?: "left" | "right" }) => {
         type="button"
         onClick={() => setOpen((prev) => !prev)}
         aria-expanded={open}
+        aria-label={workspaceT("profile")}
         className="flex items-center gap-2"
       >
         <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-(--orange) text-xs font-bold text-white">
@@ -57,13 +61,16 @@ const UserMenu = ({ align = "right" }: { align?: "left" | "right" }) => {
             </p>
           </div>
           <Link
+      prefetch={false}
             href={routes.dashboard}
             onClick={() => setOpen(false)}
             className="block px-4 py-2.5 text-sm font-medium transition-colors hover:bg-(--orange-light) hover:text-(--orange)"
           >
-            {t("dashboard")}
+            {workspaceT("myDashboard")}
           </Link>
+          {status === "approved" && <Link prefetch={false} href={routes.seller} onClick={() => setOpen(false)} className="block px-4 py-2.5 text-sm font-semibold transition-colors hover:bg-(--orange-light) hover:text-(--orange)">{workspaceT("title")}</Link>}
           <Link
+      prefetch={false}
             href={routes.orders}
             onClick={() => setOpen(false)}
             className="block px-4 py-2.5 text-sm font-medium transition-colors hover:bg-(--orange-light) hover:text-(--orange)"
@@ -71,6 +78,7 @@ const UserMenu = ({ align = "right" }: { align?: "left" | "right" }) => {
             {t("orders")}
           </Link>
           <Link
+      prefetch={false}
             href={routes.profileSettings}
             onClick={() => setOpen(false)}
             className="block px-4 py-2.5 text-sm font-medium transition-colors hover:bg-(--orange-light) hover:text-(--orange)"

@@ -77,7 +77,10 @@
       "backendDeveloper": "Backend Developer",
       "graphicsContentManager": "Graphics & Content Manager",
       "hrAdmin": "HR/Admin",
-      "strategicPartnerships": "Strategic Partnerships"
+      "strategicPartnerships": "Strategic Partnerships",
+      "headOfOperations": "Head of Operations",
+      "socialMediaManagerContentCreator": "Social Media Manager / Content Creator",
+      "customerRepresentative": "Customer Representative"
     }
   },
   "becomeSeller": {
@@ -815,11 +818,29 @@
     "sellerPromo": {
       "title": "Start selling on TOFA",
       "description": "Reach more buyers across African markets.",
-      "cta": "Become a Seller",
-      "pendingTitle": "Application under review",
-      "pendingDescription": "We're reviewing your seller application. We'll notify you once it's approved."
+      "cta": "Upgrade to seller",
+      "pendingTitle": "Awaiting approval",
+      "pendingDescription": "We're reviewing your seller application. We'll notify you once it's approved.",
+      "rejectedTitle": "Application rejected",
+      "rejectedDescription": "Please update your application and resubmit.",
+      "resubmit": "Resubmit application"
     },
     "becomeSellerModal": {
+      "businessDetails": "Business details",
+      "businessLocation": "Business location",
+      "brandIdentity": "Your brand",
+      "logoHint": "Give your store a recognizable face. Add your company logo to get started.",
+      "chooseLogo": "Choose a logo",
+      "changeLogo": "Change logo",
+      "bioPlaceholder": "Tell buyers what your company does and what makes it stand out.",
+      "companyName": "Company name",
+      "registrationNumber": "Registration number (optional)",
+      "businessType": "Business type",
+      "yearsOfBusiness": "Years of business",
+      "companyAddress": "Company address",
+      "pickupAddress": "Pickup address",
+      "companyBio": "Company bio (optional)",
+      "companyLogo": "Company logo (optional)",
       "title": "Become a seller",
       "description": "Tell us about your business. We'll review your application and get back to you shortly.",
       "storeName": "Store name",
@@ -837,7 +858,7 @@
       "submitError": "We couldn't submit your application. Please try again."
     },
     "topbar": {
-      "overviewTitle": "Dashboard",
+      "overviewTitle": "My Dashboard",
       "loading": "Loading your dashboard…",
       "messages": "Messages",
       "notifications": "Notifications"
@@ -901,6 +922,103 @@
       "submitError": "We couldn't update your profile. Please try again."
     }
   },
+  "Settings": {
+    "eyebrow": "Your account",
+    "title": "Profile & Settings",
+    "description": "Manage your personal details, delivery locations, security and communication preferences.",
+    "tabs": {
+      "profile": "Profile info",
+      "addresses": "Delivery addresses",
+      "password": "Password",
+      "notifications": "Notifications"
+    },
+    "profile": {
+      "unnamed": "TOFA user",
+      "edit": "Edit profile",
+      "email": "Email address",
+      "phone": "Phone number",
+      "bio": "Company bio",
+      "notSet": "Not provided",
+      "dangerTitle": "Deactivate account",
+      "dangerDescription": "Soft-delete your account and disable access to TOFA.",
+      "deactivate": "Deactivate",
+      "confirmTitle": "Deactivate your account?",
+      "confirmDescription": "Tell us why you're leaving. This action will sign you out immediately.",
+      "reason": "Reason",
+      "reasonPlaceholder": "I no longer need this account",
+      "cancel": "Cancel",
+      "confirm": "Deactivate account",
+      "deactivating": "Deactivating…",
+      "deactivated": "Account deactivated successfully",
+      "deactivateError": "We couldn't deactivate your account. Please try again."
+    },
+    "addresses": {
+      "title": "Delivery addresses",
+      "description": "Choose where your orders should be delivered.",
+      "add": "Add address",
+      "default": "Active",
+      "makeDefault": "Set as active",
+      "edit": "Edit",
+      "delete": "Delete",
+      "addTitle": "Add a delivery address",
+      "editTitle": "Edit delivery address",
+      "formDescription": "Provide accurate recipient and delivery details.",
+      "emptyTitle": "No delivery addresses yet",
+      "emptyDescription": "Add your first address to make checkout faster.",
+      "deleteConfirm": "Delete this delivery address?",
+      "added": "Address added successfully",
+      "updated": "Address updated successfully",
+      "deleted": "Address deleted successfully",
+      "error": "We couldn't update your addresses. Please try again.",
+      "form": {
+        "label": "Address type",
+        "labelPlaceholder": "e.g. Home, Office, or Warehouse",
+        "recipient": "Recipient name",
+        "phone": "Phone number",
+        "country": "Country",
+        "line1": "Address line 1",
+        "line2": "Address line 2 (optional)",
+        "city": "City",
+        "state": "State",
+        "postalCode": "Postal code (optional)",
+        "default": "Make this my active address",
+        "cancel": "Cancel",
+        "save": "Save address",
+        "saving": "Saving…",
+        "phonePlaceholder": "e.g. +234 801 234 5678",
+        "required": "This field is required",
+        "invalidPhone": "Enter a valid phone number, including country code"
+      }
+    },
+    "password": {
+      "title": "Change password",
+      "description": "Use a strong, unique password for your account.",
+      "oldPassword": "Current password",
+      "newPassword": "New password",
+      "confirmPassword": "Confirm new password",
+      "minimum": "Password must contain at least 8 characters",
+      "mismatch": "Passwords do not match",
+      "save": "Update password",
+      "saving": "Updating…",
+      "success": "Password changed successfully",
+      "error": "We couldn't change your password. Please check your current password.",
+      "tipsTitle": "Keep your account secure",
+      "tips": "Use at least 8 characters with uppercase and lowercase letters, a number, and a symbol. Avoid reusing a password from another service."
+    },
+    "notifications": {
+      "title": "Notification preferences",
+      "description": "Control how TOFA keeps you informed.",
+      "category": "Category",
+      "inApp": "In app",
+      "email": "Email",
+      "required": "Required",
+      "mandatoryNote": "Security, verification, payment, major order, restriction and compliance notifications cannot be disabled.",
+      "inAppCategory": "In-app notifications for {category}",
+      "emailCategory": "Email notifications for {category}",
+      "success": "Notification preferences updated successfully",
+      "error": "We couldn't update your notification preferences. Please try again."
+    }
+  },
   "ProductInfo": {
     "breadcrumb": "Breadcrumb",
     "home": "Home",
@@ -955,5 +1073,223 @@
     "helpful": "Helpful",
     "notHelpful": "Not helpful",
     "wasHelpful": "Was this helpful?"
+  },
+  "SellerWorkspace": {
+    "title": "Seller Workspace",
+    "brandTitle": "TOFA Seller Workspace",
+    "profile": "Profile",
+    "myDashboard": "My Dashboard",
+    "myPurchases": "My Purchases",
+    "buyerDescription": "Open My Dashboard",
+    "marketplace": "Go to Marketplace",
+    "search": "Search Seller Workspace",
+    "noResults": "No matching workspace sections.",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "retry": "Try again",
+    "accessError": "We couldn’t verify your seller access. Please try again.",
+    "checkStatus": "Check application status",
+    "approved": "Approved seller",
+    "welcome": "Welcome, {name}",
+    "intro": "A dedicated home for your business. Manage what you sell, connect with buyers, and keep your business moving.",
+    "viewStore": "View your store",
+    "businessActivity": "Business activity",
+    "unavailableTitle": "Information is currently unavailable",
+    "unavailable": "We can’t display this business information right now. Please check back later.",
+    "groups": {
+      "business": "Your business",
+      "finance": "Finance",
+      "manage": "Manage"
+    },
+    "nav": {
+      "overview": "Overview",
+      "products": "Products",
+      "orders": "Orders",
+      "rfqs": "RFQs",
+      "messages": "Messages",
+      "analytics": "Analytics",
+      "reviews": "Reviews",
+      "settlements": "Settlements",
+      "payouts": "Payouts",
+      "subscription": "Subscription",
+      "store": "Store",
+      "notifications": "Notifications"
+    },
+    "descriptions": {
+      "overview": "Your business at a glance.",
+      "products": "Organize the products you sell and your listings.",
+      "orders": "Keep track of customer orders and fulfilment.",
+      "rfqs": "Review buyer requests and your quotations.",
+      "messages": "Keep your conversations with buyers in one place.",
+      "analytics": "Understand how your business is performing.",
+      "reviews": "See feedback from your customers.",
+      "settlements": "Review your business settlements.",
+      "payouts": "Track payments to your business.",
+      "subscription": "Your selling plan and membership details.",
+      "store": "Your company’s presence on TOFA.",
+      "notifications": "Stay up to date with your business."
+    }
+  },
+  "SellerProducts": {
+    "status": {
+      "updated": "Product status updated",
+      "updateError": "We couldn't update this product's status. Please try again."
+    },
+    "list": {
+      "deleted": "Product deleted",
+      "deleteError": "We couldn't delete this product. Please try again."
+    },
+    "wizard": {
+      "created": "Product created as a draft",
+      "createdWithImageWarning": "Product created as a draft, but some images failed to upload. You can retry from the edit page.",
+      "createError": "We couldn't create this product. Please try again.",
+      "updated": "Product updated",
+      "updatedWithImageWarning": "Product updated, but some images failed to upload. You can retry from the edit page.",
+      "updateError": "We couldn't update this product. Please try again."
+    }
+  },
+  "CategoryData": {
+    "title": "Categories",
+    "loading": "Loading categories",
+    "error": "Couldn’t load categories.",
+    "retry": "Try again",
+    "empty": "No categories are available.",
+    "search": "Search categories",
+    "noResults": "No matching categories.",
+    "selected": "{count}/{max} selected",
+    "unavailableSelected": "Unavailable selected category — click to remove"
+  },
+  "CurrencyData": {
+    "label": "Currency",
+    "loading": "Loading currencies…",
+    "error": "Couldn’t load currencies.",
+    "retry": "Retry currencies",
+    "empty": "No supported currencies",
+    "select": "Select currency",
+    "unavailable": "Unavailable",
+    "unsupported": "Select a currently supported currency."
+  },
+  "impactContent": {
+    "futureTitle": "Building the Future of Africa",
+    "futureDescription": "The big mission for Traders of Africa is to facilitate trade across all <strong>54 countries</strong> in Africa, through strategic partnerships. Currently, we operate in <strong>Nigeria, Benin, Togo, Cameroon and Mali.</strong>",
+    "atGlance": "Our business at a glance",
+    "onlineSuppliers": "Online Suppliers",
+    "listedProducts": "Listed Products",
+    "countryCoverage": "Country Coverage",
+    "volumeTraded": "Volume Traded",
+    "offlineSuppliers": "Offline Suppliers",
+    "countryPresence": "Country Presence",
+    "mapAlt": "Map of Africa highlighting TOFA’s presence and reach",
+    "capacityTitle": "Capacity Building",
+    "capacityDescription": "As we expand, we will continue to work with smallholder farmers, aggregators, and individuals to provide them with training, financing and off-take through TOFA Academy.",
+    "capacityNetwork": "We are building a strong network of credible agro traders who can meet the ever increasing demand, both locally and globally. See our numbers below.",
+    "capacityAlt": "Stacked sacks of agricultural produce",
+    "fundingProvided": "Funding Provided",
+    "trainees": "Trainees",
+    "africanCountries": "African Countries",
+    "communityTitleLineOne": "Be a Part of",
+    "communityTitleLineTwo": "our Community",
+    "communityDescription": "The aim of TOFA Academy is to Build a Network of Credible Suppliers all over Africa in Order to Meet Both Local and Global Demand for Agro-Commodities and African Products.",
+    "getStarted": "Get Started"
+  },
+  "MessageCenter": {
+    "eyebrow": "Your marketplace connections",
+    "title": "Messages",
+    "subtitle": "Keep every conversation in one place, wherever you buy or sell.",
+    "inbox": "Inbox",
+    "conversations": "Conversations",
+    "conversation": "Marketplace conversation",
+    "search": "Search conversations",
+    "all": "All",
+    "unread": "Unread",
+    "unreadCount": "{count} unread messages",
+    "loading": "Loading…",
+    "loadError": "We couldn’t load your messages. Please try again.",
+    "retry": "Retry",
+    "refresh": "Refresh messages",
+    "attachment": "Attachment",
+    "attachmentUnavailable": "This attachment is unavailable.",
+    "openAttachment": "Open {name}",
+    "open": "Open",
+    "noMessages": "Start the conversation",
+    "explore": "Explore marketplace",
+    "pagination": "Conversation pages",
+    "previous": "Previous page",
+    "next": "Next page",
+    "page": "{page} of {total}",
+    "back": "Back to inbox",
+    "verifiedSeller": "Verified seller",
+    "viewStore": "View store",
+    "requestQuote": "Request quote",
+    "older": "Load earlier messages",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "reply": "Reply",
+    "edit": "Edit message",
+    "delete": "Delete message",
+    "report": "Report message",
+    "deleted": "This message was deleted.",
+    "edited": "Edited",
+    "replyingTo": "Replying to {name}",
+    "cancelReply": "Cancel reply",
+    "compose": "Type a message…",
+    "send": "Send message",
+    "emoji": "Choose an emoji",
+    "composerHint": "Enter to send · Shift + Enter for a new line",
+    "sending": "Sending…",
+    "sendError": "Message not sent. You can retry without sending a duplicate.",
+    "discard": "Discard",
+    "readError": "Read receipt could not be updated. Refresh to retry.",
+    "blocked": "This conversation is restricted. Your message history is still available.",
+    "editDescription": "Update your message. Editing is subject to the marketplace’s time limit.",
+    "deleteDescription": "Delete this message? A deleted-message notice will remain in the conversation.",
+    "reportDescription": "Tell us what happened. Our team will review your report.",
+    "reason": "Reason",
+    "details": "Additional details (optional)",
+    "message": "Message",
+    "cancel": "Cancel",
+    "saving": "Saving…",
+    "save": "Save changes",
+    "reported": "Message reported successfully.",
+    "actionError": "We couldn’t complete that action. Please try again.",
+    "startError": "We couldn’t open this conversation. Please try again.",
+    "selfMessage": "You cannot message yourself.",
+    "messagingUnavailable": "Messaging is unavailable for this seller.",
+    "status": {
+      "sent": "Sent",
+      "delivered": "Delivered",
+      "read": "Read"
+    },
+    "reasons": {
+      "spam": "Spam",
+      "abusive_content": "Abusive content",
+      "fraud_attempt": "Fraud attempt",
+      "payment_scam": "Payment scam",
+      "inappropriate_content": "Inappropriate content",
+      "off_platform_solicitation": "Off-platform solicitation",
+      "other": "Other"
+    },
+    "empty": {
+      "inbox": {
+        "title": "Your next connection starts here",
+        "description": "When you message another marketplace user, your conversations will appear here."
+      },
+      "selection": {
+        "title": "A good conversation goes a long way",
+        "description": "Choose a conversation to read messages and continue the discussion."
+      },
+      "conversation": {
+        "title": "Say hello to {name}",
+        "description": "Ask about products, availability, specifications or other enquiries."
+      },
+      "search": {
+        "title": "No conversations found",
+        "description": "Try another name, company or store."
+      },
+      "unread": {
+        "title": "You’re all caught up",
+        "description": "There are no unread conversations. Your other chats are in All."
+      }
+    }
   }
 }

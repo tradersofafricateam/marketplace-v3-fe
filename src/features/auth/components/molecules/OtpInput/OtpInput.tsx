@@ -60,8 +60,8 @@ const OtpInput = ({
             onKeyDown={(event) => handleKeyDown(index, event)}
             className={cn(
               "aspect-square min-w-0 rounded-xl border border-border bg-background text-center text-lg font-bold text-foreground outline-none transition-all",
-              "focus:border-(--orange) focus:ring-4 focus:ring-(--orange)/12",
-              invalid && "border-destructive focus:ring-destructive/15",
+              "focus:border-(--orange)",
+              invalid && "border-destructive",
             )}
           />
         ))}

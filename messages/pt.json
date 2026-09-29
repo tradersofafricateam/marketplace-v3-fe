@@ -152,7 +152,10 @@
       "backendDeveloper": "Desenvolvedor backend",
       "graphicsContentManager": "Responsável por design e conteúdo",
       "hrAdmin": "RH/Administração",
-      "strategicPartnerships": "Parcerias estratégicas"
+      "strategicPartnerships": "Parcerias estratégicas",
+      "headOfOperations": "Responsável de operações",
+      "socialMediaManagerContentCreator": "Gestora de redes sociais / Criadora de conteúdo",
+      "customerRepresentative": "Representante de atendimento ao cliente"
     }
   },
   "becomeSeller": {
@@ -565,11 +568,29 @@
     "sellerPromo": {
       "title": "Venda na TOFA",
       "description": "Alcance mais compradores nos mercados africanos.",
-      "cta": "Torne-se um vendedor",
-      "pendingTitle": "Solicitação em análise",
-      "pendingDescription": "Estamos analisando sua solicitação de vendedor. Avisaremos assim que for aprovada."
+      "cta": "Tornar-se vendedor",
+      "pendingTitle": "Aguardando aprovação",
+      "pendingDescription": "Estamos analisando sua solicitação de vendedor. Avisaremos assim que for aprovada.",
+      "rejectedTitle": "Solicitação rejeitada",
+      "rejectedDescription": "Atualize sua solicitação e envie novamente.",
+      "resubmit": "Enviar novamente"
     },
     "becomeSellerModal": {
+      "businessDetails": "Dados da empresa",
+      "businessLocation": "Localização da empresa",
+      "brandIdentity": "Sua marca",
+      "logoHint": "Dê uma identidade à sua loja. Adicione o logotipo da sua empresa.",
+      "chooseLogo": "Escolher logotipo",
+      "changeLogo": "Alterar logotipo",
+      "bioPlaceholder": "Conte aos compradores o que sua empresa faz e o que a torna especial.",
+      "companyName": "Nome da empresa",
+      "registrationNumber": "Número de registro (opcional)",
+      "businessType": "Tipo de negócio",
+      "yearsOfBusiness": "Anos de atividade",
+      "companyAddress": "Endereço da empresa",
+      "pickupAddress": "Endereço de coleta",
+      "companyBio": "Descrição da empresa (opcional)",
+      "companyLogo": "Logotipo da empresa (opcional)",
       "title": "Torne-se um vendedor",
       "description": "Conte-nos sobre seu negócio. Analisaremos sua solicitação e retornaremos em breve.",
       "storeName": "Nome da loja",
@@ -587,7 +608,7 @@
       "submitError": "Não foi possível enviar sua solicitação. Tente novamente."
     },
     "topbar": {
-      "overviewTitle": "Painel",
+      "overviewTitle": "Meu painel",
       "loading": "Carregando seu painel…",
       "messages": "Mensagens",
       "notifications": "Notificações"
@@ -705,5 +726,126 @@
     "helpful": "Útil",
     "notHelpful": "Não útil",
     "wasHelpful": "Isso foi útil?"
+  },
+  "CategoryData": {
+    "title": "Categorias",
+    "loading": "Carregando categorias",
+    "error": "Não foi possível carregar as categorias.",
+    "retry": "Tentar novamente",
+    "empty": "Nenhuma categoria disponível.",
+    "search": "Pesquisar categorias",
+    "noResults": "Nenhuma categoria correspondente.",
+    "selected": "{count}/{max} selecionadas",
+    "unavailableSelected": "Categoria selecionada indisponível — clique para remover"
+  },
+  "CurrencyData": {
+    "label": "Moeda",
+    "loading": "Carregando moedas…",
+    "error": "Não foi possível carregar as moedas.",
+    "retry": "Tentar moedas novamente",
+    "empty": "Nenhuma moeda disponível",
+    "select": "Selecionar moeda",
+    "unavailable": "Indisponível",
+    "unsupported": "Selecione uma moeda atualmente suportada."
+  },
+  "MessageCenter": {
+    "eyebrow": "Seus contatos no mercado",
+    "title": "Mensagens",
+    "subtitle": "Todas as suas conversas em um só lugar, comprando ou vendendo.",
+    "inbox": "Caixa de entrada",
+    "conversations": "Conversas",
+    "conversation": "Conversa do mercado",
+    "search": "Pesquisar conversas",
+    "all": "Todas",
+    "unread": "Não lidas",
+    "unreadCount": "{count} mensagens não lidas",
+    "loading": "Carregando…",
+    "loadError": "Não foi possível carregar as mensagens. Tente novamente.",
+    "retry": "Tentar novamente",
+    "refresh": "Atualizar mensagens",
+    "attachment": "Anexo",
+    "attachmentUnavailable": "Este anexo não está disponível.",
+    "openAttachment": "Abrir {name}",
+    "open": "Abrir",
+    "noMessages": "Iniciar a conversa",
+    "explore": "Explorar o mercado",
+    "pagination": "Páginas de conversas",
+    "previous": "Página anterior",
+    "next": "Próxima página",
+    "page": "{page} de {total}",
+    "back": "Voltar às conversas",
+    "verifiedSeller": "Vendedor verificado",
+    "viewStore": "Ver loja",
+    "requestQuote": "Solicitar cotação",
+    "older": "Carregar mensagens anteriores",
+    "today": "Hoje",
+    "yesterday": "Ontem",
+    "reply": "Responder",
+    "edit": "Editar mensagem",
+    "delete": "Excluir mensagem",
+    "report": "Denunciar mensagem",
+    "deleted": "Esta mensagem foi excluída.",
+    "edited": "Editada",
+    "replyingTo": "Respondendo a {name}",
+    "cancelReply": "Cancelar resposta",
+    "compose": "Digite uma mensagem…",
+    "send": "Enviar",
+    "emoji": "Escolher um emoji",
+    "composerHint": "Enter para enviar · Shift + Enter para uma nova linha",
+    "sending": "Enviando…",
+    "sendError": "Mensagem não enviada. Tente novamente sem criar duplicatas.",
+    "discard": "Descartar",
+    "readError": "Não foi possível atualizar a confirmação de leitura. Atualize para tentar novamente.",
+    "blocked": "Esta conversa está restrita. O histórico continua disponível.",
+    "editDescription": "Atualize sua mensagem dentro do prazo permitido pelo mercado.",
+    "deleteDescription": "Excluir esta mensagem? Um aviso de exclusão permanecerá na conversa.",
+    "reportDescription": "Conte o que aconteceu. Nossa equipe analisará sua denúncia.",
+    "reason": "Motivo",
+    "details": "Detalhes adicionais (opcional)",
+    "message": "Mensagem",
+    "cancel": "Cancelar",
+    "saving": "Salvando…",
+    "save": "Salvar alterações",
+    "reported": "Mensagem denunciada com sucesso.",
+    "actionError": "Não foi possível concluir a ação. Tente novamente.",
+    "startError": "Não foi possível abrir esta conversa. Tente novamente.",
+    "selfMessage": "Você não pode enviar mensagens para si mesmo.",
+    "messagingUnavailable": "As mensagens estão indisponíveis para este vendedor.",
+    "status": {
+      "sent": "Enviada",
+      "delivered": "Entregue",
+      "read": "Lida"
+    },
+    "reasons": {
+      "spam": "Spam",
+      "abusive_content": "Conteúdo abusivo",
+      "fraud_attempt": "Tentativa de fraude",
+      "payment_scam": "Golpe de pagamento",
+      "inappropriate_content": "Conteúdo impróprio",
+      "off_platform_solicitation": "Solicitação fora da plataforma",
+      "other": "Outro"
+    },
+    "empty": {
+      "inbox": {
+        "title": "Seu próximo contato começa aqui",
+        "description": "Suas conversas aparecerão aqui quando você enviar uma mensagem a outro usuário."
+      },
+      "selection": {
+        "title": "Uma boa conversa abre caminhos",
+        "description": "Escolha uma conversa para ler as mensagens e continuar a discussão."
+      },
+      "conversation": {
+        "title": "Diga olá a {name}",
+        "description": "Pergunte sobre produtos, disponibilidade ou especificações."
+      },
+      "search": {
+        "title": "Nenhuma conversa encontrada",
+        "description": "Tente outro nome, empresa ou loja."
+      },
+      "unread": {
+        "title": "Tudo em dia",
+        "description": "Não há conversas não lidas. As outras estão em Todas."
+      }
+    }
   }
 }

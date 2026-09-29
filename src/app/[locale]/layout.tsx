@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
-import { Mulish, Poppins, Geist } from "next/font/google";
+import { Mulish, Poppins } from "next/font/google";
 
 import { routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
@@ -13,8 +13,6 @@ import { cn } from "@/lib/utils";
 import QueryProvider from "@/components/QueryProvider";
 import AuthProvider from "@/components/providers/AuthProvider/AuthProvider";
 import CurrencyProvider from "@/components/providers/CurrencyProvider/CurrencyProvider";
-
-const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
 const mulish = Mulish({
   subsets: ["latin"],
@@ -121,7 +119,6 @@ export default async function RootLayout({
         mulish.variable,
         poppins.variable,
         "font-sans",
-        geist.variable,
       )}
     >
       <body className="min-h-full flex flex-col">

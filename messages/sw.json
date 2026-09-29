@@ -152,7 +152,10 @@
       "backendDeveloper": "Msanidi wa Backend",
       "graphicsContentManager": "Meneja wa Michoro na Maudhui",
       "hrAdmin": "Rasilimali Watu/Utawala",
-      "strategicPartnerships": "Ushirikiano wa Kimkakati"
+      "strategicPartnerships": "Ushirikiano wa Kimkakati",
+      "headOfOperations": "Mkuu wa Uendeshaji",
+      "socialMediaManagerContentCreator": "Meneja wa Mitandao ya Kijamii / Mtayarishaji wa Maudhui",
+      "customerRepresentative": "Mwakilishi wa Huduma kwa Wateja"
     }
   },
   "becomeSeller": {
@@ -565,11 +568,29 @@
     "sellerPromo": {
       "title": "Anza kuuza kwenye TOFA",
       "description": "Fikia wanunuzi wengi zaidi katika masoko ya Afrika.",
-      "cta": "Kuwa Muuzaji",
-      "pendingTitle": "Ombi linakaguliwa",
-      "pendingDescription": "Tunakagua ombi lako la uuzaji. Tutakujulisha mara litakapoidhinishwa."
+      "cta": "Kuwa muuzaji",
+      "pendingTitle": "Inasubiri idhini",
+      "pendingDescription": "Tunakagua ombi lako la uuzaji. Tutakujulisha mara litakapoidhinishwa.",
+      "rejectedTitle": "Ombi limekataliwa",
+      "rejectedDescription": "Sasisha ombi lako na ulitume tena.",
+      "resubmit": "Tuma ombi tena"
     },
     "becomeSellerModal": {
+      "businessDetails": "Maelezo ya biashara",
+      "businessLocation": "Mahali pa biashara",
+      "brandIdentity": "Chapa yako",
+      "logoHint": "Ipe duka lako utambulisho. Ongeza nembo ya kampuni yako.",
+      "chooseLogo": "Chagua nembo",
+      "changeLogo": "Badilisha nembo",
+      "bioPlaceholder": "Waeleze wanunuzi shughuli za kampuni yako na kinachoifanya iwe ya kipekee.",
+      "companyName": "Jina la kampuni",
+      "registrationNumber": "Nambari ya usajili (hiari)",
+      "businessType": "Aina ya biashara",
+      "yearsOfBusiness": "Miaka ya biashara",
+      "companyAddress": "Anwani ya kampuni",
+      "pickupAddress": "Anwani ya kuchukua bidhaa",
+      "companyBio": "Maelezo ya kampuni (hiari)",
+      "companyLogo": "Nembo ya kampuni (hiari)",
       "title": "Kuwa muuzaji",
       "description": "Tuambie kuhusu biashara yako. Tutakagua ombi lako na kukujibu hivi karibuni.",
       "storeName": "Jina la duka",
@@ -587,7 +608,7 @@
       "submitError": "Hatukuweza kutuma ombi lako. Jaribu tena."
     },
     "topbar": {
-      "overviewTitle": "Dashibodi",
+      "overviewTitle": "Dashibodi yangu",
       "loading": "Inapakia dashibodi yako…",
       "messages": "Ujumbe",
       "notifications": "Arifa"
@@ -705,5 +726,126 @@
     "helpful": "Imesaidia",
     "notHelpful": "Haijasaidia",
     "wasHelpful": "Je, hii ilisaidia?"
+  },
+  "CategoryData": {
+    "title": "Kategoria",
+    "loading": "Inapakia kategoria",
+    "error": "Imeshindwa kupakia kategoria.",
+    "retry": "Jaribu tena",
+    "empty": "Hakuna kategoria zinazopatikana.",
+    "search": "Tafuta kategoria",
+    "noResults": "Hakuna kategoria zinazolingana.",
+    "selected": "{count}/{max} zimechaguliwa",
+    "unavailableSelected": "Kategoria iliyochaguliwa haipatikani — bonyeza kuondoa"
+  },
+  "CurrencyData": {
+    "label": "Sarafu",
+    "loading": "Inapakia sarafu…",
+    "error": "Imeshindwa kupakia sarafu.",
+    "retry": "Jaribu sarafu tena",
+    "empty": "Hakuna sarafu zinazopatikana",
+    "select": "Chagua sarafu",
+    "unavailable": "Haipatikani",
+    "unsupported": "Chagua sarafu inayotumika kwa sasa."
+  },
+  "MessageCenter": {
+    "eyebrow": "Mahusiano yako sokoni",
+    "title": "Ujumbe",
+    "subtitle": "Weka mazungumzo yako yote pamoja, unaponunua au kuuza.",
+    "inbox": "Kikasha",
+    "conversations": "Mazungumzo",
+    "conversation": "Mazungumzo ya sokoni",
+    "search": "Tafuta mazungumzo",
+    "all": "Yote",
+    "unread": "Hayajasomwa",
+    "unreadCount": "Ujumbe {count} haujasomwa",
+    "loading": "Inapakia…",
+    "loadError": "Hatukuweza kupakia ujumbe wako. Jaribu tena.",
+    "retry": "Jaribu tena",
+    "refresh": "Onyesha ujumbe mpya",
+    "attachment": "Kiambatisho",
+    "attachmentUnavailable": "Kiambatisho hiki hakipatikani.",
+    "openAttachment": "Fungua {name}",
+    "open": "Fungua",
+    "noMessages": "Anzisha mazungumzo",
+    "explore": "Vinjari soko",
+    "pagination": "Kurasa za mazungumzo",
+    "previous": "Ukurasa uliotangulia",
+    "next": "Ukurasa unaofuata",
+    "page": "{page} kati ya {total}",
+    "back": "Rudi kwenye kikasha",
+    "verifiedSeller": "Muuzaji aliyethibitishwa",
+    "viewStore": "Tazama duka",
+    "requestQuote": "Omba bei",
+    "older": "Pakia ujumbe wa awali",
+    "today": "Leo",
+    "yesterday": "Jana",
+    "reply": "Jibu",
+    "edit": "Hariri ujumbe",
+    "delete": "Futa ujumbe",
+    "report": "Ripoti ujumbe",
+    "deleted": "Ujumbe huu umefutwa.",
+    "edited": "Umehaririwa",
+    "replyingTo": "Unamjibu {name}",
+    "cancelReply": "Ghairi jibu",
+    "compose": "Andika ujumbe…",
+    "send": "Tuma ujumbe",
+    "emoji": "Chagua emoji",
+    "composerHint": "Enter kutuma · Shift + Enter kuanza mstari mpya",
+    "sending": "Inatuma…",
+    "sendError": "Ujumbe haujatumwa. Jaribu tena bila kutuma nakala nyingine.",
+    "discard": "Ondoa",
+    "readError": "Hali ya kusoma haikusasishwa. Onyesha upya ili ujaribu tena.",
+    "blocked": "Mazungumzo haya yamewekewa kizuizi. Historia yake bado inapatikana.",
+    "editDescription": "Hariri ujumbe wako ndani ya muda unaoruhusiwa na soko.",
+    "deleteDescription": "Ungependa kufuta ujumbe huu? Taarifa ya kufutwa itabaki.",
+    "reportDescription": "Tueleze kilichotokea. Timu yetu itapitia ripoti yako.",
+    "reason": "Sababu",
+    "details": "Maelezo zaidi (si lazima)",
+    "message": "Ujumbe",
+    "cancel": "Ghairi",
+    "saving": "Inahifadhi…",
+    "save": "Hifadhi mabadiliko",
+    "reported": "Ujumbe umeripotiwa.",
+    "actionError": "Hatukuweza kukamilisha kitendo hiki. Jaribu tena.",
+    "startError": "Hatukuweza kufungua mazungumzo haya. Jaribu tena.",
+    "selfMessage": "Huwezi kujitumia ujumbe.",
+    "messagingUnavailable": "Ujumbe haupatikani kwa muuzaji huyu.",
+    "status": {
+      "sent": "Umetumwa",
+      "delivered": "Umewasilishwa",
+      "read": "Umesomwa"
+    },
+    "reasons": {
+      "spam": "Barua taka",
+      "abusive_content": "Maudhui ya matusi",
+      "fraud_attempt": "Jaribio la udanganyifu",
+      "payment_scam": "Utapeli wa malipo",
+      "inappropriate_content": "Maudhui yasiyofaa",
+      "off_platform_solicitation": "Ushawishi wa kufanya shughuli nje ya jukwaa",
+      "other": "Nyingine"
+    },
+    "empty": {
+      "inbox": {
+        "title": "Uhusiano wako unaofuata unaanzia hapa",
+        "description": "Ukimtumia mtumiaji mwingine ujumbe, mazungumzo yenu yataonekana hapa."
+      },
+      "selection": {
+        "title": "Mazungumzo mazuri hufungua milango",
+        "description": "Chagua mazungumzo ili usome ujumbe na kuendelea kuzungumza."
+      },
+      "conversation": {
+        "title": "Msalimie {name}",
+        "description": "Uliza kuhusu bidhaa, upatikanaji, vipimo au maswali mengine."
+      },
+      "search": {
+        "title": "Hakuna mazungumzo yaliyopatikana",
+        "description": "Jaribu jina, kampuni au duka lingine."
+      },
+      "unread": {
+        "title": "Umesoma yote",
+        "description": "Hakuna mazungumzo ambayo hayajasomwa. Mengine yapo kwenye Yote."
+      }
+    }
   }
 }

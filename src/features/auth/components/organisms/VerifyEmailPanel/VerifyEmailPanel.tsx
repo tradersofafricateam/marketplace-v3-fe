@@ -15,9 +15,11 @@ import { useGetAllRoutes } from "@/lib/hooks/useGetAllRoutes";
 const VerifyEmailPanel = ({
   initialEmail = "",
   initialToken = "",
+  returnUrl,
 }: {
   initialEmail?: string;
   initialToken?: string;
+  returnUrl?: string;
 }) => {
   const t = useTranslations("Auth.verifyEmail");
   const { routes } = useGetAllRoutes();
@@ -34,7 +36,7 @@ const VerifyEmailPanel = ({
     canResend,
     resendTimer,
     expiryTimer,
-  } = useVerifyEmail({ email, token: initialToken.trim() });
+  } = useVerifyEmail({ email, token: initialToken.trim(), returnUrl });
 
   return (
     <motion.div

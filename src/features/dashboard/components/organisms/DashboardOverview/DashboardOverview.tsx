@@ -35,15 +35,14 @@ const DashboardOverview = () => {
     currentUser?.firstName ||
     currentUser?.email.split("@")[0] ||
     t("fallbackName");
-  const totalOrders =
-    analyticsQuery.data?.totalOrders ?? analyticsQuery.data?.orders ?? 0;
-  const totalRfqs =
-    analyticsQuery.data?.totalRfqs ??
-    analyticsQuery.data?.totalRFQs ??
-    analyticsQuery.data?.rfqs ??
-    0;
-  const analyticsValue = (value: number) =>
-    analyticsQuery.isPending ? "—" : String(value);
+  const analyticsLoading = analyticsQuery.isLoadingCurrentData;
+  const analytics = analyticsQuery.data;
+  const totalOrders = analytics?.orders.total;
+  const totalRfqs = analytics
+    ? analytics.rfqs.direct.created + analytics.rfqs.market.created
+    : undefined;
+  const analyticsValue = (value: number | undefined) =>
+    analyticsQuery.isError || value === undefined ? "—" : String(value);
 
   return (
     <div className="flex flex-col gap-8">
@@ -52,7 +51,7 @@ const DashboardOverview = () => {
           <h2 className="heading-font text-2xl font-bold text-foreground">
             {t("greeting", { name: firstName })}
           </h2>
-          <p className="mt-1.5 text-sm text-muted-foreground">{t("subtitle")}</p>
+          <p className="text-body mt-1.5 text-muted-foreground">{t("subtitle")}</p>
         </div>
         <div className="flex items-center gap-2">
           {analyticsQuery.isFetching && (
@@ -85,11 +84,13 @@ const DashboardOverview = () => {
         <DashboardStatCard
           label={t("stats.orders")}
           value={analyticsValue(totalOrders)}
+          isLoading={analyticsLoading}
           hint={t("stats.ordersHint")}
         />
         <DashboardStatCard
           label={t("stats.rfqs")}
           value={analyticsValue(totalRfqs)}
+          isLoading={analyticsLoading}
           hint={t("stats.rfqsHint")}
         />
         <DashboardStatCard

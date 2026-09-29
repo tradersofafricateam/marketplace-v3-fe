@@ -20,7 +20,7 @@ const SellerPolicyCard = ({
       <Icon size={19} aria-hidden="true" />
     </div>
     <h3 className="text-lg font-bold">{title}</h3>
-    <p className="flex-1 text-sm leading-7 text-muted-foreground">{description}</p>
+    <p className="text-body flex-1 text-muted-foreground">{description}</p>
     <a
       href={downloadHref}
       download

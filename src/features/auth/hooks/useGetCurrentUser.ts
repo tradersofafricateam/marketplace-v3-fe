@@ -1,13 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { getCurrentUser } from "../api";
 import { AUTH_COOKIE_CHANGE_EVENT, readCookie } from "@/lib/helpers/cookie";
 import { useStore } from "@/store/authStore";
 
 export const useGetCurrentUser = () => {
+  const queryClient = useQueryClient();
   const setCurrentUser = useStore((state) => state.setCurrentUser);
   const clearCurrentUser = useStore((state) => state.clearCurrentUser);
   const setIsAuthInitialized = useStore(
@@ -17,19 +18,28 @@ export const useGetCurrentUser = () => {
   // Lazily read the cookie on the client's first render, so `token` is
   // already correct by the time the effect below runs - no artificial
   // "no token" flash before the real value is known.
-  const [token, setToken] = useState<string | undefined>(() =>
-    readCookie("tofaToken"),
-  );
+  const [session, setSession] = useState(() => ({
+    token: readCookie("tofaToken"),
+    revision: 0,
+  }));
+  const token = session.token;
 
   useEffect(() => {
-    const handleChange = () => setToken(readCookie("tofaToken"));
+    const handleChange = () => {
+      const nextToken = readCookie("tofaToken");
+      if (nextToken === token) return;
+      clearCurrentUser();
+      setIsAuthInitialized(false);
+      // Cancel old requests and discard private cached data when accounts change.
+      queryClient.removeQueries();
+      setSession((current) => ({ token: nextToken, revision: current.revision + 1 }));
+    };
     window.addEventListener(AUTH_COOKIE_CHANGE_EVENT, handleChange);
-    return () =>
-      window.removeEventListener(AUTH_COOKIE_CHANGE_EVENT, handleChange);
-  }, []);
+    return () => window.removeEventListener(AUTH_COOKIE_CHANGE_EVENT, handleChange);
+  }, [token, clearCurrentUser, setIsAuthInitialized, queryClient]);
 
   const query = useQuery({
-    queryKey: ["currentUser"],
+    queryKey: ["currentUser", session.revision],
     queryFn: getCurrentUser,
     enabled: Boolean(token),
     staleTime: 5 * 60 * 1000,
@@ -40,6 +50,11 @@ export const useGetCurrentUser = () => {
     if (!token) {
       clearCurrentUser();
       setIsAuthInitialized(true);
+      return;
+    }
+
+    if (query.isFetching) {
+      setIsAuthInitialized(false);
       return;
     }
 
@@ -67,6 +82,7 @@ export const useGetCurrentUser = () => {
     clearCurrentUser,
     query.data,
     query.isError,
+    query.isFetching,
     query.isSuccess,
     setCurrentUser,
     setIsAuthInitialized,
