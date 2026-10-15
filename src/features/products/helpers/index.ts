@@ -14,9 +14,9 @@ export const calculateFinalPrice = (
   discount: number | null,
 ) => (discount ? price - (price * discount) / 100 : price);
 
-/** 0 < discount < 100, or null. A 100% discount is not a valid product discount. */
+/** 0 <= discount < 100, or null. A 100% discount is not a valid product discount. */
 export const isValidDiscount = (discount: number | null) =>
-  discount === null || (discount > 0 && discount < 100);
+  discount === null || (discount >= 0 && discount < 100);
 
 export const getLocalizedText = (text: LocalizedText, locale: string) =>
   text[locale] ?? text.en ?? Object.values(text)[0] ?? "";

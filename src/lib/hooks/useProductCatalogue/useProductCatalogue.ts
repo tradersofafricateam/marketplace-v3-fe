@@ -1,10 +1,11 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter, useSearchParams } from "next/navigation";
 
-import { products } from "@/features/products/constants/dummy";
+import { usePublicProducts } from "@/features/products/hooks/usePublicProducts";
+import { publicProductQuery, publicSortMap } from "@/features/products/helpers/publicProductQuery";
 import type { CatalogueFilters, ProductView } from "@/features/products/types";
 import { useCategories } from "@/features/categories/hooks/useCategories";
 import { useCurrency } from "@/lib/hooks/useCurrency/useCurrency";
@@ -23,13 +24,12 @@ const emptyFilters: CatalogueFilters = {
 
 export const productSortOptions = [
   "relevance",
+  "ranking",
   "newest",
-  "oldest",
   "price-low",
   "price-high",
   "rating",
   "reviews",
-  "name-asc",
 ] as const;
 
 export const useProductCatalogue = () => {
@@ -46,19 +46,21 @@ export const useProductCatalogue = () => {
   const [draftFilters, setDraftFilters] = useState<CatalogueFilters>({
     ...emptyFilters,
     priceCurrency: params.get("currency") ?? "",
-    category: params.get("category") ?? "",
+    category: params.get("categoryId") ?? params.get("category") ?? "",
+    countryOfOrigin: params.get("countryOfOrigin") ?? "",
+    hasDiscount: params.get("hasDiscount") === "true",
     minPrice: params.get("minPrice") ?? emptyFilters.minPrice,
     maxPrice: params.get("maxPrice") ?? emptyFilters.maxPrice,
-    rating: params.get("rating") ?? "",
+    rating: params.get("minRating") ?? params.get("rating") ?? "",
     minOrder: params.get("minOrder") ?? "",
     verified: params.get("verified") === "1",
-    inStock: params.get("inStock") === "1",
+    inStock: params.get("inventoryStatus") === "in_stock" || params.get("inStock") === "1",
   });
 
   const query = params.get("q")?.trim() ?? "";
   const collection = params.get("collection") ?? "";
-  const sort = params.get("sort") ?? "relevance";
-  const appliedCategory = params.get("category") ?? "";
+  const sort = params.get("sort") ?? Object.entries(publicSortMap).find(([, value]) => value === params.get("sortBy"))?.[0] ?? (collection === "popular" ? "ranking" : collection === "new" ? "newest" : "relevance");
+  const appliedCategory = params.get("categoryId") ?? params.get("category") ?? "";
   const category = categories.find((item) => item.id === appliedCategory);
   const contextTitle =
     query ||
@@ -69,54 +71,13 @@ export const useProductCatalogue = () => {
         ? t("collections.new")
         : t("collections.all"));
 
-  const visibleProducts = useMemo(() => {
-    const minPrice = Number(params.get("minPrice") ?? 0);
-    const maxPrice = Number(params.get("maxPrice") ?? PRODUCT_PRICE_LIMIT);
-    const minimumRating = Number(params.get("rating") ?? 0);
-    const maximumMinimumOrder = Number(
-      params.get("minOrder") || Number.POSITIVE_INFINITY,
-    );
-    const verifiedOnly = params.get("verified") === "1";
-    const inStockOnly = params.get("inStock") === "1";
-    const needle = query.toLowerCase();
-    const priceCurrency = params.get("currency") || currency;
-    const hasPriceFilter = params.has("minPrice") || params.has("maxPrice");
-    const sortingByPrice = sort === "price-low" || sort === "price-high";
-
-    const filtered = products.filter((product) => {
-      const productNumber = Number(product.id) || 1;
-      const rating = 3 + (productNumber % 3);
-      const minimumOrder = productNumber * 10;
-      const matchesQuery =
-        !needle ||
-        `${product.productName} ${product.storeName}`
-          .toLowerCase()
-          .includes(needle);
-      const matchesCategory = !appliedCategory || (product.categoryIds?.includes(appliedCategory) ?? false);
-
-      return (
-        matchesQuery &&
-        matchesCategory &&
-        (!(hasPriceFilter || sortingByPrice) || (!!priceCurrency && product.currency === priceCurrency)) &&
-        (!hasPriceFilter || (product.amount >= minPrice && product.amount <= maxPrice)) &&
-        rating >= minimumRating &&
-        minimumOrder <= maximumMinimumOrder &&
-        (!verifiedOnly || productNumber % 2 === 0) &&
-        (!inStockOnly || productNumber % 3 !== 0)
-      );
-    });
-
-    return [...filtered].sort((a, b) => {
-      if (collection === "popular" || sort === "reviews") return b.totalReviews - a.totalReviews;
-      if (collection === "new" || sort === "newest") return Number(b.id) - Number(a.id);
-      if (sort === "oldest") return Number(a.id) - Number(b.id);
-      if (sort === "price-low") return a.amount - b.amount;
-      if (sort === "price-high") return b.amount - a.amount;
-      if (sort === "rating") return (Number(b.id) % 3) - (Number(a.id) % 3);
-      if (sort === "name-asc") return a.productName.localeCompare(b.productName);
-      return 0;
-    });
-  }, [appliedCategory, collection, params, query, sort, currency]);
+  const productsQuery = usePublicProducts(publicProductQuery(new URLSearchParams(params.toString())));
+  const visibleProducts = productsQuery.data?.items ?? [];
+  const pagination = productsQuery.data?.pagination;
+  const changePage = (page: number) => {
+    const next = new URLSearchParams(params.toString()); next.set("page", String(page));
+    router.push(`/${locale}/products?${next}`);
+  };
 
   const changeFilters = (next: Partial<CatalogueFilters>) => {
     setDraftFilters((current) => ({ ...current, ...next }));
@@ -125,18 +86,19 @@ export const useProductCatalogue = () => {
   const applyFilters = (filters = draftFilters) => {
     const next = new URLSearchParams(params.toString());
     const values: Record<string, string> = {
-      category: filters.category,
+      categoryId: filters.category,
+      countryOfOrigin: filters.countryOfOrigin || "",
+      hasDiscount: filters.hasDiscount ? "true" : "",
       currency: filters.priceCurrency || currency,
       minPrice: filters.minPrice === emptyFilters.minPrice ? "" : filters.minPrice,
       maxPrice: filters.maxPrice === emptyFilters.maxPrice ? "" : filters.maxPrice,
-      rating: filters.rating,
-      minOrder: filters.minOrder,
-      verified: filters.verified ? "1" : "",
-      inStock: filters.inStock ? "1" : "",
+      minRating: filters.rating,
+      inventoryStatus: filters.inStock ? "in_stock" : "",
     };
     Object.entries(values).forEach(([key, value]) =>
       value ? next.set(key, value) : next.delete(key),
     );
+    ["category", "rating", "inStock", "verified", "minOrder"].forEach((key) => next.delete(key));
     next.delete("page");
     router.push(`/${locale}/products${next.size ? `?${next.toString()}` : ""}`);
     setMobileFiltersOpen(false);
@@ -150,6 +112,7 @@ export const useProductCatalogue = () => {
   const changeSort = (value: string) => {
     const next = new URLSearchParams(params.toString());
     if (value === "price-low" || value === "price-high") next.set("currency", currency);
+    next.delete("sortBy");
     if (value === "relevance") next.delete("sort");
     else next.set("sort", value);
     next.delete("page");
@@ -161,8 +124,8 @@ export const useProductCatalogue = () => {
     draftFilters.minPrice !== emptyFilters.minPrice,
     draftFilters.maxPrice !== emptyFilters.maxPrice,
     draftFilters.rating,
-    draftFilters.minOrder,
-    draftFilters.verified,
+    draftFilters.countryOfOrigin,
+    draftFilters.hasDiscount,
     draftFilters.inStock,
   ].filter(Boolean).length;
 
@@ -170,6 +133,11 @@ export const useProductCatalogue = () => {
     locale,
     contextTitle,
     visibleProducts,
+    pagination,
+    changePage,
+    isLoading: productsQuery.isLoadingCurrentData,
+    isError: productsQuery.isError,
+    retry: productsQuery.refetch,
     draftFilters,
     activeFilterCount,
     sort,

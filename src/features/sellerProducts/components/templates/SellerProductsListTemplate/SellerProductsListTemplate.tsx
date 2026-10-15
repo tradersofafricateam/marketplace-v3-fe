@@ -6,6 +6,7 @@ import { Plus } from "lucide-react";
 
 import { useGetAllRoutes } from "@/lib/hooks/useGetAllRoutes";
 import { useSellerProducts } from "../../../hooks/useSellerProducts";
+import ProductPagination from "../../molecules/ProductPagination/ProductPagination";
 import ProductFilterTabs from "../../molecules/ProductFilterTabs/ProductFilterTabs";
 import SellerProductsTable from "../../organisms/SellerProductsTable/SellerProductsTable";
 import SellerProductsEmptyState from "../../organisms/SellerProductsEmptyState/SellerProductsEmptyState";
@@ -18,8 +19,9 @@ const SellerProductsListTemplate = () => {
     "all",
   );
   const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
   const { data, isLoadingCurrentData, isError, refetch } = useSellerProducts(
-    { page, limit: 20, ...(statusFilter === "all" ? {} : { status: statusFilter }) },
+    { page, limit, ...(statusFilter === "all" ? {} : { status: statusFilter }) },
   );
 
   const hasNoProductsAtAll =
@@ -89,14 +91,15 @@ const SellerProductsListTemplate = () => {
             data.items.length > 0 && (
               <SellerProductsTable products={data.items} />
             )}
-          {!isLoadingCurrentData && !isError && data && (data.totalPages > 1 || page > 1) && (
-            <nav aria-label="Product pages" className="flex flex-wrap items-center justify-between gap-3">
-              <p className="text-sm text-muted-foreground">{data.total.toLocaleString()} products · Page {data.page} of {Math.max(1, data.totalPages)}</p>
-              <div className="flex gap-2">
-                <button type="button" disabled={page <= 1} onClick={() => setPage((current) => current - 1)} className="rounded-xl border border-border px-4 py-2 text-sm font-semibold disabled:opacity-40">Previous</button>
-                <button type="button" disabled={page >= data.totalPages} onClick={() => setPage((current) => current + 1)} className="rounded-xl border border-border px-4 py-2 text-sm font-semibold disabled:opacity-40">Next</button>
-              </div>
-            </nav>
+          {!isLoadingCurrentData && !isError && data && (
+            <ProductPagination
+              page={page}
+              limit={limit}
+              total={data.total}
+              totalPages={data.totalPages}
+              onPageChange={setPage}
+              onLimitChange={(size) => { setLimit(size); setPage(1); }}
+            />
           )}
         </>
       )}

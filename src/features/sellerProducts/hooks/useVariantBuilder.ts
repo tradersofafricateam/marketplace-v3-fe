@@ -56,5 +56,12 @@ export const useVariantBuilder = ({
     [onVariantsChange, variants],
   );
 
-  return { addOption, removeOption, setOptionName, setOptionValues, updateVariant, canAddOption: options.length < MAX_OPTIONS };
+  return {
+    addOption,
+    removeOption,
+    setOptionName,
+    setOptionValues,
+    updateVariant,
+    canAddOption: options.length < MAX_OPTIONS,
+  };
 };

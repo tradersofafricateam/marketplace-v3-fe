@@ -5,7 +5,8 @@ import { useLocale } from "next-intl";
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Archive, Eye, EyeOff, Pencil, Trash2 } from "lucide-react";
+import ProductInventoryDialog from "../ProductInventoryDialog";
+import { Archive, Send, Eye, EyeOff, Pencil, Trash2 } from "lucide-react";
 
 import { useGetAllRoutes } from "@/lib/hooks/useGetAllRoutes";
 import { useUpdateProductStatus } from "../../../hooks/useUpdateProductStatus";
@@ -17,7 +18,7 @@ import ConfirmDeleteDialog from "../../molecules/ConfirmDeleteDialog/ConfirmDele
 import type { SellerProductListItem } from "../../../types";
 
 const rowActions = (status: SellerProductListItem["status"]) => ({
-  canPublish: status === "draft" || status === "inactive",
+  canPublish: status === "draft" || status === "rejected",
   canDeactivate: status === "active",
   canArchive: status === "active" || status === "inactive",
 });
@@ -28,6 +29,7 @@ const SellerProductsTable = ({ products }: { products: SellerProductListItem[] }
   const { routes } = useGetAllRoutes();
   const { updateStatus, isUpdatingStatus } = useUpdateProductStatus();
   const { deleteProduct, isDeleting } = useDeleteProduct();
+  const [inventoryId, setInventoryId] = useState<string>();
   const [pendingDeleteId, setPendingDeleteId] = useState<string | undefined>();
 
   const pendingDeleteProduct = products.find((product) => product.id === pendingDeleteId);
@@ -58,7 +60,7 @@ const SellerProductsTable = ({ products }: { products: SellerProductListItem[] }
                         <Image src={imageUrl} alt="" fill sizes="44px" className="object-cover" />
                       )}
                     </span>
-                    <span className="text-sm font-semibold">{getLocalizedText(product.productName, locale)}</span>
+                    <Link href={routes.sellerProductDetail(product.id)} className="text-sm font-semibold hover:text-(--orange) hover:underline">{getLocalizedText(product.productName, locale)}</Link>
                   </div>
                 </td>
                 <td className="py-3">
@@ -66,12 +68,14 @@ const SellerProductsTable = ({ products }: { products: SellerProductListItem[] }
                 </td>
                 <td className="py-3">
                   <InventoryStatusBadge status={product.inventoryStatus} />
+                  <button type="button" onClick={() => setInventoryId(product.id)} className="mt-1 block text-xs text-(--orange)">{product.totalStock.toLocaleString(locale)} · Update stock</button>
                 </td>
                 <td className="py-3 text-sm font-medium">
                   {product.productType === "SIMPLE" ? (product.price == null ? "—" : formatMoney(product.finalPrice ?? product.price, product.currency)) : "Varies"}
                 </td>
                 <td className="py-3 pr-4">
                   <div className="flex items-center justify-end gap-1">
+                    <Link href={routes.sellerProductDetail(product.id)} aria-label="View product" title="View product" className="flex size-8 items-center justify-center rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground"><Eye size={15} /></Link>
                     <Link
                       href={routes.sellerProductEdit(product.id)}
                       aria-label="Edit product"
@@ -82,12 +86,13 @@ const SellerProductsTable = ({ products }: { products: SellerProductListItem[] }
                     {actions.canPublish && (
                       <button
                         type="button"
-                        aria-label="Publish product"
+                        aria-label="Submit product for review"
+                        title="Submit for review"
                         disabled={isUpdatingStatus}
-                        onClick={() => updateStatus({ id: product.id, status: "active" })}
+                        onClick={() => updateStatus({ id: product.id, status: "pending_approval" })}
                         className="flex size-8 items-center justify-center rounded-lg text-muted-foreground hover:bg-muted hover:text-emerald-600 disabled:opacity-50"
                       >
-                        <Eye size={15} />
+                        <Send size={15} />
                       </button>
                     )}
                     {actions.canDeactivate && (
@@ -128,6 +133,7 @@ const SellerProductsTable = ({ products }: { products: SellerProductListItem[] }
         </tbody>
       </table>
 
+      {inventoryId && <ProductInventoryDialog id={inventoryId} onClose={() => setInventoryId(undefined)} />}
       <ConfirmDeleteDialog
         open={Boolean(pendingDeleteProduct)}
         title="Delete this product?"

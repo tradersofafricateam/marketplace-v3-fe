@@ -17,35 +17,27 @@ export const generateVariantCombinations = (
   );
 };
 
-/** Merges freshly generated combinations with any prices/quantities already entered for them. */
+/**
+ * Merges freshly generated combinations with any prices/quantities already
+ * entered for them. Matching is case-insensitive, and a match always adopts
+ * the newly generated `attributes` (not the stored ones) - this way
+ * normalizing a value's casing on blur doesn't wipe out its entered price
+ * just because "red" no longer string-matches "Red".
+ */
 export const mergeVariantCombinations = (
   combinations: Record<string, string>[],
   existingVariants: ProductVariant[],
 ): ProductVariant[] =>
   combinations.map((attributes) => {
     const existing = existingVariants.find((variant) =>
-      Object.entries(attributes).every(([key, value]) => variant.attributes[key] === value),
+      Object.entries(attributes).every(
+        ([key, value]) => variant.attributes[key]?.toLowerCase() === value.toLowerCase(),
+      ),
     );
-    return (
-      existing ?? {
-        attributes,
-        price: 0,
-        discount: null,
-        quantity: 0,
-        image: null,
-      }
-    );
+    return existing
+      ? { ...existing, attributes }
+      : { attributes, price: 0, discount: null, quantity: 0, image: null };
   });
-
-/** One image is required per unique Color value (spec 3.19); variants sharing a color may share an image. */
-export const getRequiredColors = (options: ProductVariantOption[]): string[] =>
-  options.find((option) => option.name.toLowerCase() === "color")?.values ?? [];
-
-export const getMissingColorImages = (
-  options: ProductVariantOption[],
-  variantImagesByColor: Record<string, File | string>,
-): string[] =>
-  getRequiredColors(options).filter((color) => !variantImagesByColor[color]);
 
 export const countCombinations = (options: ProductVariantOption[]): number =>
   options.reduce((total, option) => total * (option.values.length || 1), options.length ? 1 : 0);

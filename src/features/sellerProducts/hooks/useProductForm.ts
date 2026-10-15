@@ -29,10 +29,10 @@ const emptyValues: ProductFormState = {
   variants: [],
   galleryImages: [],
   primaryImageIndex: 0,
-  variantImagesByColor: {},
+  variantImageFiles: {},
 };
 
-export const useProductForm = (initialValues: ProductFormState = emptyValues, hasExistingImages = false) => {
+export const useProductForm = (initialValues: ProductFormState = emptyValues) => {
   const [values, setValues] = useState<ProductFormState>(initialValues);
   const [errors, setErrors] = useState<ProductFormErrors>({});
 
@@ -49,10 +49,10 @@ export const useProductForm = (initialValues: ProductFormState = emptyValues, ha
   );
 
   const validate = useCallback((fields?: (keyof ProductFormState)[]) => {
-    const validationErrors = errorsForFields(validateProductForm(values, hasExistingImages), fields);
+    const validationErrors = errorsForFields(validateProductForm(values), fields);
     setErrors(validationErrors);
     return Object.keys(validationErrors).length === 0;
-  }, [values, hasExistingImages]);
+  }, [values]);
 
   return { values, errors, handleChange, setFieldValue, validate };
 };

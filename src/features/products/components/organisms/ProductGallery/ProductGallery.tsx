@@ -47,6 +47,8 @@ const ProductGallery = ({
     setZoomPosition({ x, y });
   };
 
+  if (!activeImage) return <div className="flex aspect-square items-center justify-center rounded-2xl bg-muted text-sm text-muted-foreground">No product image available</div>;
+
   return (
     <div className="space-y-4">
       <div className="flex flex-col gap-3 sm:flex-row">
@@ -59,12 +61,13 @@ const ProductGallery = ({
           className="group relative aspect-square w-full max-w-150 flex-1 cursor-zoom-in overflow-hidden rounded-2xl border border-border bg-muted/30"
         >
           <Image
+            unoptimized
             src={activeImage}
             alt={product.productName.en ?? ""}
             fill
             priority
             sizes="(max-width: 639px) 100vw, 50vw"
-            className={`object-cover transition-transform duration-200 ${isZooming ? "scale-150" : "scale-100"}`}
+            className={`object-contain transition-transform duration-200 ${isZooming ? "scale-150" : "scale-100"}`}
             style={isZooming ? { transformOrigin: `${zoomPosition.x}% ${zoomPosition.y}%` } : undefined}
           />
           <span className="pointer-events-none absolute right-3 bottom-3 rounded-full bg-background/90 px-3 py-1 text-xs font-medium text-foreground opacity-0 shadow-sm transition-opacity duration-200 group-hover:opacity-100">
@@ -104,6 +107,7 @@ const ProductGallery = ({
             <Dialog.Title className="sr-only">{product.productName.en}</Dialog.Title>
             <div className="relative aspect-square w-full overflow-hidden rounded-2xl bg-black">
               <Image
+            unoptimized
                 src={activeImage}
                 alt={product.productName.en ?? ""}
                 fill

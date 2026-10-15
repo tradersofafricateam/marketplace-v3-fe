@@ -376,7 +376,8 @@
       "price-high": "Preço: maior para menor",
       "rating": "Melhor avaliados",
       "reviews": "Mais avaliados",
-      "name-asc": "Nome do produto: A–Z"
+      "name-asc": "Nome do produto: A–Z",
+      "ranking": "Recomendados"
     },
     "filters": {
       "title": "Filtros",

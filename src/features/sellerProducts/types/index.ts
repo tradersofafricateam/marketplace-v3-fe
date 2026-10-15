@@ -4,7 +4,7 @@ import type { LocalizedText, ProductType } from "@/features/products/types";
 
 export type { LocalizedText, ProductType };
 
-export type ProductStatus = "draft" | "active" | "inactive" | "archived" | "deleted";
+export type ProductStatus = "draft" | "pending_approval" | "rejected" | "active" | "inactive" | "archived" | "deleted";
 export type InventoryStatus = "in_stock" | "out_of_stock";
 
 export type ProductImage = {
@@ -32,12 +32,19 @@ export type ProductVariant = {
   price: number;
   discount: number | null;
   quantity: number;
+  weight?: number | null;
+  weightUnit?: string | null;
+  length?: number | null;
+  width?: number | null;
+  height?: number | null;
+  dimensionUnit?: string | null;
   image?: string | null;
   createdAt?: string;
   updatedAt?: string;
 };
 
 export type SellerProduct = {
+  sourceLanguage?: string;
   id: string;
   sellerId: string;
   productName: LocalizedText;
@@ -49,6 +56,12 @@ export type SellerProduct = {
   discount: number | null;
   quantity: number | null;
   productType: ProductType;
+  weight?: number | null;
+  weightUnit?: string | null;
+  length?: number | null;
+  width?: number | null;
+  height?: number | null;
+  dimensionUnit?: string | null;
   barcode?: string | null;
   supplyCapacity: number;
   unitForSupplyCapacity: string;
@@ -86,29 +99,9 @@ export type SellerProductListItem = Pick<
 };
 
 /** Fields the seller supplies. Ids, status, inventoryStatus, totalStock and sku are backend-owned. */
-export type CreateProductPayload = {
-  productName: LocalizedText;
-  productDescription: LocalizedText;
-  categoryIds: string[];
-  countryOfOrigin: string;
-  currency: string;
-  productType: ProductType;
-  price: number | null;
-  discount: number | null;
-  quantity: number | null;
-  barcode?: string | null;
-  supplyCapacity: number;
-  unitForSupplyCapacity: string;
-  minOrdersAllowed: number;
-  unitForMinOrder: string;
-  minDuration: number;
-  maxDuration: number;
-  durationUnit: string;
-  variantOptions: Omit<ProductVariantOption, "id" | "productId">[];
-  variants: Omit<ProductVariant, "id" | "productId" | "sku" | "createdAt" | "updatedAt" | "image">[];
-};
+export type CreateProductPayload = FormData;
 
-export type UpdateProductPayload = Partial<CreateProductPayload>;
+export type UpdateProductPayload = FormData;
 
 export type SellerProductsQuery = {
   status?: ProductStatus;
@@ -138,6 +131,12 @@ export type ProductFormState = {
   price: string;
   discount: string;
   quantity: string;
+  weight?: string;
+  weightUnit?: string;
+  length?: string;
+  width?: string;
+  height?: string;
+  dimensionUnit?: string;
   barcode: string;
   supplyCapacity: string;
   unitForSupplyCapacity: string;
@@ -148,9 +147,11 @@ export type ProductFormState = {
   durationUnit: string;
   variantOptions: ProductVariantOption[];
   variants: ProductVariant[];
+  existingImages?: ProductImage[];
+  sourceLanguage?: string;
   galleryImages: File[];
   primaryImageIndex: number;
-  variantImagesByColor: Record<string, File>;
+  variantImageFiles: Record<string, File>;
 };
 
 export type ProductFormErrors = Partial<Record<keyof ProductFormState, string>>;

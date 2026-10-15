@@ -35,7 +35,7 @@ const ProductImageUploader = ({
       >
         <input
           type="file"
-          accept="image/*"
+          accept="image/jpeg,image/png,image/webp"
           multiple
           disabled={disabled}
           onChange={(e) => addFiles(e.target.files)}
@@ -43,16 +43,16 @@ const ProductImageUploader = ({
         />
         <UploadCloud size={28} className="text-(--orange)" strokeWidth={1.5} />
         <span className="text-sm font-semibold text-(--orange)">Add product photos</span>
-        <span className="text-xs text-muted-foreground">PNG or JPG, multiple allowed</span>
+        <span className="text-xs text-muted-foreground">PNG, JPG or WebP · plain background · centred product</span>
       </label>
 
       {previews.length > 0 && (
         <div className="grid grid-cols-3 gap-3 sm:grid-cols-4">
           {previews.map((preview, index) => (
-            <div key={preview} className="group relative aspect-square overflow-hidden rounded-xl border border-border">
+            <div key={preview} className="group relative aspect-4/3 overflow-hidden rounded-xl border border-border">
               {/* Object-URL preview of a not-yet-uploaded file. */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={preview} alt="" className="size-full object-cover" />
+              <img src={preview} alt="" className="size-full bg-white object-contain" />
               <button
                 type="button"
                 onClick={() => setPrimaryIndex(index)}

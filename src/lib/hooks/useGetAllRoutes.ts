@@ -46,6 +46,7 @@ export const useGetAllRoutes = () => {
     orderInfo: (id: string) => `/${locale}/dashboard/orders/info/${id}`,
     sellerProducts: `/${locale}/seller/products`,
     sellerProductNew: `/${locale}/seller/products/new`,
+    sellerProductDetail: (id: string) => `/${locale}/seller/products/${encodeURIComponent(id)}`,
     sellerProductEdit: (id: string) => `/${locale}/seller/products/${id}/edit`,
 
     quotes: `/${locale}/dashboard/quotes`,

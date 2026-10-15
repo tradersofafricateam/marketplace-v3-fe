@@ -12,7 +12,7 @@ const VariantCombinationRow = ({
   onChange: (patch: Partial<Pick<ProductVariant, "price" | "discount" | "quantity">>) => void;
 }) => (
   <tr className="border-b border-border last:border-0">
-    <td className="py-2.5 pr-3 text-sm">
+    <td className="py-2.5 pr-3 pl-3 text-sm">
       {Object.entries(variant.attributes).map(([name, value]) => (
         <span key={name} className="mr-2 inline-block rounded-full bg-muted px-2 py-0.5 text-xs font-medium">
           {value}
@@ -35,7 +35,7 @@ const VariantCombinationRow = ({
         className={cellInputClass}
       />
     </td>
-    <td className="py-2.5">
+    <td className="py-2.5 pr-3">
       <NumericInput
         aria-label="Quantity"
         value={variant.quantity}

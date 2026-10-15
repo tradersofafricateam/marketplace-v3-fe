@@ -5,7 +5,7 @@ export const stepFields: Record<string, (keyof ProductFormState)[]> = {
   pricing: ["price", "discount", "quantity"],
   variants: ["variantOptions", "variants"],
   logistics: ["supplyCapacity", "unitForSupplyCapacity", "minOrdersAllowed", "unitForMinOrder", "minDuration", "maxDuration", "durationUnit"],
-  images: ["galleryImages", "variantImagesByColor"],
+  images: ["galleryImages", "variantImageFiles"],
 };
 
 export function errorsForFields(errors: ProductFormErrors, fields?: (keyof ProductFormState)[]): ProductFormErrors {

@@ -35,14 +35,15 @@ const ProductCard = ({
         className="group flex min-w-0 flex-1 flex-col"
       >
         <div className="aspect-4/3 w-full overflow-hidden rounded-lg bg-muted/40">
-          <Image
+          {imgUrl && <Image
             src={imgUrl}
+            unoptimized
             alt={productName}
             width={500}
             height={500}
             sizes="(max-width: 639px) 50vw, (max-width: 1023px) 33vw, 20vw"
-            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-          />
+            className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105"
+          />}
         </div>
         <div className="flex flex-1 flex-col gap-1 px-1 pt-2 sm:px-2">
           <p className="truncate text-[11px] capitalize text-muted-foreground">
@@ -53,7 +54,7 @@ const ProductCard = ({
               {productName}
             </p>
             <p className="mt-auto flex min-w-0 items-baseline text-xs font-medium sm:text-sm">
-              <span className="truncate" aria-label={currency}>{formatMoney(amount, currency)}</span>{" "}
+              <span className="truncate" aria-label={currency}>{amount === null ? "View pricing" : formatMoney(amount, currency)}</span>{" "}
               <span className="text-[9px] font-light sm:text-[11px]">
                 &nbsp;/ {unit}
               </span>

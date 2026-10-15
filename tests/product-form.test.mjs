@@ -22,12 +22,11 @@ const pricing = load('src/features/sellerProducts/helpers/pricing.ts');
 const {validateProductForm} = load('src/features/sellerProducts/helpers/validateProductForm.ts', {
   '../constants/productOptions': options,
   './pricing': pricing,
-  './variantCombinations': {getMissingColorImages: () => []},
 });
 const valid = {
   productName:'Coffee',productDescription:'<p>Fresh coffee</p>',countryOfOrigin:'Nigeria',currency:'NGN',categoryIds:['coffee'],productType:'SIMPLE',
   price:'1250.50',discount:'',quantity:'0',supplyCapacity:'1500',unitForSupplyCapacity:'kg',minOrdersAllowed:'1',unitForMinOrder:'kg',
-  minDuration:'1',maxDuration:'3',durationUnit:'days',galleryImages:[{}],variantOptions:[],variants:[],variantImagesByColor:{},
+  minDuration:'1',maxDuration:'3',durationUnit:'days',galleryImages:[{}],variantOptions:[],variants:[],variantImageFiles:{},
 };
 test('numeric inputs format commas while retaining decimals and reject invalid text', () => {
   assert.equal(numeric.formatNumericInput('1234567.50'), '1,234,567.50');
@@ -52,14 +51,37 @@ test('empty variants and non-finite stock cannot pass validation', () => {
   assert.ok(validateProductForm({...valid,productType:'VARIABLE',variants:[{price:10,quantity:NaN,discount:null}]}).variants);
 });
 test('country and unit choices are comprehensive and existing images satisfy edit validation', () => {
-  assert.equal(options.getCountryOptions('en').length, 249);
+  assert.equal(options.getCountryOptions('en').length, 54);
   assert.ok(options.marketplaceUnits.some((unit) => unit.value === 'm3'));
   assert.ok(validateProductForm({...valid,unitForMinOrder:'invented'}).unitForMinOrder);
-  assert.equal(validateProductForm({...valid,galleryImages:[]}, true).galleryImages, undefined);
+  assert.equal(validateProductForm({...valid,galleryImages:[],existingImages:[{url:'https://cdn.example.com/image.jpg'}]}).galleryImages, undefined);
 });
 test('create product uses the documented POST /products/ route', async () => {
   const calls=[];
   const api=load('src/features/sellerProducts/api/index.ts', {'../helpers/normalizeSellerProducts': load('src/features/sellerProducts/helpers/normalizeSellerProducts.ts'), '@/lib/axiosInstance':{axiosInstance:{post:async (...args)=>{calls.push(args);return {data:{data:{id:'created'}}};}}}});
   assert.deepEqual(await api.createProduct(valid), {id:'created'});
   assert.equal(calls[0][0], '/products/');
+});
+
+ test('product origins only allow African countries across localized dropdowns', () => {
+  for (const locale of ['en', 'fr', 'es', 'pt', 'sw']) {
+    const countries = options.getCountryOptions(locale);
+    for (const country of ['Nigeria', 'Kenya', 'South Africa', 'Egypt', 'Mauritius']) {
+      assert.ok(countries.some(({ value }) => value === country));
+      assert.equal(validateProductForm({ ...valid, countryOfOrigin: country }).countryOfOrigin, undefined);
+    }
+    for (const country of ['Afghanistan', 'United States', 'France', 'China', '']) {
+      assert.ok(!countries.some(({ value }) => value === country));
+      assert.equal(validateProductForm({ ...valid, countryOfOrigin: country }).countryOfOrigin, 'Select an African country of origin');
+    }
+  }
+});
+
+test('zero-stock variants do not require variant images', () => {
+  const errors=validateProductForm({...valid,productType:'VARIABLE',variantOptions:[{name:'Color',values:['blue'],sortOrder:0}],variants:[{attributes:{Color:'blue'},price:10,quantity:0,discount:null}],variantImageFiles:{}});
+  assert.deepEqual(errors,{});
+});
+test('variant values use lowercase and deduplicate case and spacing', () => {
+  const {normalizeVariantValues}=load('src/features/sellerProducts/helpers/textFormatting.ts');
+  assert.deepEqual(normalizeVariantValues([' Blue ','RED','KG','G','blue','10 KG','10kg']),['blue','red','kg','g','10 kg']);
 });

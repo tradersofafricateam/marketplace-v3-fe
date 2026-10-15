@@ -5,7 +5,7 @@ export interface ProductData {
   id: string;
   slug: string;
   currency: string;
-  amount: number;
+  amount: number | null;
   imgUrl: string;
   isInWishList?: boolean;
   unit: string;
@@ -13,6 +13,8 @@ export interface ProductData {
 }
 
 export interface CatalogueFilters {
+  countryOfOrigin?: string;
+  hasDiscount?: boolean;
   priceCurrency?: string;
   category: string;
   minPrice: string;
@@ -76,6 +78,7 @@ export type ProductReview = {
 };
 
 export type ProductDetail = {
+  isSaved?: boolean;
   id: string;
   slug: string;
   productName: LocalizedText;
