@@ -1,5 +1,8 @@
 "use client";
 
+import { useState } from "react";
+import ProductDraftReview from "../../organisms/ProductDraftReview/ProductDraftReview";
+
 import { stepFields } from "../../../helpers/stepValidation";
 import { validateProductForm } from "../../../helpers/validateProductForm";
 import { useCurrency } from "@/lib/hooks/useCurrency/useCurrency";
@@ -61,14 +64,13 @@ const ProductWizardTemplate = ({
     <ProductWizardForm
       key={`${mode}:${productId ?? "new"}`}
       mode={mode}
-      hasExistingImages={!!existingProduct.data?.images?.length}
       productId={productId}
       initialValues={
         existingProduct.data
           ? mapProductToFormState(existingProduct.data)
           : undefined
       }
-      onDone={() => router.push(routes.sellerProducts)}
+      onDone={(id) => router.replace(routes.sellerProductDetail(id ?? productId!))}
     />
   );
 };
@@ -77,14 +79,12 @@ const ProductWizardForm = ({
   mode,
   productId,
   initialValues,
-  hasExistingImages,
   onDone,
 }: {
   mode: "create" | "edit";
   productId?: string;
   initialValues?: ReturnType<typeof mapProductToFormState>;
-  hasExistingImages: boolean;
-  onDone: () => void;
+  onDone: (id?: string) => void;
 }) => {
   const {
     currencies,
@@ -93,21 +93,26 @@ const ProductWizardForm = ({
   } = useCurrency();
   const currencyT = useTranslations("CurrencyData");
   const { values, errors, handleChange, setFieldValue, validate } =
-    useProductForm(initialValues, hasExistingImages);
+    useProductForm(initialValues);
   const steps = getWizardSteps(values.productType);
   const { stepIndex, isFirstStep, isLastStep, goBack, goTo } =
     useProductWizardStep(steps.length);
 
-  const { createProduct, isCreating } = useCreateProduct({ onSuccess: onDone });
+  const [draftId, setDraftId] = useState<string>();
+  const { createProduct, isCreating } = useCreateProduct({ onSuccess: setDraftId });
   const { updateProduct, isUpdating } = useUpdateProduct({
     productId: productId ?? "",
     onSuccess: onDone,
   });
   const isSaving = isCreating || isUpdating;
 
+  if (mode === "create" && draftId) {
+    return <ProductDraftReview productId={draftId} onSubmitted={() => onDone(draftId)} />;
+  }
+
   const handleSubmit = () => {
     if (!validate()) {
-      const invalid = validateProductForm(values, hasExistingImages);
+      const invalid = validateProductForm(values);
       const index = steps.findIndex((step) =>
         stepFields[step.key]?.some((field) => invalid[field]),
       );
@@ -143,7 +148,7 @@ const ProductWizardForm = ({
       goTo(target);
       return;
     }
-    const invalid = validateProductForm(values, hasExistingImages);
+    const invalid = validateProductForm(values);
     for (let index = 0; index < target; index++) {
       const fields = stepFields[steps[index].key] ?? [];
       if (fields.some((field) => invalid[field])) {
@@ -170,6 +175,10 @@ const ProductWizardForm = ({
         );
         return;
       }
+    }
+    if (mode === "create" && steps[target].key === "review") {
+      handleSubmit();
+      return;
     }
     goTo(target);
   };
@@ -207,7 +216,7 @@ const ProductWizardForm = ({
           onStepClick={navigateToStep}
         />
 
-        <div className="mt-7">
+        <fieldset disabled={isSaving} className="mt-7 min-w-0">
           {currentStepKey === "basicInfo" && (
             <ProductBasicInfoStep
               values={values}
@@ -247,6 +256,7 @@ const ProductWizardForm = ({
           )}
           {currentStepKey === "images" && (
             <ProductImagesStep
+              productId={productId}
               values={values}
               errors={errors}
               handleChange={handleChange}
@@ -256,7 +266,7 @@ const ProductWizardForm = ({
           {currentStepKey === "review" && (
             <ProductReviewStep values={values} isEditing={mode === "edit"} />
           )}
-        </div>
+        </fieldset>
 
         <div className="mt-8 flex items-center justify-between border-t border-border pt-6">
           <button
@@ -276,15 +286,16 @@ const ProductWizardForm = ({
               className="flex items-center gap-2 rounded-xl bg-(--orange) px-6 py-2.5 text-sm font-bold text-white transition hover:bg-(--orange-dark) disabled:opacity-60"
             >
               {isSaving && <LoaderCircle size={16} className="animate-spin" />}
-              {mode === "create" ? "Create product" : "Save changes"}
+              {mode === "create" ? "Save draft" : "Save changes"}
             </button>
           ) : (
             <button
               type="button"
               onClick={() => navigateToStep(stepIndex + 1)}
+              disabled={isSaving}
               className="flex items-center gap-1.5 rounded-xl bg-(--orange) px-6 py-2.5 text-sm font-bold text-white transition hover:bg-(--orange-dark)"
             >
-              Next <ArrowRight size={16} />
+              {isSaving ? <><LoaderCircle size={16} className="animate-spin" /> Saving draft…</> : <>Next <ArrowRight size={16} /></>}
             </button>
           )}
         </div>

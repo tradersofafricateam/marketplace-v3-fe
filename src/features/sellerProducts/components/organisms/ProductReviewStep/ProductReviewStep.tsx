@@ -28,12 +28,11 @@ const ProductReviewStep = ({ values, isEditing }: { values: ProductFormState; is
         <SummaryRow label="Type" value={values.productType === "SIMPLE" ? "Simple" : "Variable"} />
         <SummaryRow label="Categories" value={categories.isLoadingCurrentData ? categoryT("loading") : categories.isError ? categoryT("error") : categoryNames || "—"} />
         <SummaryRow label="Pricing" value={priceSummary} />
-        <SummaryRow label="Photos" value={String(values.galleryImages.length)} />
+        <SummaryRow label="Photos" value={String(values.galleryImages.length + (values.existingImages?.length ?? 0))} />
       </div>
       {!isEditing && (
         <p className="rounded-xl bg-(--orange-light) p-4 text-sm leading-6 text-(--orange-dark)">
-          Your product is saved as a draft first. Once you review it, publish it from your products list to make it
-          visible to buyers.
+          Your product is saved as a draft first. Review the saved product on the next screen, then submit it for approval now or keep it as a draft. It becomes visible to buyers after approval.
         </p>
       )}
     </div>

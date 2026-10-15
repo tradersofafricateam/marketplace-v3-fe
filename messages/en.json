@@ -626,7 +626,8 @@
       "price-high": "Price: high to low",
       "rating": "Highest rated",
       "reviews": "Most reviewed",
-      "name-asc": "Product name: A–Z"
+      "name-asc": "Product name: A–Z",
+      "ranking": "Recommended"
     },
     "filters": {
       "title": "Filters",
@@ -1140,7 +1141,7 @@
       "deleteError": "We couldn't delete this product. Please try again."
     },
     "wizard": {
-      "created": "Product created as a draft",
+      "created": "Product saved as a draft. Submit it now or return later.",
       "createdWithImageWarning": "Product created as a draft, but some images failed to upload. You can retry from the edit page.",
       "createError": "We couldn't create this product. Please try again.",
       "updated": "Product updated",

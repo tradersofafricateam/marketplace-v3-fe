@@ -2,7 +2,6 @@ import { normalizeSellerProducts } from "../helpers/normalizeSellerProducts";
 import { axiosInstance } from "@/lib/axiosInstance";
 import type {
   CreateProductPayload,
-  ProductImage,
   SellerProduct,
   SellerProductsPage,
   SellerProductsQuery,
@@ -10,10 +9,17 @@ import type {
   UpdateProductPayload,
 } from "../types";
 
+/** Product endpoints may wrap their result in multiple success/data envelopes. */
 function unwrapData<T>(response: T | { data: T }): T {
-  return typeof response === "object" && response !== null && "data" in response
-    ? (response as { data: T }).data
-    : (response as T);
+  let result: unknown = response;
+  while (typeof result === "object" && result !== null) {
+    if ("success" in result && result.success === false) {
+      throw new Error("Product request failed. Please try again.");
+    }
+    if (!("data" in result)) break;
+    result = result.data;
+  }
+  return result as T;
 }
 
 export const getSellerProducts = async (
@@ -29,11 +35,24 @@ export const getSellerProducts = async (
   return normalizeSellerProducts(data);
 };
 
-export const getSellerProduct = async (id: string): Promise<SellerProduct> => {
+export const getSellerProduct = async (
+  id: string,
+  lang?: string,
+  signal?: AbortSignal,
+): Promise<SellerProduct> => {
   const { data } = await axiosInstance.get<
     SellerProduct | { data: SellerProduct }
-  >(`/seller/products/${id}`);
-  return unwrapData(data);
+  >(`/products/mine/${encodeURIComponent(id)}`, { params: { lang }, signal });
+  const product = unwrapData(data);
+  return {
+    ...product,
+    productType: String(
+      product.productType,
+    ).toUpperCase() as SellerProduct["productType"],
+    images: product.images ?? [],
+    variants: product.variants ?? [],
+    variantOptions: product.variantOptions ?? [],
+  };
 };
 
 export const createProduct = async (
@@ -41,8 +60,12 @@ export const createProduct = async (
 ): Promise<SellerProduct> => {
   const { data } = await axiosInstance.post<
     SellerProduct | { data: SellerProduct }
-  >("/products/", payload);
-  return unwrapData(data);
+  >("/products/", payload, { headers: { "Content-Type": undefined } });
+  const product = unwrapData(data);
+  if (typeof product?.id !== "string" || !product.id.trim()) {
+    throw new Error("The product response did not include a product ID. Check your products before trying again.");
+  }
+  return product;
 };
 
 export const updateProduct = async ({
@@ -54,12 +77,12 @@ export const updateProduct = async ({
 }): Promise<SellerProduct> => {
   const { data } = await axiosInstance.patch<
     SellerProduct | { data: SellerProduct }
-  >(`/seller/products/${id}`, payload);
+  >(`/products/${encodeURIComponent(id)}`, payload, { headers: { "Content-Type": undefined } });
   return unwrapData(data);
 };
 
 export const deleteProduct = async (id: string): Promise<void> => {
-  await axiosInstance.delete(`/seller/products/${id}`);
+  await axiosInstance.delete(`/products/${encodeURIComponent(id)}`);
 };
 
 export const updateProductStatus = async ({
@@ -71,29 +94,7 @@ export const updateProductStatus = async ({
 }): Promise<SellerProduct> => {
   const { data } = await axiosInstance.patch<
     SellerProduct | { data: SellerProduct }
-  >(`/seller/products/${id}/status`, { status });
-  return unwrapData(data);
-};
-
-export const uploadProductImages = async ({
-  productId,
-  files,
-  primaryIndex,
-}: {
-  productId: string;
-  files: File[];
-  primaryIndex?: number;
-}): Promise<ProductImage[]> => {
-  const formData = new FormData();
-  files.forEach((file) => formData.append("images", file));
-  if (primaryIndex !== undefined)
-    formData.append("primaryIndex", String(primaryIndex));
-
-  const { data } = await axiosInstance.post<
-    ProductImage[] | { data: ProductImage[] }
-  >(`/seller/products/${productId}/images`, formData, {
-    headers: { "Content-Type": undefined },
-  });
+  >(`/products/${encodeURIComponent(id)}/status`, { status });
   return unwrapData(data);
 };
 
@@ -104,38 +105,22 @@ export const deleteProductImage = async ({
   productId: string;
   imageId: string;
 }): Promise<void> => {
-  await axiosInstance.delete(`/seller/products/${productId}/images/${imageId}`);
-};
-
-export const setPrimaryProductImage = async ({
-  productId,
-  imageId,
-}: {
-  productId: string;
-  imageId: string;
-}): Promise<void> => {
-  await axiosInstance.patch(
-    `/seller/products/${productId}/images/${imageId}/primary`,
+  await axiosInstance.delete(
+    `/products/${encodeURIComponent(productId)}/images/${encodeURIComponent(imageId)}`,
   );
 };
 
-export const uploadVariantImage = async ({
-  productId,
-  color,
-  file,
-}: {
-  productId: string;
-  color: string;
-  file: File;
-}): Promise<{ color: string; url: string }> => {
-  const formData = new FormData();
-  formData.append("color", color);
-  formData.append("image", file);
-
-  const { data } = await axiosInstance.post<
-    { color: string; url: string } | { data: { color: string; url: string } }
-  >(`/seller/products/${productId}/variant-images`, formData, {
-    headers: { "Content-Type": undefined },
-  });
+export type InventoryPayload = {
+  quantity?: number;
+  variants?: { variantId: string; quantity: number }[];
+};
+export const updateProductInventory = async (
+  id: string,
+  payload: InventoryPayload,
+) => {
+  const { data } = await axiosInstance.patch(
+    `/products/${encodeURIComponent(id)}/inventory`,
+    payload,
+  );
   return unwrapData(data);
 };

@@ -22,7 +22,7 @@ const MoreFromSellerSection = ({
     <ProductCardWrapper
       title={t("moreFromSeller", { store: seller.storeName })}
       products={products}
-      href={routes.sellerStore(seller.slug)}
+      href={seller.slug ? routes.sellerStore(seller.slug) : `${routes.products}?sellerId=${encodeURIComponent(seller.id)}`}
     />
   );
 };

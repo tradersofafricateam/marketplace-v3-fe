@@ -18,7 +18,7 @@ function amount(value: unknown): number | null {
   if (typeof value !== "number" || !Number.isFinite(value) || value < 0) throw new Error("Invalid product price.");
   return value;
 }
-const statuses: ProductStatus[] = ["draft", "active", "inactive", "archived", "deleted"];
+const statuses: ProductStatus[] = ["draft", "pending_approval", "rejected", "active", "inactive", "archived", "deleted"];
 const inventoryStatuses: InventoryStatus[] = ["in_stock", "out_of_stock"];
 
 /** Convert the wire envelope to the list view model; never turn malformed data into an empty catalogue. */

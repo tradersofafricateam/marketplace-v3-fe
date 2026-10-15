@@ -1,6 +1,6 @@
 "use client";
 
-import { BadgeCheck, Check, PackageCheck, X } from "lucide-react";
+import { Check, PackageCheck, X } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 import PriceRange from "@/components/atoms/PriceRange/PriceRange";
@@ -66,7 +66,7 @@ const ProductFilters = ({ filters, onChange, onApply, onClear, onClose }: { filt
       <fieldset className="space-y-2 px-4 pb-4 pt-5">
         <legend className="mb-1 pt-2 text-sm font-bold">{t("filters.availability")}</legend>
         {[
-          { key: "verified" as const, label: t("filters.verified"), icon: BadgeCheck },
+          { key: "hasDiscount" as const, label: "Discounted products", icon: PackageCheck },
           { key: "inStock" as const, label: t("filters.readyToShip"), icon: PackageCheck },
         ].map(({ key, label, icon: Icon }) => (
           <label key={key} className="flex cursor-pointer items-center gap-2.5 rounded-md border border-border px-3 py-2.5 text-sm hover:bg-muted/50">
@@ -79,11 +79,8 @@ const ProductFilters = ({ filters, onChange, onApply, onClear, onClose }: { filt
       </fieldset>
 
       <label className="block px-4 pb-4 pt-6 text-sm font-bold">
-        {t("filters.maximumMinimumOrder")}
-        <span className="mt-2 flex items-center rounded-md border border-input focus-within:border-(--orange)">
-          <input inputMode="numeric" placeholder={t("filters.anyQuantity")} value={filters.minOrder} onChange={(event) => onChange({ minOrder: event.target.value })} className="min-w-0 flex-1 bg-transparent px-3 py-2.5 text-sm font-normal outline-none" />
-          <span className="pr-3 text-xs font-normal text-muted-foreground">{t("filters.units")}</span>
-        </span>
+        Country of origin
+        <input value={filters.countryOfOrigin || ""} onChange={(event) => onChange({ countryOfOrigin: event.target.value })} placeholder="Any country" className="mt-2 h-11 w-full rounded-xl border border-border px-3 text-sm font-normal" />
       </label>
     </div>
 

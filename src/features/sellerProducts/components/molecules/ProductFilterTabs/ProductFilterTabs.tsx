@@ -4,6 +4,8 @@ import type { ProductStatus } from "../../../types";
 const tabs: { label: string; value: ProductStatus | "all" }[] = [
   { label: "All", value: "all" },
   { label: "Draft", value: "draft" },
+  { label: "Awaiting review", value: "pending_approval" },
+  { label: "Rejected", value: "rejected" },
   { label: "Active", value: "active" },
   { label: "Inactive", value: "inactive" },
   { label: "Archived", value: "archived" },

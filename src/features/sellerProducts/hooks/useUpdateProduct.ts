@@ -2,34 +2,24 @@
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 
-import { updateProduct, uploadProductImages, uploadVariantImage } from "../api";
-import { mapFormStateToPayload } from "../helpers/mapFormStateToPayload";
+import { updateProductWithImages } from "../helpers/prepareProductPayload";
 import type { ProductFormState } from "../types";
 import { promiseErrorFunction } from "@/lib/helpers/promiseError";
 
 export const useUpdateProduct = ({ productId, onSuccess }: { productId: string; onSuccess: () => void }) => {
   const t = useTranslations("SellerProducts.wizard");
   const client = useQueryClient();
+  const locale = useLocale();
 
   const { mutate, isPending } = useMutation({
     mutationFn: async (values: ProductFormState) => {
-      await updateProduct({ id: productId, payload: mapFormStateToPayload(values) });
-
-      const imageResults = await Promise.allSettled([
-        values.galleryImages.length > 0
-          ? uploadProductImages({ productId, files: values.galleryImages, primaryIndex: values.primaryImageIndex })
-          : Promise.resolve(null),
-        ...Object.entries(values.variantImagesByColor).map(([color, file]) =>
-          uploadVariantImage({ productId, color, file }),
-        ),
-      ]);
-
-      return { imagesFailed: imageResults.some((result) => result.status === "rejected") };
+      return updateProductWithImages(productId, values, locale);
     },
-    onSuccess: ({ imagesFailed }) => {
-      toast.success(imagesFailed ? t("updatedWithImageWarning") : t("updated"));
+    retry: false,
+    onSuccess: () => {
+      toast.success(t("updated"));
       void client.invalidateQueries({ queryKey: ["sellerProducts"] });
       void client.invalidateQueries({ queryKey: ["sellerProduct", productId] });
       onSuccess();

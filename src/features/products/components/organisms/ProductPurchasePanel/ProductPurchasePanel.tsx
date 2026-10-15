@@ -118,7 +118,7 @@ const ProductPurchasePanel = ({
           disabled={!canAddToCart}
         />
         <RequestQuoteButton productId={product.id} />
-        <SaveProductButton productId={product.id} />
+        <SaveProductButton key={`${product.id}:${product.isSaved}`} productId={product.id} initialSaved={product.isSaved} />
       </div>
     </div>
   );

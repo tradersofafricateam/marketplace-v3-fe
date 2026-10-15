@@ -43,7 +43,7 @@ const ProductCatalogue = () => {
           className="mb-7 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between lg:mb-9"
         >
           <h1 className="text-xl font-semibold sm:text-2xl">
-            {t("foundResults", { count: catalogue.visibleProducts.length })}{" "}
+            {!catalogue.isLoading && !catalogue.isError && t("foundResults", { count: catalogue.pagination?.total ?? 0 })}{" "}
             <span className="text-(--orange)">{catalogue.contextTitle}</span>
           </h1>
           <CatalogueToolbar
@@ -86,7 +86,7 @@ const ProductCatalogue = () => {
               </div>
             )}
 
-            {catalogue.visibleProducts.length ? (
+            {catalogue.isLoading ? <div role="status" aria-label="Loading products" className="grid grid-cols-2 gap-4 md:grid-cols-3">{Array.from({ length: 6 }, (_, index) => <div key={index} className="h-60 animate-pulse rounded-xl bg-muted" />)}</div> : catalogue.isError ? <div role="alert" className="rounded-xl border border-border p-8 text-center"><p>We couldn’t load the products.</p><button type="button" onClick={() => void catalogue.retry()} className="mt-4 rounded-xl bg-(--orange) px-4 py-2 text-white">Try again</button></div> : catalogue.visibleProducts.length ? (
               <motion.div
                 layout
                 className={`grid gap-x-3 gap-y-7 sm:gap-x-5 sm:gap-y-10 ${catalogue.view === "list" ? "grid-cols-1 md:grid-cols-2 xl:grid-cols-3" : "grid-cols-2 md:grid-cols-3 xl:grid-cols-4"}`}
@@ -123,32 +123,11 @@ const ProductCatalogue = () => {
               </div>
             )}
 
-            {catalogue.visibleProducts.length > 0 && (
-              <nav
-                aria-label={t("pagination.label")}
-                className="mt-12 flex items-center justify-end gap-1 border-t border-border pt-6 text-xs"
-              >
-                <span className="mr-3 text-muted-foreground">
-                  {t("pagination.pageOf", { page: 1, total: 10 })}
-                </span>
-                <button
-                  className="rounded border border-border px-3 py-2 text-muted-foreground"
-                  disabled
-                >
-                  {t("pagination.previous")}
-                </button>
-                <button className="rounded bg-(--orange) px-3 py-2 text-white">
-                  1
-                </button>
-                <button className="rounded border border-border px-3 py-2">
-                  2
-                </button>
-                <button className="rounded border border-border px-3 py-2">
-                  3
-                </button>
-                <button className="rounded border border-border px-3 py-2">
-                  {t("pagination.next")}
-                </button>
+            {!catalogue.isLoading && !catalogue.isError && catalogue.pagination && catalogue.pagination.totalPages > 1 && (
+              <nav aria-label={t("pagination.label")} className="mt-10 flex items-center justify-end gap-3 border-t border-border pt-6 text-sm">
+                <span>{t("pagination.pageOf", { page: catalogue.pagination.page, total: catalogue.pagination.totalPages })}</span>
+                <button type="button" disabled={catalogue.pagination.page <= 1} onClick={() => catalogue.changePage(catalogue.pagination!.page - 1)} className="rounded-lg border px-3 py-2 disabled:opacity-40">{t("pagination.previous")}</button>
+                <button type="button" disabled={catalogue.pagination.page >= catalogue.pagination.totalPages} onClick={() => catalogue.changePage(catalogue.pagination!.page + 1)} className="rounded-lg border px-3 py-2 disabled:opacity-40">{t("pagination.next")}</button>
               </nav>
             )}
           </div>

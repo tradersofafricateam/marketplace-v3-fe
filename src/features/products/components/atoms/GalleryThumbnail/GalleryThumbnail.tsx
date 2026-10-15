@@ -23,7 +23,7 @@ const GalleryThumbnail = ({
         isActive ? "border-(--orange)" : "border-transparent hover:border-border"
       }`}
     >
-      <Image src={src} alt={alt} fill sizes="72px" className="object-cover" />
+      <Image unoptimized src={src} alt={alt} fill sizes="72px" className="object-contain" />
     </button>
   );
 };

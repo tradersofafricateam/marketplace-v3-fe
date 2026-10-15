@@ -96,7 +96,7 @@ const SellerMiniCard = ({ seller }: { seller: ProductSeller }) => {
           {t("messageSupplier")}
         </Link> : <span className="text-xs text-muted-foreground">{messageT(seller.userId === userId ? "selfMessage" : "messagingUnavailable")}</span>}
         <Link
-          href={routes.sellerStore(seller.slug)}
+          href={seller.slug ? routes.sellerStore(seller.slug) : `${routes.products}?sellerId=${encodeURIComponent(seller.id)}`}
           className="flex h-10 w-fit items-center justify-center rounded-full border border-(--orange) px-4 text-sm font-semibold text-(--orange) transition-colors duration-200 hover:bg-(--orange)/10"
         >
           {t("visitStore")}

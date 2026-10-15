@@ -13,9 +13,12 @@ export const useUpdateProductStatus = () => {
 
   const { mutate, isPending } = useMutation({
     mutationFn: updateProductStatus,
-    onSuccess: () => {
+    onSuccess: async (_product, { id }) => {
       toast.success(t("updated"));
-      void client.invalidateQueries({ queryKey: ["sellerProducts"] });
+      await Promise.all([
+        client.invalidateQueries({ queryKey: ["sellerProduct", id] }),
+        client.invalidateQueries({ queryKey: ["sellerProducts"] }),
+      ]);
     },
     onError: (error) => promiseErrorFunction(error, t("updateError")),
   });

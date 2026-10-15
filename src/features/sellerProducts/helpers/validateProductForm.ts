@@ -1,7 +1,6 @@
 import { getCountryOptions, marketplaceUnits } from "../constants/productOptions";
 import type { ProductFormErrors, ProductFormState } from "../types";
 import { isValidDiscount, isValidLeadTime } from "./pricing";
-import { getMissingColorImages } from "./variantCombinations";
 
 const countryNames = new Set(getCountryOptions("en").map((country) => country.value));
 const unitValues = new Set(marketplaceUnits.map((unit) => unit.value));
@@ -13,12 +12,12 @@ const isNonNegativeNumber = (value: string) => isNumeric(value) && Number(value)
 /** The rich-text editor's "empty" HTML is still a non-empty string (e.g. "<p></p>"). */
 const isEmptyHtml = (html: string) => html.replace(/<[^>]*>/g, "").replace(/&nbsp;|&#160;|&#xA0;|\u00a0|\u200b/gi, " ").trim() === "";
 
-export const validateProductForm = (values: ProductFormState, hasExistingImages = false): ProductFormErrors => {
+export const validateProductForm = (values: ProductFormState): ProductFormErrors => {
   const errors: ProductFormErrors = {};
 
   if (!values.productName.trim()) errors.productName = "Product name is required";
   if (isEmptyHtml(values.productDescription)) errors.productDescription = "Product description is required";
-  if (!countryNames.has(values.countryOfOrigin)) errors.countryOfOrigin = "Country of origin is required";
+  if (!countryNames.has(values.countryOfOrigin)) errors.countryOfOrigin = "Select an African country of origin";
   if (!values.currency.trim()) errors.currency = "Currency is required";
   if (values.categoryIds.length < 1 || values.categoryIds.length > 5) {
     errors.categoryIds = "Select between 1 and 5 categories";
@@ -34,14 +33,16 @@ export const validateProductForm = (values: ProductFormState, hasExistingImages 
     if (values.variantOptions.length < 1 || values.variantOptions.length > 3 || values.variantOptions.some((option) => !option.name.trim() || !option.values.length || option.values.some((value) => !value.trim()))) {
       errors.variantOptions = "Define between 1 and 3 named variant options, each with at least one value";
     }
-    const invalidVariant = values.variants.find(
-      (variant) => !Number.isFinite(variant.price) || !(variant.price > 0) || !Number.isSafeInteger(variant.quantity) || variant.quantity < 0 || !isValidDiscount(variant.discount),
+    // A blank/zero price means "I don't offer this combination" - it's dropped at submission
+    // rather than treated as an error, so sellers aren't forced to price every generated combination.
+    const offeredVariants = values.variants.filter((variant) => variant.price > 0);
+    const invalidOfferedVariant = offeredVariants.find(
+      (variant) => !Number.isSafeInteger(variant.quantity) || variant.quantity < 0 || !isValidDiscount(variant.discount),
     );
-    if (!values.variants.length || invalidVariant) errors.variants = "Every variant needs a price above zero, a non-negative quantity, and a valid discount";
-
-    const missingColorImages = getMissingColorImages(values.variantOptions, values.variantImagesByColor);
-    if (missingColorImages.length > 0) {
-      errors.variantImagesByColor = `Add an image for: ${missingColorImages.join(", ")}`;
+    if (!offeredVariants.length) {
+      errors.variants = "Add a price for at least one combination you actually offer";
+    } else if (invalidOfferedVariant) {
+      errors.variants = "Every priced combination needs a non-negative whole quantity and a valid discount";
     }
   }
 
@@ -60,7 +61,7 @@ export const validateProductForm = (values: ProductFormState, hasExistingImages 
   }
   if (!["days", "weeks"].includes(values.durationUnit)) errors.durationUnit = "Duration unit is required";
 
-  if (values.galleryImages.length === 0 && !hasExistingImages) errors.galleryImages = "Add at least one product image";
+  if (values.galleryImages.length === 0 && !(values.existingImages?.length)) errors.galleryImages = "Add at least one product image";
 
   return errors;
 };
