@@ -42,7 +42,9 @@ const ProductPurchasePanel = ({
   const t = useTranslations("ProductInfo");
   const isVariable = product.productType === "VARIABLE";
   const activeQuantity = getActiveQuantity(product, activeVariant);
-  const canAddToCart = isVariable ? Boolean(activeVariant) && activeQuantity > 0 : activeQuantity > 0;
+  const canAddToCart = (!isVariable || Boolean(activeVariant?.id)) &&
+    Number.isSafeInteger(quantity) && quantity > 0 &&
+    quantity >= product.minOrdersAllowed && quantity <= activeQuantity;
 
   return (
     <div className="space-y-5">
@@ -113,7 +115,8 @@ const ProductPurchasePanel = ({
 
       <div className="flex flex-wrap gap-2.5">
         <AddToCartButton
-          productId={activeVariant?.sku ?? product.id}
+          productId={product.id}
+          variantId={isVariable ? activeVariant?.id : undefined}
           quantity={quantity}
           disabled={!canAddToCart}
         />

@@ -209,6 +209,24 @@ Creation (`POST /products/`) and editing (`PATCH /products/:id`) send `FormData`
 Implementation lives under `src/features/sellerProducts/`, with payload serialization in `helpers/mapFormStateToPayload.ts` and the saved-draft screen in `components/organisms/ProductDraftReview/`.
 
 
+## Cart and Checkout
+
+The localized `/[locale]/cart` and `/[locale]/checkout` routes use the global Zustand cart in `src/store/cartStore.ts`. `CartProvider` loads the authenticated buyer's cart, clears it on account changes, and prevents stale responses from overwriting a newer cart.
+
+- The cart groups items by seller and displays server-provided prices, discounts, subtotals, and item counts. Quantity updates use `PATCH /cart/items/:cartItemId`; removal and clearing use `DELETE /cart/items/:cartItemId` and `DELETE /cart`. Successful writes refresh the global cart.
+- Cart quantities support decimals, enforce minimum orders and stock bounds, and block checkout for unavailable quantities or mixed currencies. Backend validation remains authoritative.
+- Checkout selects a saved default address where available and supports adding another address. Address changes reload delivery quotes and clear delivery/payment choices.
+- Buyers select delivery per seller or apply an integrated provider across eligible sellers. Expired quotes cannot be confirmed. Externally arranged delivery is explicitly paid separately, never presented as free.
+- Payment methods come from the backend. The final preview uses backend totals; confirmation sends notes to `POST /checkout` and displays the created checkout session. It does not clear the cart or process payment. The Payment module must consume the checkout session in a subsequent integration.
+- API calls, domain rules, hooks, and atomic UI components are separated under `src/features/cart/` and `src/features/checkout/`. Both routes include loading and error boundaries, with recoverable request errors handled inline.
+- UI strings are included in all five locale files. Memoized cart rows, targeted Zustand subscriptions, request deduplication/cancellation, and expiry-scheduled updates limit unnecessary work.
+
+Run the cart/checkout contract, state, and rendered-page checks with:
+
+```bash
+node --test tests/cart.test.mjs tests/cart-page.test.mjs tests/checkout.test.mjs
+```
+
 ## Authentication
 
 The auth feature lives entirely under `src/features/auth/` (API calls, hooks, types, helpers, and its own atoms/molecules/organisms/templates), with pages under `src/app/[locale]/{register,verify-email,login,forgot-password,reset-password}/`. Hooks own all state, validation, and mutations; components are presentational only.
@@ -262,7 +280,7 @@ Remote product and category images are permitted from Google Cloud Storage, Clou
 
 ## Current Limitations
 
-- Cart, checkout, newsletter, and some other commerce actions still require backend integration.
+- Payment processing and verification, newsletter, and some other commerce actions still require backend integration.
 - Login lockout/attempt-limit and OTP-expiry messaging is surfaced generically via whatever error text the API returns — there is no bespoke UI for those states.
 - Some planned navigation destinations currently resolve to the localized 404 page.
 - Automated coverage uses Node tests for contracts, helpers, and selected UI flows; full browser end-to-end coverage is not configured.

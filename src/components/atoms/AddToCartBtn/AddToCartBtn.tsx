@@ -1,18 +1,22 @@
 "use client";
 
+import { useProductCardCart } from "@/features/cart/hooks/useProductCardCart";
 import { useTranslations } from "next-intl";
 
 const AddToCartBtn = ({ productId }: { productId: string }) => {
   const t = useTranslations("Product");
 
-  const addProductToCart = () => {
-    console.log("productId", productId);
-  };
+  const cartT = useTranslations("Cart");
+  const { addFromCard, isPending, choices, selectedId, setSelectedId, closeChoices, addSelected } = useProductCardCart(productId);
 
   return (
+    <div className="flex min-w-0 flex-col gap-2">
     <button
-      onClick={addProductToCart}
-      className="flex items-center gap-2 py-2 px-3 rounded-full border-border border hover:text-(--orange) transition-all duration-300 hover:border-(--orange) cursor-pointer"
+      type="button"
+      onClick={addFromCard}
+      disabled={isPending}
+      aria-busy={isPending}
+      className="flex items-center gap-2 py-2 px-3 rounded-full border-border border hover:text-(--orange) transition-all duration-300 hover:border-(--orange) cursor-pointer disabled:pointer-events-none disabled:opacity-50"
     >
       <span className="text-xs">{t("addToCart")}</span>
       <svg
@@ -37,6 +41,19 @@ const AddToCartBtn = ({ productId }: { productId: string }) => {
         />
       </svg>
     </button>
+    {choices.length > 0 && <div className="space-y-2 rounded-lg border border-border bg-background p-3">
+      <label className="block text-xs font-semibold">
+        {cartT("chooseVariant")}
+        <select value={selectedId} onChange={(event) => setSelectedId(event.target.value)} disabled={isPending} className="mt-2 block w-full rounded border border-border bg-background p-2 text-sm">
+          {choices.map((choice) => <option key={choice.id} value={choice.id}>{choice.label}</option>)}
+        </select>
+      </label>
+      <div className="flex flex-wrap gap-3">
+        <button type="button" onClick={addSelected} disabled={isPending} className="text-xs font-semibold text-(--orange) disabled:opacity-50">{t("addToCart")}</button>
+        <button type="button" onClick={closeChoices} disabled={isPending} className="text-xs text-muted-foreground">{cartT("cancel")}</button>
+      </div>
+    </div>}
+    </div>
   );
 };
 
