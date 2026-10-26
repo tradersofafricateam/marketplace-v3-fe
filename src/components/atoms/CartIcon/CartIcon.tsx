@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useCartStore } from "@/store/cartStore";
 
 import { useTranslations } from "next-intl";
 import { useGetAllRoutes } from "@/lib/hooks/useGetAllRoutes";
@@ -9,7 +10,7 @@ const CartIcon = () => {
   const t = useTranslations("Nav");
   const { routes } = useGetAllRoutes();
 
-  const cartCount = 2;
+  const cartCount = useCartStore((state) => state.cart?.totalCount ?? 0);
 
   return (
     <Link

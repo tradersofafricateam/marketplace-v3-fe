@@ -16,6 +16,7 @@ export const useGetAllRoutes = () => {
     support: `/${locale}/support`,
     rfq: `/${locale}/rfq`,
     cart: `/${locale}/cart`,
+    checkout: `/${locale}/checkout`,
     categories: `/${locale}/categories`,
     categoryInfo: (id: string) =>
       `/${locale}/products?category=${encodeURIComponent(id)}`,

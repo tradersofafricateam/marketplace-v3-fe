@@ -40,6 +40,7 @@ export type ProductVariantOption = {
 };
 
 export type ProductVariant = {
+  id?: string;
   sku?: string;
   attributes: Record<string, string>;
   price: number;

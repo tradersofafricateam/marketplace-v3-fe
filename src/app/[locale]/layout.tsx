@@ -12,6 +12,7 @@ import { cn } from "@/lib/utils";
 
 import QueryProvider from "@/components/QueryProvider";
 import AuthProvider from "@/components/providers/AuthProvider/AuthProvider";
+import CartProvider from "@/components/providers/CartProvider/CartProvider";
 import CurrencyProvider from "@/components/providers/CurrencyProvider/CurrencyProvider";
 
 const mulish = Mulish({
@@ -125,7 +126,9 @@ export default async function RootLayout({
         <QueryProvider>
           <NextIntlClientProvider messages={messages}>
             <AuthProvider>
-              <CurrencyProvider>{children}</CurrencyProvider>
+              <CartProvider>
+                <CurrencyProvider>{children}</CurrencyProvider>
+              </CartProvider>
             </AuthProvider>
           </NextIntlClientProvider>
         </QueryProvider>
