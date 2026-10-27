@@ -25,11 +25,23 @@ const ProductInfoTemplate = ({
   locale,
   similarProducts,
   moreFromSeller,
+  similarLoading,
+  sellerLoading,
+  similarError,
+  sellerError,
+  retrySimilar,
+  retrySeller,
 }: {
   product: ProductDetail;
   locale: string;
   similarProducts: ProductData[];
   moreFromSeller: ProductData[];
+  similarLoading?: boolean;
+  sellerLoading?: boolean;
+  similarError?: boolean;
+  sellerError?: boolean;
+  retrySimilar?: () => unknown;
+  retrySeller?: () => unknown;
 }) => {
   const t = useTranslations("ProductInfo");
   const { routes } = useGetAllRoutes();
@@ -124,9 +136,15 @@ const ProductInfoTemplate = ({
         <MoreFromSellerSection
           seller={product.seller}
           products={moreFromSeller}
+          loading={sellerLoading}
+          error={sellerError}
+          onRetry={retrySeller}
         />
         <SimilarProductsSection
           products={similarProducts}
+          loading={similarLoading}
+          error={similarError}
+          onRetry={retrySimilar}
           categoryId={product.categoryIds[0]}
         />
       </Container>

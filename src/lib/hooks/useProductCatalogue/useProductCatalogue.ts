@@ -3,152 +3,189 @@
 import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter, useSearchParams } from "next/navigation";
-
-import { usePublicProducts } from "@/features/products/hooks/usePublicProducts";
-import { publicProductQuery, publicSortMap } from "@/features/products/helpers/publicProductQuery";
+import { useCatalogueProducts } from "@/features/products/hooks/useCatalogueProducts";
+import {
+  publicProductQuery,
+  publicSortMap,
+} from "@/features/products/helpers/publicProductQuery";
+import {
+  applyCatalogueFilters,
+  catalogueFilters,
+  clearCatalogueFilters,
+  removeCatalogueFilter,
+  selectedCategoryIds,
+} from "@/features/products/helpers/catalogueFilters";
+import { emptyCatalogueFilters } from "@/features/products/constants/catalogue";
 import type { CatalogueFilters, ProductView } from "@/features/products/types";
-import { useCategories } from "@/features/categories/hooks/useCategories";
+import { useCategoryTree } from "@/features/categories/hooks/useCategories";
+import { flattenCategories } from "@/features/categories/helpers";
 import { useCurrency } from "@/lib/hooks/useCurrency/useCurrency";
 
-export const PRODUCT_PRICE_LIMIT = 1000000;
-
-const emptyFilters: CatalogueFilters = {
-  category: "",
-  minPrice: "0",
-  maxPrice: String(PRODUCT_PRICE_LIMIT),
-  rating: "",
-  verified: false,
-  inStock: false,
-  minOrder: "",
-};
-
-export const productSortOptions = [
-  "relevance",
-  "ranking",
-  "newest",
-  "price-low",
-  "price-high",
-  "rating",
-  "reviews",
-] as const;
-
 export const useProductCatalogue = () => {
-  const { currency } = useCurrency();
+  const { currency, formatMoney } = useCurrency();
   const params = useSearchParams();
   const router = useRouter();
   const locale = useLocale();
   const t = useTranslations("ProductCatalogue");
-  const categoryT = useTranslations("CategoryData");
-  const categoryQuery = useCategories();
-  const categories = categoryQuery.data ?? [];
-  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  const signature = params.toString();
+  const url = new URLSearchParams(signature);
+  const appliedFilters = catalogueFilters(url);
+  const apiQuery = publicProductQuery(url);
+  const categoryQuery = useCategoryTree();
+  const categories = flattenCategories(categoryQuery.data || []);
+  const [filtersOpen, setFiltersOpen] = useState(false);
   const [view, setView] = useState<ProductView>("grid");
-  const [draftFilters, setDraftFilters] = useState<CatalogueFilters>({
-    ...emptyFilters,
-    priceCurrency: params.get("currency") ?? "",
-    category: params.get("categoryId") ?? params.get("category") ?? "",
-    countryOfOrigin: params.get("countryOfOrigin") ?? "",
-    hasDiscount: params.get("hasDiscount") === "true",
-    minPrice: params.get("minPrice") ?? emptyFilters.minPrice,
-    maxPrice: params.get("maxPrice") ?? emptyFilters.maxPrice,
-    rating: params.get("minRating") ?? params.get("rating") ?? "",
-    minOrder: params.get("minOrder") ?? "",
-    verified: params.get("verified") === "1",
-    inStock: params.get("inventoryStatus") === "in_stock" || params.get("inStock") === "1",
-  });
-
-  const query = params.get("q")?.trim() ?? "";
-  const collection = params.get("collection") ?? "";
-  const sort = params.get("sort") ?? Object.entries(publicSortMap).find(([, value]) => value === params.get("sortBy"))?.[0] ?? (collection === "popular" ? "ranking" : collection === "new" ? "newest" : "relevance");
-  const appliedCategory = params.get("categoryId") ?? params.get("category") ?? "";
-  const category = categories.find((item) => item.id === appliedCategory);
-  const contextTitle =
-    query ||
-    (appliedCategory ? category?.name || categoryT(categoryQuery.isLoadingCurrentData ? "loading" : categoryQuery.isError ? "error" : "empty") : undefined) ||
-    (collection === "popular"
-      ? t("collections.popular")
-      : collection === "new"
-        ? t("collections.new")
-        : t("collections.all"));
-
-  const productsQuery = usePublicProducts(publicProductQuery(new URLSearchParams(params.toString())));
-  const visibleProducts = productsQuery.data?.items ?? [];
-  const pagination = productsQuery.data?.pagination;
-  const changePage = (page: number) => {
-    const next = new URLSearchParams(params.toString()); next.set("page", String(page));
-    router.push(`/${locale}/products?${next}`);
+  const [draft, setDraft] = useState({ signature, filters: appliedFilters });
+  // Reset URL-derived drafts synchronously, including when returning to an older URL.
+  if (draft.signature !== signature)
+    setDraft({ signature, filters: appliedFilters });
+  const draftFilters =
+    draft.signature === signature ? draft.filters : appliedFilters;
+  const productsQuery = useCatalogueProducts(apiQuery);
+  const sort =
+    Object.entries(publicSortMap).find(
+      ([, value]) => value === apiQuery.sortBy,
+    )?.[0] || "relevance";
+  const categoryIds = selectedCategoryIds(appliedFilters);
+  const contextTitle = apiQuery.search
+    ? t("searchTitle", { query: apiQuery.search })
+    : categoryIds.length === 1
+      ? categories.find((item) => item.id === categoryIds[0])?.name ||
+        t("selectedCategory")
+      : url.get("collection") === "popular"
+        ? t("collections.popular")
+        : url.get("collection") === "new"
+          ? t("collections.new")
+          : t("collections.all");
+  const navigate = (next: URLSearchParams) =>
+    router.push(`/${locale}/products${next.size ? `?${next}` : ""}`);
+  const changeFilters = (next: Partial<CatalogueFilters>) =>
+    setDraft({ signature, filters: { ...draftFilters, ...next } });
+  const resetDraftFilters = () =>
+    setDraft({ signature, filters: { ...emptyCatalogueFilters } });
+  const applyFilters = () => {
+    navigate(applyCatalogueFilters(url, draftFilters));
+    setFiltersOpen(false);
   };
-
-  const changeFilters = (next: Partial<CatalogueFilters>) => {
-    setDraftFilters((current) => ({ ...current, ...next }));
-  };
-
-  const applyFilters = (filters = draftFilters) => {
-    const next = new URLSearchParams(params.toString());
-    const values: Record<string, string> = {
-      categoryId: filters.category,
-      countryOfOrigin: filters.countryOfOrigin || "",
-      hasDiscount: filters.hasDiscount ? "true" : "",
-      currency: filters.priceCurrency || currency,
-      minPrice: filters.minPrice === emptyFilters.minPrice ? "" : filters.minPrice,
-      maxPrice: filters.maxPrice === emptyFilters.maxPrice ? "" : filters.maxPrice,
-      minRating: filters.rating,
-      inventoryStatus: filters.inStock ? "in_stock" : "",
-    };
-    Object.entries(values).forEach(([key, value]) =>
-      value ? next.set(key, value) : next.delete(key),
-    );
-    ["category", "rating", "inStock", "verified", "minOrder"].forEach((key) => next.delete(key));
-    next.delete("page");
-    router.push(`/${locale}/products${next.size ? `?${next.toString()}` : ""}`);
-    setMobileFiltersOpen(false);
-  };
-
   const clearFilters = () => {
-    setDraftFilters(emptyFilters);
-    applyFilters(emptyFilters);
+    resetDraftFilters();
+    navigate(clearCatalogueFilters(url));
   };
-
+  const changePage = (page: number) => {
+    const next = new URLSearchParams(url);
+    next.set("page", String(page));
+    navigate(next);
+  };
   const changeSort = (value: string) => {
-    const next = new URLSearchParams(params.toString());
-    if (value === "price-low" || value === "price-high") next.set("currency", currency);
+    if (!(value in publicSortMap)) return;
+    const next = new URLSearchParams(url);
+    if ((value === "price-low" || value === "price-high") && currency)
+      next.set("currency", currency);
     next.delete("sortBy");
+    next.delete("page");
     if (value === "relevance") next.delete("sort");
     else next.set("sort", value);
-    next.delete("page");
-    router.push(`/${locale}/products${next.size ? `?${next.toString()}` : ""}`);
+    // Relevance must override a collection's implicit sort when explicitly chosen.
+    if (value === "relevance" && next.has("collection"))
+      next.set("sort", "relevance");
+    navigate(next);
   };
-
-  const activeFilterCount = [
-    draftFilters.category,
-    draftFilters.minPrice !== emptyFilters.minPrice,
-    draftFilters.maxPrice !== emptyFilters.maxPrice,
-    draftFilters.rating,
-    draftFilters.countryOfOrigin,
-    draftFilters.hasDiscount,
-    draftFilters.inStock,
-  ].filter(Boolean).length;
-
+  const chips: { key: string; categoryId?: string; label: string }[] =
+    categoryIds.map((id) => ({
+      key: "categories",
+      categoryId: id,
+      label:
+        categories.find((item) => item.id === id)?.name ||
+        t("selectedCategory"),
+    }));
+  for (const field of ["minPrice", "maxPrice"] as const)
+    if (apiQuery[field] !== undefined)
+      chips.push({
+        key: field,
+        label: t(field === "minPrice" ? "chipMin" : "chipMax", {
+          value: apiQuery.currency
+            ? formatMoney(apiQuery[field]!, apiQuery.currency)
+            : String(apiQuery[field]),
+        }),
+      });
+  if (apiQuery.currency)
+    chips.push({
+      key: "currency",
+      label: t("chipCurrency", { value: apiQuery.currency }),
+    });
+  if (apiQuery.minRating !== undefined)
+    chips.push({
+      key: "minRating",
+      label: t("filters.ratingUp", { rating: apiQuery.minRating }),
+    });
+  if (apiQuery.inventoryStatus)
+    chips.push({
+      key: "inventoryStatus",
+      label: t(
+        apiQuery.inventoryStatus === "in_stock" ? "inStock" : "outOfStock",
+      ),
+    });
+  if (apiQuery.hasDiscount !== undefined)
+    chips.push({
+      key: "hasDiscount",
+      label: t(apiQuery.hasDiscount ? "discounted" : "notDiscounted"),
+    });
+  if (apiQuery.countryOfOrigin)
+    chips.push({
+      key: "countryOfOrigin",
+      label: t("chipCountry", { value: apiQuery.countryOfOrigin }),
+    });
+  if (apiQuery.sellerId)
+    chips.push({ key: "sellerId", label: t("selectedSeller") });
+  const closeFilters = () => {
+    setDraft({
+      signature,
+      filters: catalogueFilters(new URLSearchParams(signature)),
+    });
+    setFiltersOpen(false);
+  };
   return {
     locale,
     contextTitle,
-    visibleProducts,
-    pagination,
+    categoryIds,
+    selectCategory: (id?: string) =>
+      navigate(
+        applyCatalogueFilters(url, {
+          ...appliedFilters,
+          category: id || "",
+          categoryIds: [],
+        }),
+      ),
+    view,
+    setView,
+    sort,
+    changeSort,
     changePage,
+    visibleProducts: productsQuery.data?.items || [],
+    pagination: productsQuery.data?.pagination,
     isLoading: productsQuery.isLoadingCurrentData,
-    isError: productsQuery.isError,
+    isError: productsQuery.isError && !productsQuery.data,
+    isRefreshing: productsQuery.isFetching && !!productsQuery.data,
+    refreshError: productsQuery.isError && !!productsQuery.data,
     retry: productsQuery.refetch,
     draftFilters,
-    activeFilterCount,
-    sort,
-    view,
-    mobileFiltersOpen,
     changeFilters,
+    resetDraftFilters,
     applyFilters,
     clearFilters,
-    changeSort,
-    setView,
-    openMobileFilters: () => setMobileFiltersOpen(true),
-    closeMobileFilters: () => setMobileFiltersOpen(false),
+    categoryQuery,
+    chips,
+    activeFilterCount: chips.length,
+    removeFilter: (key: string, id?: string) =>
+      navigate(removeCatalogueFilter(url, key, id)),
+    draftChanged:
+      JSON.stringify(draftFilters) !== JSON.stringify(appliedFilters),
+    filtersOpen,
+    openFilters: () => {
+      setDraft({ signature, filters: appliedFilters });
+      setFiltersOpen(true);
+    },
+    closeFilters,
+    hasSearch: !!apiQuery.search,
   };
 };

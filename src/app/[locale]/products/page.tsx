@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import type { Metadata } from "next";
 
 import ProductCatalogue from "@/components/organisms/ProductCatalogue/ProductCatalogue";
+import ProductCatalogueSkeleton from "@/components/organisms/ProductCatalogueSkeleton/ProductCatalogueSkeleton";
 import MainLayout from "@/components/templates/MainLayout/MainLayout";
 
 export const metadata: Metadata = {
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
 export default function ProductsPage() {
   return (
     <MainLayout>
-      <Suspense fallback={<div className="min-h-[60vh] bg-background" />}>
+      <Suspense fallback={<ProductCatalogueSkeleton />}>
         <ProductCatalogue />
       </Suspense>
     </MainLayout>

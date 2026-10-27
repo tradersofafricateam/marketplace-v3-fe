@@ -1,4 +1,5 @@
 export interface ProductData {
+  productType?: ProductType;
   categoryIds?: string[];
   productName: string;
   storeName: string;
@@ -13,6 +14,8 @@ export interface ProductData {
 }
 
 export interface CatalogueFilters {
+  categoryIds?: string[];
+  inventoryStatus?: "in_stock" | "out_of_stock";
   countryOfOrigin?: string;
   hasDiscount?: boolean;
   priceCurrency?: string;

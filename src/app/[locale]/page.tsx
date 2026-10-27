@@ -16,18 +16,14 @@ export default function Home() {
       <ScrollReveal>
         <MainCategorySection />
       </ScrollReveal>
-      <ScrollReveal>
-        <PopularProducts />
-      </ScrollReveal>
+      <PopularProducts />
       <ScrollReveal>
         <HowItWorksSection />
       </ScrollReveal>
       <ScrollReveal>
         <MoreCollectionSection />
       </ScrollReveal>
-      <ScrollReveal>
-        <NewlyAddedProducts />
-      </ScrollReveal>
+      <NewlyAddedProducts />
     </MainLayout>
   );
 }

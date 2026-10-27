@@ -5,9 +5,9 @@ import ts from 'typescript';
 import { create } from 'zustand';
 function load(file, mocks) {
   const code=ts.transpileModule(fs.readFileSync(new URL(`../${file}`,import.meta.url),'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText;
-  const module={exports:{}};
-  new Function('require','module','exports',code)((name)=>{if(!(name in mocks))throw new Error(name);return mocks[name];},module,module.exports);
-  return module.exports;
+  const compiled={exports:{}};
+  new Function('require','module','exports',code)((name)=>{if(!(name in mocks))throw new Error(name);return mocks[name];},compiled,compiled.exports);
+  return compiled.exports;
 }
 test('cart posts product ID and quantity and only includes a provided variant ID', async () => {
   const calls=[];
@@ -105,40 +105,32 @@ test('logout and account changes discard old requests and fetch errors remain re
   store.getState().setAccount(null);assert.equal(store.getState().cart,null);
 });
 
-test('card adds products without navigation and selects variants inline', () => {
+test('card validates simple-product stock/MOQ and routes every variable product to its information page', () => {
   let config;
   let adding=false;
   const adds=[],routes=[],errors=[];
-  const state=[];let cursor=0;
   const {useProductCardCart}=load('src/features/cart/hooks/useProductCardCart.ts',{
-    react:{useState:initial=>{const index=cursor++;if(!(index in state))state[index]=initial;return [state[index],value=>{state[index]=value;}];}},
     '@tanstack/react-query':{useMutation:options=>{config=options;return {isPending:false,mutate:()=>{}};}},
     'next-intl':{useLocale:()=> 'en',useTranslations:()=> key=>key},
     'next/navigation':{useRouter:()=>({push:path=>routes.push(path)})},
     sonner:{toast:{error:message=>errors.push(message)}},
     '@/features/products/api':{getPublicProduct:()=>{}},
-    '@/lib/hooks/useGetAllRoutes':{useGetAllRoutes:()=>({routes:{productInfo:id=>'/products/'+id}})},
+    '@/lib/hooks/useGetAllRoutes':{useGetAllRoutes:()=>({routes:{productInfo:id=>'/en/products/info/'+id}})},
     '@/lib/helpers/promiseError':{promiseErrorFunction:()=>{}},
     './useAddToCart':{useAddToCart:()=>({addToCart:payload=>adds.push(payload),isAdding:adding})},
   });
-  const render=()=>{cursor=0;return useProductCardCart('product');};
-  render();
+  function ProductCardCartHarness(){return useProductCardCart('product');}
+  ProductCardCartHarness();
   config.onSuccess({productType:'simple',minOrdersAllowed:5,quantity:10});
   assert.deepEqual(adds,[{productId:'product',quantity:5}]);
   assert.deepEqual(routes,[]);
-  config.onSuccess({productType:'variable',minOrdersAllowed:2,variants:[
-    {id:'red',attributes:{color:'red'},quantity:5},
-    {id:'blue',attributes:{color:'blue'},quantity:5},
-    {id:'empty',attributes:{color:'green'},quantity:0},
-  ]});
-  assert.deepEqual(routes,[]);assert.equal(adds.length,1);
-  let picker=render();assert.equal(picker.choices.length,2);
-  picker.setSelectedId('blue');picker=render();picker.addSelected();
-  assert.deepEqual(adds[1],{productId:'product',variantId:'blue',quantity:2});
-  assert.equal(render().choices.length,0);
-  config.onSuccess({productType:'variable',variants:[{id:'only',quantity:10,attributes:{color:'red'}}]});
-  assert.deepEqual(adds[2],{productId:'product',variantId:'only',quantity:1});
+  for(const variants of [[],[{id:'only',quantity:10}],[{id:'red',quantity:5},{id:'blue',quantity:5}]]) {
+    config.onSuccess({productType:'variable',minOrdersAllowed:2,variants});
+    assert.equal(adds.length,1,'variable products must never be added or auto-selected from a card');
+  }
+  assert.deepEqual(routes,Array(3).fill('/en/products/info/product'));
+  assert.equal('choices' in ProductCardCartHarness(),false);
   for(const quantity of [0,2,null,undefined,'invalid']) config.onSuccess({productType:'simple',minOrdersAllowed:5,quantity});
-  assert.equal(adds.length,3);assert.equal(errors.length,5);
-  adding=true;assert.equal(render().isPending,true);
+  assert.equal(adds.length,1);assert.equal(errors.length,5);
+  adding=true;assert.equal(ProductCardCartHarness().isPending,true);
 });

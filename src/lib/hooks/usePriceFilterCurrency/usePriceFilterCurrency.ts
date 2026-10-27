@@ -2,27 +2,38 @@
 
 import type { CatalogueFilters } from "@/features/products/types";
 import { useCurrency } from "@/lib/hooks/useCurrency/useCurrency";
-import { PRODUCT_PRICE_LIMIT } from "@/lib/hooks/useProductCatalogue/useProductCatalogue";
+import { PRODUCT_PRICE_LIMIT } from "@/features/products/constants/catalogue";
 
 export const usePriceFilterCurrency = (
   filters: CatalogueFilters,
   onChange: (next: Partial<CatalogueFilters>) => void,
 ) => {
-  const { currency, isLoading, isError } = useCurrency();
+  const { currency, isLoading, isError, retry } = useCurrency();
   const priceCurrency = filters.priceCurrency || currency;
-  const displayLimit = PRODUCT_PRICE_LIMIT;
-  const displayMin = Number(filters.minPrice);
-  const displayMax = Number(filters.maxPrice);
-  const changeDisplayRange = ({ min, max }: { min: number; max: number }) => {
-    if (!priceCurrency || isLoading || isError) return;
-    onChange({ minPrice: String(min), maxPrice: String(max), priceCurrency });
-  };
-
+  const displayMin =
+    filters.minPrice === "" ? undefined : Number(filters.minPrice);
+  const displayMax =
+    filters.maxPrice === "" ? undefined : Number(filters.maxPrice);
   return {
-    displayLimit,
     displayMin,
     displayMax,
+    displayLimit: Math.max(
+      PRODUCT_PRICE_LIMIT,
+      displayMin || 0,
+      displayMax || 0,
+    ),
     symbol: priceCurrency,
-    changeDisplayRange,
+    isLoading,
+    isError,
+    retry,
+    disabled: !priceCurrency,
+    changeDisplayRange: ({ min, max }: { min?: number; max?: number }) => {
+      if (!priceCurrency) return;
+      onChange({
+        minPrice: min === undefined ? "" : String(min),
+        maxPrice: max === undefined ? "" : String(max),
+        priceCurrency,
+      });
+    },
   };
 };
