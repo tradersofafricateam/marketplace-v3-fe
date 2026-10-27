@@ -9,20 +9,33 @@ import { ProductData, ProductSeller } from "@/features/products/types";
 const MoreFromSellerSection = ({
   seller,
   products,
+  loading = false,
+  error = false,
+  onRetry,
 }: {
   seller: ProductSeller;
   products: ProductData[];
+  loading?: boolean;
+  error?: boolean;
+  onRetry?: () => unknown;
 }) => {
   const t = useTranslations("ProductInfo");
   const { routes } = useGetAllRoutes();
 
-  if (products.length === 0) return null;
+  if (!loading && !error && products.length === 0) return null;
 
   return (
     <ProductCardWrapper
       title={t("moreFromSeller", { store: seller.storeName })}
       products={products}
-      href={seller.slug ? routes.sellerStore(seller.slug) : `${routes.products}?sellerId=${encodeURIComponent(seller.id)}`}
+      loading={loading}
+      error={error}
+      onRetry={onRetry}
+      href={
+        seller.slug
+          ? routes.sellerStore(seller.slug)
+          : `${routes.products}?sellerId=${encodeURIComponent(seller.id)}`
+      }
     />
   );
 };

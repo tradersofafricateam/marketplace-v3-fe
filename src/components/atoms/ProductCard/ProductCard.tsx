@@ -1,18 +1,23 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
-
+import { useTranslations } from "next-intl";
 import AddToCartBtn from "../AddToCartBtn/AddToCartBtn";
-import WishListBtn from "../WishListBtn/WishListBtn";
-import RatingStar from "../RatingStar/RatingStar";
-
-import { ProductData } from "@/features/products/types";
+import WishlistButton from "../WishlistButton/WishlistButton";
+import ProductImage from "../ProductImage/ProductImage";
+import type { ProductData, ProductView } from "@/features/products/types";
+import {
+  productActionClassName,
+  productActionContainerClassName,
+  productBodyClassName,
+  productCardClassName,
+  productMediaClassName,
+  productNameClassName,
+} from "@/features/products/constants/productPresentation";
 import { useGetAllRoutes } from "@/lib/hooks/useGetAllRoutes";
 import { useCurrency } from "@/lib/hooks/useCurrency/useCurrency";
 
-
-const ProductCard = ({
+export default function ProductCard({
   productName,
   storeName,
   id,
@@ -20,60 +25,104 @@ const ProductCard = ({
   currency,
   amount,
   imgUrl,
-  isInWishList = false,
   unit,
   totalReviews,
-}: ProductData) => {
+  productType,
+  view = "grid",
+}: ProductData & { view?: ProductView }) {
   const { routes } = useGetAllRoutes();
   const { formatMoney } = useCurrency();
-
+  const t = useTranslations("ProductCatalogue");
+  const href = routes.productInfo(slug);
+  const list = view === "list";
   return (
-    <article className="relative flex h-full min-w-0 flex-col overflow-hidden rounded-lg bg-background transition-shadow duration-300 hover:shadow">
-      <WishListBtn productId={id} isInWishList={isInWishList} />
-      <Link
-        href={routes?.productInfo(slug)}
-        className="group flex min-w-0 flex-1 flex-col"
+    <article
+      data-product-card
+      data-view={view}
+      data-product-type={productType}
+      className={`${productCardClassName} rounded-xl transition-[box-shadow,translate] duration-200 hover:shadow-sm hover:shadow-foreground/10 motion-safe:pointer-fine:hover:-translate-y-0.5 focus-within:ring-2 focus-within:ring-brand/40 focus-within:ring-offset-4 focus-within:ring-offset-background motion-reduce:transform-none motion-reduce:translate-none motion-reduce:transition-none ${list ? "flex-row! gap-4 border-b border-border/60 pb-5 sm:gap-6" : ""}`}
+    >
+      <div
+        className={`${productMediaClassName} ${list ? "w-28 shrink-0 self-start sm:w-44" : "w-full"}`}
       >
-        <div className="aspect-4/3 w-full overflow-hidden rounded-lg bg-muted/40">
-          {imgUrl && <Image
-            src={imgUrl}
-            unoptimized
-            alt={productName}
-            width={500}
-            height={500}
-            sizes="(max-width: 639px) 50vw, (max-width: 1023px) 33vw, 20vw"
-            className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105"
-          />}
-        </div>
-        <div className="flex flex-1 flex-col gap-1 px-1 pt-2 sm:px-2">
-          <p className="truncate text-[11px] capitalize text-muted-foreground">
-            {storeName}
-          </p>
-          <div className="flex flex-1 flex-col gap-0.5">
-            <p className="line-clamp-2 min-h-9 text-sm leading-tight font-medium transition-colors duration-300 group-hover:text-(--orange) sm:text-base">
-              {productName}
-            </p>
-            <p className="mt-auto flex min-w-0 items-baseline text-xs font-medium sm:text-sm">
-              <span className="truncate" aria-label={currency}>{amount === null ? "View pricing" : formatMoney(amount, currency)}</span>{" "}
-              <span className="text-[9px] font-light sm:text-[11px]">
-                &nbsp;/ {unit}
-              </span>
-            </p>
-          </div>
-        </div>
-      </Link>
-      <div className="mt-auto flex items-center justify-between gap-2 px-1 py-2 sm:px-2">
-        <AddToCartBtn productId={id} />
-        <div
-          className="sm:flex items-center gap-1 hidden"
-          aria-label="Total reviews"
+        <Link
+          href={href}
+          tabIndex={-1}
+          aria-hidden="true"
+          className="absolute inset-0"
         >
-          <RatingStar />
-          <p className="text-sm">({totalReviews})</p>
+          <ProductImage
+            src={imgUrl}
+            name={productName}
+            sizes={
+              list
+                ? "176px"
+                : "(max-width: 311px) calc(100vw - 2rem), 280px"
+            }
+          />
+        </Link>
+        <WishlistButton productId={id} productName={productName} />
+      </div>
+      <div
+        className={`${productBodyClassName} ${list ? "pt-0! sm:grid sm:grid-cols-[minmax(0,1fr)_auto] sm:content-center sm:gap-x-6" : ""}`}
+      >
+        {(storeName || totalReviews > 0) && (
+          <p className="mb-1 flex min-w-0 items-baseline gap-2 text-[0.6875rem] font-medium leading-4 text-brand-hover sm:col-start-1">
+            {storeName && <span className="min-w-0 truncate">{storeName}</span>}
+            {totalReviews > 0 && <span className="shrink-0 font-normal text-muted-foreground">{t("reviewCount", { count: totalReviews })}</span>}
+          </p>
+        )}
+        <h3
+          className={`${productNameClassName} sm:col-start-1 ${list ? "sm:text-base" : ""}`}
+        >
+          <Link
+            href={href}
+            className="rounded-sm transition-colors hover:text-brand focus-visible:outline-2 focus-visible:outline-brand focus-visible:outline-offset-4 active:text-brand-hover motion-reduce:transition-none"
+          >
+            {productName}
+          </Link>
+        </h3>
+        <div className={`${list ? "" : "mt-auto"} pt-1.5 sm:col-start-1`}>
+          <p
+            className="flex min-h-6 flex-wrap items-baseline gap-x-1.5 text-base font-bold leading-6"
+            aria-label={
+              amount === null
+                ? undefined
+                : `${currency} ${formatMoney(amount, currency)}`
+            }
+          >
+            {amount === null ? (
+              <span className="font-semibold">{t("viewPricing")}</span>
+            ) : (
+              formatMoney(amount, currency)
+            )}
+            {amount !== null && unit && (
+              <span className="text-xs font-normal text-muted-foreground">
+                / {unit}
+              </span>
+            )}
+          </p>
+        </div>
+        <div
+          className={
+            list
+              ? "mt-2 sm:col-start-2 sm:row-span-3 sm:row-start-1 sm:my-auto"
+              : productActionContainerClassName
+          }
+        >
+          {productType === "VARIABLE" ? (
+            <Link
+              href={href}
+              data-product-action="options"
+              className={productActionClassName}
+            >
+              {t("chooseOptions")}
+            </Link>
+          ) : (
+            <AddToCartBtn productId={id} />
+          )}
         </div>
       </div>
     </article>
   );
-};
-
-export default ProductCard;
+}

@@ -10,7 +10,8 @@ export function publicProductCard(product: PublicProductRecord, locale: string):
   const primary = images.find((image) => record(image).isPrimary) || images[0];
   const image = product.mainImage || (typeof primary === "string" ? primary : record(primary).url);
   if (typeof product.id !== "string") throw new Error("Invalid product response.");
-  return { id: product.id, slug: product.id, productName: name(product.productName, locale), storeName: String(seller.storeName || seller.companyName || ""),
+  const productType = String(product.productType).toUpperCase();
+  return { ...(productType === "SIMPLE" || productType === "VARIABLE" ? { productType } : {}), id: product.id, slug: product.id, productName: name(product.productName, locale), storeName: String(seller.storeName || seller.companyName || ""),
     currency: String(product.currency || ""), amount: typeof product.finalPrice === "number" ? product.finalPrice : typeof product.price === "number" ? product.price : null, imgUrl: typeof image === "string" ? image : "",
     unit: String(product.unitForMinOrder || ""), totalReviews: number(product.totalReviews), categoryIds: Array.isArray(product.categoryIds) ? product.categoryIds as string[] : [],
     ...(typeof product.isSaved === "boolean" ? { isInWishList: product.isSaved } : {}),

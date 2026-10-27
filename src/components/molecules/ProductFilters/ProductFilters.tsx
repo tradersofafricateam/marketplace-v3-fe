@@ -1,94 +1,284 @@
 "use client";
 
-import { Check, PackageCheck, X } from "lucide-react";
+import type { ReactNode } from "react";
 import { useTranslations } from "next-intl";
-
+import { ChevronDown, X } from "lucide-react";
 import PriceRange from "@/components/atoms/PriceRange/PriceRange";
-import RatingStar from "@/components/atoms/RatingStar/RatingStar";
+import { Skeleton } from "@/components/ui/skeleton";
 import type { CatalogueFilters } from "@/features/products/types";
-import { useCategories } from "@/features/categories/hooks/useCategories";
-import CategoryQueryState from "@/features/categories/components/molecules/CategoryQueryState/CategoryQueryState";
+import type { Category } from "@/features/categories/types";
+import { selectedCategoryIds } from "@/features/products/helpers/catalogueFilters";
 import { usePriceFilterCurrency } from "@/lib/hooks/usePriceFilterCurrency/usePriceFilterCurrency";
+import {
+  navigationIconButton,
+  navigationPrimary,
+  navigationSecondary,
+} from "@/lib/constants/navigationStyles";
 
-const ProductFilters = ({ filters, onChange, onApply, onClear, onClose }: { filters: CatalogueFilters; onChange: (next: Partial<CatalogueFilters>) => void; onApply: () => void; onClear: () => void; onClose?: () => void }) => {
-  const price = usePriceFilterCurrency(filters, onChange);
-  const categoryQuery = useCategories();
-  const categories = categoryQuery.data ?? [];
+type CategoryState = {
+  data?: Category[];
+  isLoadingCurrentData: boolean;
+  isError: boolean;
+  refetch: () => unknown;
+};
+const fieldClassName =
+  "h-11 w-full min-w-0 rounded-lg border border-input bg-background px-3 text-sm font-normal focus-visible:outline-2 focus-visible:outline-brand";
+
+export default function ProductFilters({
+  filters,
+  onChange,
+  onApply,
+  onClear,
+  onClose,
+  categoryQuery,
+  changed = false,
+}: {
+  filters: CatalogueFilters;
+  onChange: (next: Partial<CatalogueFilters>) => void;
+  onApply: () => void;
+  onClear: () => void;
+  onClose?: () => void;
+  categoryQuery: CategoryState;
+  changed?: boolean;
+}) {
   const t = useTranslations("ProductCatalogue");
-
-  return <div className="flex h-full min-h-0 flex-col bg-background">
-    <div className="flex shrink-0 items-center justify-between border-b border-border px-4 py-3.5">
-      <h2 className="text-base font-bold">{t("filters.title")}</h2>
-      <div className="flex items-center gap-2">
-        <button onClick={onClear} className="text-xs font-semibold text-(--orange) hover:underline">{t("filters.reset")}</button>
-        {onClose && <button onClick={onClose} aria-label={t("filters.close")} className="rounded-full p-1.5 hover:bg-muted"><X size={19} /></button>}
+  const categoryT = useTranslations("CategoryData");
+  const price = usePriceFilterCurrency(filters, onChange);
+  const ids = selectedCategoryIds(filters);
+  const group = (label: string, content: ReactNode, open = false) => (
+    <details className="group border-b border-border/60 py-1" open={open}>
+      <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-3 rounded-sm text-sm font-semibold focus-visible:outline-2 focus-visible:outline-brand [&::-webkit-details-marker]:hidden">
+        <span>{label}</span>
+        <ChevronDown
+          size={15}
+          aria-hidden="true"
+          className="shrink-0 text-muted-foreground transition-transform duration-150 group-open:rotate-180 motion-reduce:transition-none"
+        />
+      </summary>
+      <div className="pb-5">{content}</div>
+    </details>
+  );
+  const rows = (categories: Category[], depth = 0): ReactNode =>
+    categories.map((category) => (
+      <div key={category.id}>
+        <label
+          className={`flex min-h-11 cursor-pointer items-center gap-3 rounded-lg py-2 pr-3 text-sm transition-colors hover:bg-muted ${depth === 0 ? "pl-2" : depth === 1 ? "pl-5" : "pl-8"} ${ids.includes(category.id) ? "font-semibold text-brand-hover" : "text-muted-foreground"}`}
+        >
+          <input
+            type="checkbox"
+            checked={ids.includes(category.id)}
+            onChange={(e) => {
+              const next = e.target.checked
+                ? [...ids, category.id]
+                : ids.filter((id) => id !== category.id);
+              onChange({
+                category: next.length === 1 ? next[0] : "",
+                categoryIds: next.length > 1 ? next : [],
+              });
+            }}
+            className="size-4 shrink-0 accent-brand focus-visible:outline-brand"
+          />
+          <span className="min-w-0 wrap-anywhere">{category.name}</span>
+        </label>
+        {rows(category.children, depth + 1)}
+      </div>
+    ));
+  return (
+    <div className="flex h-full min-h-0 flex-col bg-background">
+      <div className="flex shrink-0 items-center justify-between gap-3 border-b border-border/60 pb-4">
+        <h2
+          id={onClose ? "product-filters-title" : undefined}
+          className="font-poppins text-lg font-medium"
+        >
+          {t("filters.title")}
+        </h2>
+        {onClose && (
+          <button
+            data-filter-close
+            type="button"
+            onClick={onClose}
+            aria-label={t("filters.close")}
+            className={navigationIconButton}
+          >
+            <X size={18} aria-hidden="true" />
+          </button>
+        )}
+      </div>
+      <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain pr-1 pb-5">
+        {group(
+          t("filters.categories"),
+          categoryQuery.isLoadingCurrentData ? (
+            <div
+              role="status"
+              aria-label={categoryT("loading")}
+              className="space-y-4 py-3"
+            >
+              {[0, 1, 2].map((n) => (
+                <Skeleton key={n} className="h-5 w-4/5" />
+              ))}
+            </div>
+          ) : categoryQuery.isError ? (
+            <div role="alert" className="py-2 text-sm text-muted-foreground">
+              <p className="text-sm">{categoryT("error")}</p>
+              <button
+                type="button"
+                onClick={() => void categoryQuery.refetch()}
+                className="mt-2 min-h-10 rounded-sm font-semibold text-brand focus-visible:outline-brand"
+              >
+                {categoryT("retry")}
+              </button>
+            </div>
+          ) : (
+            <div className="max-h-64 overflow-y-auto overscroll-contain">
+              <label className="flex min-h-11 cursor-pointer items-center gap-3 rounded-lg px-2 py-2 text-sm hover:bg-muted">
+                <input
+                  type="checkbox"
+                  checked={ids.length === 0}
+                  onChange={() => onChange({ category: "", categoryIds: [] })}
+                  className="size-4 shrink-0 accent-brand focus-visible:outline-brand"
+                />
+                {t("filters.allCategories")}
+              </label>
+              {categoryQuery.data?.length ? (
+                rows(categoryQuery.data)
+              ) : (
+                <p className="px-2 py-3 text-sm text-muted-foreground">
+                  {categoryT("empty")}
+                </p>
+              )}
+            </div>
+          ),
+          true,
+        )}
+        {group(
+          `${t("filters.price")}${price.symbol ? ` · ${price.symbol}` : ""}`,
+          <div className="pt-2">
+            <PriceRange
+              min={price.displayMin}
+              max={price.displayMax}
+              limit={price.displayLimit}
+              symbol={price.symbol}
+              minLabel={t("filters.min")}
+              maxLabel={t("filters.max")}
+              anyLabel={t("anyPrice")}
+              disabled={price.disabled}
+              onChange={price.changeDisplayRange}
+            />
+            {price.isLoading && <Skeleton className="mt-3 h-3 w-3/5" />}
+            {price.isError && !price.symbol && (
+              <p className="mt-3 text-xs text-muted-foreground">
+                {t("currencyUnavailable")}{" "}
+                <button
+                  type="button"
+                  onClick={price.retry}
+                  className="min-h-10 text-brand focus-visible:outline-brand"
+                >
+                  {t("retry")}
+                </button>
+              </p>
+            )}
+          </div>,
+          true,
+        )}
+        {group(
+          t("filters.rating"),
+          <fieldset>
+            <legend className="sr-only">{t("filters.rating")}</legend>
+            {["", "4", "3", "2", "1"].map((rating) => (
+              <label
+                key={rating}
+                className="flex min-h-11 cursor-pointer items-center gap-3 rounded-lg px-2 py-2 text-sm hover:bg-muted"
+              >
+                <input
+                  type="radio"
+                  name="catalogue-rating"
+                  value={rating}
+                  checked={filters.rating === rating}
+                  onChange={() => onChange({ rating })}
+                  className="size-4 accent-brand focus-visible:outline-brand"
+                />
+                {rating
+                  ? t("filters.ratingUp", { rating: Number(rating) })
+                  : t("anyRating")}
+              </label>
+            ))}
+          </fieldset>,
+        )}
+        {group(
+          t("stock"),
+          <select
+            aria-label={t("stock")}
+            value={filters.inventoryStatus || ""}
+            onChange={(e) =>
+              onChange({
+                inventoryStatus: e.target
+                  .value as CatalogueFilters["inventoryStatus"],
+                inStock: e.target.value === "in_stock",
+              })
+            }
+            className={fieldClassName}
+          >
+            <option value="">{t("anyAvailability")}</option>
+            <option value="in_stock">{t("inStock")}</option>
+            <option value="out_of_stock">{t("outOfStock")}</option>
+          </select>,
+        )}
+        {group(
+          t("offers"),
+          <select
+            aria-label={t("offers")}
+            value={
+              filters.hasDiscount === undefined
+                ? ""
+                : String(filters.hasDiscount)
+            }
+            onChange={(e) =>
+              onChange({
+                hasDiscount:
+                  e.target.value === "" ? undefined : e.target.value === "true",
+              })
+            }
+            className={fieldClassName}
+          >
+            <option value="">{t("anyOffer")}</option>
+            <option value="true">{t("discounted")}</option>
+            <option value="false">{t("notDiscounted")}</option>
+          </select>,
+        )}
+        {group(
+          t("country"),
+          <input
+            aria-label={t("country")}
+            value={filters.countryOfOrigin || ""}
+            onChange={(e) => onChange({ countryOfOrigin: e.target.value })}
+            placeholder={t("anyCountry")}
+            className={fieldClassName}
+          />,
+        )}
+      </div>
+      <div className="shrink-0 border-t border-border/60 bg-background pt-4">
+        {changed && (
+          <p className="mb-3 text-xs leading-4 text-muted-foreground">
+            {t("draftChanges")}
+          </p>
+        )}
+        <div className="flex gap-3">
+          <button
+            type="button"
+            onClick={onApply}
+            className={`${navigationPrimary} flex-1 rounded-full!`}
+          >
+            {t("filters.apply")}
+          </button>
+          <button
+            type="button"
+            onClick={onClear}
+            className={`${navigationSecondary} rounded-full!`}
+          >
+            {t("filters.clear")}
+          </button>
+        </div>
       </div>
     </div>
-
-    <div className="min-h-0 flex-1 divide-y divide-border overflow-y-auto overscroll-contain">
-      <fieldset className="px-4 pb-4 pt-5">
-        <legend className="mb-2 pt-2 text-sm font-bold">{t("filters.categories")}</legend>
-        <div className="space-y-0.5">
-          <label className="flex cursor-pointer items-center gap-2 rounded px-1 py-1.5 text-sm text-muted-foreground hover:bg-muted/60">
-            <input type="radio" name="category" checked={!filters.category} onChange={() => onChange({ category: "" })} className="accent-(--orange)" /> {t("filters.allCategories")}
-          </label>
-          <CategoryQueryState loading={categoryQuery.isLoadingCurrentData} error={categoryQuery.isError} empty={categories.length === 0} onRetry={() => void categoryQuery.refetch()} />
-          {categories.map((category) => (
-            <label key={category.id} className="flex cursor-pointer items-center gap-2 rounded px-1 py-1.5 text-sm text-muted-foreground hover:bg-muted/60 hover:text-foreground">
-              <input type="radio" name="category" checked={filters.category === category.id} onChange={() => onChange({ category: category.id })} className="accent-(--orange)" />
-              <span className="truncate">{category.name}</span>
-            </label>
-          ))}
-        </div>
-      </fieldset>
-
-      <fieldset className="px-4 pb-4 pt-5">
-        <legend className="mb-5 pt-2 text-sm font-bold">{t("filters.price")}</legend>
-        <PriceRange min={price.displayMin} max={price.displayMax} limit={price.displayLimit} symbol={price.symbol} minLabel={t("filters.min")} maxLabel={t("filters.max")} onChange={price.changeDisplayRange} />
-      </fieldset>
-
-      <fieldset className="px-4 pb-4 pt-5">
-        <legend className="mb-3 pt-2 text-sm font-bold">{t("filters.rating")}</legend>
-        <div className="grid grid-cols-1 gap-1.5">
-          {[4, 3, 2, 1].map((rating) => {
-            const selected = filters.rating === String(rating);
-            return (
-              <label key={rating} className={`flex cursor-pointer items-center justify-between rounded-md border px-2.5 py-2 transition-colors ${selected ? "border-(--orange) bg-orange-50/70" : "border-transparent hover:bg-muted/60"}`}>
-                <input type="radio" name="rating" checked={selected} onChange={() => onChange({ rating: String(rating) })} className="sr-only" />
-                <span className="flex items-center gap-0.5">{Array.from({ length: 5 }, (_, index) => <RatingStar key={index} filled={index < rating} size={15} className={index < rating ? "text-[#FDD037]" : "text-border"} />)}</span>
-                <span className="text-xs font-medium text-muted-foreground">{t("filters.ratingUp", { rating })}</span>
-              </label>
-            );
-          })}
-        </div>
-      </fieldset>
-
-      <fieldset className="space-y-2 px-4 pb-4 pt-5">
-        <legend className="mb-1 pt-2 text-sm font-bold">{t("filters.availability")}</legend>
-        {[
-          { key: "hasDiscount" as const, label: "Discounted products", icon: PackageCheck },
-          { key: "inStock" as const, label: t("filters.readyToShip"), icon: PackageCheck },
-        ].map(({ key, label, icon: Icon }) => (
-          <label key={key} className="flex cursor-pointer items-center gap-2.5 rounded-md border border-border px-3 py-2.5 text-sm hover:bg-muted/50">
-            <Icon size={17} className="text-(--orange)" />
-            <span className="flex-1">{label}</span>
-            <input type="checkbox" checked={filters[key]} onChange={(event) => onChange({ [key]: event.target.checked })} className="peer sr-only" />
-            <span className="flex size-4 items-center justify-center rounded border border-input peer-checked:border-(--orange) peer-checked:bg-(--orange) peer-checked:text-white"><Check size={11} /></span>
-          </label>
-        ))}
-      </fieldset>
-
-      <label className="block px-4 pb-4 pt-6 text-sm font-bold">
-        Country of origin
-        <input value={filters.countryOfOrigin || ""} onChange={(event) => onChange({ countryOfOrigin: event.target.value })} placeholder="Any country" className="mt-2 h-11 w-full rounded-xl border border-border px-3 text-sm font-normal" />
-      </label>
-    </div>
-
-    <div className="grid shrink-0 grid-cols-[1fr_auto] gap-2 border-t border-border bg-background p-4 shadow-[0_-8px_20px_rgba(0,0,0,0.04)]">
-      <button onClick={onApply} className="rounded-md bg-(--orange) px-4 py-2.5 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-(--orange-dark) hover:shadow-md active:translate-y-0 active:scale-[0.98]">{t("filters.apply")}</button>
-      <button onClick={onClear} className="rounded-md border border-border px-4 py-2.5 text-sm font-semibold transition-all duration-200 hover:bg-muted active:scale-[0.98]">{t("filters.clear")}</button>
-    </div>
-  </div>;
-};
-
-export default ProductFilters;
+  );
+}

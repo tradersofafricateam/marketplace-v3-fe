@@ -3,171 +3,241 @@
 import Link from "next/link";
 import { X } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { AnimatePresence, motion } from "framer-motion";
-
 import Container from "@/components/atoms/Container/Container";
-import ProductCard from "@/components/atoms/ProductCard/ProductCard";
+import { Skeleton } from "@/components/ui/skeleton";
 import CatalogueToolbar from "@/components/molecules/CatalogueToolbar/CatalogueToolbar";
 import ProductFilters from "@/components/molecules/ProductFilters/ProductFilters";
-
+import ProductFilterSheet from "@/components/molecules/ProductFilterSheet/ProductFilterSheet";
+import ProductGrid from "@/components/organisms/ProductGrid/ProductGrid";
 import { useProductCatalogue } from "@/lib/hooks/useProductCatalogue/useProductCatalogue";
+import {
+  navigationPrimary,
+  navigationSecondary,
+} from "@/lib/constants/navigationStyles";
 
-const ProductCatalogue = () => {
+export default function ProductCatalogue() {
   const catalogue = useProductCatalogue();
   const t = useTranslations("ProductCatalogue");
-
   return (
-    <section className="bg-background py-6 sm:py-10 lg:py-12">
+    <section
+      data-catalogue-redesign="image-led"
+      className="bg-brand-subtle/35 pb-10 sm:pb-14"
+    >
       <Container>
-        <motion.nav
-          initial={{ opacity: 0, y: -6 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.25 }}
-          className="mb-8 flex items-center gap-2 text-xs text-muted-foreground"
-          aria-label={t("breadcrumbLabel")}
-        >
-          <Link
-            href={`/${catalogue.locale}`}
-            className="text-(--orange) hover:underline"
+        <header className="py-6 sm:py-7">
+          <nav
+            aria-label={t("breadcrumbLabel")}
+            className="mb-4 flex flex-wrap items-center gap-2 text-[0.6875rem] leading-4 text-muted-foreground"
           >
-            {t("home")}
-          </Link>
-          <span>/</span>
-          <span>{t("searchResult")}</span>
-        </motion.nav>
-
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.35, delay: 0.05 }}
-          className="mb-7 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between lg:mb-9"
-        >
-          <h1 className="text-xl font-semibold sm:text-2xl">
-            {!catalogue.isLoading && !catalogue.isError && t("foundResults", { count: catalogue.pagination?.total ?? 0 })}{" "}
-            <span className="text-(--orange)">{catalogue.contextTitle}</span>
-          </h1>
-          <CatalogueToolbar
-            sort={catalogue.sort}
-            view={catalogue.view}
-            filterCount={catalogue.activeFilterCount}
-            onSort={catalogue.changeSort}
-            onView={catalogue.setView}
-            onOpenFilters={catalogue.openMobileFilters}
-          />
-        </motion.div>
-
-        <div className="grid items-start gap-6 lg:grid-cols-[250px_minmax(0,1fr)] xl:gap-9">
-          <motion.aside
-            initial={{ opacity: 0, x: -14 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.35, delay: 0.1 }}
-            className="hidden h-[calc(100vh-7rem)] min-h-150 overflow-hidden rounded-md border border-border lg:sticky lg:top-24 lg:block"
-          >
-            <ProductFilters
-              filters={catalogue.draftFilters}
-              onChange={catalogue.changeFilters}
-              onApply={catalogue.applyFilters}
-              onClear={catalogue.clearFilters}
-            />
-          </motion.aside>
-
-          <div className="min-w-0">
-            {catalogue.activeFilterCount > 0 && (
-              <div className="mb-4 flex items-center justify-between rounded-md bg-muted/50 px-3 py-2">
-                <span className="text-xs text-muted-foreground">
-                  {t("selectedFilters", { count: catalogue.activeFilterCount })}
-                </span>
-                <button
-                  onClick={catalogue.clearFilters}
-                  className="flex items-center gap-1 text-xs font-semibold text-(--orange)"
-                >
-                  {t("clearAll")} <X size={12} />
-                </button>
-              </div>
-            )}
-
-            {catalogue.isLoading ? <div role="status" aria-label="Loading products" className="grid grid-cols-2 gap-4 md:grid-cols-3">{Array.from({ length: 6 }, (_, index) => <div key={index} className="h-60 animate-pulse rounded-xl bg-muted" />)}</div> : catalogue.isError ? <div role="alert" className="rounded-xl border border-border p-8 text-center"><p>We couldn’t load the products.</p><button type="button" onClick={() => void catalogue.retry()} className="mt-4 rounded-xl bg-(--orange) px-4 py-2 text-white">Try again</button></div> : catalogue.visibleProducts.length ? (
-              <motion.div
-                layout
-                className={`grid gap-x-3 gap-y-7 sm:gap-x-5 sm:gap-y-10 ${catalogue.view === "list" ? "grid-cols-1 md:grid-cols-2 xl:grid-cols-3" : "grid-cols-2 md:grid-cols-3 xl:grid-cols-4"}`}
-              >
-                {catalogue.visibleProducts.map((product, index) => (
-                  <motion.div
-                    layout
-                    key={product.id}
-                    initial={{ opacity: 0, y: 14 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.96 }}
-                    transition={{
-                      duration: 0.28,
-                      delay: Math.min(index * 0.035, 0.25),
-                    }}
-                    className="h-full"
-                  >
-                    <ProductCard {...product} />
-                  </motion.div>
-                ))}
-              </motion.div>
-            ) : (
-              <div className="rounded-xl border border-dashed border-border px-6 py-20 text-center">
-                <h2 className="text-xl font-bold">{t("empty.title")}</h2>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  {t("empty.description")}
-                </p>
-                <button
-                  onClick={catalogue.clearFilters}
-                  className="mt-5 rounded-md bg-(--orange) px-5 py-2.5 text-sm font-semibold text-white"
-                >
-                  {t("filters.clear")}
-                </button>
-              </div>
-            )}
-
-            {!catalogue.isLoading && !catalogue.isError && catalogue.pagination && catalogue.pagination.totalPages > 1 && (
-              <nav aria-label={t("pagination.label")} className="mt-10 flex items-center justify-end gap-3 border-t border-border pt-6 text-sm">
-                <span>{t("pagination.pageOf", { page: catalogue.pagination.page, total: catalogue.pagination.totalPages })}</span>
-                <button type="button" disabled={catalogue.pagination.page <= 1} onClick={() => catalogue.changePage(catalogue.pagination!.page - 1)} className="rounded-lg border px-3 py-2 disabled:opacity-40">{t("pagination.previous")}</button>
-                <button type="button" disabled={catalogue.pagination.page >= catalogue.pagination.totalPages} onClick={() => catalogue.changePage(catalogue.pagination!.page + 1)} className="rounded-lg border px-3 py-2 disabled:opacity-40">{t("pagination.next")}</button>
-              </nav>
-            )}
-          </div>
-        </div>
-      </Container>
-
-      <AnimatePresence>
-        {catalogue.mobileFiltersOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-70 lg:hidden"
-          >
-            <motion.button
-              aria-label={t("filters.close")}
-              onClick={catalogue.closeMobileFilters}
-              className="absolute inset-0 bg-black/45"
-            />
-            <motion.aside
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "spring", stiffness: 360, damping: 34 }}
-              className="absolute inset-y-0 right-0 w-[min(92vw,390px)] shadow-2xl"
+            <Link
+              href={`/${catalogue.locale}`}
+              className="rounded-sm hover:text-brand focus-visible:outline-brand"
             >
-              <ProductFilters
-                filters={catalogue.draftFilters}
-                onChange={catalogue.changeFilters}
-                onApply={catalogue.applyFilters}
-                onClear={catalogue.clearFilters}
-                onClose={catalogue.closeMobileFilters}
-              />
-            </motion.aside>
-          </motion.div>
+              {t("home")}
+            </Link>
+            <span aria-hidden="true">/</span>
+            <span aria-current="page">{t("collections.all")}</span>
+          </nav>
+          <div className="flex flex-wrap items-end justify-between gap-3">
+            <div className="min-w-0">
+              <h1 className="max-w-4xl font-poppins text-[1.75rem] font-medium leading-tight tracking-tight wrap-anywhere sm:text-3xl">
+                {catalogue.contextTitle}
+              </h1>
+              <p className="mt-2 text-xs leading-5 text-muted-foreground sm:text-[0.8125rem]">
+                {t("browseDescription")}
+              </p>
+            </div>
+            <div
+              aria-live="polite"
+              className="shrink-0 text-xs text-muted-foreground"
+            >
+              {catalogue.isLoading ? (
+                <Skeleton className="h-4 w-24" />
+              ) : (
+                !catalogue.isError &&
+                catalogue.pagination &&
+                t("productCount", { count: catalogue.pagination.total })
+              )}
+            </div>
+          </div>
+        </header>
+      </Container>
+      <Container>
+        <CatalogueToolbar
+          sort={catalogue.sort}
+          view={catalogue.view}
+          filterCount={catalogue.activeFilterCount}
+          onSort={catalogue.changeSort}
+          onView={catalogue.setView}
+          onOpenFilters={catalogue.openFilters}
+          filtersOpen={catalogue.filtersOpen}
+          refreshing={catalogue.isRefreshing}
+          categoryQuery={catalogue.categoryQuery}
+          categoryIds={catalogue.categoryIds}
+          onCategory={catalogue.selectCategory}
+        />
+        {!!catalogue.chips.length && (
+          <div
+            className="flex flex-wrap items-center gap-2 pt-4"
+            aria-label={t("appliedFilters")}
+          >
+            {catalogue.chips.map((chip) => (
+              <button
+                type="button"
+                key={`${chip.key}-${chip.categoryId || ""}`}
+                onClick={() =>
+                  catalogue.removeFilter(chip.key, chip.categoryId)
+                }
+                aria-label={t("removeFilter", { filter: chip.label })}
+                className="inline-flex min-h-9 max-w-full items-center gap-2 rounded-full bg-background/75 px-3 py-1.5 text-xs font-medium transition-colors hover:bg-brand-subtle hover:text-brand-hover focus-visible:outline-2 focus-visible:outline-brand active:bg-muted"
+              >
+                <span className="min-w-0 wrap-anywhere">{chip.label}</span>
+                <X size={12} aria-hidden="true" className="shrink-0" />
+              </button>
+            ))}
+            <button
+              type="button"
+              onClick={catalogue.clearFilters}
+              className="min-h-9 rounded-sm px-2 text-xs font-semibold text-brand hover:underline focus-visible:outline-brand"
+            >
+              {t("clearAll")}
+            </button>
+          </div>
         )}
-      </AnimatePresence>
+        <div className="pt-6 sm:pt-7" aria-busy={catalogue.isRefreshing}>
+          {catalogue.refreshError && (
+            <div
+              role="alert"
+              className="mb-5 flex flex-wrap items-center justify-between gap-3 rounded-lg bg-background p-4"
+            >
+              <p className="text-sm">{t("refreshError")}</p>
+              <button
+                type="button"
+                onClick={() => void catalogue.retry()}
+                className="min-h-10 rounded-sm text-sm font-semibold text-brand hover:underline focus-visible:outline-brand"
+              >
+                {t("retry")}
+              </button>
+            </div>
+          )}
+          {catalogue.isLoading ? (
+            <ProductGrid loading view={catalogue.view} count={12} />
+          ) : catalogue.isError ? (
+            <div
+              role="alert"
+              className="mx-auto max-w-xl py-12 text-center sm:py-16"
+            >
+              <h2 className="font-poppins text-xl font-medium">
+                {t("errorTitle")}
+              </h2>
+              <p className="mt-3 text-sm text-muted-foreground">
+                {t("errorDescription")}
+              </p>
+              <button
+                type="button"
+                onClick={() => void catalogue.retry()}
+                className={`${navigationPrimary} mt-5`}
+              >
+                {t("retry")}
+              </button>
+            </div>
+          ) : catalogue.visibleProducts.length ? (
+            <ProductGrid
+              products={catalogue.visibleProducts}
+              view={catalogue.view}
+            />
+          ) : (
+            <div className="mx-auto max-w-xl py-12 text-center sm:py-16">
+              <h2 className="font-poppins text-xl font-medium">
+                {t(
+                  catalogue.hasSearch
+                    ? "emptySearchTitle"
+                    : catalogue.activeFilterCount
+                      ? "empty.title"
+                      : "emptyCatalogueTitle",
+                )}
+              </h2>
+              <p className="mt-3 text-sm text-muted-foreground">
+                {t(
+                  catalogue.activeFilterCount || catalogue.hasSearch
+                    ? "empty.description"
+                    : "emptyCatalogueDescription",
+                )}
+              </p>
+              <div className="mt-5 flex flex-wrap justify-center gap-3">
+                {catalogue.activeFilterCount > 0 && (
+                  <button
+                    type="button"
+                    onClick={catalogue.clearFilters}
+                    className={navigationPrimary}
+                  >
+                    {t("clearAll")}
+                  </button>
+                )}
+                <Link
+                  href={`/${catalogue.locale}/products`}
+                  className={navigationSecondary}
+                >
+                  {t("browseAll")}
+                </Link>
+              </div>
+            </div>
+          )}
+        </div>
+        {!catalogue.isLoading &&
+          !catalogue.isError &&
+          catalogue.pagination &&
+          catalogue.pagination.totalPages > 1 && (
+            <nav
+              aria-label={t("pagination.label")}
+              className="mt-8 flex flex-wrap items-center justify-between gap-3 border-t border-border/60 pt-5 text-xs text-muted-foreground"
+            >
+              <p className="text-xs">
+                {t("pagination.pageOf", {
+                  page: catalogue.pagination.page,
+                  total: catalogue.pagination.totalPages,
+                })}
+              </p>
+              <div className="flex gap-2">
+                <button
+                  type="button"
+                  disabled={catalogue.pagination.page <= 1}
+                  onClick={() =>
+                    catalogue.changePage(catalogue.pagination!.page - 1)
+                  }
+                  className={navigationSecondary}
+                >
+                  {t("pagination.previous")}
+                </button>
+                <button
+                  type="button"
+                  disabled={
+                    catalogue.pagination.page >= catalogue.pagination.totalPages
+                  }
+                  onClick={() =>
+                    catalogue.changePage(catalogue.pagination!.page + 1)
+                  }
+                  className={navigationSecondary}
+                >
+                  {t("pagination.next")}
+                </button>
+              </div>
+            </nav>
+          )}
+      </Container>
+      {catalogue.filtersOpen && (
+        <ProductFilterSheet onClose={catalogue.closeFilters}>
+          <ProductFilters
+            filters={catalogue.draftFilters}
+            onChange={catalogue.changeFilters}
+            onApply={catalogue.applyFilters}
+            onClear={catalogue.resetDraftFilters}
+            onClose={catalogue.closeFilters}
+            categoryQuery={catalogue.categoryQuery}
+            changed={catalogue.draftChanged}
+          />
+        </ProductFilterSheet>
+      )}
     </section>
   );
-};
-
-export default ProductCatalogue;
+}
