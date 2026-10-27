@@ -37,7 +37,7 @@ const UserMenu = ({ align = "right" }: { align?: "left" | "right" }) => {
         aria-label={workspaceT("profile")}
         className="flex items-center gap-2"
       >
-        <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-(--orange) text-xs font-bold text-white">
+        <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-brand text-xs font-bold text-white">
           {initial}
         </span>
         <span className="hidden text-sm font-medium lg:inline">
@@ -47,10 +47,9 @@ const UserMenu = ({ align = "right" }: { align?: "left" | "right" }) => {
 
       {open && (
         <div
-          className={`absolute top-full z-50 mt-2 w-56 overflow-hidden rounded-xl border border-border bg-background shadow-xl ${
+          className={`absolute top-full z-50 animate-drop-in motion-reduce:animate-none mt-2 w-56 overflow-hidden rounded-xl border border-border bg-background shadow-xl ${
             align === "right" ? "right-0" : "left-0"
           }`}
-          style={{ animation: "dropIn 0.18s ease" }}
         >
           <div className="border-b border-muted px-4 py-3">
             <p className="truncate text-sm font-semibold text-foreground">
@@ -64,16 +63,16 @@ const UserMenu = ({ align = "right" }: { align?: "left" | "right" }) => {
       prefetch={false}
             href={routes.dashboard}
             onClick={() => setOpen(false)}
-            className="block px-4 py-2.5 text-sm font-medium transition-colors hover:bg-(--orange-light) hover:text-(--orange)"
+            className="block px-4 py-2.5 text-sm font-medium transition-colors hover:bg-brand-subtle hover:text-brand"
           >
             {workspaceT("myDashboard")}
           </Link>
-          {status === "approved" && <Link prefetch={false} href={routes.seller} onClick={() => setOpen(false)} className="block px-4 py-2.5 text-sm font-semibold transition-colors hover:bg-(--orange-light) hover:text-(--orange)">{workspaceT("title")}</Link>}
+          {status === "approved" && <Link prefetch={false} href={routes.seller} onClick={() => setOpen(false)} className="block px-4 py-2.5 text-sm font-semibold transition-colors hover:bg-brand-subtle hover:text-brand">{workspaceT("title")}</Link>}
           <Link
       prefetch={false}
             href={routes.orders}
             onClick={() => setOpen(false)}
-            className="block px-4 py-2.5 text-sm font-medium transition-colors hover:bg-(--orange-light) hover:text-(--orange)"
+            className="block px-4 py-2.5 text-sm font-medium transition-colors hover:bg-brand-subtle hover:text-brand"
           >
             {t("orders")}
           </Link>
@@ -81,7 +80,7 @@ const UserMenu = ({ align = "right" }: { align?: "left" | "right" }) => {
       prefetch={false}
             href={routes.profileSettings}
             onClick={() => setOpen(false)}
-            className="block px-4 py-2.5 text-sm font-medium transition-colors hover:bg-(--orange-light) hover:text-(--orange)"
+            className="block px-4 py-2.5 text-sm font-medium transition-colors hover:bg-brand-subtle hover:text-brand"
           >
             {t("settings")}
           </Link>

@@ -406,6 +406,32 @@
     "speaker": "Dkt. Ajibike Saratu Oluwatimilehin, 50 Million Women Speak"
   },
   "Nav": {
+    "mega": {
+      "guestTitle": "Akaunti yako ya soko",
+      "categories": "Aina za bidhaa",
+      "browseAll": "Vinjari zote",
+      "categoryLeaf": "Chagua aina hii ili kuona bidhaa zake.",
+      "accountDescription": "Maagizo, mipangilio na shughuli zako za soko katika sehemu moja.",
+      "guestDescription": "Ingia kwenye akaunti yako au fungua akaunti ili kuanza.",
+      "guestNote": "Una akaunti tayari? Ingia kwa taarifa zako zilizopo.",
+      "communityAlt": "Wanajamii wa TOFA wakiunganisha mikono yao",
+      "back": "Rudi",
+      "browse": "Vinjari soko",
+      "companyCommunity": "Kampuni na jamii"
+    },
+    "navigation": {
+      "searchAction": "Tafuta",
+      "browse": "Vinjari soko",
+      "products": "Bidhaa zote",
+      "allCategories": "Aina zote",
+      "browseCategory": "Vinjari {name}",
+      "preferences": "Mapendeleo",
+      "language": "Lugha",
+      "currency": "Sarafu",
+      "selling": "Uuzaji kwenye TOFA",
+      "rfqUnavailable": "Ombi la bei bado halipatikani"
+    },
+    "skipToContent": "Ruka hadi maudhui",
     "whatsapp": "Zungumza nasi kwenye WhatsApp",
     "join": "Jiunge Bure",
     "login": "Ingia",
@@ -876,7 +902,6 @@
     "openAttachment": "Fungua {name}",
     "open": "Fungua",
     "noMessages": "Anzisha mazungumzo",
-    "explore": "Vinjari soko",
     "pagination": "Kurasa za mazungumzo",
     "previous": "Ukurasa uliotangulia",
     "next": "Ukurasa unaofuata",

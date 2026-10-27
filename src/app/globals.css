@@ -2,9 +2,12 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
-@custom-variant dark (&:is(.dark *));
-
 @theme inline {
+  --color-brand: var(--orange);
+  --color-brand-hover: var(--orange-dark);
+  --color-brand-subtle: var(--orange-light);
+  --shadow-floating: 0 12px 32px color-mix(in oklab, var(--foreground) 9%, transparent), 0 2px 5px color-mix(in oklab, var(--foreground) 4%, transparent);
+  --shadow-overlay: 0 16px 28px color-mix(in oklab, var(--foreground) 9%, transparent);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-mulish: var(--font-mulish);
@@ -48,15 +51,12 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-body {
-  font-family: var(--font-mulish), sans-serif;
-}
-
 .heading-font {
   font-family: var(--font-poppins), sans-serif;
 }
 
 :root {
+  color-scheme: only light;
   --background: oklch(100% 0.00011 271.152);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -95,42 +95,6 @@ body {
   --brown: oklch(27.685% 0.00003 271.152);
 }
 
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.809 0.105 251.813);
-  --chart-2: oklch(0.623 0.214 259.815);
-  --chart-3: oklch(0.546 0.245 262.881);
-  --chart-4: oklch(0.488 0.243 264.376);
-  --chart-5: oklch(0.424 0.199 265.638);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
-  --orange: #dc4d04;
-  --brown: oklch(27.685% 0.00003 271.152);
-}
-
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -142,33 +106,28 @@ body {
     font-size: 1rem;
     line-height: 1.75;
   }
+  :where(button, a, input, select, textarea):focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
+  }
   html {
     @apply font-sans;
   }
 }
 
-@keyframes dropIn {
-  from {
-    opacity: 0;
-    transform: translateY(-6px);
+@theme {
+  --animate-disclosure: disclosure 150ms ease-out;
+  --animate-disclosure-fast: disclosure 140ms ease-out;
+  --animate-drop-in: dropIn 180ms ease;
+
+  @keyframes disclosure {
+    from { opacity: 0; transform: translateY(3px); }
+    to { opacity: 1; transform: translateY(0); }
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  @keyframes dropIn {
+    from { opacity: 0; transform: translateY(-6px); }
+    to { opacity: 1; transform: translateY(0); }
   }
-}
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    max-height: 0;
-  }
-  to {
-    opacity: 1;
-    max-height: 600px;
-  }
-}
-.mobile-menu {
-  animation: slideDown 0.25s ease;
 }
 
 .catalogue-range {
@@ -213,4 +172,32 @@ body {
 @utility text-body {
   font-size: 1rem;
   line-height: 1.75;
+}
+
+/* Opt-in hierarchy: existing page headings keep their current sizing. */
+@utility text-page-title {
+  font-family: var(--font-poppins), sans-serif;
+  font-size: clamp(1.75rem, 1.4rem + 1vw, 2.25rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+@utility text-section-title {
+  font-family: var(--font-mulish), sans-serif;
+  font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+}
+@utility text-caption {
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

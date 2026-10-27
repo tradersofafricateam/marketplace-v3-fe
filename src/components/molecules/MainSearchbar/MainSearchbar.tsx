@@ -1,12 +1,15 @@
 "use client";
 
+import { navigationPrimary } from "@/lib/constants/navigationStyles";
+
 import { useState } from "react";
 
 import { useLocale, useTranslations } from "next-intl";
+
 import { Search } from "lucide-react";
 import { useRouter } from "next/navigation";
 
-const MainSearchbar = () => {
+const MainSearchbar = ({ onNavigate }: { onNavigate?: () => void }) => {
   const t = useTranslations("Nav");
   const locale = useLocale();
   const router = useRouter();
@@ -16,36 +19,33 @@ const MainSearchbar = () => {
   return (
     <div className="w-full min-w-0 flex-1 max-w-2xl">
       <form
-        className="relative group w-full lg:h-12 h-10 flex items-center justify-between overflow-hidden rounded-full focus-within:border-(--orange) border border-border transition-all duration-300"
+        role="search"
+        className="group relative flex h-12 w-full items-center gap-2 rounded-xl border border-input bg-muted/40 p-1 transition-[border-color,box-shadow] duration-150 focus-within:border-brand focus-within:ring-2 focus-within:ring-brand/10"
         onSubmit={(event) => {
           event.preventDefault();
           const query = searchQuery.trim();
           router.push(
             `/${locale}/products${query ? `?q=${encodeURIComponent(query)}` : ""}`,
           );
+          onNavigate?.();
         }}
       >
-        <button
-          type="submit"
-          className="block shrink-0 pl-2 text-muted-foreground lg:hidden"
-        >
-          <Search
-            size={16}
-            className="group-focus-within:text-(--orange) transition-colors"
-          />
-        </button>
+        <Search size={18} aria-hidden="true" className="ml-3 hidden shrink-0 text-muted-foreground sm:block" />
         <input
-          type="text"
+          type="search"
+          aria-label={t("search.placeholder")}
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder={t("search.placeholder")}
-          className="h-full min-w-0 flex-1 bg-background px-2 text-sm outline-none transition-all duration-300 placeholder:text-muted-foreground"
+          className="h-full min-w-0 flex-1 bg-transparent px-3 text-sm sm:px-1 outline-none placeholder:text-muted-foreground"
         />
         <button
           type="submit"
-          className="h-full bg-(--orange) hover:bg-(--orange-dark) transition-all duration-300 rounded-r-full px-8 hidden lg:block text-white"
+          aria-label={t("search.placeholder")}
+          className={`${navigationPrimary} min-h-9! rounded-lg! px-4! sm:px-5!`}
         >
-          search
+          <span className="hidden sm:inline">{t("navigation.searchAction")}</span>
+          <Search size={17} aria-hidden="true" className="sm:hidden" />
         </button>
       </form>
     </div>

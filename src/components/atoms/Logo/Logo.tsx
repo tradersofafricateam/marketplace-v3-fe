@@ -17,7 +17,7 @@ const Logo = ({
   const { routes } = useGetAllRoutes();
 
   return (
-    <Link href={routes?.home} className="flex items-center gap-2 shrink-0">
+    <Link href={routes?.home} className="flex shrink-0 items-center gap-2 transition-opacity hover:opacity-80 active:opacity-60">
       <Image
         src={imgUrl}
         alt="TOFA-logo"
