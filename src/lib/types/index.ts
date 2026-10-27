@@ -4,6 +4,7 @@ export interface SelectDropdownProps {
   onSelect: (value: string) => void;
   selected: string;
   align?: "left" | "right";
+  side?: "top" | "bottom";
 }
 
 export interface SliderType {

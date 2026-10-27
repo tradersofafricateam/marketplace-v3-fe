@@ -12,7 +12,7 @@ const WhatsappBtn = () => {
       href="https://wa.me/+2349166417373"
       target="_blank"
       rel="noopener noreferrer"
-      className="flex items-center gap-1.5 text-xs font-medium hover:text-(--orange) transition-colors group shrink-0"
+      className="flex items-center gap-1.5 text-xs font-medium hover:text-brand active:text-brand-hover hover:underline underline-offset-4 transition-colors group shrink-0"
     >
       <Image
         src="/assets/icons/whatsapp.png"
@@ -21,7 +21,7 @@ const WhatsappBtn = () => {
         height={20}
         className="object-contain"
       />
-      <span className="hidden sm:inline">{t("whatsapp")}</span>
+      <span className="inline">{t("whatsapp")}</span>
     </a>
   );
 };

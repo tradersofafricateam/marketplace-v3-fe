@@ -406,6 +406,32 @@
     "speaker": "Dra. Ajibike Saratu Oluwatimilehin, 50 Million Women Speak"
   },
   "Nav": {
+    "mega": {
+      "guestTitle": "Sua conta no marketplace",
+      "categories": "Categorias",
+      "browseAll": "Ver tudo",
+      "categoryLeaf": "Escolha esta categoria para ver os produtos.",
+      "accountDescription": "Seus pedidos, configurações e atividades do marketplace em um só lugar.",
+      "guestDescription": "Entre na sua conta ou crie uma para começar.",
+      "guestNote": "Já tem uma conta? Entre com seus dados existentes.",
+      "communityAlt": "Membros da comunidade TOFA unindo suas mãos",
+      "back": "Voltar",
+      "browse": "Explorar o marketplace",
+      "companyCommunity": "Empresa e comunidade"
+    },
+    "navigation": {
+      "searchAction": "Pesquisar",
+      "browse": "Explorar o marketplace",
+      "products": "Todos os produtos",
+      "allCategories": "Todas as categorias",
+      "browseCategory": "Explorar {name}",
+      "preferences": "Preferências",
+      "language": "Idioma",
+      "currency": "Moeda",
+      "selling": "Vender na TOFA",
+      "rfqUnavailable": "O pedido de orçamento ainda não está disponível"
+    },
+    "skipToContent": "Ir para o conteúdo",
     "whatsapp": "Converse conosco no WhatsApp",
     "join": "Junte-se Gratuitamente",
     "login": "Entrar",
@@ -876,7 +902,6 @@
     "openAttachment": "Abrir {name}",
     "open": "Abrir",
     "noMessages": "Iniciar a conversa",
-    "explore": "Explorar o mercado",
     "pagination": "Páginas de conversas",
     "previous": "Página anterior",
     "next": "Próxima página",
