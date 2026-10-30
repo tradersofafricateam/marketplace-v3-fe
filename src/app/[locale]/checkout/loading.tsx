@@ -1,2 +1,2 @@
-import CartSkeleton from "@/features/cart/components/organisms/CartSkeleton/CartSkeleton";
-export default CartSkeleton;
+import CheckoutSkeleton from "@/features/checkout/components/organisms/CheckoutSkeleton/CheckoutSkeleton";
+export default CheckoutSkeleton;

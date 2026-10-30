@@ -75,10 +75,11 @@ export function useCheckout(cart: CartData) {
   } });
   const busy = newAddress.isPending || saveDelivery.isPending || provider.isPending || payment.isPending || confirm.isPending;
   const resetDelivery = () => { setStage("delivery"); setSelections([]); setPaymentCode(""); setRevision((value) => value + 1); };
-  return { addresses, addressId, options, selections, stage, methods, preview, notes, setNotes, session, busy,
-    chooseAddress: (id: string) => { setAddress(id); resetDelivery(); },
+  return { addresses, addressId, options, selections, stage, methods, preview, notes, setNotes, session, busy, paymentCode,
+    chooseAddress: (id: string) => { if (id !== addressId) { setAddress(id); resetDelivery(); } },
     chooseDelivery: (selection: DeliverySelection) => setSelections((previous) => [...previous.filter((value) => value.sellerId !== selection.sellerId), selection]),
     newAddress, saveDelivery, provider, payment, confirm, resetDelivery,
+    editDelivery: () => setStage("delivery"),
     editPayment: () => setStage("payment"),
   };
 }

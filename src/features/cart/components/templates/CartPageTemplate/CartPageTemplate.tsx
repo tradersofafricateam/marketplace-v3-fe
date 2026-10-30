@@ -1,17 +1,19 @@
 "use client";
-import { useCallback, useState } from "react";
+import { useEffect, useRef } from "react";
 import Link from "next/link";
-import { ShoppingBag, ArrowLeft, RefreshCw } from "lucide-react";
+import { useIsMutating } from "@tanstack/react-query";
+import { ShoppingBag, ChevronLeft, LoaderCircle } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Container from "@/components/atoms/Container/Container";
 import { useStore } from "@/store/authStore";
 import { useCartStore } from "@/store/cartStore";
 import { useGetAllRoutes } from "@/lib/hooks/useGetAllRoutes";
-import { useCartActions } from "../../../hooks/useCartActions";
+import { purchaseBack, purchaseColumns, purchasePrimary, purchaseText } from "@/lib/constants/purchaseStyles";
 import { canCheckout } from "../../../helpers/cartRules";
 import CartSellerSection from "../../organisms/CartSellerSection/CartSellerSection";
 import CartSummary from "../../organisms/CartSummary/CartSummary";
 import CartSkeleton from "../../organisms/CartSkeleton/CartSkeleton";
+import ClearCartDialog from "../../molecules/ClearCartDialog/ClearCartDialog";
 
 export default function CartPageTemplate() {
   const t = useTranslations("CartPage");
@@ -23,18 +25,21 @@ export default function CartPageTemplate() {
   const loaded = useCartStore((state) => state.isLoaded);
   const error = useCartStore((state) => state.error);
   const fetchCart = useCartStore((state) => state.fetchCart);
-  const [confirmClear, setConfirmClear] = useState(false);
-  const { mutate, isPending } = useCartActions();
-  const update = useCallback((id: string, quantity: number) => mutate({ type: "update", id, quantity }), [mutate]);
-  const remove = useCallback((id: string) => mutate({ type: "remove", id }), [mutate]);
+  const pending = useIsMutating({ mutationKey: ["cart-actions", user?.id] }) > 0;
+  const clearing = useIsMutating({ mutationKey: ["cart-actions", user?.id], predicate: (mutation) => (mutation.state.variables as { type?: string })?.type === "clear" }) > 0;
+  const emptyHeading = useRef<HTMLHeadingElement>(null);
+  const previousCount = useRef(cart?.totalCount ?? 0);
+  useEffect(() => {
+    if (previousCount.current > 0 && cart?.totalCount === 0) emptyHeading.current?.focus();
+    previousCount.current = cart?.totalCount ?? 0;
+  }, [cart?.totalCount]);
   if (!initialized || (user && !loaded && !error)) return <CartSkeleton />;
-  return <Container className="py-8 sm:py-12 xl:px-14">
-    <Link href={routes.products} className="mb-7 inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-(--orange)"><ArrowLeft size={15} />{t("continueShopping")}</Link>
-    <header className="mb-8 flex flex-wrap items-end justify-between gap-4"><div><p className="mb-2 text-xs font-bold uppercase tracking-widest text-(--orange)">TOFA Marketplace</p><h1 className="heading-font text-3xl font-bold sm:text-4xl">{t("title")}</h1><p className="mt-3 text-sm text-muted-foreground">{t("subtitle")}</p></div>{cart && cart.totalCount > 0 && <button type="button" disabled={isPending || loading} onClick={() => setConfirmClear(true)} className="text-sm text-muted-foreground underline disabled:opacity-50">{t("clear")}</button>}</header>
-    {!user ? <div className="rounded-2xl border border-border bg-background px-6 py-16 text-center"><ShoppingBag className="mx-auto mb-4 text-(--orange)" size={40} /><h2 className="text-xl font-bold">{t("signInTitle")}</h2><p className="my-4 text-sm text-muted-foreground">{t("signInNote")}</p><Link href={`${routes.login}?${new URLSearchParams({ returnUrl: routes.cart })}`} className="inline-block rounded-xl bg-(--orange) px-6 py-3 text-sm font-bold text-white">{t("signIn")}</Link></div> : <>
-      {error && <div role="alert" className="mb-6 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-destructive/30 bg-background p-4 text-sm"><p>{t("loadError")}</p><button type="button" disabled={loading} onClick={() => void fetchCart({ force: true })} className="inline-flex items-center gap-2 font-semibold text-(--orange)"><RefreshCw size={14} />{t("retry")}</button></div>}
-      {confirmClear && <div role="group" aria-label={t("clearConfirm")} className="mb-6 flex flex-wrap items-center justify-between gap-4 rounded-xl border border-border bg-background p-5"><p className="text-sm font-semibold">{t("clearConfirm")}</p><div className="flex gap-4"><button type="button" disabled={isPending} onClick={() => setConfirmClear(false)} className="text-sm underline">{t("cancel")}</button><button type="button" disabled={isPending} onClick={() => mutate({ type: "clear" }, { onSuccess: () => setConfirmClear(false) })} className="rounded-lg bg-destructive px-4 py-2 text-sm font-bold text-white">{t("clear")}</button></div></div>}
-      {cart && cart.totalCount > 0 ? <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,1fr)_360px]" aria-busy={isPending || loading}><div className="space-y-6">{!canCheckout(cart) && <p role="alert" className="rounded-xl border border-destructive/30 bg-background p-4 text-sm text-destructive">{t("reviewItems")}</p>}{cart.sellerGroups.map((group) => <CartSellerSection key={group.sellerId} group={group} currency={cart.currency} disabled={isPending || loading || Boolean(error)} onUpdate={update} onRemove={remove} />)}</div><CartSummary cart={cart} disabled={isPending || loading || Boolean(error) || !canCheckout(cart)} /></div> : !error && <div className="rounded-2xl border border-dashed border-border bg-background px-6 py-20 text-center"><ShoppingBag size={48} strokeWidth={1.5} className="mx-auto mb-5 text-(--orange)" /><h2 className="text-xl font-bold">{t("emptyTitle")}</h2><p className="mx-auto mb-7 mt-3 max-w-md text-sm text-muted-foreground">{t("emptyNote")}</p><Link href={routes.products} className="inline-block rounded-xl bg-(--orange) px-6 py-3 text-sm font-bold text-white">{t("browse")}</Link></div>}
+  return <div className="bg-brand-subtle/20"><Container className="pt-5 pb-[calc(7rem+env(safe-area-inset-bottom))] sm:pb-14 sm:pt-7 xl:px-14">
+    <Link href={routes.products} className={`${purchaseBack} mb-3`}><ChevronLeft size={18} aria-hidden="true" />{t("continueShopping")}</Link>
+    <header className="mb-8 flex flex-wrap items-end justify-between gap-3"><div><div className="flex flex-wrap items-baseline gap-3"><h1 className="heading-font text-3xl font-medium tracking-tight">{t("title")}</h1>{cart && cart.totalCount > 0 && <span className="text-sm text-muted-foreground">{t("itemCount", { count: cart.totalCount })}</span>}</div><p className="mt-2 max-w-xl text-sm leading-6 text-muted-foreground">{t("subtitle")}</p></div>{cart && cart.totalCount > 0 && user && <ClearCartDialog disabled={pending || loading} />}</header>
+    {!user ? <div className="mx-auto max-w-lg py-14 text-center"><ShoppingBag className="mx-auto mb-5 text-brand" size={32} strokeWidth={1.4} aria-hidden="true" /><h2 className="heading-font text-xl font-medium">{t("signInTitle")}</h2><p className="my-4 text-sm leading-6 text-muted-foreground">{t("signInNote")}</p><Link href={`${routes.login}?${new URLSearchParams({ returnUrl: routes.cart })}`} className={purchasePrimary}>{t("signIn")}</Link></div> : <>
+      {error && <div role="alert" className="mb-6 flex flex-wrap items-center justify-between gap-3 rounded-xl bg-brand-subtle p-4 text-sm"><p>{t("loadError")}</p><button type="button" disabled={loading} onClick={() => void fetchCart({ force: true })} className={purchaseText}>{t("retry")}</button></div>}
+      {cart && cart.totalCount > 0 ? <div className={purchaseColumns}><div className="min-w-0 space-y-7">{!canCheckout(cart) && <p role="alert" className="rounded-xl border-l-2 border-destructive bg-background p-4 text-sm leading-6 text-destructive">{t("reviewItems")}</p>}{loading && <p role="status" className="flex items-center gap-2 text-xs text-muted-foreground"><LoaderCircle size={13} className="animate-spin motion-reduce:animate-none" />{t("refreshing")}</p>}{cart.sellerGroups.map((group) => <CartSellerSection key={group.sellerId} group={group} currency={cart.currency} disabled={clearing || Boolean(error)} />)}</div><CartSummary cart={cart} disabled={pending || loading || Boolean(error) || !canCheckout(cart)} /></div> : !error && <div className="mx-auto max-w-lg py-14 text-center"><ShoppingBag size={36} strokeWidth={1.3} className="mx-auto mb-5 text-brand" aria-hidden="true" /><h2 ref={emptyHeading} tabIndex={-1} className="heading-font text-xl font-medium outline-none">{t("emptyTitle")}</h2><p className="my-4 text-sm leading-6 text-muted-foreground">{t("emptyNote")}</p><Link href={routes.products} className={purchasePrimary}>{t("browse")}</Link></div>}
     </>}
-  </Container>;
+  </Container></div>;
 }
