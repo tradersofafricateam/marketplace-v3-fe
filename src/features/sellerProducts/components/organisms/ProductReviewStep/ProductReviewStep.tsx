@@ -1,6 +1,7 @@
 import { useCurrency } from "@/lib/hooks/useCurrency/useCurrency";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useCategories } from "@/features/categories/hooks/useCategories";
+import { getAssignedCategoryLabels } from "../../../helpers/assignedCategories";
 import { calculateFinalPrice } from "../../../helpers/pricing";
 import type { ProductFormState } from "../../../types";
 
@@ -14,11 +15,17 @@ const SummaryRow = ({ label, value }: { label: string; value: string }) => (
 const ProductReviewStep = ({ values, isEditing }: { values: ProductFormState; isEditing: boolean }) => {
   const { formatMoney } = useCurrency();
   const categoryT = useTranslations("CategoryData");
+  const locale = useLocale();
   const categories = useCategories();
-  const categoryNames = categories.data?.filter((item) => values.categoryIds.includes(item.id)).map((item) => item.name).join(", ");
+  const categoryNames = getAssignedCategoryLabels(values.categoryIds, values.existingCategories, categories.data, locale)
+    .map(({ name }) => name ?? categoryT(categories.isLoadingCurrentData ? "loading" : "unavailableSelected"))
+    .join(", ");
+  const unitPrice = values.price.trim() ? Number(values.price) : null;
   const priceSummary =
     values.productType === "SIMPLE"
-      ? formatMoney(calculateFinalPrice(Number(values.price) || 0, values.discount ? Number(values.discount) : null), values.currency)
+      ? unitPrice === null || !Number.isFinite(unitPrice)
+        ? "Price not set"
+        : formatMoney(calculateFinalPrice(unitPrice, values.discount ? Number(values.discount) : null), values.currency)
       : `${values.variants.length} variant${values.variants.length === 1 ? "" : "s"}`;
 
   return (
@@ -26,7 +33,7 @@ const ProductReviewStep = ({ values, isEditing }: { values: ProductFormState; is
       <div className="rounded-xl border border-border p-4">
         <SummaryRow label="Product name" value={values.productName || "—"} />
         <SummaryRow label="Type" value={values.productType === "SIMPLE" ? "Simple" : "Variable"} />
-        <SummaryRow label="Categories" value={categories.isLoadingCurrentData ? categoryT("loading") : categories.isError ? categoryT("error") : categoryNames || "—"} />
+        <SummaryRow label="Categories" value={categoryNames || "—"} />
         <SummaryRow label="Pricing" value={priceSummary} />
         <SummaryRow label="Photos" value={String(values.galleryImages.length + (values.existingImages?.length ?? 0))} />
       </div>

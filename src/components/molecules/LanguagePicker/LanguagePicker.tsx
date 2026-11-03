@@ -1,11 +1,12 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { locales } from "@/lib/constants/language";
 import SelectDropdown from "@/components/atoms/SelectDropdown/SelectDropdown";
 
 export default function LanguagePicker({ side = "bottom" }: { side?: "top" | "bottom" }) {
   const pathname = usePathname();
+  const router = useRouter();
   const pathnameLocale = pathname.split("/")[1];
   const locale = locales.some(({ value }) => value === pathnameLocale)
     ? pathnameLocale
@@ -18,7 +19,7 @@ export default function LanguagePicker({ side = "bottom" }: { side?: "top" | "bo
       "",
     );
 
-    window.location.assign(`/${newLocale}${pathWithoutLocales || ""}`);
+    router.push(`/${newLocale}${pathWithoutLocales || ""}`);
   };
 
   const currentLocale = locales.find((l) => l.value === locale);

@@ -32,8 +32,8 @@ function page(state, target = "src/features/cart/components/templates/CartPageTe
       if(name.startsWith('.')||name.startsWith('@/')) {
         let target=name.startsWith('@/')?path.join(root,'src',name.slice(2)):path.resolve(path.dirname(filename),name);
         for(const candidate of [target+'.tsx',target+'.ts',path.join(target,'index.ts')])if(fs.existsSync(candidate)){
-          if(candidate.endsWith('/features/checkout/hooks/useCheckout.ts'))return mocks['@/features/checkout/hooks/useCheckout'];
-          if(candidate.endsWith('/features/cart/hooks/useCartActions.ts'))return mocks['@/features/cart/hooks/useCartActions'];
+          if(candidate.endsWith(path.join('features','checkout','hooks','useCheckout.ts')))return mocks['@/features/checkout/hooks/useCheckout'];
+          if(candidate.endsWith(path.join('features','cart','hooks','useCartActions.ts')))return mocks['@/features/cart/hooks/useCartActions'];
           return load(candidate);
         }
       }

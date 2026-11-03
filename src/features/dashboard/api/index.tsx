@@ -1,4 +1,5 @@
 import { axiosInstance } from "@/lib/axiosInstance";
+import { buildSellerUpgradeFormData } from "../helpers/sellerUpgradePayload";
 import type { AuthUser } from "@/features/auth/types";
 import {
   BuyerAnalyticsDateRange,
@@ -17,10 +18,7 @@ import {
 export const submitSellerUpgrade = async (payload: SellerUpgradePayload) => {
   try {
     const url = "/users/upgrade-to-seller";
-    const formData = new FormData();
-    Object.entries(payload).forEach(([key, value]) => {
-      if (value !== undefined && value !== "") formData.append(key, value);
-    });
+    const formData = buildSellerUpgradeFormData(payload);
     const { data } = await axiosInstance.post(url, formData, {
       headers: { "Content-Type": undefined },
     });

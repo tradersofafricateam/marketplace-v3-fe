@@ -1,18 +1,56 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export const useOrderQuantity = (minOrdersAllowed: number, maxQuantity: number) => {
-  const [quantity, setQuantity] = useState(minOrdersAllowed);
-
-  useEffect(() => {
-    setQuantity(minOrdersAllowed);
-  }, [minOrdersAllowed]);
+  const [selection, setSelection] = useState({
+    minimum: minOrdersAllowed,
+    maximum: maxQuantity,
+    quantity: minOrdersAllowed,
+  });
 
   const clamp = (value: number) =>
     Math.min(Math.max(value, minOrdersAllowed), Math.max(maxQuantity, minOrdersAllowed));
 
-  const increment = (step = 1) => setQuantity((prev) => clamp(prev + step));
-  const decrement = (step = 1) => setQuantity((prev) => clamp(prev - step));
-  const setValue = (value: number) => setQuantity(clamp(value));
+  const constrainedQuantity = clamp(
+    selection.minimum === minOrdersAllowed
+      ? selection.quantity
+      : minOrdersAllowed,
+  );
 
-  return { quantity, increment, decrement, setValue };
+  if (
+    selection.minimum !== minOrdersAllowed ||
+    selection.maximum !== maxQuantity
+  ) {
+    setSelection({
+      minimum: minOrdersAllowed,
+      maximum: maxQuantity,
+      quantity: constrainedQuantity,
+    });
+  }
+
+  const updateQuantity = (update: (current: number) => number) =>
+    setSelection((current) => {
+      const currentQuantity =
+        current.minimum === minOrdersAllowed
+          ? clamp(current.quantity)
+          : minOrdersAllowed;
+
+      return {
+        minimum: minOrdersAllowed,
+        maximum: maxQuantity,
+        quantity: clamp(update(currentQuantity)),
+      };
+    });
+
+  const increment = (step = 1) =>
+    updateQuantity((current) => current + step);
+  const decrement = (step = 1) =>
+    updateQuantity((current) => current - step);
+  const setValue = (value: number) => updateQuantity(() => value);
+
+  return {
+    quantity: constrainedQuantity,
+    increment,
+    decrement,
+    setValue,
+  };
 };

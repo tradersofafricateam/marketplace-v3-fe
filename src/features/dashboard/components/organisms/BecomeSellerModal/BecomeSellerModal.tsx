@@ -45,11 +45,18 @@ const BecomeSellerModal = ({
     handleSubmit,
     setFieldValue,
     reset,
+    resetMerchantTerms,
   } = useSellerUpgradeForm((values) => {
     if (canSubmit && !isSubmitting) submit(values);
   });
 
   const logoPreviewRef = useRef<HTMLImageElement>(null);
+  const merchantTermsError = touched.merchantTerms && errors.merchantTerms && !values.merchantTerms;
+
+  const handleOpenChange = (nextOpen: boolean) => {
+    if (!nextOpen) resetMerchantTerms();
+    onOpenChange(nextOpen);
+  };
   useEffect(() => {
     if (!values.companyLogo || !logoPreviewRef.current) return;
     const url = URL.createObjectURL(values.companyLogo);
@@ -86,7 +93,7 @@ const BecomeSellerModal = ({
   );
 
   return (
-    <Dialog.Root open={open && canSubmit} onOpenChange={onOpenChange}>
+    <Dialog.Root open={open && canSubmit} onOpenChange={handleOpenChange}>
       <Dialog.Portal>
         <Dialog.Backdrop className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm" />
         <Dialog.Popup className="fixed top-1/2 left-1/2 z-50 flex max-h-[92dvh] w-[calc(100%-1.5rem)] max-w-5xl -translate-x-1/2 -translate-y-1/2 flex-col overflow-hidden rounded-3xl border border-border bg-background shadow-2xl outline-none">
@@ -206,6 +213,31 @@ const BecomeSellerModal = ({
                     </span>
                   </label>
                 </aside>
+              </div>
+              <div className="mt-7 border-t border-border pt-6">
+                <div className="flex items-start gap-3">
+                  <input
+                    id="merchantTerms"
+                    name="merchantTerms"
+                    type="checkbox"
+                    required
+                    checked={values.merchantTerms}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    disabled={isSubmitting}
+                    aria-invalid={Boolean(merchantTermsError)}
+                    aria-describedby={merchantTermsError ? "merchantTerms-error" : undefined}
+                    className="mt-0.5 size-4.5 shrink-0 accent-(--orange) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--orange)"
+                  />
+                  <label htmlFor="merchantTerms" className="cursor-pointer text-sm leading-6">
+                    {t("merchantTerms")}
+                  </label>
+                </div>
+                {merchantTermsError && (
+                  <p id="merchantTerms-error" role="alert" className="mt-2 text-sm text-destructive">
+                    {t("merchantTermsRequired")}
+                  </p>
+                )}
               </div>
             </div>
             <footer className="flex shrink-0 items-center justify-end gap-3 border-t border-border bg-background px-6 py-4 sm:px-9">

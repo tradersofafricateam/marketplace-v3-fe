@@ -1048,6 +1048,8 @@
       "resubmit": "Resubmit application"
     },
     "becomeSellerModal": {
+      "merchantTerms": "I agree to TOFA's Merchant Terms.",
+      "merchantTermsRequired": "Accept the Merchant Terms before submitting your application.",
       "businessDetails": "Business details",
       "businessLocation": "Business location",
       "brandIdentity": "Your brand",

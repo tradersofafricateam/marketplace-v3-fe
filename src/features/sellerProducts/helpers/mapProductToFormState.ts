@@ -9,6 +9,7 @@ export const mapProductToFormState = (product: SellerProduct): ProductFormState 
   productName: getLocalizedText(product.productName, product.sourceLanguage || "en"),
   productDescription: getLocalizedText(product.productDescription, product.sourceLanguage || "en"),
   categoryIds: product.categoryIds,
+  existingCategories: product.categories ?? [],
   countryOfOrigin: product.countryOfOrigin,
   currency: product.currency,
   productType: String(product.productType).toUpperCase() as ProductFormState["productType"],

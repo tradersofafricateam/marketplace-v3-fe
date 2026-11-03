@@ -15,6 +15,7 @@ const initialValues: SellerUpgradeFormState = {
   pickupAddress: "",
   companyBio: "",
   country: "",
+  merchantTerms: false,
 };
 
 export const useSellerUpgradeForm = (
@@ -29,9 +30,10 @@ export const useSellerUpgradeForm = (
   const handleChange = useCallback((e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target;
     const files = "files" in e.target ? e.target.files : null;
+    const checked = "checked" in e.target ? e.target.checked : false;
     setValues((prev) => ({
       ...prev,
-      [name]: type === "file" ? files?.[0] : value,
+      [name]: type === "checkbox" ? checked : type === "file" ? files?.[0] : value,
     }));
   }, []);
 
@@ -66,5 +68,15 @@ export const useSellerUpgradeForm = (
     setTouched({});
   };
 
-  return { values, errors, touched, handleChange, handleBlur, handleSubmit, setFieldValue, reset };
+  const resetMerchantTerms = () => {
+    setValues((previous) => ({ ...previous, merchantTerms: false }));
+    setErrors((previous) => {
+      const next = { ...previous };
+      delete next.merchantTerms;
+      return next;
+    });
+    setTouched((previous) => ({ ...previous, merchantTerms: false }));
+  };
+
+  return { values, errors, touched, handleChange, handleBlur, handleSubmit, setFieldValue, reset, resetMerchantTerms };
 };
