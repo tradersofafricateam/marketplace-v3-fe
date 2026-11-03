@@ -13,6 +13,7 @@ export function useCartActions() {
   const t = useTranslations("CartPage");
   const userId = useStore((state) => state.currentUser?.id);
   return useMutation({
+    mutationKey: ["cart-actions", userId],
     mutationFn: async (action: Action) => {
       if (!userId || useStore.getState().currentUser?.id !== userId) throw new Error("Session changed.");
       if (action.type === "clear") return clearCart();

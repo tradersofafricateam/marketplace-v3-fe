@@ -37,6 +37,7 @@ export default function Navbar() {
     desktop.addEventListener("change", onChange);
     return () => desktop.removeEventListener("change", onChange);
   }, []);
+
   return (
     <header
       ref={header}

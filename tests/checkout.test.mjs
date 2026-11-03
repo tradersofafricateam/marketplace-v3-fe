@@ -4,9 +4,9 @@ import fs from 'node:fs';
 import ts from 'typescript';
 function load(file,mocks={}) {
   const code=ts.transpileModule(fs.readFileSync(new URL(`../${file}`,import.meta.url),'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText;
-  const module={exports:{}};
-  new Function('require','module','exports',code)((name)=>{if(!(name in mocks))throw new Error(`Unexpected import ${name}`);return mocks[name];},module,module.exports);
-  return module.exports;
+  const compiled={exports:{}};
+  new Function('require','module','exports',code)((name)=>{if(!(name in mocks))throw new Error(`Unexpected import ${name}`);return mocks[name];},compiled,compiled.exports);
+  return compiled.exports;
 }
 const rules=load('src/features/cart/helpers/cartRules.ts');
 const deliveryRules=load('src/features/checkout/helpers/checkoutRules.ts');
@@ -87,6 +87,9 @@ test('checkout auto-selects default address, gates stages, and creates only a se
   await mutations[3].mutationFn('bank');mutations[3].onSuccess({},'bank');
   flow=render();assert.equal(flow.stage,'review');
   assert.equal(queries.find(query=>query.queryKey[3]==='preview').enabled,true);
+  flow.editDelivery();flow=render();assert.equal(flow.stage,'delivery');assert.equal(flow.selections.length,1);assert.equal(flow.paymentCode,'bank');
+  flow.chooseAddress('office');flow=render();assert.equal(flow.selections.length,1,'reselecting the same address retains valid delivery');
+  flow.editPayment();flow=render();assert.equal(flow.stage,'payment');mutations[3].onSuccess({},'bank');flow=render();
   const session=await mutations[4].mutationFn();mutations[4].onSuccess(session);
   flow=render();assert.equal(flow.session.checkoutId,'session');assert.equal(creations,1);assert.equal(refreshes,0);
   await assert.rejects(mutations[4].mutationFn());assert.equal(creations,1);

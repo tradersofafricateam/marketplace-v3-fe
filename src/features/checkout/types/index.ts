@@ -28,3 +28,5 @@ export type CheckoutPreview = {
   summary: { productsTotal: number; logisticsTotal: number; totalAmount: number; currency: string };
 };
 export type CheckoutSession = { checkoutId: string; sourceType: string; productsTotal: number; logisticsTotal: number; totalAmount: number; currency: string; paymentMethod: string; sellerGroupsCount: number; status: string; expiresAt: string };
+
+export type CheckoutStep = "address" | "delivery" | "payment" | "review";
