@@ -17,12 +17,12 @@ export function publicProductParams(query: PublicProductQuery) {
 }
 export type PublicProductRecord = Record<string, unknown>;
 export async function getPublicProducts(query: PublicProductQuery, signal?: AbortSignal): Promise<{ data: PublicProductRecord[]; pagination: { page: number; limit: number; total: number; totalPages: number } }> {
-  const { data } = await axiosInstance.get("/products/", { params: publicProductParams(query), signal, headers: { "Cache-Control": "no-cache, no-store" } });
+  const { data } = await axiosInstance.get("/products/", { params: publicProductParams(query), signal });
   if (data?.success === false || !Array.isArray(data?.data) || !data.pagination) throw new Error("Could not load products.");
   return data;
 }
 export async function getPublicProduct(id: string, lang: string, signal?: AbortSignal): Promise<PublicProductRecord> {
-  const { data } = await axiosInstance.get(`/products/${encodeURIComponent(id)}`, { params: { lang }, signal, headers: { "Cache-Control": "no-cache, no-store" } });
+  const { data } = await axiosInstance.get(`/products/${encodeURIComponent(id)}`, { params: { lang }, signal });
   if (data?.success === false || !data?.data?.id) throw new Error("Could not load this product.");
   return data.data;
 }
