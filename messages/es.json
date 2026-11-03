@@ -798,6 +798,8 @@
       "resubmit": "Volver a enviar"
     },
     "becomeSellerModal": {
+      "merchantTerms": "Acepto las condiciones para vendedores de TOFA.",
+      "merchantTermsRequired": "Acepta las condiciones para vendedores antes de enviar tu solicitud.",
       "businessDetails": "Datos del negocio",
       "businessLocation": "Ubicación del negocio",
       "brandIdentity": "Tu marca",

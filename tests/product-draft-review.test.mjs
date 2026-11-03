@@ -8,13 +8,13 @@ function load(file, mocks) {
   const code = ts.transpileModule(fs.readFileSync(new URL(`../${file}`, import.meta.url), 'utf8'), {
     compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, jsx: ts.JsxEmit.ReactJSX, esModuleInterop: true },
   }).outputText;
-  const module = { exports: {} };
+  const compiled = { exports: {} };
   new Function('require', 'module', 'exports', code)((name) => {
     if (name === 'react/jsx-runtime') return { jsx, jsxs: jsx };
     if (!(name in mocks)) throw new Error(`Unexpected import ${name}`);
     return mocks[name];
-  }, module, module.exports);
-  return module.exports.default;
+  }, compiled, compiled.exports);
+  return compiled.exports.default;
 }
 function nodes(tree) {
   if (!tree || typeof tree !== 'object') return [];

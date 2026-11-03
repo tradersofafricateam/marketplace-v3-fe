@@ -10,6 +10,7 @@ export type SellerUpgradePayload = {
   pickupAddress: string;
   companyBio?: string;
   country: string;
+  merchantTerms: boolean;
   companyLogo?: File;
 };
 

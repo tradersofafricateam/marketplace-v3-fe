@@ -7,6 +7,12 @@ export type { LocalizedText, ProductType };
 export type ProductStatus = "draft" | "pending_approval" | "rejected" | "active" | "inactive" | "archived" | "deleted";
 export type InventoryStatus = "in_stock" | "out_of_stock";
 
+export type AssignedProductCategory = {
+  id: string;
+  name: LocalizedText | string;
+  slug?: string;
+};
+
 export type ProductImage = {
   id: string;
   productId: string;
@@ -50,6 +56,7 @@ export type SellerProduct = {
   productName: LocalizedText;
   productDescription: LocalizedText;
   categoryIds: string[];
+  categories?: AssignedProductCategory[];
   countryOfOrigin: string;
   currency: string;
   price: number | null;
@@ -125,6 +132,7 @@ export type ProductFormState = {
   productName: string;
   productDescription: string;
   categoryIds: string[];
+  existingCategories?: AssignedProductCategory[];
   countryOfOrigin: string;
   currency: string;
   productType: ProductType;

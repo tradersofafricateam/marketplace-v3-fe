@@ -798,6 +798,8 @@
       "resubmit": "Tuma ombi tena"
     },
     "becomeSellerModal": {
+      "merchantTerms": "Ninakubali Masharti ya Wauzaji ya TOFA.",
+      "merchantTermsRequired": "Kubali Masharti ya Wauzaji kabla ya kutuma ombi lako.",
       "businessDetails": "Maelezo ya biashara",
       "businessLocation": "Mahali pa biashara",
       "brandIdentity": "Chapa yako",

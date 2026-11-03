@@ -10,6 +10,10 @@ export const validateSellerUpgradeForm = (
 ): SellerUpgradeFormErrors => {
   const errors: SellerUpgradeFormErrors = {};
 
+  if (values.merchantTerms !== true) {
+    errors.merchantTerms = "Accept the Merchant Terms before submitting your application";
+  }
+
   if (!values.storeName.trim()) {
     errors.storeName = "Store name is required";
   }

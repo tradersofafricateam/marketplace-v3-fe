@@ -1,6 +1,8 @@
 "use client";
 
 import { useCategories } from "@/features/categories/hooks/useCategories";
+import { useLocale } from "next-intl";
+import { getAssignedCategoryLabels } from "../../../helpers/assignedCategories";
 import { calculateFinalPrice } from "../../../helpers/pricing";
 import ProductDetailCard from "../../molecules/ProductDetailCard/ProductDetailCard";
 import ProductDetailRow from "../../molecules/ProductDetailRow/ProductDetailRow";
@@ -15,9 +17,8 @@ const ProductDetailSidebar = ({
   formatMoney: (amount: number, code: string) => string;
 }) => {
   const categories = useCategories();
-  const categoryNames = categories.data
-    ?.filter((category) => product.categoryIds.includes(category.id))
-    .map((category) => category.name);
+  const locale = useLocale();
+  const categoryLabels = getAssignedCategoryLabels(product.categoryIds, product.categories, categories.data, locale);
 
   return (
     <div className="space-y-5">
@@ -34,8 +35,8 @@ const ProductDetailSidebar = ({
         <dl>
           {product.productType === "SIMPLE" ? (
             <>
-              <ProductDetailRow label="Price" value={formatMoney(product.price ?? 0, product.currency)} />
-              {!!product.discount && (
+              <ProductDetailRow label="Price" value={product.price == null ? "Price not set" : formatMoney(product.price, product.currency)} />
+              {product.price != null && !!product.discount && (
                 <>
                   <ProductDetailRow label="Discount" value={`${product.discount}%`} />
                   <ProductDetailRow
@@ -71,13 +72,11 @@ const ProductDetailSidebar = ({
       </ProductDetailCard>
 
       <ProductDetailCard title="Categories">
-        {categories.isLoadingCurrentData ? (
-          <p className="text-sm text-muted-foreground">Loading…</p>
-        ) : categoryNames?.length ? (
+        {categoryLabels.length ? (
           <div className="flex flex-wrap gap-2">
-            {categoryNames.map((name) => (
-              <span key={name} className="rounded-full bg-muted px-3 py-1 text-xs font-medium">
-                {name}
+            {categoryLabels.map(({ id, name }) => (
+              <span key={id} className="rounded-full bg-muted px-3 py-1 text-xs font-medium">
+                {name ?? (categories.isLoadingCurrentData ? "Loading…" : "Assigned category unavailable")}
               </span>
             ))}
           </div>

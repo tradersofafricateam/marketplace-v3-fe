@@ -1,23 +1,28 @@
 import { useMemo, useState } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import CategoryQueryState from "@/features/categories/components/molecules/CategoryQueryState/CategoryQueryState";
 import { Check } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { useCategories } from "../../../hooks/useCategories";
+import { getAssignedCategoryLabels } from "../../../helpers/assignedCategories";
+import type { AssignedProductCategory } from "../../../types";
 
 const MAX_CATEGORIES = 5;
 
 const CategoryMultiSelect = ({
   selectedIds,
+  existingCategories,
   onChange,
   error,
 }: {
   selectedIds: string[];
+  existingCategories?: AssignedProductCategory[];
   onChange: (ids: string[]) => void;
   error?: string;
 }) => {
   const t = useTranslations("CategoryData");
+  const locale = useLocale();
   const [search, setSearch] = useState("");
   const { data: categories, isLoadingCurrentData, isError, refetch } = useCategories();
 
@@ -25,6 +30,7 @@ const CategoryMultiSelect = ({
   const available = categories ?? [];
   const matches = available.filter((item) => item.name.toLocaleLowerCase().includes(search.trim().toLocaleLowerCase()));
   const missingIds = categories ? selectedIds.filter((id) => !categories.some((item) => item.id === id)) : [];
+  const assignedNames = new Map(getAssignedCategoryLabels(selectedIds, existingCategories, categories, locale).map(({ id, name }) => [id, name]));
 
   const toggle = (id: string) => {
     if (selectedIds.includes(id)) {
@@ -66,7 +72,7 @@ const CategoryMultiSelect = ({
           );
         })}
       </div>
-      {missingIds.map((id) => <button key={id} type="button" onClick={() => toggle(id)} className="text-left text-xs text-destructive">{t("unavailableSelected")}</button>)}
+      {missingIds.map((id) => <button key={id} type="button" onClick={() => toggle(id)} className="text-left text-xs text-destructive">{assignedNames.get(id) ? `${assignedNames.get(id)} — ` : ""}{t("unavailableSelected")}</button>)}
       {error && <p className="text-xs font-medium text-destructive">{error}</p>}
     </div>
   );

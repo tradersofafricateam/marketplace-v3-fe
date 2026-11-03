@@ -60,6 +60,7 @@ const ProductBasicInfoStep = ({
 
     <CategoryMultiSelect
       selectedIds={values.categoryIds}
+      existingCategories={values.existingCategories}
       onChange={(ids) => setFieldValue("categoryIds", ids)}
       error={errors.categoryIds}
     />
