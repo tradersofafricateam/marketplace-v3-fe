@@ -12,9 +12,10 @@ const root=path.resolve(import.meta.dirname,'..');
 const messages=JSON.parse(fs.readFileSync(path.join(root,'messages/en.json'),'utf8'));
 function page(state, target = "src/features/cart/components/templates/CartPageTemplate/CartPageTemplate.tsx") {
   const mocks={
+    '@tanstack/react-query':{useIsMutating:()=>0},
     'next-intl':{useLocale:()=> 'en',useTranslations:namespace=>createTranslator({locale:'en',messages,namespace})},
     'next/link':{default:({href,children,...props})=>React.createElement('a',{href,...props},children),__esModule:true},
-    'next/image':{default:({fill,unoptimized,...props})=>React.createElement('img',props),__esModule:true},
+    'next/image':{default:(props)=>{const imageProps={...props};delete imageProps.fill;delete imageProps.unoptimized;return React.createElement('img',imageProps);},__esModule:true},
     '@/store/authStore':{useStore:select=>select(state.auth)},
     '@/store/cartStore':{useCartStore:select=>select(state.cart)},
     '@/lib/hooks/useGetAllRoutes':{useGetAllRoutes:()=>({routes:{products:'/en/products',cart:'/en/cart',checkout:'/en/checkout',login:'/en/login',productInfo:id=>'/en/products/info/'+id}})},
@@ -25,7 +26,7 @@ function page(state, target = "src/features/cart/components/templates/CartPageTe
   function load(filename) {
     if(cache.has(filename))return cache.get(filename);
     const code=ts.transpileModule(fs.readFileSync(filename,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022,jsx:ts.JsxEmit.ReactJSX,esModuleInterop:true}}).outputText;
-    const module={exports:{}};cache.set(filename,module.exports);
+    const compiled={exports:{}};cache.set(filename,compiled.exports);
     new Function('require','module','exports',code)(name=>{
       if(mocks[name])return mocks[name];
       if(name.startsWith('.')||name.startsWith('@/')) {
@@ -37,8 +38,8 @@ function page(state, target = "src/features/cart/components/templates/CartPageTe
         }
       }
       return require(name);
-    },module,module.exports);
-    cache.set(filename,module.exports);return module.exports;
+    },compiled,compiled.exports);
+    cache.set(filename,compiled.exports);return compiled.exports;
   }
   const Template=load(path.join(root,target)).default;
   return renderToStaticMarkup(React.createElement(Template));
@@ -62,7 +63,7 @@ test('cart page handles anonymous, empty, request-error and invalid-stock states
   const html=page(invalid);assert.match(html,/Stock has changed/);assert.doesNotMatch(html,/href="\/en\/checkout"/);
 });
 
-test('checkout renders per-seller delivery and backend totals before confirmation',()=>{
+function reviewView() {
   const view=state(cart);
   const address={id:'address',label:'Office',recipientName:'Buyer',phoneNumber:'123',addressLine1:'32 Street',city:'Lagos',country:'Nigeria',isDefault:true};
   view.checkout={
@@ -72,6 +73,11 @@ test('checkout renders per-seller delivery and backend totals before confirmatio
     preview:{data:{deliveryAddress:address,sellerGroups:[{sellerId:'seller',storeName:'Rose and Hammond',items:[{...item,unitPrice:1200}],productsSubtotal:14400,sellerTotal:14400,delivery:{type:'seller_arranged',amount:null}}],paymentMethod:{name:'Bank transfer'},summary:{productsTotal:14400,logisticsTotal:0,totalAmount:14400,currency:'NGN'}}},
     busy:false,session:null,notes:'',newAddress:{},saveDelivery:{},provider:{},payment:{},confirm:{},
   };
+  return view;
+}
+
+test('checkout renders per-seller delivery and backend totals before confirmation',()=>{
+  const view=reviewView();
   const html=page(view,'src/features/checkout/components/templates/CheckoutTemplate/CheckoutTemplate.tsx');
   assert.match(html,/Office/);assert.match(html,/paid separately outside TOFA/);assert.match(html,/Bank transfer/);
   assert.match(html,/Confirm &amp; continue/);assert.match(html,/14,400/);
@@ -85,7 +91,28 @@ test('cart and checkout translation keys resolve in every supported locale',()=>
     for(const namespace of ['CartPage','Checkout']) {
       assert.deepEqual(Object.keys(translated[namespace]).sort(),Object.keys(messages[namespace]).sort());
       const t=createTranslator({locale,messages:translated,namespace,onError:error=>assert.fail(error.message)});
-      for(const key of Object.keys(messages[namespace]))assert.ok(t(key,{count:1,quantity:2,unit:'kg',name:'Provider',min:1,max:3}));
+      for(const key of Object.keys(messages[namespace]))assert.ok(t(key,{count:1,quantity:2,unit:'kg',name:'Provider',min:1,max:3,current:1,total:4,sellers:2,selected:1,time:"14:30"}));
     }
   }
+});
+
+
+test('multi-seller cart counts lines rather than quantities and blocks mixed currencies',()=>{
+  const multi={...cart,totalCount:2,productsSubtotal:28800,sellerGroups:[cart.sellerGroups[0],{...cart.sellerGroups[0],sellerId:'second',storeName:'Second supplier',items:[{...item,cartItemId:'second-line',productId:'second-product'}]}]};
+  const html=page(state(multi));
+  assert.match(html,/Second supplier/);assert.match(html,/2 items/);assert.match(html,/28,800/);assert.doesNotMatch(html,/24 items/);
+  multi.sellerGroups[1].items[0].currency='USD';
+  const invalid=page(state(multi));assert.match(invalid,/All items must use the same currency/);assert.doesNotMatch(invalid,/href="\/en\/checkout"/);
+});
+
+test('review shows backend price changes, exact totals, variants and external charges without a proof-upload flow',()=>{
+  const view=reviewView();view.checkout.preview.data.priceChanges=[{productId:'product',previousPrice:1000,currentPrice:1200}];
+  const html=page(view,'src/features/checkout/components/templates/CheckoutTemplate/CheckoutTemplate.tsx');
+  assert.match(html,/price of one or more products has changed/);assert.match(html,/1,000/);assert.match(html,/1,200/);assert.match(html,/Color: blue/);assert.match(html,/paid separately outside TOFA/);assert.match(html,/14,400/);assert.match(html,/maxlength="1000"/i);assert.doesNotMatch(html,/type="file"|Free delivery/);
+});
+
+test('session confirmation clearly remains payment pending and does not clear the cart',()=>{
+  const view=reviewView();view.checkout.session={checkoutId:'session-reference',totalAmount:14400,currency:'NGN',expiresAt:'2026-12-01T00:00:00Z'};
+  const html=page(view,'src/features/checkout/components/templates/CheckoutTemplate/CheckoutTemplate.tsx');
+  assert.match(html,/Ready for payment/);assert.match(html,/cart stays saved until payment is confirmed/);assert.match(html,/not an order confirmation/);assert.match(html,/session-reference/);assert.doesNotMatch(html,/Payment successful|Your order is on its way/);
 });
