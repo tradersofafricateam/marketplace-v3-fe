@@ -17,7 +17,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
       <main id="main-content" tabIndex={-1} className="flex-1 outline-none">
         {children}
       </main>
-      <FooterSection >
+      <FooterSection />
     </div>
   );
 };
